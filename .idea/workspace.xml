@@ -5,12 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b070c600-f384-439e-b49a-9b65b4c8f3b6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/FriendRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/FriendManagerUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SignUp.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/SignUp.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SignUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SignUp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Friend_Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Friend_Manager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +46,7 @@
     "Application.Window1.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "FriendRequest__Creation",
+    "git-widget-placeholder": "friend-Manager",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Programming_II/Ass_4/gym managment/gym managment/src/jcalendar-1.4.jar",
     "onboarding.tips.debug.path": "C:/Users/alyad/IdeaProjects/Connecthub/src/Main.java",
