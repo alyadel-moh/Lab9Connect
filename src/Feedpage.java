@@ -5,6 +5,9 @@ public class Feedpage extends JFrame{
     private JButton contentCreationButton;
     private JButton friendManagmentButton;
     private JPanel panel;
+    public JPanel friendsPanel;
+    public JPanel contentPanel;
+    public JLabel onlineLabel;
     private UserService userService;
     private User user;
     Feedpage(User user , UserService userService)
