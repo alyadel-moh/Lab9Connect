@@ -6,6 +6,7 @@ public class User {
     private ImageIcon profile;
     private ImageIcon cover;
     private String bio;
+
     private final String userId;
     private String password;
     private final String userName;
@@ -46,6 +47,10 @@ public class User {
             ImageIcon image = new ImageIcon(jFileChooser.getSelectedFile().getAbsolutePath());
             this.profile = image;
         }
+    }
+
+    public ImageIcon getProfile() {
+        return profile;
     }
 
     public void setBio(String bio) {

@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b070c600-f384-439e-b49a-9b65b4c8f3b6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Friend_Manager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/FriendManagerUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Feedpage.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/Feedpage.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Feedpage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Feedpage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Friend_Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Friend_Manager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

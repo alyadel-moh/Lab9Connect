@@ -96,7 +96,7 @@ public class Friend_Manager {
         }
     }
 
-    public void Block(User friend){
+    public void block(User friend){
         if (friend == null){
             throw new IllegalArgumentException("Friend doesn't exist");
         }
@@ -105,7 +105,7 @@ public class Friend_Manager {
         blocked.add(friend);
     }
 
-    public void Remove(User friend){
+    public void remove(User friend){
         if (friend == null){
             throw new IllegalArgumentException("Friend doesn't exist");
         }
@@ -115,12 +115,12 @@ public class Friend_Manager {
 
     }
 
-    public void DisplayStatus(Feedpage page){
-        for (User friend : friends){
-            if (friend.getStatus().equalsIgnoreCase("online"))
-                page.onlineLabel.setText(friend.getUserName());
-        }
+    public void DisplayStatus(Feedpage page) {
+        FriendManagerUI ui = new FriendManagerUI();
+        ui.displayStatus(friends);
+        page.setActivePanel(ui.getActivePanel()); // Update the UI component in the `Feedpage`
     }
+
 
     public ArrayList<FriendRequest> getRequests() {
         return requests;
