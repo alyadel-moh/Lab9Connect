@@ -1,5 +1,5 @@
 import javax.swing.*;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.UUID;
 
 public class UserService {
@@ -13,7 +13,7 @@ public class UserService {
         return database;
     }
 
-    public void signUp(String email, String userName, String password, Date dateOfBirth){
+    public void signUp(String email, String userName, String password, LocalDate dateOfBirth){
         if(!Validator.isValidEmail(email)){
             JOptionPane.showMessageDialog(null, "Invalid email address");
             return;

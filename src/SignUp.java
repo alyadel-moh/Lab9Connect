@@ -1,9 +1,10 @@
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Calendar;
+import com.toedter.calendar.JDateChooser;
 
 public class SignUp extends JFrame{
     private JTextField userNameTextField;
@@ -13,13 +14,16 @@ public class SignUp extends JFrame{
     private JTextField textField5;
     private JTextField textField6;
     private JPasswordField passwordField1;
-    private JTextField textField7;
+    private JPanel textField7;
     private JButton SignUpButton;
     private JButton backButton;
     private JPanel panel;
     private UserService userService;
     SignUp(UserService userService)
     {
+        Calendar old = Calendar.getInstance();
+        JDateChooser dateChooser = new JDateChooser(old.getTime());
+
         setTitle("sign up menu");
         userNameTextField.setBorder(new LineBorder(Color.BLACK));
         emailTextField.setBorder(new LineBorder(Color.BLACK));
@@ -33,16 +37,23 @@ public class SignUp extends JFrame{
         setLocationRelativeTo(null);
         setVisible(true);
 
+        ///Calendar
+        dateChooser.setDateFormatString("dd/MM/yyyy");
+        //textField7.setPreferredSize(new Dimension(200, 60));
+        textField7.add(dateChooser);
+
         SignUpButton.addActionListener(e -> {
             String username = textField5.getText().trim();
             String email = textField6.getText().trim();
             String password = String.valueOf(passwordField1.getPassword());
-            String dob = textField7.getText().trim();
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            try{
-                Date date = sdf.parse(dob);
-                userService.signUp(email,username,password,date);
-            }catch (ParseException ex){JOptionPane.showMessageDialog(null,"Incorrect date format");}
+
+            if (username.isEmpty() || email.isEmpty() || password.isEmpty() || dateChooser.getDate() == null) {
+                JOptionPane.showMessageDialog(null, "All fields are required!");
+                return;
+            }
+
+            LocalDate selectedDate = dateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            userService.signUp(email, username, password, selectedDate);
 
         });
         backButton.addActionListener(e -> {
