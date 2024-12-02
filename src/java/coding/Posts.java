@@ -1,3 +1,5 @@
+package coding;
+
 public class Posts extends Content{
 
     @Override

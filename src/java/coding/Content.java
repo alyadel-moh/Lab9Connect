@@ -1,3 +1,5 @@
+package coding;
+
 import java.time.LocalDate;
 
 public abstract class Content {
