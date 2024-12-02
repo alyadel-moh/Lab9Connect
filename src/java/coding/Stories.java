@@ -5,6 +5,10 @@ import java.time.temporal.ChronoUnit;
 
 public class Stories extends Content{
 
+    Stories(String contentId, String authorId, String content, LocalDateTime timeStamp){
+        super(contentId,authorId,content,timeStamp);
+    }
+
     @Override
     public boolean isExpired(){
         LocalDateTime currentTime = LocalDateTime.now();//Gives us the current time
