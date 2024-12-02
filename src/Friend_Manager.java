@@ -1,60 +1,19 @@
-package coding;
-
 import javax.swing.*;
-import java.lang.reflect.Array;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class User {
-    private ImageIcon profile;
-    private ImageIcon cover;
-    private String bio;
-    private final String userId;
-    private String password;
-    private final String userName;
-    private String email;
-    private final LocalDate dateOfBirth;
-    private String status;
-    private final JFileChooser jFileChooser = new JFileChooser();
-
-    private boolean recievedRequest;
+public class Friend_Manager {
+    private User user;
     private final ArrayList<FriendRequest> requests;
     private final ArrayList<User> friends;
     private final ArrayList<User> suggestions;
     private final ArrayList<User> blocked;
 
-    public User(String userId, String password, String userName, String email, LocalDate dateOfBirth, String status) {
-        this.userId = userId;
-        this.password = password;
-        this.userName = userName;
-        this.email = email;
-        this.dateOfBirth = dateOfBirth;
-        this.status = status;
-        this.recievedRequest = false;
+    Friend_Manager(User user){
+        this.user = user;
         this.requests = new ArrayList<>();
         this.friends = new ArrayList<>();
         this.suggestions = new ArrayList<>();
         this.blocked = new ArrayList<>();
-    }
-
-    public void setCover() {
-        int response = jFileChooser.showOpenDialog(null);
-        if(response == JFileChooser.APPROVE_OPTION){
-            ImageIcon image = new ImageIcon(jFileChooser.getSelectedFile().getAbsolutePath());
-            this.cover = image;
-        }
-    }
-
-    public void setProfile() {
-        int response = jFileChooser.showOpenDialog(null);
-        if(response == JFileChooser.APPROVE_OPTION){
-            ImageIcon image = new ImageIcon(jFileChooser.getSelectedFile().getAbsolutePath());
-            this.profile = image;
-        }
-    }
-
-    public void setBio(String bio) {
-        this.bio = bio;
     }
 
     public void sendRequest(User receiver) {
@@ -67,8 +26,8 @@ public class User {
         }
 
         // Check if a similar request already exists
-        for (FriendRequest req : receiver.requests) {
-            if (req.getSender().equals(this) && req.getReceiver().equals(receiver)) {
+        for (FriendRequest req : receiver.getRequests()) {
+            if (req.getSender().equals(this.user) && req.getReceiver().equals(receiver)) {
                 if (req.getState().equalsIgnoreCase("Pending")) {
                     throw new IllegalArgumentException("Request already pending.");
                 }
@@ -76,8 +35,8 @@ public class User {
         }
 
         // Create and send new request
-        FriendRequest newRequest = new FriendRequest(this, receiver);
-        receiver.setReceivedRequest(newRequest);
+        FriendRequest newRequest = new FriendRequest(this.user, receiver);
+        receiver.getManager().setReceivedRequest(newRequest);
     }
 
     public void setReceivedRequest(FriendRequest request) {
@@ -85,7 +44,7 @@ public class User {
             throw new IllegalArgumentException("Invalid FriendRequest");
         }
 
-        request.getReceiver().recievedRequest = true;
+        request.getReceiver().setRequestState(true);
 
         // Prevent duplicates
         if (!requests.contains(request)) {
@@ -112,7 +71,7 @@ public class User {
         friends.add(sender); // Add to friends list
 
         if (requests.isEmpty()) {
-            recievedRequest = false;
+            this.user.setRequestState(false);
         }
 
         // Notify success
@@ -133,11 +92,11 @@ public class User {
             suggestions.add(sender);
 
         if (requests.isEmpty()) {
-            recievedRequest = false;
+            this.user.setRequestState(false);
         }
     }
 
-    public void Block(User friend){
+    public void block(User friend){
         if (friend == null){
             throw new IllegalArgumentException("Friend doesn't exist");
         }
@@ -146,7 +105,7 @@ public class User {
         blocked.add(friend);
     }
 
-    public void Remove(User friend){
+    public void remove(User friend){
         if (friend == null){
             throw new IllegalArgumentException("Friend doesn't exist");
         }
@@ -156,34 +115,20 @@ public class User {
 
     }
 
-
-
-
-    public String getStatus() {
-        return status;
+    public void DisplayStatus(Feedpage page) {
+        FriendManagerUI ui = new FriendManagerUI();
+        ui.displayStatus(friends);
+        page.setActivePanel(ui.getActivePanel()); // Update the UI component in the `Feedpage`
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+
+    public ArrayList<FriendRequest> getRequests() {
+        return requests;
     }
 
-    public String getEmail() {
-        return email;
+    public ArrayList<User> getFriends() {
+        return friends;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
-    public String getUserName(){
-        return userName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }
