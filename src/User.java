@@ -14,7 +14,6 @@ public class User {
     private final LocalDate dateOfBirth;
     private String status;
     private final JFileChooser jFileChooser = new JFileChooser();
-    private ArrayList<Content> contents;
 
     private boolean recievedRequest;
     private final ArrayList<FriendRequest> requests;
@@ -34,34 +33,6 @@ public class User {
         this.friends = new ArrayList<>();
         this.suggestions = new ArrayList<>();
         this.blocked = new ArrayList<>();
-        this.contents=new ArrayList<>();
-    }
-
-    public void addContent(Content content){
-        contents.add(content);
-    }
-
-    public ArrayList<Content> getContentList(){
-        return contents;
-    }
-
-    public ArrayList<Stories> getActiveStories(){
-        ArrayList<Stories> activeStories=new ArrayList<>();
-        //Returns the stories that are still active (24 hours didn't pass) and is a story
-        for(int i=0;i<contents.size();i++){
-            if(contents.get(i) instanceof Stories && !contents.get(i).isExpired()){
-                activeStories.add((Stories) contents.get(i));
-            }
-        }
-        return activeStories;
-    }
-
-    public void deleteExpiredStories(){
-        for(int i=0;i<contents.size();i++){
-            if(contents.get(i) instanceof Stories && contents.get(i).isExpired()){
-                contents.remove(contents.get(i));
-            }
-        }
     }
 
     public void setCover() {
