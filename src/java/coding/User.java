@@ -16,10 +16,9 @@ public class User {
     private final LocalDate dateOfBirth;
     private String status;
     private final JFileChooser jFileChooser = new JFileChooser();
-
     private Friend_Manager manager;
-
     private boolean receivedRequest;
+    private ArrayList<Content>contents;
 
 
     public User(String userId, String password, String userName, String email, LocalDate dateOfBirth, String status) {
@@ -32,7 +31,34 @@ public class User {
         this.receivedRequest = false;
 
         this.manager = new Friend_Manager(this);
+        this.contents=new ArrayList<>();//intialize it as an empty arraylist at first
 
+    }
+
+    public void addContent(Content content){
+        contents.add(content);//add posts or stories to the arraylist
+    }
+
+    public ArrayList<Content> getContentList(){
+        return contents;
+    }
+
+    public ArrayList<Stories> getActiveStories(){
+        ArrayList <Stories>activeStories =new ArrayList<Stories>();
+        for(int i=0;i<contents.size();i++){
+            if(contents.get(i)instanceof Stories && !contents.get(i).isExpired()){
+                activeStories.add((Stories) contents.get(i));
+            }
+        }
+        return activeStories;
+    }
+
+    public void deleteExpiredStories(){
+        for(int i=0;i<contents.size();i++){
+            if(contents.get(i)instanceof Stories && contents.get(i).isExpired()){
+                contents.remove(contents.get(i));
+            }
+        }
     }
 
     public void setCover() {
