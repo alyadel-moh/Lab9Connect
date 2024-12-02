@@ -1,5 +1,6 @@
 package coding;
 
+import coding.interfaces.ContentObserver;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.core.type.TypeReference;
 
@@ -10,21 +11,31 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ContentHandler {
-    private ObjectMapper objectMapper;//A tool to convert from java objects to json
-    private String path;//the location where we store the json files at
-    private User user;
-    private ArrayList<Content> contents;
+    private static ContentHandler instance;
+    private final ObjectMapper objectMapper;
+    private final ArrayList<Content> contents;
+    private final ArrayList<Stories> archieved;
+    private final ArrayList<ContentObserver> observers;
+    private String path;
 
-    public ContentHandler(User user, String path) {
-        this.user = user;
+    public ContentHandler(String path) {
         this.objectMapper = new ObjectMapper();
         this.contents = new ArrayList<>();
+        this.archieved = new ArrayList<>();
+        this.observers = new ArrayList<>();
         this.path = path;
 
         File file = new File(path);
         if (!file.exists()) {
             file.mkdirs(); // Create folder if it doesn't exist
         }
+    }
+
+    public static synchronized ContentHandler getInstance(String path) {
+        if (instance == null) {
+            instance = new ContentHandler(path);
+        }
+        return instance;
     }
 
     public ArrayList<Stories> getActiveStories() {
@@ -38,7 +49,13 @@ public class ContentHandler {
     }
 
     public void deleteExpiredStories() {
-        contents.removeIf(content -> content instanceof Stories && content.isExpired());
+        for (Content content : contents) {
+            if (content instanceof Stories && content.isExpired()){
+                contents.remove(content);
+                archieved.add((Stories) content);
+            }
+            
+        }
     }
 
 
@@ -52,16 +69,41 @@ public class ContentHandler {
         }
     }
 
-    public void setPath(String path){
+    public void setPath(String path) {
         this.path = path;
+        File file = new File(path);
+        if (!file.exists()) {
+            file.mkdirs();
+        }
+    }
+
+
+    public void addContent(Content content){
+        contents.add(content);//add posts or stories to the arraylist
+        notifyObservers();
     }
 
     public ArrayList<Content> getContents(){
         return contents;
     }
 
-    public void addContent(Content content){
-        contents.add(content);//add posts or stories to the arraylist
+    public void addObserver(ContentObserver observer){
+        observers.add(observer);
     }
 
+    public void removeObserver(ContentObserver observer) {
+        observers.remove(observer);
+    }
+
+    private void notifyObservers(){
+        for (ContentObserver observer : observers){
+            observer.update(contents);
+        }
+    }
+
+    public ArrayList<Stories> getArchieved() {
+        return archieved;
+    }
 }
+
+

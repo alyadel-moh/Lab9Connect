@@ -31,7 +31,7 @@ public class User {
         this.dateOfBirth = dateOfBirth;
         this.status = status;
         this.manager = new Friend_Manager(this);
-        this.handler = new ContentHandler(this,"user_data");
+        this.handler = new ContentHandler("user_data");
         this.receivedRequest = false;
     }
 
