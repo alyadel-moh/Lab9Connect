@@ -1,12 +1,20 @@
 package coding;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public abstract class Content {
     private String contentId;
     private String authorId;
     private String content;
-    private LocalDate timeStamp;
+    private LocalDateTime timeStamp;
+
+    Content(String contentId,String authorId,String content,LocalDateTime timeStamp){
+        this.contentId=contentId;
+        this.authorId=authorId;
+        this.content=content;
+        this.timeStamp=timeStamp;
+    }
 
     public String getContentId(){
         return contentId;
@@ -17,7 +25,7 @@ public abstract class Content {
     public String getContent(){
         return content;
     }
-    public LocalDate getDate(){
+    public LocalDateTime getDate(){
         return timeStamp;
     }
 
@@ -33,7 +41,7 @@ public abstract class Content {
         this.content = content;//contains text for a story or a post - "Optional"a url for an image
     }
 
-    public void setTimeStamp(LocalDate timeStamp) {
+    public void setTimeStamp(LocalDateTime timeStamp) {
         this.timeStamp = timeStamp;
     }
 
