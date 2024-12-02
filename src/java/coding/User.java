@@ -9,61 +9,86 @@ public class User {
     private ImageIcon cover;
     private String bio;
 
-    private final String userId;
     private String password;
-    private final String userName;
     private String email;
-    private final LocalDate dateOfBirth;
     private String status;
+
+    private final String userId;
+    private final String userName;
+    private final LocalDate dateOfBirth;
     private final JFileChooser jFileChooser = new JFileChooser();
-    private Friend_Manager manager;
+    private final Friend_Manager manager;
+    private final ContentHandler handler;
+
     private boolean receivedRequest;
-    private ArrayList<Content>contents;
 
-
-    public User(String userId, String password, String userName, String email, LocalDate dateOfBirth, String status) {
+    // Private constructor for User
+    private User(String userId, String password, String userName, String email, LocalDate dateOfBirth, String status) {
         this.userId = userId;
         this.password = password;
         this.userName = userName;
         this.email = email;
         this.dateOfBirth = dateOfBirth;
         this.status = status;
-        this.receivedRequest = false;
-
         this.manager = new Friend_Manager(this);
-        this.contents=new ArrayList<>();//intialize it as an empty arraylist at first
-
+        this.handler = new ContentHandler(this,"user_data");
+        this.receivedRequest = false;
     }
 
-    public void addContent(Content content){
-        contents.add(content);//add posts or stories to the arraylist
-    }
 
-    public ArrayList<Content> getContentList(){
-        return contents;
-    }
 
-    public ArrayList<Stories> getActiveStories(){
-        ArrayList <Stories>activeStories =new ArrayList<Stories>();
-        for(int i=0;i<contents.size();i++){
-            if(contents.get(i)instanceof Stories && !contents.get(i).isExpired()){
-                activeStories.add((Stories) contents.get(i));
-            }
+    // Builder class for User
+    public static class UserBuilder {
+        private String userId;
+        private String password;
+        private String userName;
+        private String email;
+        private LocalDate dateOfBirth;
+        private String status;
+
+        public UserBuilder setUserId(String userId) {
+            this.userId = userId;
+            return this;
         }
-        return activeStories;
+
+        public UserBuilder setPassword(String password) {
+            this.password = password;
+            return this;
+        }
+
+        public UserBuilder setUserName(String userName) {
+            this.userName = userName;
+            return this;
+        }
+
+        public UserBuilder setEmail(String email) {
+            this.email = email;
+            return this;
+        }
+
+        public UserBuilder setDateOfBirth(LocalDate dateOfBirth) {
+            this.dateOfBirth = dateOfBirth;
+            return this;
+        }
+
+        public UserBuilder setStatus(String status) {
+            this.status = status;
+            return this;
+        }
+
+        public User build() {
+            return new User(userId, password, userName, email, dateOfBirth, status);
+        }
     }
 
-    public void deleteExpiredStories(){
-        for(int i=0;i<contents.size();i++){
-            if(contents.get(i)instanceof Stories && contents.get(i).isExpired()){
-                contents.remove(contents.get(i));
-            }
-        }
+    // Other methods
+    public ArrayList<Content> getContentList() {
+        return handler.getContents();
     }
 
     public void setCover() {
         int response = jFileChooser.showOpenDialog(null);
-        if(response == JFileChooser.APPROVE_OPTION){
+        if (response == JFileChooser.APPROVE_OPTION) {
             ImageIcon image = new ImageIcon(jFileChooser.getSelectedFile().getAbsolutePath());
             this.cover = image;
         }
@@ -71,7 +96,7 @@ public class User {
 
     public void setProfile() {
         int response = jFileChooser.showOpenDialog(null);
-        if(response == JFileChooser.APPROVE_OPTION){
+        if (response == JFileChooser.APPROVE_OPTION) {
             ImageIcon image = new ImageIcon(jFileChooser.getSelectedFile().getAbsolutePath());
             this.profile = image;
         }
@@ -85,7 +110,7 @@ public class User {
         this.bio = bio;
     }
 
-    public void setRequestState(boolean state){
+    public void setRequestState(boolean state) {
         this.receivedRequest = state;
     }
 
@@ -93,7 +118,7 @@ public class User {
         return receivedRequest;
     }
 
-    public ArrayList<FriendRequest> getRequests(){
+    public ArrayList<FriendRequest> getRequests() {
         return manager.getRequests();
     }
 
@@ -101,19 +126,11 @@ public class User {
         return status;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getUserName(){
+    public String getUserName() {
         return userName;
     }
 
@@ -121,11 +138,19 @@ public class User {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public Friend_Manager getManager() {
+        return manager;
     }
 
-    public Friend_Manager getManager(){
-        return manager;
+    public ContentHandler getHandler() {
+        return handler;
+    }
+
+    public void setPassword(String newPassword) {
+        this.password = newPassword;
+    }
+
+    public void setStatus(String newStatus){
+        this.status = newStatus;
     }
 }

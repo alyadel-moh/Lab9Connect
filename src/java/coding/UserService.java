@@ -23,12 +23,24 @@ public class UserService {
         if(!Validator.fieldsProvided(email, userName, password)){
             JOptionPane.showMessageDialog(null, "All fields are required");
         }
+
         String hashedPass = Validator.hashPassword(password);
         String userId = UUID.randomUUID().toString();
-        User newUser = new User(userId, hashedPass, userName, email, dateOfBirth, "online");
+
+        User newUser = new User.UserBuilder()
+                .setUserId(userId)
+                .setPassword(hashedPass)
+                .setUserName(userName)
+                .setEmail(email)
+                .setDateOfBirth(dateOfBirth)
+                .setStatus("online")
+                .build();
+
         database.addUser(newUser);
         JOptionPane.showMessageDialog(null, "User has been added");
+
     }
+
     public User login(String email, String password){
         String hashedPass = Validator.hashPassword(password);
         for (User user : database.getUsers()) {
