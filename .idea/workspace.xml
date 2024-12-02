@@ -6,12 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="b070c600-f384-439e-b49a-9b65b4c8f3b6" name="Changes" comment="Merge branch 'main' of https://github.com/shamsquraytum/Lab9Connect&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Content.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Content.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FriendManagerUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/FriendManagerUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Friend_Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Friend_Manager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Posts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Posts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Stories.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Stories.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab9Connect2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Lab9Connect2.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/Updatepass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Updatepass.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/coding/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,13 +44,14 @@
     "Application.ProfileManagement.executor": "Run",
     "Application.SignIn.executor": "Run",
     "Application.SignUp.executor": "Run",
+    "Application.Test.executor": "Run",
     "Application.Updatebio.executor": "Run",
     "Application.Updatepass.executor": "Run",
     "Application.Window.executor": "Run",
     "Application.Window1.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "Design-Patterns-addition",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Programming_II/Ass_4/gym managment/gym managment/src/jcalendar-1.4.jar",
     "node.js.detected.package.eslint": "true",
@@ -61,8 +60,8 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "onboarding.tips.debug.path": "C:/Users/alyad/IdeaProjects/Connecthub/src/Main.java",
     "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2"
   }
 }]]></component>
   <component name="RecentsManager">

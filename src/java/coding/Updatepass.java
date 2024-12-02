@@ -11,6 +11,7 @@ public class Updatepass extends JFrame {
     private JPasswordField passwordField1;
     private User user;
     private UserService userService;
+
     Updatepass(User user,UserService userService){
         this.user = user;
         this.userService = userService;
@@ -37,6 +38,7 @@ public class Updatepass extends JFrame {
                 new ProfileManagement(user,userService);
                 return;
             }
+
             user.setPassword(hashedNewPassword);
             JOptionPane.showMessageDialog(null, "password updated successfully !");
             setVisible(false);
