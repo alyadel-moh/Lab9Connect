@@ -5,12 +5,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b070c600-f384-439e-b49a-9b65b4c8f3b6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/FriendRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/Lab9Connect.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/jackson-annotations-2.15.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/jackson-core-2.15.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/jackson-databind-2.15.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/jackson-datatype-jsr310-2.15.2.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SignUp.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/SignUp.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SignUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SignUp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Database.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Feedpage.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Feedpage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FriendManagement.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FriendManagement.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FriendRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ProfileManagement.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ProfileManagement.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SignIn.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SignIn.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SignUp.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SignUp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Updatebio.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Updatebio.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Updatepass.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Updatepass.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Validator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Window1.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Window1.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +44,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="module-info" />
       </list>
     </option>
   </component>
@@ -48,15 +72,37 @@
     "Application.Window1.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "FriendRequest__Creation",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Programming_II/Ass_4/gym managment/gym managment/src/jcalendar-1.4.jar",
+    "last_opened_file_path": "C:/Users/Administrator/Documents/GitHub/Lab9Connect/lib/jackson-datatype-jsr310-2.15.2.jar",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "onboarding.tips.debug.path": "C:/Users/alyad/IdeaProjects/Connecthub/src/Main.java",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Administrator\Documents\GitHub\Lab9Connect\lib" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Administrator\Documents\GitHub\Lab9Connect\libs" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23726.103" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23726.103" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -65,7 +111,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1733046312692</updated>
+      <workItem from="1733099431728" duration="4824000" />
+      <workItem from="1733105785298" duration="1830000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
 </project>
