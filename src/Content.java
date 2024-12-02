@@ -1,10 +1,10 @@
-import java.util.Date;
+import java.time.LocalDate;
 
 public abstract class Content {
     private String contentId;
     private String authorId;
     private String content;
-    private Date timeStamp;
+    private LocalDate timeStamp;
 
     public String getContentId(){
         return contentId;
@@ -15,7 +15,7 @@ public abstract class Content {
     public String getContent(){
         return content;
     }
-    public Date getDate(){
+    public LocalDate getDate(){
         return timeStamp;
     }
 
@@ -28,10 +28,12 @@ public abstract class Content {
     }
 
     public void setContent(String content) {
-        this.content = content;
+        this.content = content;//contains text for a story or a post - "Optional"a url for an image
     }
 
-    public void setTimeStamp(Date timeStamp) {
+    public void setTimeStamp(LocalDate timeStamp) {
         this.timeStamp = timeStamp;
     }
+
+    public abstract boolean isExpired();
 }
