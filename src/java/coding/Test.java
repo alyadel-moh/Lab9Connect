@@ -17,12 +17,10 @@ public class Test {
                 .setStatus("online")
                 .build();
 
-        // Initialize ContentManager with a directory for storing user JSON files
-        user.getHandler().setPath("user_data");
 
         // Step 2: Add content (posts and stories) for the user
         LocalDateTime currentTime = LocalDateTime.now();
-        Posts post = (Posts) ContentFactory.createContent("post","post1", "user1", "Hello, this is my first post!", currentTime)
+        Posts post = (Posts) ContentFactory.createContent("post","post1", "user1", "Hello, this is my first post!", currentTime);
         Stories story = (Stories) ContentFactory.createContent("story","story1", "user1", "This is my first story!", currentTime.minusHours(23));
 
         // Step 3: add content
