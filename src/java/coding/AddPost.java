@@ -1,10 +1,7 @@
 package coding;
 
 import javax.swing.*;
-<<<<<<< HEAD
 import javax.swing.border.LineBorder;
-=======
->>>>>>> a006e0e22f5af3a61c1f30640212e0ad10a9df9f
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,16 +17,14 @@ public class AddPost extends JFrame{
     private JButton addButton;
     private JButton backButton;
     private JButton chooseAnImageButton;
-<<<<<<< HEAD
     private JTextField writePostTextTextField;
     private JTextField addAnImageJpgTextField;
-=======
->>>>>>> a006e0e22f5af3a61c1f30640212e0ad10a9df9f
     private User user;
     private String imageUrl = "";
 
     AddPost(User user){
-<<<<<<< HEAD
+        setTitle("Add Post");
+
         addButton.setFocusable(false);
         backButton.setFocusable(false);
         chooseAnImageButton.setFocusable(false);
@@ -38,11 +33,6 @@ public class AddPost extends JFrame{
         setTitle("Content Creation Window ");
         setVisible(true);
         setSize(new Dimension(500,400));
-=======
-        setTitle("Content Creation Window ");
-        setVisible(true);
-        setSize(new Dimension(500,500));
->>>>>>> a006e0e22f5af3a61c1f30640212e0ad10a9df9f
         setContentPane(panel);
         setLocationRelativeTo(null);
         this.user=user;
@@ -57,7 +47,7 @@ public class AddPost extends JFrame{
                     String content=textOfContent.getText()+"-"+imageUrl;
                     String postId="Post "+user.getHandler().getPosts().size()+1;//Creates id for the content
 
-                    Posts post = (Posts) ContentFactory.createContent("post", postId,user.getUserId(),content,currentTime);
+                    Posts post = (Posts) ContentFactory.createContent( "post", postId, user.getUserId(), content, currentTime );
                     user.getHandler().addPost(post);
 
                     setVisible(false);
@@ -65,14 +55,12 @@ public class AddPost extends JFrame{
                 }
             }
         });
-
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
             }
         });
-
         chooseAnImageButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -80,41 +68,28 @@ public class AddPost extends JFrame{
                 fileChooser.setDialogTitle("Choose an Image");
                 int userChoice = fileChooser.showSaveDialog(null);//shows the save dialog//null is to be centered to the screen//returns 0 if the user clicked save//returns 1 then the user canceled//-1 error occured
                 if (userChoice == -1) {
-<<<<<<< HEAD
                     JOptionPane.showMessageDialog(null, "An error has occurred !");
                 } else if (userChoice == 1) {
                     JOptionPane.showMessageDialog(null, "operation Cancelled ! ");
-=======
-                    JOptionPane.showMessageDialog(null, "An error has occurred");
-                } else if (userChoice == 1) {
-                    JOptionPane.showMessageDialog(null, "The user Cancelled");
->>>>>>> a006e0e22f5af3a61c1f30640212e0ad10a9df9f
                 } else {
                     File selectedFile = fileChooser.getSelectedFile();
-                    if(selectedFile.getName().endsWith(".jpg") || selectedFile.getName().endsWith(".png")){
+                   // if(selectedFile.getName().endsWith(".jpg") || selectedFile.getName().endsWith(".png")){
                         // Convert file to URL
                         try {
                             imageUrl = selectedFile.toURI().toURL().toString();
-<<<<<<< HEAD
                             JOptionPane.showMessageDialog(null,"Image Chosen successfully !");
-=======
-                            JOptionPane.showMessageDialog(null,"Image Chosen successfully");
->>>>>>> a006e0e22f5af3a61c1f30640212e0ad10a9df9f
                         } catch (MalformedURLException ex) {
                             throw new RuntimeException(ex);
                         }
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(null, "Please Choose an Image!", "Message", JOptionPane.ERROR_MESSAGE);
-                    }
+                    //}
+                   // else{
+                   //     JOptionPane.showMessageDialog(null, "Please Choose an Image!", "Message", JOptionPane.ERROR_MESSAGE);
+                   // }
                 }
             }
         });
     }
-<<<<<<< HEAD
     public static void main
             (String[] args) {
         new AddPost(null);}
-=======
->>>>>>> a006e0e22f5af3a61c1f30640212e0ad10a9df9f
 }

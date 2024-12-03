@@ -1,26 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="coding.AddPost">
-<<<<<<< HEAD
   <grid id="27dc6" binding="panel" layout-manager="GridLayoutManager" row-count="4" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-=======
-  <grid id="27dc6" binding="panel" layout-manager="GridLayoutManager" row-count="4" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
->>>>>>> a006e0e22f5af3a61c1f30640212e0ad10a9df9f
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
       <xy x="20" y="20" width="500" height="400"/>
     </constraints>
-<<<<<<< HEAD
     <properties>
       <foreground color="-16777216"/>
     </properties>
-=======
-    <properties/>
->>>>>>> a006e0e22f5af3a61c1f30640212e0ad10a9df9f
     <border type="none"/>
     <children>
       <component id="12669" class="javax.swing.JTextField" binding="textOfContent">
         <constraints>
-<<<<<<< HEAD
           <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="-1" height="30"/>
             <preferred-size width="200" height="-1"/>
@@ -29,33 +20,10 @@
         </constraints>
         <properties>
           <horizontalAlignment value="0"/>
-=======
-          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
-          </grid>
-        </constraints>
-        <properties/>
-      </component>
-      <component id="2feec" class="javax.swing.JLabel">
-        <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Text Content"/>
-        </properties>
-      </component>
-      <component id="fb749" class="javax.swing.JLabel">
-        <constraints>
-          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Img URL (Optional)"/>
->>>>>>> a006e0e22f5af3a61c1f30640212e0ad10a9df9f
         </properties>
       </component>
       <component id="b2a12" class="javax.swing.JButton" binding="addButton">
         <constraints>
-<<<<<<< HEAD
           <grid row="2" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="-1" height="45"/>
             <preferred-size width="130" height="-1"/>
@@ -65,17 +33,11 @@
         <properties>
           <background color="-16777216"/>
           <foreground color="-854792"/>
-=======
-          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
->>>>>>> a006e0e22f5af3a61c1f30640212e0ad10a9df9f
           <text value="Add"/>
         </properties>
       </component>
       <component id="4b2f9" class="javax.swing.JButton" binding="backButton" default-binding="true">
         <constraints>
-<<<<<<< HEAD
           <grid row="3" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="-1" height="45"/>
             <preferred-size width="130" height="-1"/>
@@ -85,17 +47,11 @@
         <properties>
           <background color="-16777216"/>
           <foreground color="-854792"/>
-=======
-          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
->>>>>>> a006e0e22f5af3a61c1f30640212e0ad10a9df9f
           <text value="Back"/>
         </properties>
       </component>
       <component id="b6535" class="javax.swing.JButton" binding="chooseAnImageButton" default-binding="true">
         <constraints>
-<<<<<<< HEAD
           <grid row="1" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="-1" height="40"/>
             <preferred-size width="150" height="-1"/>
@@ -139,14 +95,6 @@
           <text value="add an  image (.jpg)"/>
         </properties>
       </component>
-=======
-          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Choose an image"/>
-        </properties>
-      </component>
->>>>>>> a006e0e22f5af3a61c1f30640212e0ad10a9df9f
     </children>
   </grid>
 </form>
