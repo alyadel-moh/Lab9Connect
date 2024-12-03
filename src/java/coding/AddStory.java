@@ -8,24 +8,22 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.time.LocalDateTime;
 
-public class AddPost extends JFrame{
-    private JTextField contentIdPlaceholder;
-    private JTextField authorIdPlaceholder;
-    private JTextField textOfContent;
-    private JPanel panel;
-    private JButton addButton;
-    private JButton backButton;
-    private JButton chooseAnImageButton;
+public class AddStory extends JFrame {
     private User user;
     private String imageUrl = "";
+    private JPanel panel;
+    private JButton chooseAnImageButton;
+    private JTextField textOfContent;
+    private JButton addButton;
+    private JButton backButton;
 
-    AddPost(User user){
-        setTitle("Add Post");
+    AddStory(User user) {
+        setTitle("Add Story");
         setVisible(true);
-        setSize(new Dimension(500,500));
+        setSize(new Dimension(500, 500));
         setContentPane(panel);
         setLocationRelativeTo(null);
-        this.user=user;
+        this.user = user;
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -35,9 +33,9 @@ public class AddPost extends JFrame{
                 else{
                     LocalDateTime currentTime= LocalDateTime.now();
                     String content=textOfContent.getText()+"-"+imageUrl;
-                    String postId="Post "+user.getHandler().getPosts().size()+1;//Creates id for the content
-                    Posts post=new Posts(postId,user.getUserId(),content,currentTime);
-                    user.getHandler().addPost(post);
+                    String storyId="Story "+user.getHandler().getStories().size()+1;//Creates id for the content
+                    Stories story=new Stories(storyId,user.getUserId(),content,currentTime);
+                    user.getHandler().addStory(story);
                     setVisible(false);
                     new ContentCreation(user);
                 }
@@ -65,6 +63,7 @@ public class AddPost extends JFrame{
                         // Convert file to URL
                         try {
                             imageUrl = selectedFile.toURI().toURL().toString();
+                            System.out.println(imageUrl);
                             JOptionPane.showMessageDialog(null,"Image Chosen successfully");
                         } catch (MalformedURLException ex) {
                             throw new RuntimeException(ex);
@@ -77,4 +76,5 @@ public class AddPost extends JFrame{
             }
         });
     }
+
 }

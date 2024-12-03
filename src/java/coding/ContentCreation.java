@@ -30,6 +30,36 @@ public class ContentCreation extends JFrame{
                 setVisible(false);
             }
         });
+        addStory.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new AddStory(user);
+                setVisible(false);
+            }
+        });
+        savePostButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(user.getHandler().getPosts().isEmpty()){
+                    JOptionPane.showMessageDialog(null, "No Posts has been added for you to save", "Message", JOptionPane.ERROR_MESSAGE);
+                }
+                else{
+                user.getHandler().savePosts();
+                JOptionPane.showMessageDialog(null,"Posts has been added to the file Successfully");
+            }}
+        });
+        saveStoryButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(user.getHandler().getStories().isEmpty()){
+                    JOptionPane.showMessageDialog(null, "No Stories has been added for you to save", "Message", JOptionPane.ERROR_MESSAGE);
+                }
+                else{
+                    user.getHandler().saveStories();
+                    JOptionPane.showMessageDialog(null,"Stories has been added to the file Successfully");
+                }
+            }
+        });
     }
 
 }
