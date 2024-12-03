@@ -104,9 +104,9 @@ public class User {
     }
 
     // Other methods
-    public ArrayList<Content> getContentList() {
-        return handler.getContents();
-    }
+//    public ArrayList<Content> getContentList() {
+//        return handler.getContents();
+//    }
 
     public void setCover() {
         int response = jFileChooser.showOpenDialog(null);
@@ -184,5 +184,4 @@ public class User {
         this.status = newStatus;
     }
 
-    public String getUserId() {return userId;};
 }
