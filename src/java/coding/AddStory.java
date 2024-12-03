@@ -36,6 +36,7 @@ public class AddStory extends JFrame {
                     String storyId="Story "+user.getHandler().getStories().size()+1;//Creates id for the content
                     Stories story=new Stories(storyId,user.getUserId(),content,currentTime);
                     user.getHandler().addStory(story);
+                    JOptionPane.showMessageDialog(null,"Story added Successfully");
                     setVisible(false);
                     new ContentCreation(user);
                 }
@@ -45,6 +46,7 @@ public class AddStory extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
+                new ContentCreation(user);
             }
         });
         chooseAnImageButton.addActionListener(new ActionListener() {

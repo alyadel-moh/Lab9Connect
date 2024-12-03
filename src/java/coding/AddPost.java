@@ -35,9 +35,10 @@ public class AddPost extends JFrame{
                 else{
                     LocalDateTime currentTime= LocalDateTime.now();
                     String content=textOfContent.getText()+"-"+imageUrl;
-                    String postId="Post "+user.getHandler().getPosts().size()+1;//Creates id for the content
+                    String postId="Post "+(user.getHandler().getPosts().size()+1);//Creates id for the content
                     Posts post=new Posts(postId,user.getUserId(),content,currentTime);
                     user.getHandler().addPost(post);
+                    JOptionPane.showMessageDialog(null,"Post Added Successfully");
                     setVisible(false);
                     new ContentCreation(user);
                 }
@@ -47,6 +48,7 @@ public class AddPost extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
+                new ContentCreation(user);
             }
         });
         chooseAnImageButton.addActionListener(new ActionListener() {
@@ -67,6 +69,7 @@ public class AddPost extends JFrame{
                             imageUrl = selectedFile.toURI().toURL().toString();
                             JOptionPane.showMessageDialog(null,"Image Chosen successfully");
                         } catch (MalformedURLException ex) {
+
                             throw new RuntimeException(ex);
                         }
                     }

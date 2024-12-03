@@ -10,8 +10,9 @@ public class ContentCreation extends JFrame{
     private JButton addPost;
     private JButton addStory;
     private JButton savePostButton;
-    private JButton viewButton;
+    private JButton viewPostButton;
     private JButton saveStoryButton;
+    private JButton viewStoryButton;
     private User user;
     private ContentHandler handler;
 
@@ -58,6 +59,13 @@ public class ContentCreation extends JFrame{
                     user.getHandler().saveStories();
                     JOptionPane.showMessageDialog(null,"Stories has been added to the file Successfully");
                 }
+            }
+        });
+        viewPostButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new ViewPost(user);
+                setVisible(false);
             }
         });
     }
