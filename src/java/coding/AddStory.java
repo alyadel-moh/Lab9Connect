@@ -34,8 +34,10 @@ public class AddStory extends JFrame {
                     LocalDateTime currentTime= LocalDateTime.now();
                     String content=textOfContent.getText()+"-"+imageUrl;
                     String storyId="Story "+user.getHandler().getStories().size()+1;//Creates id for the content
-                    Stories story=new Stories(storyId,user.getUserId(),content,currentTime);
+
+                    Stories story = (Stories) ContentFactory.createContent("story", storyId, user.getUserId(), content, currentTime );
                     user.getHandler().addStory(story);
+
                     setVisible(false);
                     new ContentCreation(user);
                 }
@@ -47,6 +49,7 @@ public class AddStory extends JFrame {
                 setVisible(false);
             }
         });
+
         chooseAnImageButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
