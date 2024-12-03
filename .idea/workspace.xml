@@ -4,17 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b070c600-f384-439e-b49a-9b65b4c8f3b6" name="Changes" comment="Merge branch 'main' of https://github.com/shamsquraytum/Lab9Connect&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
-      <change afterPath="$PROJECT_DIR$/src/java/coding/Homepage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/ContentHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/ContentHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/SignUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/SignUp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user_data/Menna.json" beforeDir="false" afterPath="$PROJECT_DIR$/user_data/Menna.json" afterDir="false" />
-    </list>
+    <list default="true" id="b070c600-f384-439e-b49a-9b65b4c8f3b6" name="Changes" comment="Merge branch 'main' of https://github.com/shamsquraytum/Lab9Connect&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,7 +19,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
@@ -134,7 +123,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733136052799</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Merge branch 'main' of https://github.com/shamsquraytum/Lab9Connect&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
+      <option name="closed" value="true" />
+      <created>1733189140360</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1733189140360</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
