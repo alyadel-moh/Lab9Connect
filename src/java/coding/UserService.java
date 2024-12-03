@@ -1,11 +1,7 @@
 package coding;
 
 import javax.swing.*;
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.UUID;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -43,7 +39,7 @@ public class UserService {
                 .setUserName(userName)
                 .setEmail(email)
                 .setDateOfBirth(dateOfBirth)
-                .setStatus("online")
+                .setStatus("offline")
                         .build();
 
         database.addUser(newUser);
@@ -56,19 +52,22 @@ public class UserService {
         for (User user : database.getUsers()) {
             if(user.getEmail().equals(email) && user.getPassword().equals(hashedPass)){
                 user.setStatus("online");
+                database.saveUsers();
                 JOptionPane.showMessageDialog(null, "User has been logged in");
                 return user;
             }
         }
         return null;
     }
-    public void logout(){
+    public User logout(){
         for(User user : database.getUsers()){
-            if(user.getStatus().equals("online")){
+                if(user.getStatus().equals("online")){
                 user.setStatus("offline");
+                database.saveUsers();
                 JOptionPane.showMessageDialog(null, "User has been logged off");
-                return;
+                    return user;
             }
         }
+        return null;
     }
 }

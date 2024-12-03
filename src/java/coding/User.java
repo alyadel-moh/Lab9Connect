@@ -47,10 +47,6 @@ public class User {
 //        this.status = status;
 //    }
 
-    public String getUserId() {
-        return userId;
-    }
-
 // Builder class for User
     public static class UserBuilder {
         private String userId;

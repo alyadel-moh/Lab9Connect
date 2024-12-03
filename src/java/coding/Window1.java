@@ -29,6 +29,7 @@ public class Window1 extends JFrame  {
                 new SignUp(userService);
             });
             signInButton.addActionListener(e -> {
+                setVisible(false);
                 new SignIn(userService);
             });
             setVisible(true);
@@ -36,6 +37,7 @@ public class Window1 extends JFrame  {
     public static void main
             (String[] args) {
         Database database = new Database();
+        database.loadUsers();
         UserService userService = new UserService(database);
         new Window1(userService);}
 }

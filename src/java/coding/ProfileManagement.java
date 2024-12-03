@@ -8,7 +8,7 @@ public class ProfileManagement extends JFrame{
     private JButton updateProfilePhotoButton;
     private JButton updatePasswordButton;
     private JButton updateBioButton;
-    private JButton updateCoverPhotoButton;
+    private JButton updateCoverPhotoButton, backButton;
     private JPanel panel;
     private User user;
     private UserService userService;
@@ -22,6 +22,7 @@ public class ProfileManagement extends JFrame{
         updatePasswordButton.setFocusable(false);
         updateBioButton.setFocusable(false);
         updateCoverPhotoButton.setFocusable(false);
+        backButton.setFocusable(false);
         setBounds(100,100,400,600);
         setLocationRelativeTo(null);
         setVisible(true);
@@ -34,6 +35,10 @@ public class ProfileManagement extends JFrame{
         });
         updatePasswordButton.addActionListener(e -> {
             new Updatepass(user,userService);
+        });
+        backButton.addActionListener(e -> {
+            setVisible(false);
+            new Homepage(userService, user);
         });
     }
 }

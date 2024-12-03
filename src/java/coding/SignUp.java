@@ -56,6 +56,8 @@ public class SignUp extends JFrame{
 
             LocalDate selectedDate = dateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             userService.signUp(email, username, password, selectedDate);
+            setVisible(false);
+            new Window1(userService);
 
         });
         backButton.addActionListener(e -> {

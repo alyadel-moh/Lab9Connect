@@ -34,4 +34,16 @@ public class Database {
             e.printStackTrace();
         }
     }
+    public void loadUsers() {
+        ObjectMapper mapper = new ObjectMapper();
+        try{
+            File file = new File("Users.json");
+            if (file.exists()){
+                users = mapper.readValue(file,mapper.getTypeFactory().constructCollectionType(ArrayList.class, User.class));
+            }
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
 }
