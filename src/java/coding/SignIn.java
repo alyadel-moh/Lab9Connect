@@ -34,7 +34,9 @@ public class SignIn extends JFrame{
            User user =  userService.login(email,password);
            if(user != null) {
                setVisible(false);
-               new Feedpage(user,userService);           }
+               new Homepage(userService,user);
+//               new Feedpage(user,userService);
+               }
            else
                JOptionPane.showMessageDialog(null, "User not found");
         });
