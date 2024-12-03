@@ -20,6 +20,7 @@ public class Homepage extends JFrame {
         mainPanel.setLayout(new BorderLayout());
 
     }
+
     private void createHeader(){
         JPanel headerPanel = new JPanel();
         headerPanel.setLayout(new FlowLayout(FlowLayout.LEFT));

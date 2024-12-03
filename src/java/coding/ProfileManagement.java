@@ -12,6 +12,7 @@ public class ProfileManagement extends JFrame{
     private JPanel panel;
     private User user;
     private UserService userService;
+
     public ProfileManagement(User user , UserService userService)
     {
         setTitle("profile management menu");
