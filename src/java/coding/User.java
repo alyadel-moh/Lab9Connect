@@ -35,7 +35,7 @@ public class User {
         this.dateOfBirth = dateOfBirth;
         this.status = status;
         this.manager = new Friend_Manager(this);
-        this.handler = new ContentHandler("user_data");
+        this.handler = new ContentHandler();
         this.receivedRequest = false;
     }
 //    public User(String userId, String password, String userName, String email, LocalDate dateOfBirth, String status){
@@ -183,4 +183,6 @@ public class User {
     public void setStatus(String newStatus){
         this.status = newStatus;
     }
+
+    public String getUserId() {return userId;};
 }
