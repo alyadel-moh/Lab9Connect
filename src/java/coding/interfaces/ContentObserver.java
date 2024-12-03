@@ -1,9 +1,12 @@
 package coding.interfaces;
 
-import coding.Content;
+import coding.Posts;
+import coding.Stories;
 
 import java.util.ArrayList;
 
 public interface ContentObserver {
-    void update(ArrayList<Content> contents);
+    void updateStories(ArrayList<Stories> stories);
+
+    void updatePosts(ArrayList<Posts> posts);
 }

@@ -2,22 +2,19 @@ package coding;
 
 import coding.interfaces.ContentObserver;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class ContentHandler {
     private static ContentHandler instance;
     private final ObjectMapper objectMapper;
     private ArrayList<Posts>posts;
-    private final ArrayList<Stories> archieved;
-    private ArrayList<Stories>stories;
+    private final ArrayList<Stories> archived;
+    private ArrayList<Stories> stories;
     private final ArrayList<ContentObserver> observers;
     private String storyPath="./JsonFilesStories/";
     private String postsPath="./JsonFilesPosts/";
@@ -25,7 +22,7 @@ public class ContentHandler {
     public ContentHandler() {
         this.objectMapper = new ObjectMapper();
         this.posts = new ArrayList<>();
-        this.archieved = new ArrayList<>();
+        this.archived = new ArrayList<>();
         this.stories=new ArrayList<>();
         this.observers = new ArrayList<>();
         this.objectMapper.registerModule(new JavaTimeModule());//JavaTimeModule helps to write the localTime to file
@@ -55,20 +52,19 @@ public class ContentHandler {
 
     public ArrayList<Stories> getActiveStories() {
         ArrayList<Stories> activeStories = new ArrayList<>();
-        for(int i=0;i<stories.size();i++){
-            if(!stories.get(i).isExpired()){
-                activeStories.add(stories.get(i));
+        for(Stories story : stories){
+            // Add to Active
+            if(!story.isExpired()){
+                activeStories.add(story);
+
+            }else {
+                // Add to Archived
+                stories.remove(story);
+                activeStories.add(story);
+
             }
         }
         return activeStories;
-    }
-
-    public void deleteExpiredStories() {
-        for(int i=0;i<stories.size();i++){
-            if(stories.get(i).isExpired()){
-                stories.remove(stories.get(i));
-            }
-        }
     }
 
 
@@ -80,6 +76,7 @@ public class ContentHandler {
             System.out.println("Error happened when trying to save post.");
         }
     }
+
     public void saveStories(){
         File file=new File(storyPath+"Stories.json");
         try {
@@ -108,7 +105,7 @@ public class ContentHandler {
         return posts;
     }
 
-    public void addObserver(ContentObserver observer){
+    public void addObserver(ContentObserver observer) {
         observers.add(observer);
     }
 
@@ -116,22 +113,24 @@ public class ContentHandler {
         observers.remove(observer);
     }
 
-//    private void notifyObservers(){
-//        for (ContentObserver observer : observers){
-//            observer.update(contents);
-//        }
-//    }
+    private void notifyObservers(){
+        for (ContentObserver observer : observers){
+            observer.updateStories(stories);
+            observer.updatePosts(posts);
 
-    public ArrayList<Stories> getArchieved() {
-        return archieved;
+        }
+    }
+
+    public ArrayList<Stories> getArchived() {
+        return archived;
     }
 
     //return arraylist of stories that is related by a certain user by its ID
     public ArrayList<Stories> getStoriesByUserId(String userId){
         ArrayList<Stories>storiesById=new ArrayList<>();
-        for(int i=0;i<stories.size();i++){
-            if(stories.get(i).getAuthorId().equals(userId)){
-                storiesById.add(stories.get(i));
+        for(Stories story : stories){
+            if(story.getAuthorId().equals(userId)){
+                storiesById.add(story);
             }
         }
         return storiesById;
@@ -140,9 +139,9 @@ public class ContentHandler {
     //return Arraylist of posts that is related to a certain user by the user id
     public ArrayList<Posts> getPostsByUserId(String userId){
         ArrayList<Posts>postsById=new ArrayList<>();
-        for(int i=0;i<posts.size();i++){
-            if(posts.get(i).getAuthorId().equals(userId)){
-                postsById.add(posts.get(i));
+        for(Posts post : posts){
+            if(post.getAuthorId().equals(userId)){
+                postsById.add(post);
             }
         }
         return postsById;

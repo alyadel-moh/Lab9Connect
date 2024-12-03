@@ -37,6 +37,10 @@ public class User {
         this.handler = new ContentHandler();
         this.receivedRequest = false;
     }
+
+    public String getUserId() {
+        return userId;
+    }
 //    public User(String userId, String password, String userName, String email, LocalDate dateOfBirth, String status){
 //        this.userId = userId;
 //        this.password = password;
