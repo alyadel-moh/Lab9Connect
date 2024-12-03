@@ -73,7 +73,7 @@ public class ContentHandler {
 
 
     public void savePosts(){
-        File file=new File(postsPath+".json");
+        File file=new File(postsPath+"Posts.json");
         try {
             objectMapper.writeValue(file, posts);
         } catch (IOException e) {
@@ -81,7 +81,7 @@ public class ContentHandler {
         }
     }
     public void saveStories(){
-        File file=new File(storyPath+".json");
+        File file=new File(storyPath+"Stories.json");
         try {
             objectMapper.writeValue(file, stories);
         } catch (IOException e) {
