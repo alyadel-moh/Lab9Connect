@@ -21,5 +21,26 @@ public class Homepage extends JFrame {
 
     }
     private void createHeader(){
+        JPanel headerPanel = new JPanel();
+        headerPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+
+        JLabel logo = new JLabel("Connect Hub");
+        logo.setFont(new Font("Arial", Font.BOLD, 24));
+        headerPanel.add(logo);
+
+        JTextField searchField = new JTextField(20);
+        searchField.setText("Search");
+        headerPanel.add(searchField);
+
+        JButton homeButton = new JButton("Home");
+        JButton notificationButton = new JButton("Notifications");
+        JButton profileButton = new JButton("Profile");
+        headerPanel.add(homeButton);
+        headerPanel.add(notificationButton);
+        headerPanel.add(profileButton);
+
+        headerPanel.setBackground(Color.LIGHT_GRAY);
+
+        mainPanel.add(headerPanel, BorderLayout.NORTH);
     }
 }
