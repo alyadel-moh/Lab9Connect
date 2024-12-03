@@ -3,6 +3,8 @@ package coding;
 import coding.interfaces.ContentObserver;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,14 +18,15 @@ public class ContentHandler {
     private final ArrayList<Content> contents;
     private final ArrayList<Stories> archieved;
     private final ArrayList<ContentObserver> observers;
-    private String path;
+    private String path="./JsonFilesContent/";
 
-    public ContentHandler(String path) {
+    public ContentHandler() {
         this.objectMapper = new ObjectMapper();
         this.contents = new ArrayList<>();
         this.archieved = new ArrayList<>();
         this.observers = new ArrayList<>();
-        this.path = path;
+        this.objectMapper.registerModule(new JavaTimeModule());
+        this.objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
         File file = new File(path);
         if (!file.exists()) {
@@ -33,7 +36,7 @@ public class ContentHandler {
 
     public static synchronized ContentHandler getInstance(String path) {
         if (instance == null) {
-            instance = new ContentHandler(path);
+            instance = new ContentHandler();
         }
         return instance;
     }
@@ -60,7 +63,7 @@ public class ContentHandler {
 
 
     public void saveContent(User user){
-        File file = new File(path + "/" + user.getUserName() + ".json");//Creates a json file with the name of each user
+        File file = new File(path  + user.getUserName() + ".json");//Creates a json file with the name of each user
         try {
             //Writes the list of contents of each user in the json file
             objectMapper.writeValue(file, user);
