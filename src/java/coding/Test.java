@@ -8,7 +8,7 @@ public class Test {
         // Step 1: Create a user
         LocalDate dateOfBirth = LocalDate.of(1995, 12, 15);
 
-        User user = new User.UserBuilder()
+       User user = new User.UserBuilder()
                 .setUserId("user1")
                 .setPassword("password123")
                 .setUserName("Menna")

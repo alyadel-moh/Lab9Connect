@@ -32,6 +32,10 @@ public class ContentHandler {
         if (!file.exists()) {
             file.mkdirs(); // Create folder if it doesn't exist
         }
+        // Register the JavaTimeModule to handle LocalDateTime serialization
+        objectMapper.registerModule(new JavaTimeModule());
+        //to show them as timeStamps
+        objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
     }
 
     public static synchronized ContentHandler getInstance(String path) {

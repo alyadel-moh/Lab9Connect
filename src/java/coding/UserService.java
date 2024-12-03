@@ -1,7 +1,11 @@
 package coding;
 
 import javax.swing.*;
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.UUID;
 import com.fasterxml.jackson.databind.ObjectMapper;
 public class UserService {
@@ -23,9 +27,14 @@ public class UserService {
         if(!Validator.fieldsProvided(email, userName, password)){
             JOptionPane.showMessageDialog(null, "All fields are required");
         }
-
+        for(User user : database.getUsers()){
+            if(user.getEmail().equals(email)){
+                JOptionPane.showMessageDialog(null, "User already exists");
+                return;
+            }
+        }
         String hashedPass = Validator.hashPassword(password);
-        String userId = UUID.randomUUID().toString();
+        String userId = UUID.randomUUID().toString().substring(0, 8);
 
         User newUser = new User.UserBuilder()
                 .setUserId(userId)
@@ -34,7 +43,7 @@ public class UserService {
                 .setEmail(email)
                 .setDateOfBirth(dateOfBirth)
                 .setStatus("online")
-                .build();
+                        .build();
 
         database.addUser(newUser);
         JOptionPane.showMessageDialog(null, "User has been added");
