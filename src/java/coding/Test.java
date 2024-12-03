@@ -24,11 +24,11 @@ public class Test {
         Stories story = (Stories) ContentFactory.createContent("story","story1", "user1", "This is my first story!", currentTime.minusHours(23));
 
         // Step 3: add content
-        user.getHandler().addContent(post); // Add post to user
-        user.getHandler().addContent(story); // Add story to user
-
-        // Step 4: Save the user's content to JSON
-        user.getHandler().saveContent(user);
+//        user.getHandler().addContent(post); // Add post to user
+//        user.getHandler().addContent(story); // Add story to user
+//
+//        // Step 4: Save the user's content to JSON
+//        user.getHandler().saveContent(user);
         System.out.println("User{" + user.getUserName()+  "} content saved successfully!");
 
     }
