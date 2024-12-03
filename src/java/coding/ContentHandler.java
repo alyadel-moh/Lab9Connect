@@ -25,7 +25,7 @@ public class ContentHandler {
         this.contents = new ArrayList<>();
         this.archieved = new ArrayList<>();
         this.observers = new ArrayList<>();
-        this.objectMapper.registerModule(new JavaTimeModule());
+        this.objectMapper.registerModule(new JavaTimeModule());//JavaTimeModule helps to write the localTime to file
         this.objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
         File file = new File(path);
