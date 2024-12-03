@@ -1,5 +1,8 @@
 package coding;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+
 import javax.swing.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -15,10 +18,11 @@ public class User {
 
     private final String userId;
     private final String userName;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private final LocalDate dateOfBirth;
     private final JFileChooser jFileChooser = new JFileChooser();
-    private final Friend_Manager manager;
-    private final ContentHandler handler;
+    private Friend_Manager manager;
+    private ContentHandler handler;
 
     private boolean receivedRequest;
 
@@ -34,10 +38,20 @@ public class User {
         this.handler = new ContentHandler("user_data");
         this.receivedRequest = false;
     }
+//    public User(String userId, String password, String userName, String email, LocalDate dateOfBirth, String status){
+//        this.userId = userId;
+//        this.password = password;
+//        this.userName = userName;
+//        this.email = email;
+//        this.dateOfBirth = dateOfBirth;
+//        this.status = status;
+//    }
 
+    public String getUserId() {
+        return userId;
+    }
 
-
-    // Builder class for User
+// Builder class for User
     public static class UserBuilder {
         private String userId;
         private String password;
@@ -46,6 +60,14 @@ public class User {
         private LocalDate dateOfBirth;
         private String status;
 
+        public UserBuilder() {
+            this.userId = userId;
+            this.password = password;
+            this.userName = userName;
+            this.email = email;
+            this.dateOfBirth = dateOfBirth;
+            this.status = status;
+        }
         public UserBuilder setUserId(String userId) {
             this.userId = userId;
             return this;
@@ -114,6 +136,10 @@ public class User {
         this.receivedRequest = state;
     }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public boolean isReceivedRequest() {
         return receivedRequest;
     }
@@ -136,6 +162,10 @@ public class User {
 
     public String getPassword() {
         return password;
+    }
+
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
     }
 
     public Friend_Manager getManager() {

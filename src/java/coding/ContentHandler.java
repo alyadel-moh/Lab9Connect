@@ -3,6 +3,8 @@ package coding;
 import coding.interfaces.ContentObserver;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import java.io.File;
 import java.io.IOException;
@@ -29,6 +31,10 @@ public class ContentHandler {
         if (!file.exists()) {
             file.mkdirs(); // Create folder if it doesn't exist
         }
+        // Register the JavaTimeModule to handle LocalDateTime serialization
+        objectMapper.registerModule(new JavaTimeModule());
+        //to show them as timeStamps
+        objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
     }
 
     public static synchronized ContentHandler getInstance(String path) {
