@@ -36,6 +36,7 @@ public class Feedpage extends JFrame{
         });
 
         contentCreationButton.addActionListener(e -> {
+            new ContentCreation(user);
         });
 
         friendManagmentButton.addActionListener(e -> {

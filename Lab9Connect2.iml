@@ -11,6 +11,7 @@
       <library>
         <CLASSES>
           <root url="jar://$USER_HOME$/Downloads/jcalendar-1.4.jar!/" />
+          <root url="jar://D:/Menna/Eductaion/Faculty of engineering/CCE/Term (5)/Programming II/Labs Solution/jcalendar-1.4.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
