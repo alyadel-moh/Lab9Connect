@@ -157,13 +157,6 @@ public class Homepage extends JFrame {
         JButton logoutButton = createbutton("Logout",headerPanel);
         refreshButton =  createbutton("Refresh",headerPanel);
 
-        headerPanel.add(logoutButton);
-        headerPanel.add(friendRequestsButton);
-        headerPanel.add(notificationButton);
-        headerPanel.add(profileButton);
-        headerPanel.add(addPostButton);
-        headerPanel.add(refreshButton);
-
         headerPanel.setBackground(Color.LIGHT_GRAY);
         mainPanel.add(headerPanel, BorderLayout.NORTH);
 
@@ -236,7 +229,6 @@ public class Homepage extends JFrame {
         button.setBackground(Color.black);
         button.setForeground(Color.white);
         button.setFocusable(false);
-        //button.setBounds(x,y,w,h);
         button.setText(text);
         headerpanel.add(button);
         return button;
