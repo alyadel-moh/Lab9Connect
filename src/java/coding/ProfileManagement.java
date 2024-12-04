@@ -21,12 +21,7 @@ public class ProfileManagement extends JFrame{
 
         setContentPane(panel);
 
-        //updateProfilePhotoButton = new JButton();
-        // updatePasswordButton = new JButton();
-        //updateBioButton.setFocusable(false);
-        //updateCoverPhotoButton.setFocusable(false);
         backButton = new JButton();
-
 
         updateProfilePhotoButton.setFocusable(false);
         updatePasswordButton.setFocusable(false);

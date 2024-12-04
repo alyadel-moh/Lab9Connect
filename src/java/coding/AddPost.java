@@ -46,7 +46,6 @@ public class AddPost extends JFrame{
                     user.getHandler().addPost(post);
                     JOptionPane.showMessageDialog(null,"Post Added Successfully");
                     setVisible(false);
-                    new ContentCreation(user);
                 }
             }
         });

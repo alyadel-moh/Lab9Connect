@@ -73,11 +73,8 @@ public class Homepage extends JFrame {
         ArrayList<User> users = userService.getDatabase().getUsers();
         if (users != null && !users.isEmpty()) {
             for (User user : users) {
-                ImageIcon icon = new ImageIcon("C:\\Users\\basem\\Documents\\GitHub\\Lab9Connect\\src\\java\\coding\\testtt\\koooko.jpg");
-                icon.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);
-                CircleButton button = new CircleButton(icon);
+                JButton button = createbutton(user.getUserName(),storiesPanel);
                 storiesPanel.add(button);
-
                 button.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
@@ -180,10 +177,6 @@ public class Homepage extends JFrame {
 
         friendRequests.addActionListener(e -> new FriendManagement(user,userService));
 
-        addPostButton.addActionListener(e -> {
-            centralPanel.removeAll();
-            new ContentCreation(user);
-        });
         friendButton.addActionListener(e -> {
             centerPanel.removeAll();
             new FriendManagement(user, userService);
@@ -227,8 +220,8 @@ public class Homepage extends JFrame {
        // centralPanel.add(contentPanel, BorderLayout.CENTER);
 
         mainPanel.add(contentPanel, BorderLayout.CENTER);
-        centerPanel.add(contentPanel);
-        mainPanel.add(centerPanel, BorderLayout.CENTER);
+        //centerPanel.add(contentPanel);
+       // mainPanel.add(centerPanel, BorderLayout.CENTER);
     }
 
     private void createFriendList(){

@@ -45,6 +45,3 @@ public class Suggestions_Management extends JFrame {
     }
         }
 
-
-    }
-}

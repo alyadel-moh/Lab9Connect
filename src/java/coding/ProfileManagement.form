@@ -21,7 +21,7 @@
         <properties>
           <background color="-16777216"/>
           <foreground color="-3331"/>
-          <text value="Update Profile Photo "/>
+          <text value="Set Profile Photo "/>
         </properties>
       </component>
       <component id="aedee" class="javax.swing.JButton" binding="updatePasswordButton" default-binding="true">
@@ -63,7 +63,7 @@
         <properties>
           <background color="-16777216"/>
           <foreground color="-1446929"/>
-          <text value="Update Cover Photo"/>
+          <text value="Set Cover Photo"/>
         </properties>
       </component>
     </children>
