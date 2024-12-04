@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-[{"profile":null,"password":"7e62ef0378a55d7abc8c8c0fed6deb14a08b89eb32154dafb2f1968610f1600d","email":"aly@gmail.com","status":"online","userId":"2223bf48","userName":"aly","dateOfBirth":"2024-12-03","manager":{"requests":[],"friends":[]},"handler":{"posts":[],"archieved":[],"stories":[],"activeStories":[]},"receivedRequest":false,"requests":[]}]
-=======
-[{"profile":null,"password":"07723834f2ea5f82c49a7807f923f0f6e66ae3f0af50d52333c1d0d1b89d2b0e","email":"shams@gmail.com","status":"online","userId":"26698ecb","userName":"shams","dateOfBirth":"2024-12-03","manager":{"requests":[],"friends":[]},"handler":{"contents":[],"archieved":[],"activeStories":[]},"receivedRequest":false,"requests":[],"contentList":[]}]
->>>>>>> a006e0e22f5af3a61c1f30640212e0ad10a9df9f
+[{"profile":null,"password":"f789c4d98a4ee924f6611a858aed07c30b6c903ad874dd6a1961b42e8c9792b5","email":"aly@gmail.com","status":"online","userId":"96dbda87","userName":"alyy","dateOfBirth":"2024-12-04","manager":{"requests":[],"friends":[]},"handler":{"posts":[],"archieved":[],"stories":[],"activeStories":[]},"receivedRequest":false,"requests":[]}]

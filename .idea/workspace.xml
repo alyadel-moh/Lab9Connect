@@ -5,64 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b070c600-f384-439e-b49a-9b65b4c8f3b6" name="Changes" comment="Merge branch 'main' of https://github.com/shamsquraytum/Lab9Connect&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
-<<<<<<< HEAD
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Lab9Connect.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Lab9Connect.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/jackson_annotations_2_15_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/jackson_annotations_2_15_2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/libs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/libs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-=======
-      <change afterPath="$PROJECT_DIR$/src/java/coding/AddPost.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/java/coding/AddPost.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/java/coding/ContentCreation.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/java/coding/ContentCreation.java" afterDir="false" />
->>>>>>> a006e0e22f5af3a61c1f30640212e0ad10a9df9f
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Connecthub.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Connecthub.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lab9Connect2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Lab9Connect2.iml" afterDir="false" />
-<<<<<<< HEAD
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Content.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Content.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/ContentFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/ContentFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/ContentHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/ContentHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Feedpage.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Feedpage.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Feedpage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Feedpage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/FriendManagement.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/FriendManagement.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/FriendManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/FriendManagement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/FriendManagerUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/FriendManagerUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/FriendRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/FriendRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Friend_Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Friend_Manager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Posts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Posts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/ProfileManagement.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/ProfileManagement.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/ProfileManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/ProfileManagement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/SignIn.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/SignIn.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/SignIn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/SignIn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/SignUp.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/SignUp.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/SignUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/SignUp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Stories.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Stories.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Updatebio.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Updatebio.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Updatebio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Updatebio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Updatepass.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Updatepass.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Updatepass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Updatepass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Users.json" beforeDir="false" afterPath="$PROJECT_DIR$/Users.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/AddPost.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/AddPost.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/AddPost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/AddPost.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/ContentCreation.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/ContentCreation.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/ContentCreation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/ContentCreation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/Homepage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Homepage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/coding/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Validator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Validator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Window1.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Window1.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Window1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Window1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/interfaces/ContentObserver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/interfaces/ContentObserver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/module-info.java" afterDir="false" />
-=======
-      <change beforePath="$PROJECT_DIR$/src/java/coding/ContentHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/ContentHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Feedpage.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Feedpage.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Feedpage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Feedpage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user_data/Menna.json" beforeDir="false" />
->>>>>>> a006e0e22f5af3a61c1f30640212e0ad10a9df9f
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +38,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/alyadel-moh/Lab9Connect.git&quot;,
-    &quot;accountId&quot;: &quot;a08f9644-c506-4c0f-a150-b383c2aac0f9&quot;
+    &quot;accountId&quot;: &quot;1db9ec48-67ea-454a-949e-00fecef44143&quot;
   }
 }</component>
   <component name="ProblemsViewState">
@@ -106,13 +56,17 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.AddPost.executor": "Run",
+    "Application.AddStory.executor": "Run",
+    "Application.ContentCreation.executor": "Run",
     "Application.Feedpage.executor": "Run",
+    "Application.Homepage.executor": "Run",
     "Application.ProfileManagement.executor": "Run",
     "Application.SignIn.executor": "Run",
     "Application.SignUp.executor": "Run",
     "Application.Test.executor": "Run",
     "Application.Updatebio.executor": "Run",
     "Application.Updatepass.executor": "Run",
+    "Application.ViewPost.executor": "Run",
     "Application.Window.executor": "Run",
     "Application.Window1.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -136,11 +90,7 @@
       <recent name="C:\Users\Administrator\Documents\GitHub\Lab9Connect\src\java\coding" />
     </key>
   </component>
-<<<<<<< HEAD
   <component name="RunManager">
-=======
-  <component name="RunManager" selected="Application.Test">
->>>>>>> a006e0e22f5af3a61c1f30640212e0ad10a9df9f
     <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="coding.Test" />
       <module name="Lab9Connect2" />
@@ -169,13 +119,8 @@
     </configuration>
     <recent_temporary>
       <list>
-<<<<<<< HEAD
         <item itemvalue="Application.Window1" />
         <item itemvalue="Application.Test" />
-=======
-        <item itemvalue="Application.Test" />
-        <item itemvalue="Application.Window1" />
->>>>>>> a006e0e22f5af3a61c1f30640212e0ad10a9df9f
       </list>
     </recent_temporary>
   </component>
@@ -206,6 +151,17 @@
     </task>
     <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="." />

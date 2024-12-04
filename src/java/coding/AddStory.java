@@ -6,32 +6,31 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.net.MalformedURLException;
 import java.time.LocalDateTime;
 
-public class AddPost extends JFrame{
-    private JTextField textOfContent;
+public class AddStory extends JFrame {
+    private User user;
+    private String imagepath = "";
     private JPanel panel;
+    private JButton chooseAnImageButton;
+    private JTextField textOfContent;
     private JButton addButton;
     private JButton backButton;
-    private JButton chooseAnImageButton;
-    private JTextField writeAPostTextField;
-    private JTextField addAnImageTextField;
-    private User user;
-    private String imagepath= "";
+    private JTextField chooseAnImageTextField;
+    private JTextField enterPostTextTextField;
 
-    AddPost(User user){
-        addButton.setFocusable(false);
-        backButton.setFocusable(false);
-        chooseAnImageButton.setFocusable(false);
-        writeAPostTextField.setBorder(new LineBorder(Color.black));
-        addAnImageTextField.setBorder(new LineBorder(Color.BLACK));
-        setTitle("Add Post");
+    AddStory(User user) {
+         addButton.setFocusable(false);
+         backButton.setFocusable(false);
+         chooseAnImageButton.setFocusable(false);
+         chooseAnImageTextField.setBorder(new LineBorder(Color.black));
+         enterPostTextTextField.setBorder(new LineBorder(Color.black));
+        setTitle("Add Story");
         setVisible(true);
-        setSize(new Dimension(500,350));
+        setSize(new Dimension(550, 350));
         setContentPane(panel);
         setLocationRelativeTo(null);
-        this.user=user;
+        this.user = user;
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -41,10 +40,10 @@ public class AddPost extends JFrame{
                 else{
                     LocalDateTime currentTime= LocalDateTime.now();
                     String content=textOfContent.getText()+"@"+imagepath;
-                    String postId="Post "+(user.getHandler().getPosts().size()+1);//Creates id for the content
-                    Posts post=new Posts(postId,user.getUserId(),content,currentTime);
-                    user.getHandler().addPost(post);
-                    JOptionPane.showMessageDialog(null,"Post Added Successfully");
+                    String storyId="Story "+user.getHandler().getStories().size()+1;//Creates id for the content
+                    Stories story=new Stories(storyId,user.getUserId(),content,currentTime);
+                    user.getHandler().addStory(story);
+                    JOptionPane.showMessageDialog(null,"Story added Successfully");
                     setVisible(false);
                     new ContentCreation(user);
                 }
@@ -69,12 +68,12 @@ public class AddPost extends JFrame{
                     JOptionPane.showMessageDialog(null, "The user Cancelled");
                 } else {
                     File selectedFile = fileChooser.getSelectedFile();
-                    if(selectedFile.getName().endsWith(".jpg")){
-
-
-                            imagepath = selectedFile.getAbsolutePath();
-                            JOptionPane.showMessageDialog(null,"Image Chosen successfully");
+                    if(selectedFile.getName().endsWith(".jpg")) {
+                        imagepath = selectedFile.getAbsolutePath();
+                        System.out.println(imagepath);
+                        JOptionPane.showMessageDialog(null, "Image Chosen successfully");
                     }
+
                     else{
                         JOptionPane.showMessageDialog(null, "Please Choose an Image!", "Message", JOptionPane.ERROR_MESSAGE);
                     }
@@ -84,5 +83,6 @@ public class AddPost extends JFrame{
     }
     public static void main
             (String[] args) {
-        new AddPost(null);}
+        new AddStory(null);}
+
 }

@@ -42,5 +42,9 @@ public class Homepage extends JFrame {
         headerPanel.setBackground(Color.LIGHT_GRAY);
 
         mainPanel.add(headerPanel, BorderLayout.NORTH);
+        setVisible(true);
     }
+    public static void main
+            (String[] args) {
+        new Homepage();}
 }

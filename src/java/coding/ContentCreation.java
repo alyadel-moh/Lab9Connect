@@ -10,15 +10,22 @@ public class ContentCreation extends JFrame{
     private JButton addPost;
     private JButton addStory;
     private JButton savePostButton;
-    private JButton viewButton;
+    private JButton viewPostButton;
     private JButton saveStoryButton;
+    private JButton viewStoryButton;
     private User user;
     private ContentHandler handler;
 
     public ContentCreation(User user){
+        addPost.setFocusable(false);
+        addStory.setFocusable(false);
+        viewStoryButton.setFocusable(false);
+        viewPostButton.setFocusable(false);
+        savePostButton.setFocusable(false);
+        saveStoryButton.setFocusable(false);
         setTitle("Content Creation Window ");
         setVisible(true);
-        setSize(new Dimension(200,200));
+        setBounds(100,100,350,600);
         setContentPane(Container1);
         setLocationRelativeTo(null);
         this.user=user;
@@ -30,6 +37,52 @@ public class ContentCreation extends JFrame{
                 setVisible(false);
             }
         });
+        addStory.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new AddStory(user);
+                setVisible(false);
+            }
+        });
+        savePostButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(user.getHandler().getPosts().isEmpty()){
+                    JOptionPane.showMessageDialog(null, "No Posts has been added for you to save", "Message", JOptionPane.ERROR_MESSAGE);
+                }
+                else{
+                user.getHandler().savePosts();
+                JOptionPane.showMessageDialog(null,"Posts has been added to the file Successfully");
+            }}
+        });
+        saveStoryButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(user.getHandler().getStories().isEmpty()){
+                    JOptionPane.showMessageDialog(null, "No Stories has been added for you to save", "Message", JOptionPane.ERROR_MESSAGE);
+                }
+                else{
+                    user.getHandler().saveStories();
+                    JOptionPane.showMessageDialog(null,"Stories has been added to the file Successfully");
+                }
+            }
+        });
+        viewPostButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new ViewPost(user);
+                setVisible(false);
+            }
+        });
+        viewStoryButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new ViewStories(user);
+                setVisible(false);
+            }
+        });
     }
-
+    public static void main
+            (String[] args) {
+        new ContentCreation(null);}
 }

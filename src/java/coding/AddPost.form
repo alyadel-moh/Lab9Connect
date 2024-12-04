@@ -6,6 +6,7 @@
       <xy x="20" y="20" width="500" height="400"/>
     </constraints>
     <properties>
+      <background color="-2104859"/>
       <foreground color="-16777216"/>
     </properties>
     <border type="none"/>
@@ -60,14 +61,14 @@
         </constraints>
         <properties>
           <background color="-16777216"/>
-          <foreground color="-3331"/>
+          <foreground color="-2104859"/>
           <text value="Choose an image"/>
         </properties>
       </component>
-      <component id="c26ba" class="javax.swing.JTextField" binding="writePostTextTextField" default-binding="true">
+      <component id="56fa8" class="javax.swing.JTextField" binding="writeAPostTextField" default-binding="true">
         <constraints>
-          <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="0" fill="0" indent="0" use-parent-layout="false">
-            <minimum-size width="-1" height="45"/>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="0" indent="0" use-parent-layout="false">
+            <minimum-size width="-1" height="50"/>
             <preferred-size width="150" height="-1"/>
             <maximum-size width="150" height="-1"/>
           </grid>
@@ -77,14 +78,15 @@
           <editable value="false"/>
           <foreground color="-16777216"/>
           <horizontalAlignment value="0"/>
-          <text value="Write post text"/>
+          <text value="Write a Post "/>
         </properties>
       </component>
-      <component id="aa6fe" class="javax.swing.JTextField" binding="addAnImageJpgTextField" default-binding="true">
+      <component id="75a1" class="javax.swing.JTextField" binding="addAnImageTextField" default-binding="true">
         <constraints>
-          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="0" indent="1" use-parent-layout="false">
-            <minimum-size width="-1" height="45"/>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="0" indent="0" use-parent-layout="false">
+            <minimum-size width="-1" height="50"/>
             <preferred-size width="150" height="-1"/>
+            <maximum-size width="150" height="-1"/>
           </grid>
         </constraints>
         <properties>
@@ -92,7 +94,7 @@
           <editable value="false"/>
           <foreground color="-16777216"/>
           <horizontalAlignment value="0"/>
-          <text value="add an  image (.jpg)"/>
+          <text value="Add an image"/>
         </properties>
       </component>
     </children>
