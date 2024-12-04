@@ -48,6 +48,7 @@ public class Homepage extends JFrame {
         createFriendList();
 
         viewPosts();
+        viewStory();
         //displayStatus();
 
         add(mainPanel);
@@ -69,7 +70,6 @@ public class Homepage extends JFrame {
             for (User user : users) {
                 coding.testtt.src.CircleButton button = new CircleButton(user.getUserName());
                 storiesPanel.add(button);
-                //JButton button = createbutton(user.getUserName(), storiesPanel);
                 button.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {

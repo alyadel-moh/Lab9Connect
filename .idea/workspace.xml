@@ -6,10 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="b070c600-f384-439e-b49a-9b65b4c8f3b6" name="Changes" comment="Merge branch 'main' of https://github.com/shamsquraytum/Lab9Connect&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JsonFilesStories/Stories.json" beforeDir="false" afterPath="$PROJECT_DIR$/JsonFilesStories/Stories.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Users.json" beforeDir="false" afterPath="$PROJECT_DIR$/Users.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/coding/Homepage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Homepage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Storiesview.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Storiesview.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +67,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "#22 on Friends__request",
+    "git-widget-placeholder": "Friends__request",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/Menna/Eductaion/Faculty of engineering/CCE/Term (5)/Programming II/Labs Solution/jcalendar-1.4.jar",
     "node.js.detected.package.eslint": "true",
