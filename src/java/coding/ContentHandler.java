@@ -19,8 +19,8 @@ public class ContentHandler {
     private final ArrayList<Stories> archieved;
     private ArrayList<Stories>stories;
     private final ArrayList<ContentObserver> observers;
-    private String storyPath="./JsonFilesStories/";
-    private String postsPath="./JsonFilesPosts/";
+//    private String storyPath="./JsonFilesStories/";
+//    private String postsPath="./JsonFilesPosts/";
 
     public ContentHandler() {
         this.objectMapper = new ObjectMapper();
@@ -31,14 +31,14 @@ public class ContentHandler {
         this.objectMapper.registerModule(new JavaTimeModule());//JavaTimeModule helps to write the localTime to file
         this.objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
-        File file = new File(storyPath);
-        if (!file.exists()) {
-            file.mkdirs(); // Create folder if it doesn't exist
-        }
-        File file2 = new File(postsPath);
-        if (!file2.exists()) {
-            file2.mkdirs(); // Create folder if it doesn't exist
-        }
+//        File file = new File(storyPath);
+//        if (!file.exists()) {
+//            file.mkdirs(); // Create folder if it doesn't exist
+//        }
+//        File file2 = new File(postsPath);
+//        if (!file2.exists()) {
+//            file2.mkdirs(); // Create folder if it doesn't exist
+//        }
 
         // Register the JavaTimeModule to handle LocalDateTime serialization
         objectMapper.registerModule(new JavaTimeModule());
@@ -73,7 +73,7 @@ public class ContentHandler {
 
 
     public void savePosts(){
-        File file=new File(postsPath+"Posts.json");
+        File file=new File("./Posts.json");
         try {
             objectMapper.writeValue(file, posts);
         } catch (IOException e) {
@@ -81,7 +81,7 @@ public class ContentHandler {
         }
     }
     public void saveStories(){
-        File file=new File(storyPath+"Stories.json");
+        File file=new File("./Stories.json");
         try {
             objectMapper.writeValue(file, stories);
         } catch (IOException e) {
