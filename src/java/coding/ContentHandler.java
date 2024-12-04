@@ -138,8 +138,8 @@ public class ContentHandler {
     //return arraylist of stories that is related by a certain user by its ID
     public ArrayList<Stories> getStoriesByUserId(String userId){
         ArrayList<Stories>storiesById=new ArrayList<>();
-        for(int i=0;i<stories.size();i++){
-            if(stories.get(i).getAuthorId().equals(userId)){
+        for(int i=0;i<allStories.size();i++){
+            if(allStories.get(i).getAuthorId().equals(userId)){
                 storiesById.add(stories.get(i));
             }
         }
@@ -149,8 +149,8 @@ public class ContentHandler {
     //return Arraylist of posts that is related to a certain user by the user id
     public ArrayList<Posts> getPostsByUserId(String userId){
         ArrayList<Posts>postsById=new ArrayList<>();
-        for(int i=0;i<posts.size();i++){
-            if(posts.get(i).getAuthorId().equals(userId)){
+        for(int i=0;i<allPosts.size();i++){
+            if(allPosts.get(i).getAuthorId().equals(userId)){
                 postsById.add(posts.get(i));
             }
         }
@@ -162,14 +162,14 @@ public class ContentHandler {
         File file = new File("./Posts.json");
         if (file.exists()) {
             try {
-                posts = objectMapper.readValue(file, new TypeReference<ArrayList<Posts>>() {});
+                allPosts = objectMapper.readValue(file, new TypeReference<ArrayList<Posts>>() {});
             } catch (IOException e) {
                 System.out.println("Error occurred while loading posts.");
                 System.out.println(e);
             }
         } else {
             System.out.println("Posts file not found. Initializing an empty list.");
-            posts = new ArrayList<>();
+            allPosts = new ArrayList<>();
         }
     }
 
@@ -178,13 +178,13 @@ public class ContentHandler {
         File file = new File("./Stories.json");
         if (file.exists()) {
             try {
-                stories = objectMapper.readValue(file, new TypeReference<ArrayList<Stories>>() {});
+                allStories = objectMapper.readValue(file, new TypeReference<ArrayList<Stories>>() {});
             } catch (IOException e) {
                 System.out.println("Error occurred while loading stories.");
             }
         } else {
             System.out.println("Stories file not found. Initializing an empty list.");
-            stories = new ArrayList<>();
+            allStories = new ArrayList<>();
         }
     }
 
