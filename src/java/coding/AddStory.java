@@ -85,4 +85,8 @@ public class AddStory extends JFrame {
             (String[] args) {
         new AddStory(null);}
 
+    public static void main
+            (String[] args) {
+        new AddStory(null);}
+
 }
