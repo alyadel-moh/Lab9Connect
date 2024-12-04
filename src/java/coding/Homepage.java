@@ -150,12 +150,12 @@ public class Homepage extends JFrame {
         searchField.setText("Search");
         headerPanel.add(searchField);
 
-        JButton friendRequestsButton = new JButton("FriendRequests");
-        JButton notificationButton = new JButton("Notifications");
-        JButton profileButton = new JButton("Profile");
-        JButton addPostButton = new JButton("Add Post");
-        JButton logoutButton = new JButton("Logout");
-        refreshButton = new JButton("Refresh");
+        JButton friendRequestsButton = createbutton("FriendRequests",headerPanel);
+        JButton notificationButton = createbutton("Notifications",headerPanel);
+        JButton profileButton =createbutton("Profile managment",headerPanel);
+        JButton addPostButton =createbutton("Content managment",headerPanel);
+        JButton logoutButton = createbutton("Logout",headerPanel);
+        refreshButton =  createbutton("Refresh",headerPanel);
 
         headerPanel.add(logoutButton);
         headerPanel.add(friendRequestsButton);
@@ -170,7 +170,7 @@ public class Homepage extends JFrame {
         // Event Listeners
         profileButton.addActionListener(e -> new ProfileManagement(user, userService));
 
-        addPostButton.addActionListener(e -> new AddPost(user));
+        addPostButton.addActionListener(e -> new ContentCreation(user));
 
         logoutButton.addActionListener(e -> {
             User loggedOutUser = userService.logout();
@@ -230,7 +230,17 @@ public class Homepage extends JFrame {
 
         JOptionPane.showMessageDialog(this, "Page Refreshed");
     }
-
+    public JButton createbutton(String text,JPanel headerpanel)
+    {
+        JButton button = new JButton();
+        button.setBackground(Color.black);
+        button.setForeground(Color.white);
+        button.setFocusable(false);
+        //button.setBounds(x,y,w,h);
+        button.setText(text);
+        headerpanel.add(button);
+        return button;
+    }
 
     public static void main(String[] args) {
         Database database = new Database();

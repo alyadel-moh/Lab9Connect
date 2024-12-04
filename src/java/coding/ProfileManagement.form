@@ -5,7 +5,9 @@
     <constraints>
       <xy x="20" y="20" width="500" height="400"/>
     </constraints>
-    <properties/>
+    <properties>
+      <background color="-11775908"/>
+    </properties>
     <border type="none"/>
     <children>
       <component id="9720e" class="javax.swing.JButton" binding="updateProfilePhotoButton" default-binding="true">
