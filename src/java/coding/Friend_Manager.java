@@ -151,7 +151,7 @@ public class Friend_Manager {
             for (User friend : friends) {
                 if ("online".equalsIgnoreCase(friend.getStatus())) {
                     // Get friend's profile picture
-                    ImageIcon profilePic = friend.getProfile();
+                    ImageIcon profilePic = new ImageIcon(friend.getProfilepath());
                     if (profilePic != null) {
                         JLabel profileLabel = createCircularLabel(profilePic);
                         activePanel.add(profileLabel);

@@ -4,12 +4,13 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 
 import javax.swing.*;
+import java.io.File;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class User {
-    private ImageIcon profile;
-    private ImageIcon cover;
+    private String profilepath;
+    private String  coverpath;
     private String bio;
     private String password;
     private String email;
@@ -108,23 +109,52 @@ public class User {
 //    }
 
     public void setCover() {
-        int response = jFileChooser.showOpenDialog(null);
-        if (response == JFileChooser.APPROVE_OPTION) {
-            ImageIcon image = new ImageIcon(jFileChooser.getSelectedFile().getAbsolutePath());
-            this.cover = image;
+        JFileChooser fileChooser = new JFileChooser();//Create the JfileChooser to show the save dialog
+        fileChooser.setDialogTitle("Choose an Image");
+        int userChoice = fileChooser.showSaveDialog(null);//shows the save dialog//null is to be centered to the screen//returns 0 if the user clicked save//returns 1 then the user canceled//-1 error occured
+        if (userChoice == -1) {
+            JOptionPane.showMessageDialog(null, "An error has occurred");
+        } else if (userChoice == 1) {
+            JOptionPane.showMessageDialog(null, "The user Cancelled");
+        } else {
+            File selectedFile = fileChooser.getSelectedFile();
+            if(selectedFile.exists()){
+
+                coverpath = selectedFile.getAbsolutePath();
+                JOptionPane.showMessageDialog(null,"Image Chosen successfully");
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Please Choose an Image!", "Message", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
 
     public void setProfile() {
-        int response = jFileChooser.showOpenDialog(null);
-        if (response == JFileChooser.APPROVE_OPTION) {
-            ImageIcon image = new ImageIcon(jFileChooser.getSelectedFile().getAbsolutePath());
-            this.profile = image;
+        JFileChooser fileChooser = new JFileChooser();//Create the JfileChooser to show the save dialog
+        fileChooser.setDialogTitle("Choose an Image");
+        int userChoice = fileChooser.showSaveDialog(null);//shows the save dialog//null is to be centered to the screen//returns 0 if the user clicked save//returns 1 then the user canceled//-1 error occured
+        if (userChoice == -1) {
+            JOptionPane.showMessageDialog(null, "An error has occurred");
+        } else if (userChoice == 1) {
+            JOptionPane.showMessageDialog(null, "The user Cancelled");
+        } else {
+            File selectedFile = fileChooser.getSelectedFile();
+            if(selectedFile.exists()){
+
+                profilepath = selectedFile.getAbsolutePath();
+                JOptionPane.showMessageDialog(null,"Image Chosen successfully");
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Please Choose an Image!", "Message", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
+    public String getProfilepath() {
+        return profilepath;
+    }
 
-    public ImageIcon getProfile() {
-        return profile;
+    public String getCoverpath() {
+        return coverpath;
     }
 
     public void setBio(String bio) {

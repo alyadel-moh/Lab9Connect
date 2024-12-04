@@ -38,8 +38,12 @@ public class ProfileManagement extends JFrame{
         setLocationRelativeTo(null);
         setVisible(true);
         updateProfilePhotoButton.addActionListener(e -> {
+            user.setProfile();
+            System.out.println(user.getProfilepath());
         });
         updateCoverPhotoButton.addActionListener(e -> {
+            user.setCover();
+            System.out.println(user.getCoverpath());
         });
         updateBioButton.addActionListener(e -> {
            new Updatebio(user);

@@ -19,7 +19,7 @@ public class Storiesview extends JFrame {
         setResizable(false);
         if(stories.isEmpty())
         {
-            JOptionPane.showMessageDialog(null,"no  stories to view !");
+            JOptionPane.showMessageDialog(null,"no stories to view !");
             return;
         }
         if(i == stories.size())
