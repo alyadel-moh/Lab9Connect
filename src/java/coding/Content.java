@@ -1,5 +1,7 @@
 package coding;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -7,7 +9,10 @@ public abstract class Content {
     private String contentId;
     private String authorId;
     private String content;
+    @JsonProperty("timestamp")
     private LocalDateTime timeStamp;
+
+    Content(){};
 
     Content(String contentId,String authorId,String content,LocalDateTime timeStamp){
         this.contentId=contentId;
@@ -25,7 +30,7 @@ public abstract class Content {
     public String getContent(){
         return content;
     }
-    public LocalDateTime getDate(){
+    public LocalDateTime getTimeStamp(){
         return timeStamp;
     }
 
