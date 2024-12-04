@@ -19,6 +19,9 @@ public class ContentHandler {
     private final ArrayList<Stories> archieved;
     private ArrayList<Stories>stories;
     private final ArrayList<ContentObserver> observers;
+    private static ArrayList<Posts>allPosts=new ArrayList<Posts>();//static to be shared with all instances to save all posts
+    private static ArrayList<Stories>allStories=new ArrayList<Stories>();//will intialize it with empty arraylist once the class is loaded
+
 //    private String storyPath="./JsonFilesStories/";
 //    private String postsPath="./JsonFilesPosts/";
 
@@ -72,18 +75,22 @@ public class ContentHandler {
     }
 
 
+
+    //Saving all Posts
     public void savePosts(){
         File file=new File("./Posts.json");
         try {
-            objectMapper.writeValue(file, posts);
+            objectMapper.writeValue(file, allPosts);
         } catch (IOException e) {
             System.out.println("Error happened when trying to save post.");
         }
     }
+
+    //saveAllStories
     public void saveStories(){
         File file=new File("./Stories.json");
         try {
-            objectMapper.writeValue(file, stories);
+            objectMapper.writeValue(file, allStories);
         } catch (IOException e) {
             System.out.println("Error happened when trying to save post.");
         }
@@ -93,10 +100,12 @@ public class ContentHandler {
 
     public void addPost(Posts post){
         posts.add(post);
+        allPosts.add(post);
 //        notifyObservers();
     }
     public void addStory(Stories story){
         stories.add(story);
+        allStories.add(story);
 //        notifyObservers();
     }
 
@@ -147,6 +156,38 @@ public class ContentHandler {
         }
         return postsById;
     }
+
+    //load All posts
+    public void loadPosts() {
+        File file = new File("./Posts.json");
+        if (file.exists()) {
+            try {
+                posts = objectMapper.readValue(file, new TypeReference<ArrayList<Posts>>() {});
+            } catch (IOException e) {
+                System.out.println("Error occurred while loading posts.");
+                System.out.println(e);
+            }
+        } else {
+            System.out.println("Posts file not found. Initializing an empty list.");
+            posts = new ArrayList<>();
+        }
+    }
+
+    //load all stories
+    public void loadStories() {
+        File file = new File("./Stories.json");
+        if (file.exists()) {
+            try {
+                stories = objectMapper.readValue(file, new TypeReference<ArrayList<Stories>>() {});
+            } catch (IOException e) {
+                System.out.println("Error occurred while loading stories.");
+            }
+        } else {
+            System.out.println("Stories file not found. Initializing an empty list.");
+            stories = new ArrayList<>();
+        }
+    }
+
 }
 
 
