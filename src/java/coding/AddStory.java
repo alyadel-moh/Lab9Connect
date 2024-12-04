@@ -45,7 +45,6 @@ public class AddStory extends JFrame {
                     user.getHandler().addStory(story);
                     JOptionPane.showMessageDialog(null,"Story added Successfully");
                     setVisible(false);
-                    new ContentCreation(user);
                 }
             }
         });

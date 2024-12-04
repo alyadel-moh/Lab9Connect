@@ -40,6 +40,8 @@ public class SignIn extends JFrame{
                setVisible(false);
                new Homepage(userService,user);
 //               new Feedpage(user,userService);
+               user.getHandler().loadPosts();
+               user.getHandler().loadStories();
                }
            else
                JOptionPane.showMessageDialog(null, "User not found");

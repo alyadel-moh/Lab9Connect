@@ -97,37 +97,38 @@ public class Homepage extends JFrame {
 
     private void viewPosts() {
         postsPanel.removeAll(); // Clear previous posts
+        ArrayList<User> users = userService.getDatabase().getUsers();
+        for(User user : users) {
+            ArrayList<Posts> posts = user.getHandler().getPosts();
+            if (posts != null && !posts.isEmpty()) {
+                System.out.println("Total posts to display: " + posts.size());
+                for (Posts post : posts) {
+                    // Extract and display text content
+                    String content = post.getContent();
+                    String[] contentDelim = content.split("@");
+                    String text = contentDelim[0];
 
-        ArrayList<Posts> posts = user.getHandler().getPosts();
+                    JLabel textLabel = new JLabel(text);
+                    textLabel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5)); // Add padding
+                    postsPanel.add(textLabel);
 
-        if (posts != null && !posts.isEmpty()) {
-            System.out.println("Total posts to display: " + posts.size());
-            for (Posts post : posts) {
-                // Extract and display text content
-                String content = post.getContent();
-                String[] contentDelim = content.split("@");
-                String text = contentDelim[0];
-
-                JLabel textLabel = new JLabel(text);
-                textLabel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5)); // Add padding
-                postsPanel.add(textLabel);
-
-                // Try to extract and display image if available
-                try {
-                    String imagePath = contentDelim[1];
-                    if (!imagePath.isEmpty()) {
-                        ImageIcon imageIcon = new ImageIcon(new ImageIcon(imagePath).getImage().getScaledInstance(300, 300, Image.SCALE_SMOOTH)); // Scale image
-                        JLabel imageLabel = new JLabel(imageIcon);
-                        imageLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Add padding
-                        postsPanel.add(imageLabel);
-                        System.out.println("Image path: " + imagePath);
+                    // Try to extract and display image if available
+                    try {
+                        String imagePath = contentDelim[1];
+                        if (!imagePath.isEmpty()) {
+                            ImageIcon imageIcon = new ImageIcon(new ImageIcon(imagePath).getImage().getScaledInstance(300, 300, Image.SCALE_SMOOTH)); // Scale image
+                            JLabel imageLabel = new JLabel(imageIcon);
+                            imageLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Add padding
+                            postsPanel.add(imageLabel);
+                            System.out.println("Image path: " + imagePath);
+                        }
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        System.out.println("No image found for this post.");
                     }
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    System.out.println("No image found for this post.");
                 }
+            } else {
+                System.out.println("No posts available to display.");
             }
-        } else {
-            System.out.println("No posts available to display.");
         }
 
         // Refresh UI
