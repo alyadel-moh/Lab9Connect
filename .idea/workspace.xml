@@ -5,10 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b070c600-f384-439e-b49a-9b65b4c8f3b6" name="Changes" comment="Merge branch 'main' of https://github.com/shamsquraytum/Lab9Connect&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
-      <change afterPath="$PROJECT_DIR$/src/java/coding/Storiesview.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JsonFilesStories/Stories.json" beforeDir="false" afterPath="$PROJECT_DIR$/JsonFilesStories/Stories.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Users.json" beforeDir="false" afterPath="$PROJECT_DIR$/Users.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/coding/Homepage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Homepage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/Storiesview.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Storiesview.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,38 +50,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.AddPost.executor&quot;: &quot;Run&quot;,
-    &quot;Application.AddStory.executor&quot;: &quot;Run&quot;,
-    &quot;Application.ContentCreation.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Feedpage.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Homepage.executor&quot;: &quot;Run&quot;,
-    &quot;Application.ProfileManagement.executor&quot;: &quot;Run&quot;,
-    &quot;Application.SignIn.executor&quot;: &quot;Run&quot;,
-    &quot;Application.SignUp.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Test.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Updatebio.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Updatepass.executor&quot;: &quot;Run&quot;,
-    &quot;Application.ViewPost.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Window.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Window1.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Friends__request&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Menna/Eductaion/Faculty of engineering/CCE/Term (5)/Programming II/Labs Solution/jcalendar-1.4.jar&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/alyad/IdeaProjects/Connecthub/src/Main.java&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.AddPost.executor": "Run",
+    "Application.AddStory.executor": "Run",
+    "Application.ContentCreation.executor": "Run",
+    "Application.Feedpage.executor": "Run",
+    "Application.Homepage.executor": "Run",
+    "Application.ProfileManagement.executor": "Run",
+    "Application.SignIn.executor": "Run",
+    "Application.SignUp.executor": "Run",
+    "Application.Test.executor": "Run",
+    "Application.Updatebio.executor": "Run",
+    "Application.Updatepass.executor": "Run",
+    "Application.ViewPost.executor": "Run",
+    "Application.Window.executor": "Run",
+    "Application.Window1.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "#22 on Friends__request",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/Menna/Eductaion/Faculty of engineering/CCE/Term (5)/Programming II/Labs Solution/jcalendar-1.4.jar",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "onboarding.tips.debug.path": "C:/Users/alyad/IdeaProjects/Connecthub/src/Main.java",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Administrator\Documents\GitHub\Lab9Connect\src\java\coding" />

@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import coding.ContentCreation;
+import coding.testtt.src.CircleButton;
 
 public class Homepage extends JFrame {
     private static Homepage instance;
@@ -66,7 +67,9 @@ public class Homepage extends JFrame {
         ArrayList<User> users = userService.getDatabase().getUsers();
         if (users != null && !users.isEmpty()){
             for (User user : users) {
-                JButton button = createbutton(user.getUserName(), storiesPanel);
+                coding.testtt.src.CircleButton button = new CircleButton(user.getUserName());
+                storiesPanel.add(button);
+                //JButton button = createbutton(user.getUserName(), storiesPanel);
                 button.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
@@ -196,9 +199,9 @@ public class Homepage extends JFrame {
         contentPanel.add(storiesPanel, BorderLayout.NORTH);
         contentPanel.add(new JScrollPane(postsPanel), BorderLayout.CENTER);
 
-        centralPanel.add(contentPanel);
+       // centralPanel.add(contentPanel, BorderLayout.CENTER);
 
-        mainPanel.add(centralPanel, BorderLayout.CENTER);
+        mainPanel.add(contentPanel, BorderLayout.CENTER);
     }
 
     private void createFriendList(){

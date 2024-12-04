@@ -21,6 +21,7 @@ public class Storiesview extends JFrame {
         {
             JOptionPane.showMessageDialog(null,"no more stories to view !");
             setVisible(false);
+            return;
         }
         viewStory(stories.get(i));
         // Add MouseListener to the JPanel
