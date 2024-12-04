@@ -58,25 +58,49 @@ public class Homepage extends JFrame {
         return instance;
     }
 
+
     private void viewPosts() {
+        postsPanel.removeAll(); // Clear previous posts
+
         ArrayList<Posts> posts = user.getHandler().getPosts();
 
         if (posts != null && !posts.isEmpty()) {
-            for (Object post : posts) {
-                // Convert post to a UI representation
-                java.awt.Component postComponent = createPostComponent(post);
-                if (postComponent != null) {
-                    postsPanel.add(postComponent);
-                } else {
-                    System.err.println("Error: Could not create a UI component for the post.");
+            System.out.println("Total posts to display: " + posts.size());
+            for (Posts post : posts) {
+                // Extract and display text content
+                String content = post.getContent();
+                String[] contentDelim = content.split("@");
+                String text = contentDelim[0];
+
+                JLabel textLabel = new JLabel(text);
+                textLabel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5)); // Add padding
+                postsPanel.add(textLabel);
+
+                // Try to extract and display image if available
+                try {
+                    String imagePath = contentDelim[1];
+                    if (!imagePath.isEmpty()) {
+                        ImageIcon imageIcon = new ImageIcon(new ImageIcon(imagePath).getImage().getScaledInstance(300, 300, Image.SCALE_SMOOTH)); // Scale image
+                        JLabel imageLabel = new JLabel(imageIcon);
+                        imageLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Add padding
+                        postsPanel.add(imageLabel);
+                        System.out.println("Image path: " + imagePath);
+                    }
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    System.out.println("No image found for this post.");
                 }
             }
-            postsPanel.revalidate();
-            postsPanel.repaint();
         } else {
             System.out.println("No posts available to display.");
         }
+
+        // Refresh UI
+        postsPanel.revalidate();
+        postsPanel.repaint();
     }
+
+
+
 
     private java.awt.Component createPostComponent(Object post) {
         if (post instanceof Posts) {
@@ -114,7 +138,7 @@ public class Homepage extends JFrame {
         repaint();
     }
 
-    private void createHeader(){
+    private void createHeader() {
         JPanel headerPanel = new JPanel();
         headerPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 
@@ -131,52 +155,37 @@ public class Homepage extends JFrame {
         JButton profileButton = new JButton("Profile");
         JButton addPostButton = new JButton("Add Post");
         JButton logoutButton = new JButton("Logout");
+        refreshButton = new JButton("Refresh");
+
         headerPanel.add(logoutButton);
         headerPanel.add(friendRequestsButton);
         headerPanel.add(notificationButton);
         headerPanel.add(profileButton);
         headerPanel.add(addPostButton);
-
+        headerPanel.add(refreshButton);
 
         headerPanel.setBackground(Color.LIGHT_GRAY);
-
         mainPanel.add(headerPanel, BorderLayout.NORTH);
-        // mainPanel.add(refreshButton, BorderLayout.SOUTH);
-        profileButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new ProfileManagement(user,userService);
+
+        // Event Listeners
+        profileButton.addActionListener(e -> new ProfileManagement(user, userService));
+
+        addPostButton.addActionListener(e -> new AddPost(user));
+
+        logoutButton.addActionListener(e -> {
+            User loggedOutUser = userService.logout();
+            if (loggedOutUser != null) {
+                setVisible(false);
+                new Window1(userService);
             }
         });
 
-        addPostButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new AddPost(user);
-            }
-        });
-
-        logoutButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                User user =  userService.logout();
-                if(user != null) {
-                    setVisible(false);
-                    new Window1(userService);
-                }
-            }
-        });
-
-//        refreshButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                JOptionPane.showMessageDialog(null,"Page Refreshed");
-//            }
-//        });
+        refreshButton.addActionListener(e -> refresh()); // Link refresh button to refresh method
     }
+
     private void createContentArea(){
         JPanel contentPanel = new JPanel();
-        contentPanel.setLayout(new GridLayout(3, 1));
+        contentPanel.setLayout(new GridLayout(2, 1));
 
         storiesPanel = new JPanel();
         storiesPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -186,7 +195,7 @@ public class Homepage extends JFrame {
         postsPanel.setLayout(new BoxLayout(postsPanel, BoxLayout.Y_AXIS));
 
         contentPanel.add(storiesPanel);
-        contentPanel.add(postsPanel);
+        contentPanel.add(new JScrollPane(postsPanel));
 
         mainPanel.add(contentPanel, BorderLayout.CENTER);
     }
@@ -207,6 +216,21 @@ public class Homepage extends JFrame {
         mainPanel.add(friendListPanel, BorderLayout.EAST);
 
     }
+
+    public void refresh() {
+        // Clear existing posts
+        postsPanel.removeAll();
+
+        // Fetch and display updated posts
+        viewPosts();
+
+        // Ensure the UI is updated
+        postsPanel.revalidate();
+        postsPanel.repaint();
+
+        JOptionPane.showMessageDialog(this, "Page Refreshed");
+    }
+
 
     public static void main(String[] args) {
         Database database = new Database();

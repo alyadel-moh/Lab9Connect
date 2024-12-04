@@ -11,16 +11,20 @@ import java.util.ArrayList;
 
 public class Database {
     private ArrayList<User> users;
+
     public Database() {
         users = new ArrayList<>();
     }
+
     public void addUser(User user) {
         users.add(user);
         saveUsers();
     }
+
     public ArrayList<User> getUsers() {
         return this.users;
     }
+
     public void saveUsers() {
         ObjectMapper mapper = new ObjectMapper();mapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd"));
         // Register the JavaTimeModule to handle LocalDateTime serialization
@@ -28,7 +32,6 @@ public class Database {
         //to show them as timeStamps
         mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
         try{
-
             mapper.writeValue(new File("Users.json"), users);
         }catch (IOException e){
             e.printStackTrace();

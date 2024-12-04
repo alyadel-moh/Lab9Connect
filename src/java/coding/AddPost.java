@@ -40,7 +40,7 @@ public class AddPost extends JFrame{
                 }
                 else{
                     LocalDateTime currentTime= LocalDateTime.now();
-                    String content=textOfContent.getText()+"@"+imagepath;
+                    String content = textOfContent.getText() + "@" + imagepath;
                     String postId="Post "+(user.getHandler().getPosts().size()+1);//Creates id for the content
                     Posts post=new Posts(postId,user.getUserId(),content,currentTime);
                     user.getHandler().addPost(post);
@@ -69,8 +69,7 @@ public class AddPost extends JFrame{
                     JOptionPane.showMessageDialog(null, "The user Cancelled");
                 } else {
                     File selectedFile = fileChooser.getSelectedFile();
-                    if(selectedFile.getName().endsWith(".jpg")){
-
+                    if(selectedFile.exists()){
 
                             imagepath = selectedFile.getAbsolutePath();
                             JOptionPane.showMessageDialog(null,"Image Chosen successfully");

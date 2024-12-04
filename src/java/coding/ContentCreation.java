@@ -23,11 +23,13 @@ public class ContentCreation extends JFrame{
         viewPostButton.setFocusable(false);
         savePostButton.setFocusable(false);
         saveStoryButton.setFocusable(false);
+
         setTitle("Content Creation Window ");
         setVisible(true);
         setBounds(100,100,350,600);
         setContentPane(Container1);
         setLocationRelativeTo(null);
+
         this.user=user;
 
         addPost.addActionListener(new ActionListener() {
@@ -37,6 +39,7 @@ public class ContentCreation extends JFrame{
                 setVisible(false);
             }
         });
+
         addStory.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

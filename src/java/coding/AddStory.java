@@ -68,7 +68,7 @@ public class AddStory extends JFrame {
                     JOptionPane.showMessageDialog(null, "The user Cancelled");
                 } else {
                     File selectedFile = fileChooser.getSelectedFile();
-                    if(selectedFile.getName().endsWith(".jpg")) {
+                    if(selectedFile.exists()) {
                         imagepath = selectedFile.getAbsolutePath();
                         System.out.println(imagepath);
                         JOptionPane.showMessageDialog(null, "Image Chosen successfully");

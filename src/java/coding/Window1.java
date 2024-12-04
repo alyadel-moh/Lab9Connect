@@ -38,6 +38,8 @@ public class Window1 extends JFrame  {
             (String[] args) {
         Database database = new Database();
         database.loadUsers();
+
+        System.out.println(database.getUsers());
         UserService userService = new UserService(database);
         new Window1(userService);}
 }
