@@ -1,6 +1,9 @@
 package coding;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.geom.Ellipse2D;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class Friend_Manager {
@@ -10,7 +13,7 @@ public class Friend_Manager {
     private final ArrayList<User> suggestions;
     private final ArrayList<User> blocked;
 
-    Friend_Manager(User user){
+    Friend_Manager(User user) {
         this.user = user;
         this.requests = new ArrayList<>();
         this.friends = new ArrayList<>();
@@ -98,8 +101,8 @@ public class Friend_Manager {
         }
     }
 
-    public void block(User friend){
-        if (friend == null){
+    public void block(User friend) {
+        if (friend == null) {
             throw new IllegalArgumentException("Friend doesn't exist");
         }
 
@@ -107,8 +110,8 @@ public class Friend_Manager {
         blocked.add(friend);
     }
 
-    public void remove(User friend){
-        if (friend == null){
+    public void remove(User friend) {
+        if (friend == null) {
             throw new IllegalArgumentException("Friend doesn't exist");
         }
 
@@ -117,8 +120,8 @@ public class Friend_Manager {
 
     }
 
-    public void DisplayStatus(Feedpage page) {
-        FriendManagerUI ui = new FriendManagerUI();
+    public void DisplayStatus(Homepage page) {
+        UI ui = new UI();
         ui.displayStatus(friends);
         page.setActivePanel(ui.getActivePanel()); // Update the UI component in the `Feedpage`
     }
@@ -132,5 +135,50 @@ public class Friend_Manager {
         return friends;
     }
 
+/////////////////////////  UI class ///////////////////////////////////////
+    public static class UI {
+        private final JPanel activePanel;
+
+        public UI() {
+            activePanel = new JPanel();
+            activePanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+            activePanel.setBackground(Color.WHITE); // Optional: Customize background color
+        }
+
+        public void displayStatus(ArrayList<User> friends) {
+            activePanel.removeAll(); // Clear previous items
+
+            for (User friend : friends) {
+                if ("online".equalsIgnoreCase(friend.getStatus())) {
+                    // Get friend's profile picture
+                    ImageIcon profilePic = friend.getProfile();
+                    if (profilePic != null) {
+                        JLabel profileLabel = createCircularLabel(profilePic);
+                        activePanel.add(profileLabel);
+                    }
+                }
+            }
+
+            activePanel.revalidate();
+            activePanel.repaint();
+        }
+
+        private JLabel createCircularLabel(ImageIcon imageIcon) {
+            int size = 50; // Desired size for profile picture
+            Image scaledImage = imageIcon.getImage().getScaledInstance(size, size, Image.SCALE_SMOOTH);
+            BufferedImage circularImage = new BufferedImage(size, size, BufferedImage.TYPE_INT_ARGB);
+
+            Graphics2D g2 = circularImage.createGraphics();
+            g2.setClip(new Ellipse2D.Double(0, 0, size, size));
+            g2.drawImage(scaledImage, 0, 0, null);
+            g2.dispose();
+
+            return new JLabel(new ImageIcon(circularImage));
+        }
+
+        public JPanel getActivePanel() {
+            return activePanel;
+        }
+    }
 
 }

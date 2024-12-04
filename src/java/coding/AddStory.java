@@ -80,4 +80,8 @@ public class AddStory extends JFrame {
         });
     }
 
+    public static void main
+            (String[] args) {
+        new AddStory(null);}
+
 }

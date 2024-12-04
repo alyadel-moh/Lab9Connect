@@ -14,6 +14,7 @@ public class ContentCreation extends JFrame{
     private JButton saveStoryButton;
     private User user;
     private ContentHandler handler;
+    private static Homepage homepage;
 
     public ContentCreation(User user){
         setTitle("Content Creation Window ");
@@ -22,6 +23,8 @@ public class ContentCreation extends JFrame{
         setContentPane(Container1);
         setLocationRelativeTo(null);
         this.user=user;
+
+
 
         addPost.addActionListener(new ActionListener() {
             @Override
@@ -60,6 +63,16 @@ public class ContentCreation extends JFrame{
                 }
             }
         });
+
+        viewButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                homepage.repaint();
+            }
+        });
     }
 
+    public static void setHomepage(Homepage page) {
+        homepage = page;
+    }
 }
