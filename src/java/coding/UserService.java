@@ -21,15 +21,18 @@ public class UserService {
             JOptionPane.showMessageDialog(null, "Invalid email address");
             return;
         }
+
         if(!Validator.fieldsProvided(email, userName, password)){
             JOptionPane.showMessageDialog(null, "All fields are required");
         }
+
         for(User user : database.getUsers()){
             if(user.getEmail().equals(email)){
                 JOptionPane.showMessageDialog(null, "User already exists");
                 return;
             }
         }
+
         String hashedPass = Validator.hashPassword(password);
         String userId = UUID.randomUUID().toString().substring(0, 8);
 
@@ -43,6 +46,11 @@ public class UserService {
                         .build();
 
         database.addUser(newUser);
+
+        for (User user : database.getUsers()){
+            System.out.println(user);
+        }
+
         JOptionPane.showMessageDialog(null, "User has been added");
 
     }

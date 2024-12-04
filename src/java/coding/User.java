@@ -37,6 +37,10 @@ public class User {
         this.handler = new ContentHandler();
         this.receivedRequest = false;
     }
+
+    public String getUserId() {
+        return userId;
+    }
 //    public User(String userId, String password, String userName, String email, LocalDate dateOfBirth, String status){
 //        this.userId = userId;
 //        this.password = password;
@@ -177,6 +181,14 @@ public class User {
 
     public void setStatus(String newStatus){
         this.status = newStatus;
+    }
+
+    public String toString(){
+        return "UserId" + userId +
+                "UserName" + userName +
+                "UserEmail" + email +
+                "password" + password;
+
     }
 
 }
