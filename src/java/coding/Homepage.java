@@ -8,20 +8,13 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import coding.ContentCreation;
-<<<<<<< Updated upstream
 import coding.testtt.CircleButton;
-=======
-import coding.testtt.src.CircleButton;
->>>>>>> Stashed changes
 
 public class Homepage extends JFrame {
     private static Homepage instance;
     private JPanel mainPanel;
-<<<<<<< Updated upstream
     private JPanel centralPanel;
-=======
     private JPanel centerPanel;
->>>>>>> Stashed changes
     private JPanel postsPanel;
     private JPanel storiesPanel;
     private JPanel friendsPanel;
@@ -46,13 +39,11 @@ public class Homepage extends JFrame {
         mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
 
-<<<<<<< Updated upstream
         centralPanel = new JPanel();
         centralPanel.setLayout(new BorderLayout());
-=======
+
         centerPanel = new JPanel();
         centerPanel.setLayout(new BorderLayout());
->>>>>>> Stashed changes
 
         activePanel = new JPanel();
         add(new JScrollPane(activePanel), BorderLayout.NORTH);
@@ -77,36 +68,34 @@ public class Homepage extends JFrame {
         return instance;
     }
 
-<<<<<<< Updated upstream
     private void viewStory() {
         storiesPanel.removeAll();
         ArrayList<User> users = userService.getDatabase().getUsers();
-        if (users != null && !users.isEmpty()){
+        if (users != null && !users.isEmpty()) {
             for (User user : users) {
                 ImageIcon icon = new ImageIcon("C:\\Users\\basem\\Documents\\GitHub\\Lab9Connect\\src\\java\\coding\\testtt\\koooko.jpg");
-                icon.getImage().getScaledInstance(80,80, Image.SCALE_SMOOTH);
+                icon.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);
                 CircleButton button = new CircleButton(icon);
                 storiesPanel.add(button);
 
                 button.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        Storiesview storiesview = new Storiesview(user,0);
+                        Storiesview storiesview = new Storiesview(user, 0);
                     }
                 });
             }
-        }
-        else {
-            JOptionPane.showMessageDialog(null,"no Stories to display !");
+        } else {
+            JOptionPane.showMessageDialog(null, "no Stories to display !");
         }
         storiesPanel.revalidate();
         storiesPanel.repaint();
-=======
+    }
+
     private void viewStories() {
         coding.testtt.src.CircleButton button = new coding.testtt.src.CircleButton("userr");
         storiesPanel.add(button);
 
->>>>>>> Stashed changes
     }
 
     private void viewPosts() {
@@ -149,10 +138,7 @@ public class Homepage extends JFrame {
         postsPanel.repaint();
     }
 
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
     private void displayStatus(){
         user.getManager().DisplayStatus(this);
     }
@@ -178,11 +164,8 @@ public class Homepage extends JFrame {
         searchField.setText("Search");
         headerPanel.add(searchField);
 
-<<<<<<< Updated upstream
         JButton friendRequests = createbutton("Manage Friends",headerPanel);
-=======
         JButton friendButton = createbutton("Manage Friends",headerPanel);
->>>>>>> Stashed changes
         JButton notificationButton = createbutton("Notifications",headerPanel);
         JButton profileButton =createbutton("Profile managment",headerPanel);
         JButton addPostButton =createbutton("Create Content",headerPanel);
@@ -195,14 +178,12 @@ public class Homepage extends JFrame {
         // Event Listeners
         profileButton.addActionListener(e -> new ProfileManagement(user, userService));
 
-<<<<<<< Updated upstream
         friendRequests.addActionListener(e -> new FriendManagement(user,userService));
 
         addPostButton.addActionListener(e -> {
             centralPanel.removeAll();
             new ContentCreation(user);
         });
-=======
         friendButton.addActionListener(e -> {
             centerPanel.removeAll();
             new FriendManagement(user, userService);
@@ -213,7 +194,6 @@ public class Homepage extends JFrame {
             new ContentCreation(user);
         });
 
->>>>>>> Stashed changes
 
         logoutButton.addActionListener(e -> {
             User loggedOutUser = userService.logout();
@@ -244,15 +224,11 @@ public class Homepage extends JFrame {
         contentPanel.add(storiesPanel, BorderLayout.NORTH);
         contentPanel.add(new JScrollPane(postsPanel), BorderLayout.CENTER);
 
-<<<<<<< Updated upstream
        // centralPanel.add(contentPanel, BorderLayout.CENTER);
 
         mainPanel.add(contentPanel, BorderLayout.CENTER);
-=======
         centerPanel.add(contentPanel);
-
         mainPanel.add(centerPanel, BorderLayout.CENTER);
->>>>>>> Stashed changes
     }
 
     private void createFriendList(){
