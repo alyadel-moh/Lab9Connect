@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import coding.ContentCreation;
-import coding.testtt.src.CircleButton;
+import coding.testtt.CircleButton;
 
 public class Homepage extends JFrame {
     private static Homepage instance;
@@ -56,20 +56,23 @@ public class Homepage extends JFrame {
 
     }
 
-
     public static synchronized Homepage getInstance(UserService service, User user) {
         if (instance == null) {
             instance = new Homepage(service, user);
         }
         return instance;
     }
+
     private void viewStory() {
         storiesPanel.removeAll();
         ArrayList<User> users = userService.getDatabase().getUsers();
         if (users != null && !users.isEmpty()){
             for (User user : users) {
-                coding.testtt.src.CircleButton button = new CircleButton(user.getUserName());
+                ImageIcon icon = new ImageIcon("C:\\Users\\basem\\Documents\\GitHub\\Lab9Connect\\src\\java\\coding\\testtt\\koooko.jpg");
+                icon.getImage().getScaledInstance(80,80, Image.SCALE_SMOOTH);
+                CircleButton button = new CircleButton(icon);
                 storiesPanel.add(button);
+
                 button.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
@@ -126,7 +129,6 @@ public class Homepage extends JFrame {
     }
 
 
-
     private void displayStatus(){
         user.getManager().DisplayStatus(this);
     }
@@ -164,6 +166,8 @@ public class Homepage extends JFrame {
 
         // Event Listeners
         profileButton.addActionListener(e -> new ProfileManagement(user, userService));
+
+        friendRequests.addActionListener(e -> new FriendManagement(user,userService));
 
         addPostButton.addActionListener(e -> {
             centralPanel.removeAll();

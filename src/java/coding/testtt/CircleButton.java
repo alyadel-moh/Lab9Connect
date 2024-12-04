@@ -1,21 +1,19 @@
-package coding.testtt.src;
+package coding.testtt;
 
-import javax.swing.JButton;
-import java.awt.Graphics;
-import java.awt.Color;
-import java.awt.Dimension;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.geom.Point2D;
-import java.awt.FontMetrics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 
 public class CircleButton extends JButton{
 
     private boolean mouseOver = false;
     private boolean mousePressed = false;
 
-    public CircleButton(String text){
-        super(text);
+    public CircleButton(ImageIcon image){
+        super(image);
         setOpaque(false);
         setFocusPainted(false);
         setBorderPainted(false);

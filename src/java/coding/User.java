@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.geom.Ellipse2D;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -37,6 +40,8 @@ public class User {
         this.manager = new Friend_Manager(this);
         this.handler = new ContentHandler();
         this.receivedRequest = false;
+        this.profilepath = "C:\\Users\\basem\\Documents\\GitHub\\Lab9Connect\\account.png";
+
     }
 
     public String getUserId() {
@@ -149,6 +154,7 @@ public class User {
             }
         }
     }
+
     public String getProfilepath() {
         return profilepath;
     }
@@ -205,6 +211,10 @@ public class User {
         return handler;
     }
 
+    public ArrayList<User> getSuggestions(){
+        return manager.getSuggestions();
+    }
+
     public void setPassword(String newPassword) {
         this.password = newPassword;
     }
@@ -220,5 +230,7 @@ public class User {
                 "password" + password;
 
     }
+
+
 
 }

@@ -181,4 +181,7 @@ public class Friend_Manager {
         }
     }
 
+    public ArrayList<User> getSuggestions() {
+        return suggestions;
+    }
 }

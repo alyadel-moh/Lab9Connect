@@ -17,12 +17,23 @@ public class FriendManagement extends JFrame{
             blockOrRemoveFriendsButton.setFocusable(false);
             viewFriendsListButton.setFocusable(false);
             viewFriendSuggestionsButton.setFocusable(false);
+
             this.user = user;
             this.userService = userService;
+
             setContentPane(panel);
             setResizable(false);
             setBounds(100,100,300,400);
             setLocationRelativeTo(null);
             setVisible(true);
+
+            viewFriendRequestsButton.addActionListener(e -> new Requests_Management(user,userService));
+
+            viewFriendSuggestionsButton.addActionListener(e -> new Suggestions_Management(user,userService));
+
+
+
         }
+
+
 }
