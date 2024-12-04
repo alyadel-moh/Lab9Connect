@@ -10,25 +10,21 @@ public class ContentCreation extends JFrame{
     private JButton addPost;
     private JButton addStory;
     private JButton savePostButton;
-    private JButton viewPostButton;
+    private JButton viewButton;
     private JButton saveStoryButton;
-    private JButton viewStoryButton;
     private User user;
     private ContentHandler handler;
+    private static Homepage homepage;
 
     public ContentCreation(User user){
-        addPost.setFocusable(false);
-        addStory.setFocusable(false);
-        viewStoryButton.setFocusable(false);
-        viewPostButton.setFocusable(false);
-        savePostButton.setFocusable(false);
-        saveStoryButton.setFocusable(false);
         setTitle("Content Creation Window ");
         setVisible(true);
-        setBounds(100,100,350,600);
+        setSize(new Dimension(200,200));
         setContentPane(Container1);
         setLocationRelativeTo(null);
         this.user=user;
+
+
 
         addPost.addActionListener(new ActionListener() {
             @Override
@@ -67,22 +63,16 @@ public class ContentCreation extends JFrame{
                 }
             }
         });
-        viewPostButton.addActionListener(new ActionListener() {
+
+        viewButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new ViewPost(user);
-                setVisible(false);
-            }
-        });
-        viewStoryButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new ViewStories(user);
-                setVisible(false);
+                homepage.repaint();
             }
         });
     }
-    public static void main
-            (String[] args) {
-        new ContentCreation(null);}
+
+    public static void setHomepage(Homepage page) {
+        homepage = page;
+    }
 }
