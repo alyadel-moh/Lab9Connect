@@ -153,19 +153,12 @@ public class Homepage extends JFrame {
         searchField.setText("Search");
         headerPanel.add(searchField);
 
-        JButton friendRequestsButton = new JButton("FriendRequests");
-        JButton notificationButton = new JButton("Notifications");
-        JButton profileButton = new JButton("Profile");
-        JButton addPostButton = new JButton("Add Post");
-        JButton logoutButton = new JButton("Logout");
-        refreshButton = new JButton("Refresh");
-
-        headerPanel.add(logoutButton);
-        headerPanel.add(friendRequestsButton);
-        headerPanel.add(notificationButton);
-        headerPanel.add(profileButton);
-        headerPanel.add(addPostButton);
-        headerPanel.add(refreshButton);
+        JButton friendRequestsButton = createbutton("FriendRequests",headerPanel);
+        JButton notificationButton = createbutton("Notifications",headerPanel);
+        JButton profileButton =createbutton("Profile managment",headerPanel);
+        JButton addPostButton =createbutton("Content managment",headerPanel);
+        JButton logoutButton = createbutton("Logout",headerPanel);
+        refreshButton =  createbutton("Refresh",headerPanel);
 
         headerPanel.setBackground(Color.LIGHT_GRAY);
         mainPanel.add(headerPanel, BorderLayout.NORTH);
@@ -238,7 +231,16 @@ public class Homepage extends JFrame {
 
         JOptionPane.showMessageDialog(this, "Page Refreshed");
     }
-
+    public JButton createbutton(String text,JPanel headerpanel)
+    {
+        JButton button = new JButton();
+        button.setBackground(Color.black);
+        button.setForeground(Color.white);
+        button.setFocusable(false);
+        button.setText(text);
+        headerpanel.add(button);
+        return button;
+    }
 
 
 
