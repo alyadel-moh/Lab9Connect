@@ -39,7 +39,7 @@ public class ProfileManagement extends JFrame{
         });
         backButton.addActionListener(e -> {
             setVisible(false);
-            new Homepage(userService, user);
+            //new Homepage(userService, user);
         });
     }
 }

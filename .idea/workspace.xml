@@ -5,13 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b070c600-f384-439e-b49a-9b65b4c8f3b6" name="Changes" comment="Merge branch 'main' of https://github.com/shamsquraytum/Lab9Connect&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
+      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JsonFilesStories/.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Users.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WhatsApp Image 2024-08-02 at 16.18.48_7da1350f.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/java/coding/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/java/coding/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/java/coding/ViewPost.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/java/coding/ViewStories.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Users.json" beforeDir="false" afterPath="$PROJECT_DIR$/Users.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/AddPost.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/AddPost.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/AddPost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/AddPost.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/AddStory.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/AddStory.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/coding/AddStory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/AddStory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/ContentCreation.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/ContentCreation.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/coding/ContentCreation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/ContentCreation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/FriendManagerUI.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Friend_Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Friend_Manager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/coding/Homepage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Homepage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/ProfileManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/ProfileManagement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +39,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;menna812&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/alyadel-moh/Lab9Connect.git&quot;,
+    &quot;accountId&quot;: &quot;1db9ec48-67ea-454a-949e-00fecef44143&quot;
+  }
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -44,6 +67,7 @@
   "keyToString": {
     "Application.AddPost.executor": "Run",
     "Application.AddStory.executor": "Run",
+    "Application.ContentCreation.executor": "Run",
     "Application.Feedpage.executor": "Run",
     "Application.Homepage.executor": "Run",
     "Application.ProfileManagement.executor": "Run",
@@ -52,16 +76,15 @@
     "Application.Test.executor": "Run",
     "Application.Updatebio.executor": "Run",
     "Application.Updatepass.executor": "Run",
+    "Application.ViewPost.executor": "Run",
     "Application.Window.executor": "Run",
     "Application.Window1.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW": "true",
-    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW": "true",
-    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH": "238",
-    "git-widget-placeholder": "update-feed/view-status",
+    "git-widget-placeholder": "Merging main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Programming_II/Ass_4/gym managment/gym managment/src/jcalendar-1.4.jar",
+    "last_opened_file_path": "D:/Menna/Eductaion/Faculty of engineering/CCE/Term (5)/Programming II/Labs Solution/jcalendar-1.4.jar",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -77,9 +100,9 @@
       <recent name="C:\Users\Administrator\Documents\GitHub\Lab9Connect\src\java\coding" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Window1">
-    <configuration name="AddPost" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="coding.AddPost" />
+  <component name="RunManager" selected="Application.Feedpage">
+    <configuration name="Feedpage" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="coding.Feedpage" />
       <module name="Lab9Connect2" />
       <extension name="coverage">
         <pattern>
@@ -91,21 +114,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AddStory" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="coding.AddStory" />
-      <module name="Lab9Connect2" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="coding.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Homepage" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="coding.Homepage" />
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="coding.Test" />
       <module name="Lab9Connect2" />
       <extension name="coverage">
         <pattern>
@@ -132,10 +142,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Feedpage" />
         <item itemvalue="Application.Window1" />
-        <item itemvalue="Application.Homepage" />
-        <item itemvalue="Application.AddStory" />
-        <item itemvalue="Application.AddPost" />
+        <item itemvalue="Application.Test" />
       </list>
     </recent_temporary>
   </component>
@@ -167,24 +176,20 @@
     <option name="localTasksCounter" value="3" />
     <servers />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="." />
     <MESSAGE value="Merge branch 'main' of https://github.com/shamsquraytum/Lab9Connect&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
     <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'main' of https://github.com/shamsquraytum/Lab9Connect&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/java/coding/AddStory.java</url>
-          <line>82</line>
-          <properties class="coding.AddStory" method="main">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
