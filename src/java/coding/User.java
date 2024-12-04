@@ -11,7 +11,6 @@ public class User {
     private ImageIcon profile;
     private ImageIcon cover;
     private String bio;
-
     private String password;
     private String email;
     private String status;

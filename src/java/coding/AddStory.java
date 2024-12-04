@@ -1,26 +1,33 @@
 package coding;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.net.MalformedURLException;
 import java.time.LocalDateTime;
 
 public class AddStory extends JFrame {
     private User user;
-    private String imageUrl = "";
+    private String imagepath = "";
     private JPanel panel;
     private JButton chooseAnImageButton;
     private JTextField textOfContent;
     private JButton addButton;
     private JButton backButton;
+    private JTextField chooseAnImageTextField;
+    private JTextField enterPostTextTextField;
 
     AddStory(User user) {
+         addButton.setFocusable(false);
+         backButton.setFocusable(false);
+         chooseAnImageButton.setFocusable(false);
+         chooseAnImageTextField.setBorder(new LineBorder(Color.black));
+         enterPostTextTextField.setBorder(new LineBorder(Color.black));
         setTitle("Add Story");
         setVisible(true);
-        setSize(new Dimension(500, 500));
+        setSize(new Dimension(550, 350));
         setContentPane(panel);
         setLocationRelativeTo(null);
         this.user = user;
@@ -32,10 +39,11 @@ public class AddStory extends JFrame {
                 }
                 else{
                     LocalDateTime currentTime= LocalDateTime.now();
-                    String content=textOfContent.getText()+"-"+imageUrl;
+                    String content=textOfContent.getText()+"@"+imagepath;
                     String storyId="Story "+user.getHandler().getStories().size()+1;//Creates id for the content
                     Stories story=new Stories(storyId,user.getUserId(),content,currentTime);
                     user.getHandler().addStory(story);
+                    JOptionPane.showMessageDialog(null,"Story added Successfully");
                     setVisible(false);
                     new ContentCreation(user);
                 }
@@ -45,6 +53,7 @@ public class AddStory extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
+                new ContentCreation(user);
             }
         });
         chooseAnImageButton.addActionListener(new ActionListener() {
@@ -59,16 +68,12 @@ public class AddStory extends JFrame {
                     JOptionPane.showMessageDialog(null, "The user Cancelled");
                 } else {
                     File selectedFile = fileChooser.getSelectedFile();
-                    if(selectedFile.getName().endsWith(".jpg")){
-                        // Convert file to URL
-                        try {
-                            imageUrl = selectedFile.toURI().toURL().toString();
-                            System.out.println(imageUrl);
-                            JOptionPane.showMessageDialog(null,"Image Chosen successfully");
-                        } catch (MalformedURLException ex) {
-                            throw new RuntimeException(ex);
-                        }
+                    if(selectedFile.getName().endsWith(".jpg")) {
+                        imagepath = selectedFile.getAbsolutePath();
+                        System.out.println(imagepath);
+                        JOptionPane.showMessageDialog(null, "Image Chosen successfully");
                     }
+
                     else{
                         JOptionPane.showMessageDialog(null, "Please Choose an Image!", "Message", JOptionPane.ERROR_MESSAGE);
                     }
@@ -76,5 +81,8 @@ public class AddStory extends JFrame {
             }
         });
     }
+    public static void main
+            (String[] args) {
+        new AddStory(null);}
 
 }

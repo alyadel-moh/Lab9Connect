@@ -1,6 +1,7 @@
 package coding;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,20 +10,25 @@ import java.net.MalformedURLException;
 import java.time.LocalDateTime;
 
 public class AddPost extends JFrame{
-    private JTextField contentIdPlaceholder;
-    private JTextField authorIdPlaceholder;
     private JTextField textOfContent;
     private JPanel panel;
     private JButton addButton;
     private JButton backButton;
     private JButton chooseAnImageButton;
+    private JTextField writeAPostTextField;
+    private JTextField addAnImageTextField;
     private User user;
-    private String imageUrl = "";
+    private String imagepath= "";
 
     AddPost(User user){
+        addButton.setFocusable(false);
+        backButton.setFocusable(false);
+        chooseAnImageButton.setFocusable(false);
+        writeAPostTextField.setBorder(new LineBorder(Color.black));
+        addAnImageTextField.setBorder(new LineBorder(Color.BLACK));
         setTitle("Add Post");
         setVisible(true);
-        setSize(new Dimension(500,500));
+        setSize(new Dimension(500,350));
         setContentPane(panel);
         setLocationRelativeTo(null);
         this.user=user;
@@ -34,10 +40,11 @@ public class AddPost extends JFrame{
                 }
                 else{
                     LocalDateTime currentTime= LocalDateTime.now();
-                    String content=textOfContent.getText()+"-"+imageUrl;
-                    String postId="Post "+user.getHandler().getPosts().size()+1;//Creates id for the content
+                    String content=textOfContent.getText()+"@"+imagepath;
+                    String postId="Post "+(user.getHandler().getPosts().size()+1);//Creates id for the content
                     Posts post=new Posts(postId,user.getUserId(),content,currentTime);
                     user.getHandler().addPost(post);
+                    JOptionPane.showMessageDialog(null,"Post Added Successfully");
                     setVisible(false);
                     new ContentCreation(user);
                 }
@@ -47,6 +54,7 @@ public class AddPost extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
+                new ContentCreation(user);
             }
         });
         chooseAnImageButton.addActionListener(new ActionListener() {
@@ -62,13 +70,10 @@ public class AddPost extends JFrame{
                 } else {
                     File selectedFile = fileChooser.getSelectedFile();
                     if(selectedFile.getName().endsWith(".jpg")){
-                        // Convert file to URL
-                        try {
-                            imageUrl = selectedFile.toURI().toURL().toString();
+
+
+                            imagepath = selectedFile.getAbsolutePath();
                             JOptionPane.showMessageDialog(null,"Image Chosen successfully");
-                        } catch (MalformedURLException ex) {
-                            throw new RuntimeException(ex);
-                        }
                     }
                     else{
                         JOptionPane.showMessageDialog(null, "Please Choose an Image!", "Message", JOptionPane.ERROR_MESSAGE);
@@ -77,4 +82,7 @@ public class AddPost extends JFrame{
             }
         });
     }
+    public static void main
+            (String[] args) {
+        new AddPost(null);}
 }
