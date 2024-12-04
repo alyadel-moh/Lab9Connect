@@ -43,6 +43,7 @@ public class Homepage extends JFrame {
         createFriendList();
 
         viewPosts();
+        viewStories();
         //displayStatus();
 
         add(mainPanel);
@@ -58,6 +59,8 @@ public class Homepage extends JFrame {
         return instance;
     }
 
+    private void viewStories() {
+    }
 
     private void viewPosts() {
         postsPanel.removeAll(); // Clear previous posts
@@ -170,7 +173,7 @@ public class Homepage extends JFrame {
         // Event Listeners
         profileButton.addActionListener(e -> new ProfileManagement(user, userService));
 
-        addPostButton.addActionListener(e -> new AddPost(user));
+        addPostButton.addActionListener(e -> new ContentCreation(user));
 
         logoutButton.addActionListener(e -> {
             User loggedOutUser = userService.logout();
@@ -185,17 +188,21 @@ public class Homepage extends JFrame {
 
     private void createContentArea(){
         JPanel contentPanel = new JPanel();
-        contentPanel.setLayout(new GridLayout(2, 1));
+        contentPanel.setLayout(new BorderLayout());
 
         storiesPanel = new JPanel();
         storiesPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
         storiesPanel.setBorder(BorderFactory.createTitledBorder("Stories"));
+        storiesPanel.setMinimumSize(new Dimension(0,300));
+
 
         postsPanel = new JPanel();
         postsPanel.setLayout(new BoxLayout(postsPanel, BoxLayout.Y_AXIS));
+        postsPanel.setBorder(BorderFactory.createTitledBorder("Posts"));
+        //postsPanel.setMinimumSize(new Dimension(400,300));
 
-        contentPanel.add(storiesPanel);
-        contentPanel.add(new JScrollPane(postsPanel));
+        contentPanel.add(storiesPanel, BorderLayout.NORTH);
+        contentPanel.add(new JScrollPane(postsPanel), BorderLayout.CENTER);
 
         mainPanel.add(contentPanel, BorderLayout.CENTER);
     }
@@ -223,6 +230,7 @@ public class Homepage extends JFrame {
 
         // Fetch and display updated posts
         viewPosts();
+        viewStories();
 
         // Ensure the UI is updated
         postsPanel.revalidate();
@@ -230,6 +238,8 @@ public class Homepage extends JFrame {
 
         JOptionPane.showMessageDialog(this, "Page Refreshed");
     }
+
+
 
 
     public static void main(String[] args) {
