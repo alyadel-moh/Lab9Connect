@@ -57,8 +57,26 @@ public class Homepage extends JFrame {
         }
         return instance;
     }
-
-
+     private void viewStory() {
+         storiesPanel.removeAll();
+         ArrayList<User> users = userService.getDatabase().getUsers();
+         if (users != null && !users.isEmpty()){
+             for (User user : users) {
+                 JButton button = createbutton(user.getUserName(), storiesPanel);
+                 button.addActionListener(new ActionListener() {
+                     @Override
+                     public void actionPerformed(ActionEvent e) {
+                         Storiesview storiesview = new Storiesview(user,0);
+                     }
+                 });
+             }
+     }
+         else {
+            JOptionPane.showMessageDialog(null,"no Stories to display !");
+         }
+         storiesPanel.revalidate();
+         storiesPanel.repaint();
+     }
     private void viewPosts() {
         postsPanel.removeAll(); // Clear previous posts
 
@@ -213,24 +231,28 @@ public class Homepage extends JFrame {
     public void refresh() {
         // Clear existing posts
         postsPanel.removeAll();
-
+        storiesPanel.removeAll();
         // Fetch and display updated posts
         viewPosts();
+        viewStory();
 
         // Ensure the UI is updated
         postsPanel.revalidate();
         postsPanel.repaint();
 
+        storiesPanel.revalidate();
+        storiesPanel.repaint();
+
         JOptionPane.showMessageDialog(this, "Page Refreshed");
     }
-    public JButton createbutton(String text,JPanel headerpanel)
+    public JButton createbutton(String text,JPanel panel)
     {
         JButton button = new JButton();
         button.setBackground(Color.black);
         button.setForeground(Color.white);
         button.setFocusable(false);
         button.setText(text);
-        headerpanel.add(button);
+        panel.add(button);
         return button;
     }
 
