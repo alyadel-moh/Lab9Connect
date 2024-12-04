@@ -12,6 +12,7 @@ import coding.ContentCreation;
 public class Homepage extends JFrame {
     private static Homepage instance;
     private JPanel mainPanel;
+    private JPanel centralPanel;
     private JPanel postsPanel;
     private JPanel storiesPanel;
     private JPanel friendsPanel;
@@ -35,6 +36,9 @@ public class Homepage extends JFrame {
         mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
 
+        centralPanel = new JPanel();
+        centralPanel.setLayout(new BorderLayout());
+
         activePanel = new JPanel();
         add(new JScrollPane(activePanel), BorderLayout.NORTH);
 
@@ -43,7 +47,6 @@ public class Homepage extends JFrame {
         createFriendList();
 
         viewPosts();
-        viewStories();
         //displayStatus();
 
         add(mainPanel);
@@ -58,8 +61,25 @@ public class Homepage extends JFrame {
         }
         return instance;
     }
-
-    private void viewStories() {
+    private void viewStory() {
+        storiesPanel.removeAll();
+        ArrayList<User> users = userService.getDatabase().getUsers();
+        if (users != null && !users.isEmpty()){
+            for (User user : users) {
+                JButton button = createbutton(user.getUserName(), storiesPanel);
+                button.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        Storiesview storiesview = new Storiesview(user,0);
+                    }
+                });
+            }
+        }
+        else {
+            JOptionPane.showMessageDialog(null,"no Stories to display !");
+        }
+        storiesPanel.revalidate();
+        storiesPanel.repaint();
     }
 
     private void viewPosts() {
@@ -104,30 +124,6 @@ public class Homepage extends JFrame {
 
 
 
-
-    private java.awt.Component createPostComponent(Object post) {
-        if (post instanceof Posts) {
-            Posts p = (Posts) post; // Assuming you have a Post class
-            JPanel panel = new JPanel();
-            panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-
-            JLabel authorLabel = new JLabel(p.getAuthorId());
-            JLabel contentLabel = new JLabel(p.getContent());
-            JLabel contentIdLabel = new JLabel(p.getContentId());
-            JLabel timestampLabel = new JLabel(p.getDate().toString());
-
-            panel.add(authorLabel);
-            panel.add(contentLabel);
-            panel.add(contentIdLabel);
-            panel.add(timestampLabel);
-
-            panel.setBorder(BorderFactory.createLineBorder(Color.GRAY)); // Styling
-            return panel;
-        }
-        return null; // For invalid posts
-    }
-
-
     private void displayStatus(){
         user.getManager().DisplayStatus(this);
     }
@@ -153,10 +149,10 @@ public class Homepage extends JFrame {
         searchField.setText("Search");
         headerPanel.add(searchField);
 
-        JButton friendRequestsButton = createbutton("FriendRequests",headerPanel);
+        JButton friendRequests = createbutton("Manage Friends",headerPanel);
         JButton notificationButton = createbutton("Notifications",headerPanel);
         JButton profileButton =createbutton("Profile managment",headerPanel);
-        JButton addPostButton =createbutton("Content managment",headerPanel);
+        JButton addPostButton =createbutton("Create Content",headerPanel);
         JButton logoutButton = createbutton("Logout",headerPanel);
         refreshButton =  createbutton("Refresh",headerPanel);
 
@@ -166,7 +162,10 @@ public class Homepage extends JFrame {
         // Event Listeners
         profileButton.addActionListener(e -> new ProfileManagement(user, userService));
 
-        addPostButton.addActionListener(e -> new ContentCreation(user));
+        addPostButton.addActionListener(e -> {
+            centralPanel.removeAll();
+            new ContentCreation(user);
+        });
 
         logoutButton.addActionListener(e -> {
             User loggedOutUser = userService.logout();
@@ -197,7 +196,9 @@ public class Homepage extends JFrame {
         contentPanel.add(storiesPanel, BorderLayout.NORTH);
         contentPanel.add(new JScrollPane(postsPanel), BorderLayout.CENTER);
 
-        mainPanel.add(contentPanel, BorderLayout.CENTER);
+        centralPanel.add(contentPanel);
+
+        mainPanel.add(centralPanel, BorderLayout.CENTER);
     }
 
     private void createFriendList(){
@@ -220,29 +221,31 @@ public class Homepage extends JFrame {
     public void refresh() {
         // Clear existing posts
         postsPanel.removeAll();
+        storiesPanel.removeAll();
 
         // Fetch and display updated posts
         viewPosts();
-        viewStories();
+        viewStory();
 
         // Ensure the UI is updated
         postsPanel.revalidate();
         postsPanel.repaint();
 
+        storiesPanel.revalidate();
+        storiesPanel.repaint();
+
         JOptionPane.showMessageDialog(this, "Page Refreshed");
     }
-    public JButton createbutton(String text,JPanel headerpanel)
+    public JButton createbutton(String text,JPanel panel)
     {
         JButton button = new JButton();
         button.setBackground(Color.black);
         button.setForeground(Color.white);
         button.setFocusable(false);
         button.setText(text);
-        headerpanel.add(button);
+        panel.add(button);
         return button;
     }
-
-
 
     public static void main(String[] args) {
         Database database = new Database();
