@@ -42,9 +42,6 @@ public class Suggestions_Management extends JFrame {
         setBounds(100, 100, 300, 400);
         setLocationRelativeTo(null);
         setVisible(true);
-    }
+
         }
-
-
-    }
 }
