@@ -36,10 +36,17 @@ public class Window1 extends JFrame  {
         }
     public static void main
             (String[] args) {
-        Database database = new Database();
-        database.loadUsers();
-
-        System.out.println(database.getUsers());
-        UserService userService = new UserService(database);
-        new Window1(userService);}
+            Database database = new Database();
+            UserService userService = new UserService(database);
+            new Window1(userService);
+            Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+                try {
+                    userService.logout();
+                    System.out.println("Data saved successfully.");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    System.err.println("Failed to save data on shutdown.");
+                }
+            }));
+        }
 }

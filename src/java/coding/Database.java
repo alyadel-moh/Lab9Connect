@@ -14,6 +14,7 @@ public class Database {
 
     public Database() {
         users = new ArrayList<>();
+        loadUsers();
     }
 
     public void addUser(User user) {
@@ -26,7 +27,8 @@ public class Database {
     }
 
     public void saveUsers() {
-        ObjectMapper mapper = new ObjectMapper();mapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd"));
+        ObjectMapper mapper = createObjectMapper();
+        mapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd"));
         // Register the JavaTimeModule to handle LocalDateTime serialization
         mapper.registerModule(new JavaTimeModule());
         //to show them as timeStamps
@@ -38,15 +40,26 @@ public class Database {
         }
     }
     public void loadUsers() {
-        ObjectMapper mapper = new ObjectMapper();
-        try{
-            File file = new File("Users.json");
-            if (file.exists()){
-                users = mapper.readValue(file,mapper.getTypeFactory().constructCollectionType(ArrayList.class, User.class));
+        ObjectMapper mapper = createObjectMapper();
+        File file = new File("Users.json");
+
+        if (file.exists() && file.length() > 0) {
+            try {
+
+                users = mapper.readValue(file, mapper.getTypeFactory().constructCollectionType(ArrayList.class, User.class));
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.out.println(e);
+
             }
-        }catch (IOException e){
-            e.printStackTrace();
-        }
+        }else users.clear();
+    }
+    private ObjectMapper createObjectMapper() {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.registerModule(new JavaTimeModule());
+        mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        mapper.configure(com.fasterxml.jackson.databind.DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        return mapper;
     }
 
 }

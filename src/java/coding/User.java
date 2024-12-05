@@ -1,6 +1,10 @@
 package coding;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
 
 import javax.swing.*;
@@ -10,10 +14,14 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.time.LocalDate;
 import java.util.ArrayList;
-
+@JsonDeserialize(builder = User.UserBuilder.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class User {
+    @JsonIgnore
     private String profilepath;
+    @JsonIgnore
     private String  coverpath;
+    @JsonIgnore
     private String bio;
     private String password;
     private String email;
@@ -23,10 +31,13 @@ public class User {
     private final String userName;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private final LocalDate dateOfBirth;
+    @JsonIgnore
     private final JFileChooser jFileChooser = new JFileChooser();
+    @JsonIgnore
     private Friend_Manager manager;
+    @JsonIgnore
     private ContentHandler handler;
-
+@JsonIgnore
     private boolean receivedRequest;
 
     // Private constructor for User
@@ -47,16 +58,10 @@ public class User {
     public String getUserId() {
         return userId;
     }
-//    public User(String userId, String password, String userName, String email, LocalDate dateOfBirth, String status){
-//        this.userId = userId;
-//        this.password = password;
-//        this.userName = userName;
-//        this.email = email;
-//        this.dateOfBirth = dateOfBirth;
-//        this.status = status;
-//    }
+
 
 // Builder class for User
+@JsonPOJOBuilder(withPrefix = "set")
     public static class UserBuilder {
         private String userId;
         private String password;
@@ -179,6 +184,7 @@ public class User {
         return receivedRequest;
     }
 
+    @JsonIgnore
     public ArrayList<FriendRequest> getRequests() {
         return manager.getRequests();
     }
@@ -211,6 +217,7 @@ public class User {
         return handler;
     }
 
+    @JsonIgnore
     public ArrayList<User> getSuggestions(){
         return manager.getSuggestions();
     }

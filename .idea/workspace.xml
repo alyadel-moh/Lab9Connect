@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b070c600-f384-439e-b49a-9b65b4c8f3b6" name="Changes" comment="Merge branch 'main' of https://github.com/shamsquraytum/Lab9Connect&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Users.json" beforeDir="false" afterPath="$PROJECT_DIR$/Users.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/ContentHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/ContentHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/Window1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Window1.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +22,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="Change-in-user" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -30,13 +35,13 @@
     &quot;assignee&quot;: &quot;menna812&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/alyadel-moh/Lab9Connect.git",
-    "accountId": "1db9ec48-67ea-454a-949e-00fecef44143"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/alyadel-moh/Lab9Connect.git&quot;,
+    &quot;accountId&quot;: &quot;1db9ec48-67ea-454a-949e-00fecef44143&quot;
   },
-  "editorReviewEnabled": false
-}]]></component>
+  &quot;editorReviewEnabled&quot;: false
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -69,7 +74,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "#22 on Friends__request",
+    "git-widget-placeholder": "Friends__request",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/Menna/Eductaion/Faculty of engineering/CCE/Term (5)/Programming II/Labs Solution/jcalendar-1.4.jar",
     "node.js.detected.package.eslint": "true",
@@ -87,7 +92,7 @@
       <recent name="C:\Users\Administrator\Documents\GitHub\Lab9Connect\src\java\coding" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Window1">
     <configuration name="Feedpage" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="coding.Feedpage" />
       <module name="Lab9Connect2" />
@@ -143,8 +148,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Window1" />
-        <item itemvalue="Application.Homepage" />
         <item itemvalue="Application.Feedpage" />
+        <item itemvalue="Application.Homepage" />
         <item itemvalue="Application.Test" />
       </list>
     </recent_temporary>
