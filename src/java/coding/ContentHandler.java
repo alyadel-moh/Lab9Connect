@@ -89,12 +89,11 @@ public class ContentHandler {
     //saveAllStories
     public void saveStories(){
         File file=new File("./Stories.json");
-        if(!allStories.isEmpty()){
         try {
             objectMapper.writeValue(file, allStories);
         } catch (IOException e) {
             System.out.println("Error happened when trying to save post.");
-        }}
+        }
     }
 
     public void addPost(Posts post){
