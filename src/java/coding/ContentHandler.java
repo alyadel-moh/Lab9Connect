@@ -140,7 +140,7 @@ public class ContentHandler {
         ArrayList<Stories>storiesById=new ArrayList<>();
         for(int i=0;i<allStories.size();i++){
             if(allStories.get(i).getAuthorId().equals(userId)){
-                storiesById.add(stories.get(i));
+                storiesById.add(allStories.get(i));
             }
         }
         return storiesById;
@@ -151,7 +151,7 @@ public class ContentHandler {
         ArrayList<Posts>postsById=new ArrayList<>();
         for(int i=0;i<allPosts.size();i++){
             if(allPosts.get(i).getAuthorId().equals(userId)){
-                postsById.add(posts.get(i));
+                postsById.add(allPosts.get(i));
             }
         }
         return postsById;
