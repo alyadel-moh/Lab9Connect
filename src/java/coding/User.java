@@ -17,11 +17,8 @@ import java.util.ArrayList;
 @JsonDeserialize(builder = User.UserBuilder.class)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class User {
-    @JsonIgnore
     private String profilepath;
-    @JsonIgnore
     private String  coverpath;
-    @JsonIgnore
     private String bio;
     private String password;
     private String email;
@@ -51,7 +48,9 @@ public class User {
         this.manager = new Friend_Manager(this);
         this.handler = new ContentHandler();
         this.receivedRequest = false;
-        this.profilepath = "C:\\Users\\basem\\Documents\\GitHub\\Lab9Connect\\account.png";
+        this.profilepath = getProfilepath();
+        this.coverpath = getCoverpath();
+        this.bio = getBio();
 
     }
 
@@ -69,6 +68,9 @@ public class User {
         private String email;
         private LocalDate dateOfBirth;
         private String status;
+    private String profilepath;
+    private String  coverpath;
+    private String bio;
 
         public UserBuilder() {
             this.userId = userId;
@@ -107,9 +109,26 @@ public class User {
             this.status = status;
             return this;
         }
+    public UserBuilder setProfilepath(String profilepath) {
+        this.profilepath = profilepath;
+        return this;
+    }
+
+    public UserBuilder setCoverpath(String coverpath) {
+        this.coverpath = coverpath;
+        return this;
+    }
+    public UserBuilder setBio(String bio){
+            this.bio = bio;
+            return this;
+    }
 
         public User build() {
-            return new User(userId, password, userName, email, dateOfBirth, status);
+             User user = new User(userId, password, userName, email, dateOfBirth, status);
+            user.profilepath = this.profilepath;
+            user.coverpath = this.coverpath;
+            user.bio = this.bio;
+            return user;
         }
     }
 
@@ -171,6 +190,7 @@ public class User {
     public void setBio(String bio) {
         this.bio = bio;
     }
+    public String getBio(){return bio;}
 
     public void setRequestState(boolean state) {
         this.receivedRequest = state;
