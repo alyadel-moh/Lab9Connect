@@ -187,6 +187,13 @@ public class ContentHandler {
             allStories = new ArrayList<>();
         }
     }
+        public static ArrayList<Posts> getAllPosts() {
+        return allPosts;
+    }
+
+    public static ArrayList<Stories> getAllStories() {
+        return allStories;
+    }
 
 }
 
