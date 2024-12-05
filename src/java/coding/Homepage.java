@@ -73,8 +73,11 @@ public class Homepage extends JFrame {
         ArrayList<User> users = userService.getDatabase().getUsers();
         if (users != null && !users.isEmpty()) {
             for (User user : users) {
-                JButton button = createbutton(user.getUserName(),storiesPanel);
-                storiesPanel.add(button);
+                JButton button = createbutton("",storiesPanel);
+                button.setSize(70,70);
+                Image image = new ImageIcon(user.getProfilepath()).getImage();
+                Image scaled = image.getScaledInstance(button.getHeight(),button.getWidth(),Image.SCALE_SMOOTH);
+                button.setIcon(new ImageIcon(scaled));
                 button.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
