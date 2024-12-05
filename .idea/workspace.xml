@@ -93,7 +93,20 @@
       <recent name="C:\Users\Administrator\Documents\GitHub\Lab9Connect\src\java\coding" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Window1">
+  <component name="RunManager" selected="Application.CustomPanel">
+    <configuration name="CustomPanel" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="coding.CustomPanel" />
+      <module name="Lab9Connect2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="coding.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Feedpage" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="coding.Feedpage" />
       <module name="Lab9Connect2" />

@@ -197,6 +197,8 @@ public class Homepage extends JFrame {
         // Event Listeners
         profileButton.addActionListener(e -> new ProfileManagement(user, userService));
 
+        notificationButton.addActionListener(e -> new Notifications(user, userService));
+
         friendButton.addActionListener(e -> {
             centerPanel.removeAll();
             new FriendManagement(user, userService);

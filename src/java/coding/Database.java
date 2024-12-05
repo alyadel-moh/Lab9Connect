@@ -55,6 +55,7 @@ public class Database {
             for(User user : users){
                 user.getHandler().loadHisOwnPosts(user.getUserId());
                 user.getHandler().loadHisOwnStories(user.getUserId());
+                user.getManager().setSuggestions(users);
             }
 
         }else users.clear();

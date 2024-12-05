@@ -3,6 +3,7 @@ package coding;
 import coding.testtt.CircleButton;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 
 public class CustomPanel extends JPanel {
@@ -50,6 +51,10 @@ public class CustomPanel extends JPanel {
 
         add(new JLabel());
         add(buttonPanel);
+
+        setMaximumSize(new Dimension(300,200));
+        setMinimumSize(new Dimension(300,200));
+        setPreferredSize(new Dimension(300,200));
     }
 
     public JButton createbutton(String text)
@@ -60,6 +65,11 @@ public class CustomPanel extends JPanel {
         button.setFocusable(false);
         button.setText(text);
         return button;
+    }
+
+    public void add(String text){
+        JLabel label = new JLabel(text);
+        add(label, 2);
     }
 
     public static void main(String[] args) {

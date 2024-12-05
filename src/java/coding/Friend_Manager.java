@@ -1,5 +1,7 @@
 package coding;
 
+import coding.interfaces.ContentObserver;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
@@ -21,8 +23,12 @@ public class Friend_Manager {
         this.blocked = new ArrayList<>();
     }
 
-    public void loadFriends(){
-
+    public void setSuggestions(ArrayList<User> users){
+        for(User user : users){
+            if (!friends.contains(user) && !blocked.contains(user) && !user.equals(this.user)){
+                suggestions.add(user);
+            }
+        }
     }
 
     public void sendRequest(User receiver) {
@@ -78,6 +84,7 @@ public class Friend_Manager {
         request.accept(); // Update request state
         requests.remove(request); // Remove request
         friends.add(sender); // Add to friends list
+        user.getHandler().addObserver((ContentObserver) sender);
 
         if (requests.isEmpty()) {
             this.user.setRequestState(false);
@@ -111,6 +118,7 @@ public class Friend_Manager {
         }
 
         friends.remove(friend);
+        user.getHandler().removeObserver((ContentObserver) friend);
         blocked.add(friend);
     }
 
@@ -120,8 +128,8 @@ public class Friend_Manager {
         }
 
         friends.remove(friend);
+        user.getHandler().removeObserver((ContentObserver) friend);
         suggestions.add(friend);
-
     }
 
     public void DisplayStatus(Homepage page) {

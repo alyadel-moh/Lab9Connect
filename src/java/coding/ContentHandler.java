@@ -21,6 +21,7 @@ public class ContentHandler {
     private final ArrayList<ContentObserver> observers;
     private static ArrayList<Posts>allPosts=new ArrayList<Posts>();//static to be shared with all instances to save all posts
     private static ArrayList<Stories>allStories=new ArrayList<Stories>();//will intialize it with empty arraylist once the class is loaded
+    private ArrayList<CustomPanel> notifications;
 
 //    private String storyPath="./JsonFilesStories/";
 //    private String postsPath="./JsonFilesPosts/";
@@ -31,6 +32,7 @@ public class ContentHandler {
         this.archieved = new ArrayList<>();
         this.stories=new ArrayList<>();
         this.observers = new ArrayList<>();
+        this.notifications = new ArrayList<>();
         this.objectMapper.registerModule(new JavaTimeModule());//JavaTimeModule helps to write the localTime to file
         this.objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
@@ -47,13 +49,6 @@ public class ContentHandler {
         objectMapper.registerModule(new JavaTimeModule());
         //to show them as timeStamps
         objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-    }
-
-    public static synchronized ContentHandler getInstance(String path) {
-        if (instance == null) {
-            instance = new ContentHandler();
-        }
-        return instance;
     }
 
     public ArrayList<Stories> getActiveStories() {
@@ -123,11 +118,17 @@ public class ContentHandler {
         observers.remove(observer);
     }
 
-//    private void notifyObservers(){
-//        for (ContentObserver observer : observers){
-//            observer.update(contents);
-//        }
-//    }
+    private void notifyObservers(User user, String text){
+        for (ContentObserver observer : observers){
+            CustomPanel custom = new CustomPanel(user, "View", " Ignore");
+            custom.add(text);
+            // add to their notifications
+        }
+    }
+
+    public ArrayList<CustomPanel> getNotifications(){
+        return notifications;
+    }
 
     public ArrayList<Stories> getArchieved() {
         return archieved;

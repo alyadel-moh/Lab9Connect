@@ -260,13 +260,13 @@ public class User {
         this.status = newStatus;
     }
 
-    public String toString(){
+   /* public String toString(){
         return "UserId" + userId +
                 "UserName" + userName +
                 "UserEmail" + email +
                 "password" + password;
 
-    }
+    }*/
 
 
 

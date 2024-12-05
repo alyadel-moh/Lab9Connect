@@ -44,6 +44,7 @@ public class UserService {
                 .setDateOfBirth(dateOfBirth)
                 .setStatus("offline")
                         .build();
+
          newUser.setProfilepath();
         database.addUser(newUser);
 
