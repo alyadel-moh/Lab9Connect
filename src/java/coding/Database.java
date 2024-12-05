@@ -56,6 +56,7 @@ public class Database {
                 user.getHandler().loadHisOwnPosts(user.getUserId());
                 user.getHandler().loadHisOwnStories(user.getUserId());
             }
+
         }else users.clear();
     }
     private ObjectMapper createObjectMapper() {

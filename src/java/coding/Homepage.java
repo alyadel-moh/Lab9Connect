@@ -144,9 +144,7 @@ public class Homepage extends JFrame {
         for (User friend : user.getManager().getFriends()){
             if ("online".equalsIgnoreCase(friend.getStatus())){
                 CustomPanel custom = new CustomPanel(friend, "Active");
-
                 //custom.button1.addActionListener(e -> );
-
                 friendsPanel.add(custom);
             }
         }
