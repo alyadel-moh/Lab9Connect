@@ -172,7 +172,6 @@ public class ContentHandler {
             allPosts = new ArrayList<>();
         }
     }
-
     //load all stories
     public void loadStories() {
         File file = new File("./Stories.json");
@@ -187,6 +186,30 @@ public class ContentHandler {
             allStories = new ArrayList<>();
         }
     }
+
+    //load posts of each user according to their id
+        public void loadHisOwnPosts(String userId){
+        loadPosts();
+        ArrayList<Posts>loadedPosts=getPostsByUserId(userId);
+        if(!loadedPosts.isEmpty()){
+        for(int i=0;i<loadedPosts.size();i++){
+            posts.add(loadedPosts.get(i));
+        }
+        }
+        }
+
+        //load stories of each user according to their id
+
+    public void loadHisOwnStories(String userId){
+        loadStories();
+        ArrayList<Stories>loadedStories=getStoriesByUserId(userId);
+        if(!loadedStories.isEmpty()){
+            for(int i=0;i<loadedStories.size();i++){
+                stories.add(loadedStories.get(i));
+            }
+        }
+    }
+
         public static ArrayList<Posts> getAllPosts() {
         return allPosts;
     }
