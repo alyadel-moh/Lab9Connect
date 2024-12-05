@@ -29,11 +29,14 @@ public class Suggestions_Management extends JFrame {
         populateSuggestions(user.getSuggestions());
 
         setContentPane(scrollPane);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setResizable(false);
-        setBounds(100, 100, 300, 400);
-        setLocationRelativeTo(null);
-        setVisible(true);
+
+        if (homePanel == null){
+            setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            setResizable(false);
+            setBounds(100, 100, 300, 400);
+            setLocationRelativeTo(null);
+            setVisible(true);
+        }
     }
 
     private void populateSuggestions(List<User> suggestions) {

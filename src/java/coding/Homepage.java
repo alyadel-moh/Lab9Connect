@@ -242,11 +242,11 @@ public class Homepage extends JFrame {
         friendListPanel.setLayout(new BoxLayout(friendListPanel, BoxLayout.Y_AXIS));
 
         friendsPanel = new JPanel();
-        friendsPanel.setLayout(new BoxLayout(friendListPanel, BoxLayout.Y_AXIS));
+        friendsPanel.setLayout(new GridLayout(0, 1));
         friendsPanel.setBorder(BorderFactory.createTitledBorder("Friends"));
 
         friendSuggestionsPanel = new JPanel();
-        friendSuggestionsPanel.setLayout(new BoxLayout(friendSuggestionsPanel, BoxLayout.Y_AXIS));
+        friendSuggestionsPanel.setLayout(new GridLayout(0, 1));
         friendSuggestionsPanel.setBorder(BorderFactory.createTitledBorder("Friend Suggestions"));
 
         friendListPanel.add(friendSuggestionsPanel);

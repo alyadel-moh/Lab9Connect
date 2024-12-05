@@ -33,7 +33,7 @@
         <properties>
           <background color="-16777216"/>
           <foreground color="-3331"/>
-          <text value="Block or remove Friends"/>
+          <text value="Manage Friends"/>
         </properties>
       </component>
       <component id="251cc" class="javax.swing.JButton" binding="viewFriendSuggestionsButton" default-binding="true">
