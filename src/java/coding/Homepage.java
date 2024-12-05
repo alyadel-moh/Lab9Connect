@@ -84,10 +84,13 @@ public class Homepage extends JFrame {
         if (users != null && !users.isEmpty()) {
             for (User user : users) {
                 JButton button = createbutton("",storiesPanel);
-                button.setSize(70,70);
+                button.setBackground(Color.white);
+                button.setBorder(BorderFactory.createLineBorder(Color.black));
+                button.setFocusPainted(false);
                 Image image = new ImageIcon(user.getProfilepath()).getImage();
-                Image scaled = image.getScaledInstance(button.getHeight(),button.getWidth(),Image.SCALE_SMOOTH);
+                Image scaled = image.getScaledInstance(70,70,Image.SCALE_SMOOTH);
                 button.setIcon(new ImageIcon(scaled));
+                storiesPanel.add(button);
                 button.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
@@ -102,6 +105,7 @@ public class Homepage extends JFrame {
         storiesPanel.revalidate();
         storiesPanel.repaint();
     }
+
 
 
     private void viewPosts() {
