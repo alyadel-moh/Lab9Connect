@@ -12,13 +12,15 @@ import coding.testtt.CircleButton;
 
 public class Homepage extends JFrame {
     private static Homepage instance;
-    private JPanel mainPanel;
+    private final JPanel mainPanel;
     private JPanel centralPanel;
     private JPanel centerPanel;
     private JPanel postsPanel;
     private JPanel storiesPanel;
+    private JPanel friendsArea;
     private JPanel friendsPanel;
     private JPanel friendSuggestionsPanel;
+    private JPanel subSuggestionPanel;
     private JPanel activePanel;
     private JTextArea contentCreationArea;
     private JButton postButton,refreshButton;
@@ -39,23 +41,30 @@ public class Homepage extends JFrame {
         mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
 
+        centerPanel = new JPanel();
+        centerPanel.setLayout(new GridLayout(1,2));
+
         centralPanel = new JPanel();
         centralPanel.setLayout(new BorderLayout());
 
-        centerPanel = new JPanel();
-        centerPanel.setLayout(new BorderLayout());
-
-        activePanel = new JPanel();
-        add(new JScrollPane(activePanel), BorderLayout.NORTH);
+        friendsArea = new JPanel();
+        friendsArea.setLayout(new BoxLayout(friendsArea, BoxLayout.Y_AXIS));
+       // friendsArea.setLayout(new GridLayout(2,1));
 
         createHeader();
         createContentArea();
         createFriendList();
 
+        centerPanel.add(centralPanel);
+        centerPanel.add(friendsArea);
+
         viewPosts();
         viewStory();
         displayStatus();
         displaySuggestions();
+
+        mainPanel.add(centerPanel, BorderLayout.CENTER);
+
 
         add(mainPanel);
         setVisible(true);
@@ -89,6 +98,7 @@ public class Homepage extends JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "no Stories to display !");
         }
+
         storiesPanel.revalidate();
         storiesPanel.repaint();
     }
@@ -97,43 +107,38 @@ public class Homepage extends JFrame {
     private void viewPosts() {
         postsPanel.removeAll(); // Clear previous posts
         ArrayList<User> users = userService.getDatabase().getUsers();
-        for(User user : users) {
-            ArrayList<Posts> posts = user.getHandler().getPosts();
-            if (posts != null && !posts.isEmpty()) {
-                System.out.println("Total posts to display: " + posts.size());
-                for (Posts post : posts) {
-                    // Extract and display text content
-                    String content = post.getContent();
-                    String[] contentDelim = content.split("@");
-                    String text = contentDelim[0];
 
-                    JLabel textLabel = new JLabel(text);
-                    textLabel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5)); // Add padding
-                    postsPanel.add(textLabel);
-
-                    // Try to extract and display image if available
-                    try {
-                        String imagePath = contentDelim[1];
-                        if (!imagePath.isEmpty()) {
-                            ImageIcon imageIcon = new ImageIcon(new ImageIcon(imagePath).getImage().getScaledInstance(300, 300, Image.SCALE_SMOOTH)); // Scale image
-                            JLabel imageLabel = new JLabel(imageIcon);
-                            imageLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Add padding
-                            postsPanel.add(imageLabel);
-                            System.out.println("Image path: " + imagePath);
-                        }
-                    } catch (ArrayIndexOutOfBoundsException e) {
-                        System.out.println("No image found for this post.");
-                    }
+        if (users != null) {
+            users.forEach(user -> {
+                ArrayList<Posts> posts = user.getHandler().getPosts();
+                if (posts != null && !posts.isEmpty()) {
+                    posts.forEach(this::displayPost);
                 }
-            } else {
-                System.out.println("No posts available to display.");
-            }
+            });
+        } else {
+            JOptionPane.showMessageDialog(this, "No users found.");
         }
 
         // Refresh UI
         postsPanel.revalidate();
         postsPanel.repaint();
     }
+
+    private void displayPost(Posts post) {
+        String[] contentDelim = post.getContent().split("@");
+        JLabel textLabel = new JLabel(contentDelim[0]);
+        textLabel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        postsPanel.add(textLabel);
+
+        if (contentDelim.length > 1 && !contentDelim[1].isEmpty()) {
+            ImageIcon imageIcon = new ImageIcon(new ImageIcon(contentDelim[1]).getImage()
+                    .getScaledInstance(300, 300, Image.SCALE_SMOOTH));
+            JLabel imageLabel = new JLabel(imageIcon);
+            imageLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+            postsPanel.add(imageLabel);
+        }
+    }
+
 
 
     private void displayStatus(){
@@ -153,7 +158,7 @@ public class Homepage extends JFrame {
     }
 
     private void displaySuggestions(){
-        new Suggestions_Management(user, userService, friendSuggestionsPanel);
+        new Suggestions_Management(user, userService, subSuggestionPanel);
     }
 
     public void setActivePanel(JPanel newPanel) {
@@ -230,16 +235,19 @@ public class Homepage extends JFrame {
         contentPanel.add(storiesPanel, BorderLayout.NORTH);
         contentPanel.add(new JScrollPane(postsPanel), BorderLayout.CENTER);
 
-       // centralPanel.add(contentPanel, BorderLayout.CENTER);
 
-        mainPanel.add(contentPanel, BorderLayout.CENTER);
+        centralPanel.add(contentPanel, BorderLayout.CENTER);
+
+        //mainPanel.add(contentPanel, BorderLayout.CENTER);
         //centerPanel.add(contentPanel);
        // mainPanel.add(centerPanel, BorderLayout.CENTER);
+
+
     }
 
     private void createFriendList(){
         JPanel friendListPanel = new JPanel();
-        friendListPanel.setLayout(new BoxLayout(friendListPanel, BoxLayout.Y_AXIS));
+        friendListPanel.setLayout(new GridLayout(2,1));
 
         friendsPanel = new JPanel();
         friendsPanel.setLayout(new GridLayout(0, 1));
@@ -249,41 +257,48 @@ public class Homepage extends JFrame {
         friendSuggestionsPanel.setLayout(new GridLayout(0, 1));
         friendSuggestionsPanel.setBorder(BorderFactory.createTitledBorder("Friend Suggestions"));
 
-        friendListPanel.add(friendSuggestionsPanel);
-        friendListPanel.add(friendsPanel);
+        subSuggestionPanel = new JPanel();
+        subSuggestionPanel.setLayout(new GridLayout(0, 1));
+        subSuggestionPanel.setBorder(BorderFactory.createTitledBorder("List View"));
+        friendSuggestionsPanel.add(subSuggestionPanel);
 
-        mainPanel.add(friendListPanel, BorderLayout.EAST);
+
+        friendListPanel.add(friendsPanel);
+        friendListPanel.add(friendSuggestionsPanel);
+
+        friendsArea.add(friendListPanel);
+        //friendsArea.add(friendSuggestionsPanel);
 
     }
 
     public void refresh() {
-        // Clear existing posts
-        postsPanel.removeAll();
-        storiesPanel.removeAll();
-        friendsPanel.removeAll();
-        friendSuggestionsPanel.removeAll();
+        try {
+            // Clear and reload content
+            postsPanel.removeAll();
+            storiesPanel.removeAll();
+            friendsPanel.removeAll();
+            friendSuggestionsPanel.removeAll();
 
-        // Fetch and display updated posts
-        viewPosts();
-        viewStory();
-        displayStatus();
-        displaySuggestions();
+            viewPosts();
+            viewStory();
+            displayStatus();
+            displaySuggestions();
 
-        // Ensure the UI is updated
-        postsPanel.revalidate();
-        postsPanel.repaint();
+            // Revalidate and repaint
+            mainPanel.invalidate();
+            mainPanel.revalidate();
+            mainPanel.repaint();
 
-        storiesPanel.revalidate();
-        storiesPanel.repaint();
+            setVisible(false);
+            new Homepage(userService, user);
 
-        friendsPanel.revalidate();
-        friendsPanel.repaint();
-
-        friendSuggestionsPanel.revalidate();
-        friendSuggestionsPanel.repaint();
-
-        JOptionPane.showMessageDialog(this, "Page Refreshed");
+            JOptionPane.showMessageDialog(this, "Page Refreshed");
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "An error occurred while refreshing: " + e.getMessage());
+        }
     }
+
 
     public JButton createbutton(String text,JPanel panel)
     {
