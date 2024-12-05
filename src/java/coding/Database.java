@@ -52,9 +52,9 @@ public class Database {
                 System.out.println(e);
 
             }
-            for(int i=0;i<users.size();i++){
-                users.get(i).getHandler().loadHisOwnPosts(users.get(i).getUserId());
-                users.get(i).getHandler().loadHisOwnStories(users.get(i).getUserId());
+            for(User user : users){
+                user.getHandler().loadHisOwnPosts(user.getUserId());
+                user.getHandler().loadHisOwnStories(user.getUserId());
             }
         }else users.clear();
     }

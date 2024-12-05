@@ -21,6 +21,10 @@ public class Friend_Manager {
         this.blocked = new ArrayList<>();
     }
 
+    public void loadFriends(){
+
+    }
+
     public void sendRequest(User receiver) {
         if (receiver == null) {
             throw new IllegalArgumentException("Receiver cannot be null.");

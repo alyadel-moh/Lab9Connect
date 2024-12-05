@@ -1,5 +1,7 @@
 package coding;
 
+import coding.testtt.CircleButton;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -29,10 +31,10 @@ public class CustomPanel extends JPanel {
     private void setupLayout() {
         setLayout(new GridLayout(1,4));
 
-        JLabel label1 = new JLabel(user.getProfilepath());
+        CircleButton profileView = new CircleButton(new ImageIcon(user.getProfilepath()));
         JLabel label2 = new JLabel(user.getUserName());
 
-        add(label1);
+        add(profileView);
         add(label2);
 
         JPanel buttonPanel = new JPanel();

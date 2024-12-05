@@ -172,6 +172,7 @@ public class ContentHandler {
             allPosts = new ArrayList<>();
         }
     }
+
     //load all stories
     public void loadStories() {
         File file = new File("./Stories.json");
@@ -190,7 +191,8 @@ public class ContentHandler {
     //load posts of each user according to their id
         public void loadHisOwnPosts(String userId){
         loadPosts();
-        ArrayList<Posts>loadedPosts=getPostsByUserId(userId);
+        ArrayList<Posts> loadedPosts = getPostsByUserId(userId);
+
         if(!loadedPosts.isEmpty()){
         for(int i=0;i<loadedPosts.size();i++){
             posts.add(loadedPosts.get(i));

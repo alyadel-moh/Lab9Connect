@@ -54,7 +54,8 @@ public class Homepage extends JFrame {
 
         viewPosts();
         viewStory();
-        //displayStatus();
+        displayStatus();
+        displaySuggestions();
 
         add(mainPanel);
         setVisible(true);
@@ -92,11 +93,6 @@ public class Homepage extends JFrame {
         storiesPanel.repaint();
     }
 
-    private void viewStories() {
-        coding.testtt.src.CircleButton button = new coding.testtt.src.CircleButton("userr");
-        storiesPanel.add(button);
-
-    }
 
     private void viewPosts() {
         postsPanel.removeAll(); // Clear previous posts
@@ -141,7 +137,23 @@ public class Homepage extends JFrame {
 
 
     private void displayStatus(){
-        user.getManager().DisplayStatus(this);
+        // clear panel
+        friendsPanel.removeAll();
+
+        // loop through each friend to check if active
+        for (User friend : user.getManager().getFriends()){
+            if ("online".equalsIgnoreCase(friend.getStatus())){
+                CustomPanel custom = new CustomPanel(friend, "Active");
+
+                //custom.button1.addActionListener(e -> );
+
+                friendsPanel.add(custom);
+            }
+        }
+    }
+
+    private void displaySuggestions(){
+        new Suggestions_Management(user, userService, friendSuggestionsPanel);
     }
 
     public void setActivePanel(JPanel newPanel) {
@@ -165,10 +177,9 @@ public class Homepage extends JFrame {
         searchField.setText("Search");
         headerPanel.add(searchField);
 
-        JButton friendRequests = createbutton("Manage Friends",headerPanel);
         JButton friendButton = createbutton("Manage Friends",headerPanel);
         JButton notificationButton = createbutton("Notifications",headerPanel);
-        JButton profileButton =createbutton("Profile managment",headerPanel);
+        JButton profileButton =createbutton("Profile Management",headerPanel);
         JButton addPostButton =createbutton("Create Content",headerPanel);
         JButton logoutButton = createbutton("Logout",headerPanel);
         refreshButton =  createbutton("Refresh",headerPanel);
@@ -178,8 +189,6 @@ public class Homepage extends JFrame {
 
         // Event Listeners
         profileButton.addActionListener(e -> new ProfileManagement(user, userService));
-
-        friendRequests.addActionListener(e -> new FriendManagement(user,userService));
 
         friendButton.addActionListener(e -> {
             centerPanel.removeAll();
@@ -233,9 +242,11 @@ public class Homepage extends JFrame {
         friendListPanel.setLayout(new BoxLayout(friendListPanel, BoxLayout.Y_AXIS));
 
         friendsPanel = new JPanel();
+        friendsPanel.setLayout(new BoxLayout(friendListPanel, BoxLayout.Y_AXIS));
         friendsPanel.setBorder(BorderFactory.createTitledBorder("Friends"));
 
         friendSuggestionsPanel = new JPanel();
+        friendSuggestionsPanel.setLayout(new BoxLayout(friendSuggestionsPanel, BoxLayout.Y_AXIS));
         friendSuggestionsPanel.setBorder(BorderFactory.createTitledBorder("Friend Suggestions"));
 
         friendListPanel.add(friendSuggestionsPanel);
@@ -249,10 +260,14 @@ public class Homepage extends JFrame {
         // Clear existing posts
         postsPanel.removeAll();
         storiesPanel.removeAll();
+        friendsPanel.removeAll();
+        friendSuggestionsPanel.removeAll();
 
         // Fetch and display updated posts
         viewPosts();
         viewStory();
+        displayStatus();
+        displaySuggestions();
 
         // Ensure the UI is updated
         postsPanel.revalidate();
@@ -260,6 +275,12 @@ public class Homepage extends JFrame {
 
         storiesPanel.revalidate();
         storiesPanel.repaint();
+
+        friendsPanel.revalidate();
+        friendsPanel.repaint();
+
+        friendSuggestionsPanel.revalidate();
+        friendSuggestionsPanel.repaint();
 
         JOptionPane.showMessageDialog(this, "Page Refreshed");
     }

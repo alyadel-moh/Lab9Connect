@@ -29,7 +29,7 @@ public class FriendManagement extends JFrame{
 
             viewFriendRequestsButton.addActionListener(e -> new Requests_Management(user,userService));
 
-            viewFriendSuggestionsButton.addActionListener(e -> new Suggestions_Management(user,userService));
+            viewFriendSuggestionsButton.addActionListener(e -> new Suggestions_Management(user,userService, null));
 
 
 
