@@ -1,6 +1,10 @@
 package coding;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
 
 import javax.swing.*;
@@ -10,7 +14,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.time.LocalDate;
 import java.util.ArrayList;
-
+@JsonDeserialize(builder = User.UserBuilder.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class User {
     private String profilepath;
     private String  coverpath;
@@ -23,10 +28,13 @@ public class User {
     private final String userName;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private final LocalDate dateOfBirth;
+    @JsonIgnore
     private final JFileChooser jFileChooser = new JFileChooser();
+    @JsonIgnore
     private Friend_Manager manager;
+    @JsonIgnore
     private ContentHandler handler;
-
+@JsonIgnore
     private boolean receivedRequest;
 
     // Private constructor for User
@@ -40,23 +48,19 @@ public class User {
         this.manager = new Friend_Manager(this);
         this.handler = new ContentHandler();
         this.receivedRequest = false;
-        this.profilepath = "C:\\Users\\basem\\Documents\\GitHub\\Lab9Connect\\account.png";
+        this.profilepath = getProfilepath();
+        this.coverpath = getCoverpath();
+        this.bio = getBio();
 
     }
 
     public String getUserId() {
         return userId;
     }
-//    public User(String userId, String password, String userName, String email, LocalDate dateOfBirth, String status){
-//        this.userId = userId;
-//        this.password = password;
-//        this.userName = userName;
-//        this.email = email;
-//        this.dateOfBirth = dateOfBirth;
-//        this.status = status;
-//    }
+
 
 // Builder class for User
+@JsonPOJOBuilder(withPrefix = "set")
     public static class UserBuilder {
         private String userId;
         private String password;
@@ -64,6 +68,9 @@ public class User {
         private String email;
         private LocalDate dateOfBirth;
         private String status;
+    private String profilepath;
+    private String  coverpath;
+    private String bio;
 
         public UserBuilder() {
             this.userId = userId;
@@ -102,9 +109,26 @@ public class User {
             this.status = status;
             return this;
         }
+    public UserBuilder setProfilepath(String profilepath) {
+        this.profilepath = profilepath;
+        return this;
+    }
+
+    public UserBuilder setCoverpath(String coverpath) {
+        this.coverpath = coverpath;
+        return this;
+    }
+    public UserBuilder setBio(String bio){
+            this.bio = bio;
+            return this;
+    }
 
         public User build() {
-            return new User(userId, password, userName, email, dateOfBirth, status);
+             User user = new User(userId, password, userName, email, dateOfBirth, status);
+            user.profilepath = this.profilepath;
+            user.coverpath = this.coverpath;
+            user.bio = this.bio;
+            return user;
         }
     }
 
@@ -166,6 +190,7 @@ public class User {
     public void setBio(String bio) {
         this.bio = bio;
     }
+    public String getBio(){return bio;}
 
     public void setRequestState(boolean state) {
         this.receivedRequest = state;
@@ -179,6 +204,7 @@ public class User {
         return receivedRequest;
     }
 
+    @JsonIgnore
     public ArrayList<FriendRequest> getRequests() {
         return manager.getRequests();
     }
@@ -211,6 +237,7 @@ public class User {
         return handler;
     }
 
+    @JsonIgnore
     public ArrayList<User> getSuggestions(){
         return manager.getSuggestions();
     }

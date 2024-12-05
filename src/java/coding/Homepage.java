@@ -73,11 +73,11 @@ public class Homepage extends JFrame {
         ArrayList<User> users = userService.getDatabase().getUsers();
         if (users != null && !users.isEmpty()) {
             for (User user : users) {
-                ImageIcon icon = new ImageIcon("C:\\Users\\basem\\Documents\\GitHub\\Lab9Connect\\src\\java\\coding\\testtt\\koooko.jpg");
-                icon.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);
-                CircleButton button = new CircleButton(icon);
-                storiesPanel.add(button);
-
+                JButton button = createbutton("",storiesPanel);
+                button.setSize(70,70);
+                Image image = new ImageIcon(user.getProfilepath()).getImage();
+                Image scaled = image.getScaledInstance(button.getHeight(),button.getWidth(),Image.SCALE_SMOOTH);
+                button.setIcon(new ImageIcon(scaled));
                 button.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
@@ -100,37 +100,38 @@ public class Homepage extends JFrame {
 
     private void viewPosts() {
         postsPanel.removeAll(); // Clear previous posts
+        ArrayList<User> users = userService.getDatabase().getUsers();
+        for(User user : users) {
+            ArrayList<Posts> posts = user.getHandler().getPosts();
+            if (posts != null && !posts.isEmpty()) {
+                System.out.println("Total posts to display: " + posts.size());
+                for (Posts post : posts) {
+                    // Extract and display text content
+                    String content = post.getContent();
+                    String[] contentDelim = content.split("@");
+                    String text = contentDelim[0];
 
-        ArrayList<Posts> posts = user.getHandler().getPosts();
+                    JLabel textLabel = new JLabel(text);
+                    textLabel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5)); // Add padding
+                    postsPanel.add(textLabel);
 
-        if (posts != null && !posts.isEmpty()) {
-            System.out.println("Total posts to display: " + posts.size());
-            for (Posts post : posts) {
-                // Extract and display text content
-                String content = post.getContent();
-                String[] contentDelim = content.split("@");
-                String text = contentDelim[0];
-
-                JLabel textLabel = new JLabel(text);
-                textLabel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5)); // Add padding
-                postsPanel.add(textLabel);
-
-                // Try to extract and display image if available
-                try {
-                    String imagePath = contentDelim[1];
-                    if (!imagePath.isEmpty()) {
-                        ImageIcon imageIcon = new ImageIcon(new ImageIcon(imagePath).getImage().getScaledInstance(300, 300, Image.SCALE_SMOOTH)); // Scale image
-                        JLabel imageLabel = new JLabel(imageIcon);
-                        imageLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Add padding
-                        postsPanel.add(imageLabel);
-                        System.out.println("Image path: " + imagePath);
+                    // Try to extract and display image if available
+                    try {
+                        String imagePath = contentDelim[1];
+                        if (!imagePath.isEmpty()) {
+                            ImageIcon imageIcon = new ImageIcon(new ImageIcon(imagePath).getImage().getScaledInstance(300, 300, Image.SCALE_SMOOTH)); // Scale image
+                            JLabel imageLabel = new JLabel(imageIcon);
+                            imageLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Add padding
+                            postsPanel.add(imageLabel);
+                            System.out.println("Image path: " + imagePath);
+                        }
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        System.out.println("No image found for this post.");
                     }
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    System.out.println("No image found for this post.");
                 }
+            } else {
+                System.out.println("No posts available to display.");
             }
-        } else {
-            System.out.println("No posts available to display.");
         }
 
         // Refresh UI
@@ -180,10 +181,6 @@ public class Homepage extends JFrame {
 
         friendRequests.addActionListener(e -> new FriendManagement(user,userService));
 
-        addPostButton.addActionListener(e -> {
-            centralPanel.removeAll();
-            new ContentCreation(user);
-        });
         friendButton.addActionListener(e -> {
             centerPanel.removeAll();
             new FriendManagement(user, userService);
@@ -227,8 +224,8 @@ public class Homepage extends JFrame {
        // centralPanel.add(contentPanel, BorderLayout.CENTER);
 
         mainPanel.add(contentPanel, BorderLayout.CENTER);
-        centerPanel.add(contentPanel);
-        mainPanel.add(centerPanel, BorderLayout.CENTER);
+        //centerPanel.add(contentPanel);
+       // mainPanel.add(centerPanel, BorderLayout.CENTER);
     }
 
     private void createFriendList(){

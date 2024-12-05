@@ -19,6 +19,9 @@ public class ContentHandler {
     private final ArrayList<Stories> archieved;
     private ArrayList<Stories>stories;
     private final ArrayList<ContentObserver> observers;
+    private static ArrayList<Posts>allPosts=new ArrayList<Posts>();//static to be shared with all instances to save all posts
+    private static ArrayList<Stories>allStories=new ArrayList<Stories>();//will intialize it with empty arraylist once the class is loaded
+
 //    private String storyPath="./JsonFilesStories/";
 //    private String postsPath="./JsonFilesPosts/";
 
@@ -72,18 +75,22 @@ public class ContentHandler {
     }
 
 
+
+    //Saving all Posts
     public void savePosts(){
         File file=new File("./Posts.json");
         try {
-            objectMapper.writeValue(file, posts);
+            objectMapper.writeValue(file, allPosts);
         } catch (IOException e) {
             System.out.println("Error happened when trying to save post.");
         }
     }
+
+    //saveAllStories
     public void saveStories(){
         File file=new File("./Stories.json");
         try {
-            objectMapper.writeValue(file, stories);
+            objectMapper.writeValue(file, allStories);
         } catch (IOException e) {
             System.out.println("Error happened when trying to save post.");
         }
@@ -93,10 +100,12 @@ public class ContentHandler {
 
     public void addPost(Posts post){
         posts.add(post);
+        allPosts.add(post);
 //        notifyObservers();
     }
     public void addStory(Stories story){
         stories.add(story);
+        allStories.add(story);
 //        notifyObservers();
     }
 
@@ -129,9 +138,9 @@ public class ContentHandler {
     //return arraylist of stories that is related by a certain user by its ID
     public ArrayList<Stories> getStoriesByUserId(String userId){
         ArrayList<Stories>storiesById=new ArrayList<>();
-        for(int i=0;i<stories.size();i++){
-            if(stories.get(i).getAuthorId().equals(userId)){
-                storiesById.add(stories.get(i));
+        for(int i=0;i<allStories.size();i++){
+            if(allStories.get(i).getAuthorId().equals(userId)){
+                storiesById.add(allStories.get(i));
             }
         }
         return storiesById;
@@ -140,13 +149,75 @@ public class ContentHandler {
     //return Arraylist of posts that is related to a certain user by the user id
     public ArrayList<Posts> getPostsByUserId(String userId){
         ArrayList<Posts>postsById=new ArrayList<>();
-        for(int i=0;i<posts.size();i++){
-            if(posts.get(i).getAuthorId().equals(userId)){
-                postsById.add(posts.get(i));
+        for(int i=0;i<allPosts.size();i++){
+            if(allPosts.get(i).getAuthorId().equals(userId)){
+                postsById.add(allPosts.get(i));
             }
         }
         return postsById;
     }
+
+    //load All posts
+    public void loadPosts() {
+        File file = new File("./Posts.json");
+        if (file.exists()) {
+            try {
+                allPosts = objectMapper.readValue(file, new TypeReference<ArrayList<Posts>>() {});
+            } catch (IOException e) {
+                System.out.println("Error occurred while loading posts.");
+                System.out.println(e);
+            }
+        } else {
+            System.out.println("Posts file not found. Initializing an empty list.");
+            allPosts = new ArrayList<>();
+        }
+    }
+    //load all stories
+    public void loadStories() {
+        File file = new File("./Stories.json");
+        if (file.exists()) {
+            try {
+                allStories = objectMapper.readValue(file, new TypeReference<ArrayList<Stories>>() {});
+            } catch (IOException e) {
+                System.out.println("Error occurred while loading stories.");
+            }
+        } else {
+            System.out.println("Stories file not found. Initializing an empty list.");
+            allStories = new ArrayList<>();
+        }
+    }
+
+    //load posts of each user according to their id
+        public void loadHisOwnPosts(String userId){
+        loadPosts();
+        ArrayList<Posts>loadedPosts=getPostsByUserId(userId);
+        if(!loadedPosts.isEmpty()){
+        for(int i=0;i<loadedPosts.size();i++){
+            posts.add(loadedPosts.get(i));
+        }
+        }
+        }
+
+        //load stories of each user according to their id
+
+    public void loadHisOwnStories(String userId){
+        loadStories();
+        ArrayList<Stories>loadedStories=getStoriesByUserId(userId);
+        if(!loadedStories.isEmpty()){
+            for(int i=0;i<loadedStories.size();i++){
+                stories.add(loadedStories.get(i));
+            }
+        }
+    }
+
+        public static ArrayList<Posts> getAllPosts() {
+        return allPosts;
+    }
+
+    public static ArrayList<Stories> getAllStories() {
+        return allStories;
+    }
+
 }
 
 
