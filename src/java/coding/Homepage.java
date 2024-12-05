@@ -266,6 +266,7 @@ public class Homepage extends JFrame {
 
         JOptionPane.showMessageDialog(this, "Page Refreshed");
     }
+
     public JButton createbutton(String text,JPanel panel)
     {
         JButton button = new JButton();

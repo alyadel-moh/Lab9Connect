@@ -9,17 +9,14 @@
       <change afterPath="$PROJECT_DIR$/src/java/coding/Requests_Managemnet.form" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/java/coding/Requests_Managemnet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/JsonFilesStories/Stories.json" beforeDir="false" afterPath="$PROJECT_DIR$/JsonFilesStories/Stories.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Users.json" beforeDir="false" afterPath="$PROJECT_DIR$/Users.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/coding/FriendManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/FriendManagement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/coding/Homepage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Homepage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/coding/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/coding/testtt/CircleButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/testtt/CircleButton.java" afterDir="false" />
-=======
       <change beforePath="$PROJECT_DIR$/src/java/coding/FriendManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/FriendManagement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/coding/Homepage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Homepage.java" afterDir="false" />
->>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +33,6 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-<<<<<<< Updated upstream
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
@@ -45,7 +41,6 @@
   }
 }]]></component>
   <component name="RunManager">
-=======
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
     &quot;state&quot;: &quot;OPEN&quot;,
@@ -121,7 +116,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
->>>>>>> Stashed changes
     <configuration name="Homepage" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="coding.Homepage" />
       <module name="Lab9Connect2" />
