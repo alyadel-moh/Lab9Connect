@@ -211,6 +211,7 @@ public class Homepage extends JFrame {
 
 
         logoutButton.addActionListener(e -> {
+
             User loggedOutUser = userService.logout();
             if (loggedOutUser != null) {
                 setVisible(false);
@@ -287,6 +288,12 @@ public class Homepage extends JFrame {
             viewStory();
             displayStatus();
             displaySuggestions();
+            System.out.println(user.getHandler().getStories().size());
+            System.out.println(user.getHandler().getStoriesByUserId(user.getUserId()).size());
+            user.getHandler().deleteExpiredStories();
+            System.out.println(user.getHandler().getStories().size());
+            System.out.println(user.getHandler().getStoriesByUserId(user.getUserId()).size());
+            user.getHandler().saveStories();
 
             // Revalidate and repaint
             mainPanel.invalidate();
