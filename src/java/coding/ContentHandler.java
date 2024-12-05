@@ -96,8 +96,6 @@ public class ContentHandler {
         }
     }
 
-
-
     public void addPost(Posts post){
         posts.add(post);
         allPosts.add(post);

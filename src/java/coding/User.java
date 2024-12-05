@@ -7,11 +7,13 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 @JsonDeserialize(builder = User.UserBuilder.class)
@@ -177,6 +179,14 @@ public class User {
                 JOptionPane.showMessageDialog(null, "Please Choose an Image!", "Message", JOptionPane.ERROR_MESSAGE);
             }
         }
+    }
+
+    public void setCoverpath(){
+        this.coverpath = "images/account.png";
+    }
+
+    public void setProfilepath() {
+        this.profilepath = "images/account.png";
     }
 
     public String getProfilepath() {
