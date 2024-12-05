@@ -62,6 +62,11 @@ public class ContentHandler {
     }
 
     public void deleteExpiredStories() {
+        for(int i=0;i<allStories.size();i++){
+            if(allStories.get(i).isExpired()){
+                allStories.remove(allStories.get(i));
+            }
+        }
         for(int i=0;i<stories.size();i++){
             if(stories.get(i).isExpired()){
                 stories.remove(stories.get(i));
@@ -84,11 +89,12 @@ public class ContentHandler {
     //saveAllStories
     public void saveStories(){
         File file=new File("./Stories.json");
+        if(!allStories.isEmpty()){
         try {
             objectMapper.writeValue(file, allStories);
         } catch (IOException e) {
             System.out.println("Error happened when trying to save post.");
-        }
+        }}
     }
 
     public void addPost(Posts post){
@@ -193,11 +199,11 @@ public class ContentHandler {
         ArrayList<Posts> loadedPosts = getPostsByUserId(userId);
 
         if(!loadedPosts.isEmpty()){
-        for(int i=0;i<loadedPosts.size();i++){
-            posts.add(loadedPosts.get(i));
+            for(int i=0;i<loadedPosts.size();i++){
+                posts.add(loadedPosts.get(i));
+            }
         }
-        }
-        }
+    }
 
         //load stories of each user according to their id
 
