@@ -146,19 +146,34 @@ public class Homepage extends JFrame {
         // clear panel
         friendsPanel.removeAll();
 
+        // check if someone is active
+        boolean found = false;
+
         // loop through each friend to check if active
         for (User friend : user.getManager().getFriends()){
-           //if ("online".equalsIgnoreCase(friend.getStatus())){
+           if ("online".equalsIgnoreCase(friend.getStatus())){
                 CustomPanel custom = new CustomPanel(friend, "Active");
-                //custom.button1.addActionListener(e -> );
+                found = true;
                 friendsPanel.add(custom);
-              //}
+              }
+        }
+
+        if (!found){
+            friendsPanel.add(new JLabel("No Active Friends!"));
+            refreshUI();
+
         }
     }
 
     private void displaySuggestions() {
         // Clear the panel
         friendSuggestionsPanel.removeAll();
+
+        if(user.getSuggestions().isEmpty()){
+            friendSuggestionsPanel.add(new JLabel("No Suggestions to View!"));
+            refreshUI();
+            return;
+        }
 
         for (User suggested : user.getSuggestions()) {
             String state = "not available";

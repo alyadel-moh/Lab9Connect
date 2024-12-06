@@ -1,6 +1,7 @@
 package coding;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.List;
 
 public class View_Friends_List extends JFrame {
@@ -33,8 +34,15 @@ public class View_Friends_List extends JFrame {
         // Clear the panel
         panel1.removeAll();
 
+        if(friends.isEmpty()){
+            panel1.add(new JLabel("No Friends to View!"));
+            refreshUI();
+            return;
+        }
+
         for (User friend : friends) {
             CustomPanel customPanel = new CustomPanel(friend, "Block", "Remove");
+            customPanel.setPreferredSize(new Dimension(700, 30));
 
             // Block Action
             customPanel.button1.addActionListener(e -> {
@@ -42,6 +50,7 @@ public class View_Friends_List extends JFrame {
                 panel1.remove(customPanel);
 
                 CustomPanel newCustomPanel = new CustomPanel(friend, "Undo");
+                newCustomPanel.setPreferredSize(new Dimension(700, 30));
                 newCustomPanel.button1.addActionListener(_ -> {
                     user.getManager().unblock(friend);
                     panel1.remove(newCustomPanel);

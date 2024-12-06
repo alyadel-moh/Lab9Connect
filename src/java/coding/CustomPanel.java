@@ -61,9 +61,9 @@ public class CustomPanel extends JPanel {
 
         add(buttonPanel);
 
-        setMaximumSize(new Dimension(600,30));
+        setMaximumSize(new Dimension(600,20));
         //setMinimumSize(new Dimension(100,30));
-        //setPreferredSize(new Dimension(100,30));
+        setPreferredSize(new Dimension(100,30));
     }
 
     private JButton createbutton(String text)

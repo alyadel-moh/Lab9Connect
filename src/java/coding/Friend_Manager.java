@@ -83,7 +83,7 @@ public class Friend_Manager {
 
     public void setSuggestions(ArrayList<User> users){
         for(User user : users){
-            if (!friends.contains(user) && !blocked.contains(user) && !user.equals(this.user)){
+            if (!friends.contains(user) && !blocked.contains(user) && !user.equals(this.user) && !suggestions.contains(user)){
                 suggestions.add(user);
             }
         }

@@ -44,6 +44,12 @@ public class Suggestions_Management extends JFrame {
         // Clear the panel
         panel1.removeAll();
 
+        if(suggestions.isEmpty()){
+            panel1.add(new JLabel("No Suggestions to View!"));
+            refreshUI();
+            return;
+        }
+
         for (User suggested : suggestions) {
             String state = "not available";
 
