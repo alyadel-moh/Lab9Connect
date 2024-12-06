@@ -29,6 +29,8 @@ public class User {
     @JsonIgnore
     private final JFileChooser jFileChooser = new JFileChooser();
     @JsonIgnore
+    private FriendHandler friendHandler;
+    @JsonIgnore
     private Friend_Manager manager;
     @JsonIgnore
     private ContentHandler handler;
@@ -46,6 +48,7 @@ public class User {
         this.status = status;
         this.manager = new Friend_Manager(this);
         this.handler = new ContentHandler();
+        this.friendHandler=new FriendHandler();
         this.receivedRequest = false;
         this.profilepath = getProfilepath();
         this.coverpath = getCoverpath();
@@ -235,6 +238,10 @@ public class User {
 
     public LocalDate getDateOfBirth() {
         return dateOfBirth;
+    }
+
+    public FriendHandler getFriendHandler() {
+        return friendHandler;
     }
 
     public Friend_Manager getManager() {
