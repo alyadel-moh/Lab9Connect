@@ -5,7 +5,18 @@ public class FriendRequest {
     private User sender;
     private User receiver;
 
-    public FriendRequest(User sender,User receiver) {
+    public FriendRequest(){}
+
+    public void setSender(User sender) {
+        this.sender = sender;
+    }
+
+    public void setReceiver(User receiver) {
+        this.receiver = receiver;
+    }
+
+    public FriendRequest(User sender, User receiver) {
+
         this.state = "Pending";
         this.sender = sender;
         this.receiver = receiver;

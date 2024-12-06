@@ -1,11 +1,17 @@
 package coding;
 
 import coding.Observer.ContentObserver;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Friend_Manager {
@@ -14,6 +20,8 @@ public class Friend_Manager {
     private final ArrayList<User> friends;
     private final ArrayList<User> suggestions;
     private final ArrayList<User> blocked;
+    private ObjectMapper objectMapper;
+    private static ArrayList<FriendRequest>allRequests=new ArrayList<>();
 
     Friend_Manager(User user) {
         this.user = user;
@@ -21,6 +29,56 @@ public class Friend_Manager {
         this.friends = new ArrayList<>();
         this.suggestions = new ArrayList<>();
         this.blocked = new ArrayList<>();
+        this.objectMapper = new ObjectMapper();
+        this.objectMapper.registerModule(new JavaTimeModule());//JavaTimeModule helps to write the localTime to file
+        this.objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+    }
+
+    public void saveRequests(){
+        File file=new File("./FriendRequests.json");
+        try {
+            objectMapper.writeValue(file, allRequests);
+        } catch (IOException e) {
+            System.out.println("Error happened when trying to save request.");
+        }
+    }
+
+    public void loadRequests(){
+        File file = new File("./FriendRequests.json");
+        if (file.exists()) {
+            try {
+                allRequests = objectMapper.readValue(file, new TypeReference<ArrayList<FriendRequest>>() {});
+            } catch (IOException e) {
+                System.out.println("Error occurred while loading posts.");
+                System.out.println(e);
+            }
+        } else {
+            System.out.println("Request file not found. Initializing an empty list.");
+            allRequests = new ArrayList<>();
+        }
+    }
+
+    //load posts of each user according to their id
+    public void loadHisOwnRequets(String userId){
+        loadRequests();
+        ArrayList<FriendRequest> loadedrequests = getFriendRequestByUserId(userId);
+
+        if(!loadedrequests.isEmpty()){
+            for(int i=0;i<loadedrequests.size();i++){
+                requests.add(loadedrequests.get(i));
+            }
+        }
+        System.out.println("his own requests size "+requests.size());
+        System.out.println("all requests size "+allRequests.size());
+    }
+    public ArrayList<FriendRequest> getFriendRequestByUserId(String userId){
+        ArrayList<FriendRequest>friendRequestsByUserId=new ArrayList<>();
+        for(int i=0;i<allRequests.size();i++){
+            if(allRequests.get(i).getReceiver().getUserId().equals(userId)){
+                friendRequestsByUserId.add(allRequests.get(i));
+            }
+        }
+        return friendRequestsByUserId;
     }
 
     public void setSuggestions(ArrayList<User> users){
@@ -74,6 +132,9 @@ public class Friend_Manager {
         // Prevent duplicates
         if (!requests.contains(request)) {
             requests.add(request);
+            allRequests.add(request);
+            saveRequests();
+            System.out.println("added");
         }
     }
 
@@ -95,10 +156,12 @@ public class Friend_Manager {
 
         request.accept(); // Update request state
         requests.remove(request); // Remove request
+        allRequests.remove(request);//remove from allRequests
+        saveRequests();
         friends.add(sender); // Add to friends list
         sender.getManager().getFriends().add(receiver);
         user.getNotifier().addObserver((ContentObserver) sender);
-         user.getFriendHandler().addFriend(request.getReceiver().getUserId(),request.getSender().getUserId());
+        user.getFriendHandler().addFriend(request.getReceiver().getUserId(),request.getSender().getUserId());
         user.getFriendHandler().saveFriends();
 
         if (requests.isEmpty()) {
@@ -117,6 +180,8 @@ public class Friend_Manager {
 
         request.decline(); // Update request state
         requests.remove(request); // Remove request
+        allRequests.remove(request);
+        saveRequests();
 
         User sender = request.getSender();
         if (!suggestions.contains(sender))

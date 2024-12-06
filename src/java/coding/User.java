@@ -57,9 +57,11 @@ public class User {
 
     }
 
+
     public String getUserId() {
         return userId;
     }
+
 
 
 // Builder class for User
@@ -74,6 +76,8 @@ public class User {
     private String profilepath;
     private String  coverpath;
     private String bio;
+    private boolean receivedRequest;
+
 
         public UserBuilder() {
             this.userId = userId;
@@ -82,6 +86,7 @@ public class User {
             this.email = email;
             this.dateOfBirth = dateOfBirth;
             this.status = status;
+            this.receivedRequest= receivedRequest;
         }
         public UserBuilder setUserId(String userId) {
             this.userId = userId;
@@ -125,12 +130,17 @@ public class User {
             this.bio = bio;
             return this;
     }
+    public UserBuilder setReceivedRequest(boolean receivedRequest) {
+        this.receivedRequest = receivedRequest;
+        return this;
+    }
 
         public User build() {
              User user = new User(userId, password, userName, email, dateOfBirth, status);
             user.profilepath = this.profilepath;
             user.coverpath = this.coverpath;
             user.bio = this.bio;
+            user.receivedRequest = this.receivedRequest;
             return user;
         }
     }
