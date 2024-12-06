@@ -54,6 +54,15 @@ public class Friend_Manager {
         receiver.getManager().setReceivedRequest(newRequest);
     }
 
+    public FriendRequest getRequestbySender(User sender,User receiver){
+        for (FriendRequest request : receiver.getRequests()){
+            if (sender.equals(request.getSender()))
+                return request;
+        }
+        JOptionPane.showMessageDialog(null,"Request Not Found");
+        return null;
+    }
+
     public void setReceivedRequest(FriendRequest request) {
         if (request == null || request.getReceiver() == null) {
             throw new IllegalArgumentException("Invalid FriendRequest");
@@ -120,6 +129,20 @@ public class Friend_Manager {
         friends.remove(friend);
         user.getHandler().removeObserver((ContentObserver) friend);
         blocked.add(friend);
+    }
+
+    public void unblock(User account){
+        if(account == null){
+            throw new IllegalArgumentException("Account doesn't exist");
+        }
+
+        if(this.blocked.contains(account)){
+            this.blocked.remove(account);
+            suggestions.add(account);
+            JOptionPane.showMessageDialog(null, "Account has been unblocked");
+        }else{
+            JOptionPane.showMessageDialog(null, "Account was not unblocked");
+        }
     }
 
     public void remove(User friend) {

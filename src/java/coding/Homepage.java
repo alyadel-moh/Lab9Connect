@@ -5,10 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import coding.ContentCreation;
-import coding.testtt.CircleButton;
 
 public class Homepage extends JFrame {
     private static Homepage instance;
@@ -151,17 +148,84 @@ public class Homepage extends JFrame {
 
         // loop through each friend to check if active
         for (User friend : user.getManager().getFriends()){
-           // if ("online".equalsIgnoreCase(friend.getStatus())){
+           //if ("online".equalsIgnoreCase(friend.getStatus())){
                 CustomPanel custom = new CustomPanel(friend, "Active");
                 //custom.button1.addActionListener(e -> );
                 friendsPanel.add(custom);
-            //  }
+              //}
         }
     }
 
-    private void displaySuggestions(){
-        new Suggestions_Management(user, userService, subSuggestionPanel);
+    private void displaySuggestions() {
+        // Clear the panel
+        friendSuggestionsPanel.removeAll();
+
+        for (User suggested : user.getSuggestions()) {
+            String state = "not available";
+
+            if (user.getManager().getRequests().contains(new FriendRequest(user, suggested))) {
+                state = user.getManager().getRequestbySender(user, suggested).getState();
+            }
+
+            if ("Pending".equalsIgnoreCase(state)) {
+                // Create a panel for the "Pending" state
+                CustomPanel pendingPanel = new CustomPanel(suggested, "Pending");
+                pendingPanel.button1.addActionListener(e -> {
+                    user.getManager().getRequestbySender(user, suggested).setState("new");
+                    friendSuggestionsPanel.remove(pendingPanel);
+
+                    CustomPanel sendRequestPanel = createSendRequestPanel(suggested);
+                    friendSuggestionsPanel.add(sendRequestPanel);
+                    refreshUI();
+                });
+
+                friendSuggestionsPanel.add(pendingPanel);
+            } else {
+                // Create a panel for the "Send Request" and "Ignore" actions
+                CustomPanel sendRequestPanel = createSendRequestPanel(suggested);
+                friendSuggestionsPanel.add(sendRequestPanel);
+            }
+        }
+
+        // Refresh the UI after adding all panels
+        refreshUI();
     }
+
+    private CustomPanel createSendRequestPanel(User suggested) {
+        CustomPanel customPanel = new CustomPanel(suggested, "Send Request", "Ignore");
+
+        // Send Request Action
+        customPanel.button1.addActionListener(e -> {
+            user.getManager().sendRequest(suggested);
+            friendSuggestionsPanel.remove(customPanel);
+
+            CustomPanel pendingPanel = new CustomPanel(suggested, "Pending");
+            pendingPanel.button1.addActionListener(_ -> {
+                user.getManager().getRequestbySender(user, suggested).setState("new");
+                friendSuggestionsPanel.remove(pendingPanel);
+                friendSuggestionsPanel.add(customPanel);
+                refreshUI();
+            });
+
+            friendSuggestionsPanel.add(pendingPanel);
+            refreshUI();
+        });
+
+        // Ignore Action
+        customPanel.button2.addActionListener(e -> {
+            user.getSuggestions().remove(suggested);
+            friendSuggestionsPanel.remove(customPanel);
+            refreshUI();
+        });
+
+        return customPanel;
+    }
+
+    private void refreshUI() {
+        friendSuggestionsPanel.revalidate(); // Recalculate layout
+        friendSuggestionsPanel.repaint();   // Redraw components
+    }
+
 
     public void setActivePanel(JPanel newPanel) {
         activePanel = friendsPanel;
@@ -269,7 +333,7 @@ public class Homepage extends JFrame {
 
 
         friendListPanel.add(friendsPanel);
-        friendListPanel.add(friendSuggestionsPanel);
+        friendListPanel.add(new JScrollPane(friendSuggestionsPanel));
 
         friendsArea.add(friendListPanel);
         //friendsArea.add(friendSuggestionsPanel);

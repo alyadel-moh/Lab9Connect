@@ -2,6 +2,7 @@ package coding;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Suggestions_Management extends JFrame {
@@ -33,39 +34,79 @@ public class Suggestions_Management extends JFrame {
         if (homePanel == null){
             setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             setResizable(false);
-            setBounds(100, 100, 300, 400);
+            setBounds(100, 100, 700, 400);
             setLocationRelativeTo(null);
             setVisible(true);
         }
     }
 
-    private void populateSuggestions(List<User> suggestions) {
-        panel1.removeAll(); // Clear existing components
+    private void populateSuggestions(ArrayList<User> suggestions) {
+        // Clear the panel
+        panel1.removeAll();
 
         for (User suggested : suggestions) {
-            CustomPanel customPanel = new CustomPanel(suggested, "Send Request", "Ignore");
+            String state = "not available";
 
-            // Send Request
-            customPanel.button1.addActionListener(e -> {
-                user.getManager().sendRequest(suggested);
-                suggestions.remove(suggested);
-                refreshUI();
-            });
+            if (user.getManager().getRequests().contains(new FriendRequest(user, suggested))) {
+                state = user.getManager().getRequestbySender(user, suggested).getState();
+            }
 
-            // Ignore Request
-            customPanel.button2.addActionListener(e -> {
-                suggestions.remove(suggested);
-                refreshUI();
-            });
+            if ("Pending".equalsIgnoreCase(state)) {
+                // Create a panel for the "Pending" state
+                CustomPanel pendingPanel = new CustomPanel(suggested, "Pending");
+                pendingPanel.button1.addActionListener(e -> {
+                    user.getManager().getRequestbySender(user, suggested).setState("new");
+                    panel1.remove(pendingPanel);
 
-            panel1.add(customPanel);
+                    CustomPanel sendRequestPanel = createSendRequestPanel(suggested);
+                    panel1.add(sendRequestPanel);
+                    refreshUI();
+                });
+
+                panel1.add(pendingPanel);
+            } else {
+                // Create a panel for the "Send Request" and "Ignore" actions
+                CustomPanel sendRequestPanel = createSendRequestPanel(suggested);
+                panel1.add(sendRequestPanel);
+            }
         }
 
-        refreshUI(); // Ensure UI updates
+        // Refresh the UI after adding all panels
+        refreshUI();
+    }
+
+    private CustomPanel createSendRequestPanel(User suggested) {
+        CustomPanel customPanel = new CustomPanel(suggested, "Send Request", "Ignore");
+
+        // Send Request Action
+        customPanel.button1.addActionListener(e -> {
+            user.getManager().sendRequest(suggested);
+            panel1.remove(customPanel);
+
+            CustomPanel pendingPanel = new CustomPanel(suggested, "Pending");
+            pendingPanel.button1.addActionListener(_ -> {
+                user.getManager().getRequestbySender(user, suggested).setState("new");
+                panel1.remove(pendingPanel);
+                panel1.add(customPanel);
+                refreshUI();
+            });
+
+            panel1.add(pendingPanel);
+            refreshUI();
+        });
+
+        // Ignore Action
+        customPanel.button2.addActionListener(e -> {
+            user.getSuggestions().remove(suggested);
+            panel1.remove(customPanel);
+            refreshUI();
+        });
+
+        return customPanel;
     }
 
     private void refreshUI() {
         panel1.revalidate(); // Recalculate layout
-        panel1.repaint(); // Redraw components
+        panel1.repaint();   // Redraw components
     }
 }

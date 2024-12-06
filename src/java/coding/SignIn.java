@@ -44,14 +44,18 @@ public class SignIn extends JFrame{
                    System.out.print(count++ + "_");
                    System.out.println(suggested);
 
-                   user.getManager().getFriends().add(suggested);
+                   //user.getManager().getFriends().add(suggested);
                    //user.getManager().sendRequest(suggested);
                }
-
-               System.out.println("Requests: ");
-               for (FriendRequest suggested : user.getRequests()){
-                   System.out.print(count++ + "_");
-                   System.out.println(suggested);
+               if (user.getManager().getFriends().isEmpty()){
+                   System.out.println("No request yet");
+               }else {
+                   count = 1;
+                   System.out.println("Requests: ");
+                   for (FriendRequest suggested : user.getRequests()) {
+                       System.out.print(count++ + "_");
+                       System.out.println(suggested);
+                   }
                }
 
                if (user.getManager().getFriends().isEmpty()){

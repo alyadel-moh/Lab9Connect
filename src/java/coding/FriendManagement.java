@@ -4,7 +4,6 @@ import javax.swing.*;
 
 public class FriendManagement extends JFrame{
     private JButton viewFriendRequestsButton;
-    private JButton blockOrRemoveFriendsButton;
     private JButton viewFriendSuggestionsButton;
     private JButton viewFriendsListButton;
     private User user;
@@ -14,7 +13,6 @@ public class FriendManagement extends JFrame{
     FriendManagement(User user,UserService userService)
         {
             viewFriendRequestsButton.setFocusable(false);
-            blockOrRemoveFriendsButton.setFocusable(false);
             viewFriendsListButton.setFocusable(false);
             viewFriendSuggestionsButton.setFocusable(false);
 
@@ -31,7 +29,7 @@ public class FriendManagement extends JFrame{
 
             viewFriendSuggestionsButton.addActionListener(e -> new Suggestions_Management(user,userService, null));
 
-
+            viewFriendsListButton.addActionListener(e -> new View_Friends_List(user, userService) );
 
 
 
