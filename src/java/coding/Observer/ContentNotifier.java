@@ -20,9 +20,12 @@ public class ContentNotifier {
     }
 
     // Notify all observers
-    public void notifyObservers(User user, String text) {
+    public void notifyObservers(User user, String text, User target) {
         for (ContentObserver observer : observers) {
-            observer.update(user, text);
+            if (target == null || observer.equals(target)) {
+                observer.update(user, text);
+            }
         }
     }
+
 }

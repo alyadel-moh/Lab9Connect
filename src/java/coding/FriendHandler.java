@@ -1,6 +1,5 @@
 package coding;
 
-import coding.interfaces.ContentObserver;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -179,7 +178,7 @@ public class FriendHandler {
                 System.out.println(e);
             }
         } else {
-            System.out.println("Posts file not found. Initializing an empty list.");
+            System.out.println("Friends file not found. Initializing an empty list.");
             allFriends = new ArrayList<>();
         }
     }
@@ -194,7 +193,7 @@ public class FriendHandler {
                 System.out.println(e);
             }
         } else {
-            System.out.println("Posts file not found. Initializing an empty list.");
+            System.out.println("Suggestion file not found. Initializing an empty list.");
             allFriendSuggestions = new ArrayList<>();
         }
     }
@@ -209,7 +208,7 @@ public class FriendHandler {
                 System.out.println(e);
             }
         } else {
-            System.out.println("Posts file not found. Initializing an empty list.");
+            System.out.println("Request file not found. Initializing an empty list.");
             allFriendReq = new ArrayList<>();
         }
     }

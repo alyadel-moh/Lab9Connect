@@ -54,7 +54,7 @@ public class ContentCreation extends JFrame{
                 }
                 else{
                 user.getHandler().savePosts();
-                user.getNotifier().notifyObservers(user, " posted a new post!");
+                user.getNotifier().notifyObservers(user, " posted a new post!", null);
                 JOptionPane.showMessageDialog(null,"Posts has been added to the file Successfully");
             }}
         });
@@ -66,7 +66,7 @@ public class ContentCreation extends JFrame{
                 }
                 else{
                     user.getHandler().saveStories();
-                    user.getNotifier().notifyObservers(user, " posted a new Story!");
+                    user.getNotifier().notifyObservers(user, " posted a new Story!", null);
                     JOptionPane.showMessageDialog(null,"Stories has been added to the file Successfully");
                 }
             }

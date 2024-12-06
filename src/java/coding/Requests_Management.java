@@ -23,6 +23,7 @@ public class Requests_Management extends JFrame{
             customPanel.button1.addActionListener(e -> {
                 user.getManager().accept(request);
                 user.getRequests().remove(request);
+                panel1.remove(customPanel);
                 repaint();
             });
 
@@ -30,6 +31,7 @@ public class Requests_Management extends JFrame{
             customPanel.button2.addActionListener(e -> {
                 user.getManager().decline(request);
                 user.getRequests().remove(request);
+                panel1.remove(customPanel);
                 repaint();
             });
 

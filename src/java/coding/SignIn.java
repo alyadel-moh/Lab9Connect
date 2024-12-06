@@ -73,6 +73,7 @@ public class SignIn extends JFrame{
 //               new Feedpage(user,userService);
                user.getHandler().loadPosts();
                user.getHandler().loadStories();
+               user.getManager().setSuggestions(userService.getDatabase().getUsers());
                }
            else
                JOptionPane.showMessageDialog(null, "User not found");

@@ -52,6 +52,7 @@ public class Friend_Manager {
         // Create and send new request
         FriendRequest newRequest = new FriendRequest(this.user, receiver);
         receiver.getManager().setReceivedRequest(newRequest);
+        user.getNotifier().notifyObservers(user, " sent you a friend request", receiver);
     }
 
     public FriendRequest getRequestbySender(User sender,User receiver){
@@ -83,6 +84,8 @@ public class Friend_Manager {
         }
 
         User sender = request.getSender();
+        User receiver = request.getReceiver();
+
         if (friends.contains(sender)) {
             JOptionPane.showMessageDialog(null, "Already friends.");
             return;
@@ -93,6 +96,7 @@ public class Friend_Manager {
         request.accept(); // Update request state
         requests.remove(request); // Remove request
         friends.add(sender); // Add to friends list
+        sender.getManager().getFriends().add(receiver);
         user.getNotifier().addObserver((ContentObserver) sender);
 
         if (requests.isEmpty()) {
@@ -127,6 +131,7 @@ public class Friend_Manager {
         }
 
         friends.remove(friend);
+        friend.getManager().getFriends().remove(user);
         user.getNotifier().removeObserver((ContentObserver) friend);
         blocked.add(friend);
     }
@@ -151,6 +156,7 @@ public class Friend_Manager {
         }
 
         friends.remove(friend);
+        friend.getManager().getFriends().remove(user);
         user.getNotifier().removeObserver((ContentObserver) friend);
         suggestions.add(friend);
     }
@@ -168,6 +174,10 @@ public class Friend_Manager {
 
     public ArrayList<User> getFriends() {
         return friends;
+    }
+
+    public ArrayList<User> getSuggestions() {
+        return suggestions;
     }
 
     /////////////////////////  UI class ///////////////////////////////////////
@@ -216,7 +226,5 @@ public class Friend_Manager {
         }
     }
 
-    public ArrayList<User> getSuggestions() {
-        return suggestions;
-    }
+
 }

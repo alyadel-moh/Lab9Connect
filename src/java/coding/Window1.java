@@ -34,8 +34,7 @@ public class Window1 extends JFrame  {
             });
             setVisible(true);
         }
-    public static void main
-            (String[] args) {
+    public static void main(String[] args) {
             Database database = Database.getInstance();
             int count = 1;
 

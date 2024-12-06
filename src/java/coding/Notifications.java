@@ -94,7 +94,7 @@ public class Notifications extends JFrame implements ContentObserver {
          notifier.addObserver(notificationWindow);
 
         // Simulating a new notification
-         notifier.notifyObservers(new User.UserBuilder().setUserName("Jane Smith").build(), "You have a new friend request!");
+         notifier.notifyObservers(new User.UserBuilder().setUserName("Jane Smith").build(), "You have a new friend request!", null);
 
      }
 }
