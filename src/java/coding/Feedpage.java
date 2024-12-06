@@ -54,7 +54,7 @@ public class Feedpage extends JFrame{
 
     public static void main
             (String[] args) {
-        Database database = new Database();
+        Database database = Database.getInstance();
         UserService userService = new UserService(database);
         new Feedpage(null,null);}
 

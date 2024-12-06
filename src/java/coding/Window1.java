@@ -36,7 +36,15 @@ public class Window1 extends JFrame  {
         }
     public static void main
             (String[] args) {
-            Database database = new Database();
+            Database database = Database.getInstance();
+            int count = 1;
+
+        System.out.println("Users: ");
+        for (User user : database.getUsers()){
+                System.out.print(count++);
+                System.out.println(user);
+            }
+
             UserService userService = new UserService(database);
             new Window1(userService);
             Runtime.getRuntime().addShutdownHook(new Thread(() -> {

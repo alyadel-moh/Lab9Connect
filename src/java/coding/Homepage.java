@@ -151,11 +151,11 @@ public class Homepage extends JFrame {
 
         // loop through each friend to check if active
         for (User friend : user.getManager().getFriends()){
-            if ("online".equalsIgnoreCase(friend.getStatus())){
+           // if ("online".equalsIgnoreCase(friend.getStatus())){
                 CustomPanel custom = new CustomPanel(friend, "Active");
                 //custom.button1.addActionListener(e -> );
                 friendsPanel.add(custom);
-            }
+            //  }
         }
     }
 
@@ -323,7 +323,7 @@ public class Homepage extends JFrame {
     }
 
     public static void main(String[] args) {
-        Database database = new Database();
+        Database database =Database.getInstance();
         database.loadUsers();
         ArrayList<User> users = database.getUsers();
         UserService userService = new UserService(database);
