@@ -98,6 +98,8 @@ public class Friend_Manager {
         friends.add(sender); // Add to friends list
         sender.getManager().getFriends().add(receiver);
         user.getNotifier().addObserver((ContentObserver) sender);
+         user.getFriendHandler().addFriend(request.getReceiver().getUserId(),request.getSender().getUserId());
+        user.getFriendHandler().saveFriends();
 
         if (requests.isEmpty()) {
             this.user.setRequestState(false);
