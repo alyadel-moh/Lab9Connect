@@ -2,11 +2,11 @@ package coding;
 
 import java.time.LocalDateTime;
 
-public abstract class Friend {
+public class Friend {
     private String userId;
     private String friendId;
 
-    Friend(){};
+    Friend(){}
 
     Friend(String userId,String friendId){
         this.userId =userId;
