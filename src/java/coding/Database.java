@@ -73,6 +73,9 @@ public class Database {
                 user.getHandler().loadHisOwnPosts(user.getUserId());
                 user.getHandler().loadHisOwnStories(user.getUserId());
                 user.getManager().setSuggestions(users);
+                user.getFriendHandler().loadHisOwnFriends(user.getUserId());
+                user.getFriendHandler().loadHisOwnFriendReq(user.getUserId());
+                user.getFriendHandler().loadHisOwnFriendSuggestions(user.getUserId());
 
                 if(user.getProfilepath() == null){
                     user.setProfilepath();
