@@ -13,37 +13,41 @@ public class Requests_Management extends JFrame{
         this.service = service;
 
         panel1 = new JPanel();
-        panel1.setLayout(new GridLayout(user.getRequests().size(),1));
+        panel1.setLayout(new GridLayout(0,1));
 
-        for (FriendRequest request : user.getRequests()){
-            //Loop through each Request
-            CustomPanel customPanel = new CustomPanel(request.getSender(), "Accept", "Decline");
+        if(user.getRequests().isEmpty()){
+            panel1.add(new JLabel("No Requests to View!"));
+        }else {
+            for (FriendRequest request : user.getRequests()) {
+                //Loop through each Request
+                CustomPanel customPanel = new CustomPanel(request.getSender(), "Accept", "Decline");
+                customPanel.setPreferredSize(new Dimension(700, 30));
 
-            // accept Request
-            customPanel.button1.addActionListener(e -> {
-                user.getManager().accept(request);
-                user.getRequests().remove(request);
-                panel1.remove(customPanel);
-                refreshUI();
-            });
+                // accept Request
+                customPanel.button1.addActionListener(e -> {
+                    user.getManager().accept(request);
+                    user.getRequests().remove(request);
+                    panel1.remove(customPanel);
+                    refreshUI();
+                });
 
-            // Decline Request
-            customPanel.button2.addActionListener(e -> {
-                user.getManager().decline(request);
-                user.getRequests().remove(request);
-                panel1.remove(customPanel);
-                refreshUI();
-            });
+                // Decline Request
+                customPanel.button2.addActionListener(e -> {
+                    user.getManager().decline(request);
+                    user.getRequests().remove(request);
+                    panel1.remove(customPanel);
+                    refreshUI();
+                });
 
-            panel1.add(customPanel);
+                panel1.add(customPanel);
+            }
+
         }
-
-
 
         setContentPane(panel1);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setResizable(false);
-        setBounds(100, 100, 300, 400);
+        setBounds(100, 100, 700, 400);
         setLocationRelativeTo(null);
         setVisible(true);
     }
