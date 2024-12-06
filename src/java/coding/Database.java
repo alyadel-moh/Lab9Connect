@@ -15,13 +15,14 @@ public class Database {
     private static Database instance;
 
     // User data
-    private ArrayList<User> users;
+    private static ArrayList<User> users;
 
     // Private constructor to prevent instantiation
     private Database() {
         users = new ArrayList<>();
         loadUsers();
     }
+
 
     // Public static method to provide global access to the instance
     public static Database getInstance() {
@@ -40,8 +41,17 @@ public class Database {
         saveUsers();
     }
 
-    public ArrayList<User> getUsers() {
-        return this.users;
+    public static User findUserById(String userId) {
+        for (User user : users) {
+            if (user.getUserId().equals(userId)) {
+                return user;
+            }
+        }
+    return null;
+    }
+
+    public static ArrayList<User> getUsers() {
+        return users;
     }
 
     public void saveUsers() {
@@ -75,8 +85,10 @@ public class Database {
                 user.getHandler().loadHisOwnStories(user.getUserId());
                 user.getManager().setSuggestions(users);
                 user.getFriendHandler().loadHisOwnFriends(user.getUserId());
+                user.getManager().setFriends(user.getUserId());
                 user.getFriendHandler().loadHisOwnFriendSuggestions(user.getUserId());
                 user.getManager().loadHisOwnRequets(user.getUserId());
+
 
                 if(user.getProfilepath() == null){
                     user.setProfilepath();
