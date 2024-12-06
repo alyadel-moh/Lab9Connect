@@ -2,49 +2,21 @@ package coding;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
-public class Requests_Management extends JFrame{
+public class Requests_Management extends JFrame {
     private User user;
-    private UserService service;
     private JPanel panel1;
 
-    Requests_Management(User user, UserService service){
+    Requests_Management(User user) {
         this.user = user;
-        this.service = service;
 
         panel1 = new JPanel();
-        panel1.setLayout(new GridLayout(0,1));
+        panel1.setLayout(new GridLayout(0, 1));
 
-        if(user.getRequests().isEmpty()){
-            panel1.add(new JLabel("No Requests to View!"));
-        }else {
-            for (FriendRequest request : user.getRequests()) {
-                //Loop through each Request
-                CustomPanel customPanel = new CustomPanel(request.getSender(), "Accept", "Decline");
-                customPanel.setPreferredSize(new Dimension(700, 30));
+        updateRequestsUI();
 
-                // accept Request
-                customPanel.button1.addActionListener(e -> {
-                    user.getManager().accept(request);
-                    user.getRequests().remove(request);
-                    panel1.remove(customPanel);
-                    refreshUI();
-                });
-
-                // Decline Request
-                customPanel.button2.addActionListener(e -> {
-                    user.getManager().decline(request);
-                    user.getRequests().remove(request);
-                    panel1.remove(customPanel);
-                    refreshUI();
-                });
-
-                panel1.add(customPanel);
-            }
-
-        }
-
-        setContentPane(panel1);
+        setContentPane(new JScrollPane(panel1)); // Add scroll functionality
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setResizable(false);
         setBounds(100, 100, 700, 400);
@@ -52,9 +24,46 @@ public class Requests_Management extends JFrame{
         setVisible(true);
     }
 
+    private void updateRequestsUI() {
+        panel1.removeAll(); // Clear existing components
+
+        List<FriendRequest> requests = user.getRequests();
+        if (requests.isEmpty()) {
+            panel1.add(new JLabel("No Requests to View!"));
+        } else {
+            for (FriendRequest request : requests) {
+                CustomPanel customPanel = new CustomPanel(request.getSender(), "Accept", "Decline");
+                customPanel.setPreferredSize(new Dimension(700, 30));
+
+                // Accept Request
+                customPanel.button1.addActionListener(e -> handleRequest(request, customPanel, true));
+
+                // Decline Request
+                customPanel.button2.addActionListener(e -> handleRequest(request, customPanel, false));
+
+                panel1.add(customPanel);
+            }
+        }
+
+        refreshUI();
+    }
+
+    private void handleRequest(FriendRequest request, CustomPanel customPanel, boolean isAccepted) {
+        if (isAccepted) {
+            user.getManager().accept(request);
+        } else {
+            user.getManager().decline(request);
+        }
+
+        user.getRequests().remove(request);
+        panel1.remove(customPanel);
+
+        // Update UI dynamically
+        updateRequestsUI();
+    }
+
     private void refreshUI() {
-        panel1.revalidate(); // Recalculate layout
-        panel1.repaint();   // Redraw components
+        panel1.revalidate();
+        panel1.repaint();
     }
 }
-

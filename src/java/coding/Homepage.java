@@ -151,11 +151,11 @@ public class Homepage extends JFrame {
 
         // loop through each friend to check if active
         for (User friend : user.getManager().getFriends()){
-           if ("online".equalsIgnoreCase(friend.getStatus())){
+          // if ("online".equalsIgnoreCase(friend.getStatus())){
                 CustomPanel custom = new CustomPanel(friend, "Active");
                 found = true;
                 friendsPanel.add(custom);
-              }
+             // }
         }
 
         if (!found){
@@ -316,7 +316,10 @@ public class Homepage extends JFrame {
         postsPanel.setBorder(BorderFactory.createTitledBorder("Posts"));
         //postsPanel.setMinimumSize(new Dimension(400,300));
 
-        contentPanel.add(storiesPanel, BorderLayout.NORTH);
+        JScrollPane scrollPane = new JScrollPane(storiesPanel);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+
+        contentPanel.add(scrollPane, BorderLayout.NORTH);
         contentPanel.add(new JScrollPane(postsPanel), BorderLayout.CENTER);
 
 

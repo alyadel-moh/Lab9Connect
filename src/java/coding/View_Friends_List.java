@@ -12,7 +12,9 @@ public class View_Friends_List extends JFrame {
     View_Friends_List(User user, UserService service) {
         this.user = user;
         this.service = service;
+
         this.panel1 = new JPanel();
+        panel1.setLayout(new GridLayout(0,1));
 
         // Create a scrollable panel for dynamic content
         JScrollPane scrollPane = new JScrollPane(panel1);

@@ -25,7 +25,7 @@ public class FriendManagement extends JFrame{
             setLocationRelativeTo(null);
             setVisible(true);
 
-            viewFriendRequestsButton.addActionListener(e -> new Requests_Management(user,userService));
+            viewFriendRequestsButton.addActionListener(e -> new Requests_Management(user));
 
             viewFriendSuggestionsButton.addActionListener(e -> new Suggestions_Management(user,userService, null));
 
