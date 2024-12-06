@@ -12,11 +12,11 @@ import java.util.ArrayList;
 public class FriendHandler {
     //private static ContentHandler instance;
     private final ObjectMapper objectMapper;
-    private ArrayList<Friends> friends;
+    private ArrayList<Friend> friends;
     private ArrayList<FriendReq> friendReqs;
     private ArrayList<FriendSuggestions> friendSuggestions;
     private static ArrayList<FriendReq> allFriendReq=new ArrayList<FriendReq>();//static to be shared with all instances to save all posts
-    private static ArrayList<Friends> allFriends=new ArrayList<Friends>();//will intialize it with empty arraylist once the class is loaded
+    private static ArrayList<Friend> allFriends=new ArrayList<Friend>();//will intialize it with empty arraylist once the class is loaded
     private static ArrayList<FriendSuggestions> allFriendSuggestions=new ArrayList<FriendSuggestions>();
 
 //    private String storyPath="./JsonFilesStories/";
@@ -24,7 +24,7 @@ public class FriendHandler {
 
     public FriendHandler() {
         this.objectMapper = new ObjectMapper();
-        this.friends = new ArrayList<>();
+        this.friends = new ArrayList<Friend>();
         this.friendReqs = new ArrayList<>();
         this.friendSuggestions =new ArrayList<>();
         this.objectMapper.registerModule(new JavaTimeModule());//JavaTimeModule helps to write the localTime to file
@@ -77,8 +77,11 @@ public class FriendHandler {
     public void addFriend(String userId, String friendId) {
         if (!isFriend(userId, friendId)) {
             Friends newFriend = new Friends(userId, friendId);
+            Friends newFriend2 = new Friends(friendId, userId);
             friends.add(newFriend);
+            friends.add(newFriend2);
             allFriends.add(newFriend);
+            allFriends.add(newFriend2);
             saveFriends();
         }
     }
@@ -128,7 +131,7 @@ public class FriendHandler {
         return friendSuggestions;
     }
 
-    public ArrayList<Friends> getFriends(){
+    public ArrayList<Friend> getFriends(){
         return friends;
     }
 
@@ -137,8 +140,8 @@ public class FriendHandler {
     }
 
     //return arraylist of friends that is related by a certain user by its ID
-    public ArrayList<Friends> getFriendsByUserId(String userId){
-        ArrayList<Friends> friendsById=new ArrayList<>();
+    public ArrayList<Friend> getFriendsByUserId(String userId){
+        ArrayList<Friend> friendsById=new ArrayList<>();
         for(int i=0;i<allFriends.size();i++){
             if(allFriends.get(i).getUserId().equals(userId)){
                 friendsById.add(allFriends.get(i));
@@ -172,14 +175,14 @@ public class FriendHandler {
         File file = new File("./Friends.json");
         if (file.exists()) {
             try {
-                allFriends = objectMapper.readValue(file, new TypeReference<ArrayList<Friends>>() {});
+                allFriends = objectMapper.readValue(file, new TypeReference<ArrayList<Friend>>() {});
             } catch (IOException e) {
-                System.out.println("Error occurred while loading posts.");
+                System.out.println("Error occurred while loading Friendsssss.");
                 System.out.println(e);
             }
         } else {
             System.out.println("Friends file not found. Initializing an empty list.");
-            allFriends = new ArrayList<>();
+            allFriends = new ArrayList<Friend>();
         }
     }
 
@@ -216,13 +219,15 @@ public class FriendHandler {
     //load friends of each user according to their id
     public void loadHisOwnFriends(String userId){
         loadFriends();
-        ArrayList<Friends> loadedFriends = getFriendsByUserId(userId);
+        ArrayList<Friend> loadedFriends = getFriendsByUserId(userId);
 
         if(!loadedFriends.isEmpty()){
             for(int i=0;i<loadedFriends.size();i++){
                 friends.add(loadedFriends.get(i));
             }
         }
+        System.out.println("own friends "+loadedFriends.size());
+        System.out.println("all friends "+allFriends.size());
     }
 
     public void loadHisOwnFriendSuggestions(String userId){
@@ -247,7 +252,7 @@ public class FriendHandler {
         }
     }
 
-    public static ArrayList<Friends> getAllFriends() {
+    public static ArrayList<Friend> getAllFriends() {
         return allFriends;
     }
 
