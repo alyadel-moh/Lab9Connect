@@ -1,6 +1,6 @@
 package coding;
 
-import coding.interfaces.ContentObserver;
+import coding.Observer.ContentObserver;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -8,9 +8,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class ContentHandler {
     private static ContentHandler instance;
@@ -99,12 +97,10 @@ public class ContentHandler {
     public void addPost(Posts post){
         posts.add(post);
         allPosts.add(post);
-//        notifyObservers();
     }
     public void addStory(Stories story){
         stories.add(story);
         allStories.add(story);
-//        notifyObservers();
     }
 
     public ArrayList<Stories> getStories(){
@@ -113,22 +109,6 @@ public class ContentHandler {
 
     public ArrayList<Posts> getPosts(){
         return posts;
-    }
-
-    public void addObserver(ContentObserver observer){
-        observers.add(observer);
-    }
-
-    public void removeObserver(ContentObserver observer) {
-        observers.remove(observer);
-    }
-
-    private void notifyObservers(User user, String text){
-        for (ContentObserver observer : observers){
-            CustomPanel custom = new CustomPanel(user, "View", " Ignore");
-            custom.add(text);
-            // add to their notifications
-        }
     }
 
     public ArrayList<CustomPanel> getNotifications(){

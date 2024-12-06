@@ -1,6 +1,6 @@
 package coding;
 
-import coding.interfaces.ContentObserver;
+import coding.Observer.ContentObserver;
 
 import javax.swing.*;
 import java.awt.*;
@@ -93,7 +93,7 @@ public class Friend_Manager {
         request.accept(); // Update request state
         requests.remove(request); // Remove request
         friends.add(sender); // Add to friends list
-        user.getHandler().addObserver((ContentObserver) sender);
+        user.getNotifier().addObserver((ContentObserver) sender);
 
         if (requests.isEmpty()) {
             this.user.setRequestState(false);
@@ -127,7 +127,7 @@ public class Friend_Manager {
         }
 
         friends.remove(friend);
-        user.getHandler().removeObserver((ContentObserver) friend);
+        user.getNotifier().removeObserver((ContentObserver) friend);
         blocked.add(friend);
     }
 
@@ -151,7 +151,7 @@ public class Friend_Manager {
         }
 
         friends.remove(friend);
-        user.getHandler().removeObserver((ContentObserver) friend);
+        user.getNotifier().removeObserver((ContentObserver) friend);
         suggestions.add(friend);
     }
 

@@ -1,5 +1,6 @@
 package coding;
 
+import coding.Observer.ContentNotifier;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -7,13 +8,8 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.*;
-import java.awt.geom.Ellipse2D;
-import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 @JsonDeserialize(builder = User.UserBuilder.class)
@@ -37,6 +33,7 @@ public class User {
     @JsonIgnore
     private ContentHandler handler;
 @JsonIgnore
+    private ContentNotifier notifier;
     private boolean receivedRequest;
 
     // Private constructor for User
@@ -53,6 +50,7 @@ public class User {
         this.profilepath = getProfilepath();
         this.coverpath = getCoverpath();
         this.bio = getBio();
+        this.notifier = new ContentNotifier();
 
     }
 
@@ -246,6 +244,8 @@ public class User {
     public ContentHandler getHandler() {
         return handler;
     }
+
+    public ContentNotifier getNotifier(){ return notifier;}
 
     @JsonIgnore
     public ArrayList<User> getSuggestions(){
