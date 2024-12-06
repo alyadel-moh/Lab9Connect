@@ -34,6 +34,14 @@ public class Friend_Manager {
         this.objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
     }
 
+    public void setFriends(String userId){
+        ArrayList<Friend>loadedFriends=user.getFriendHandler().getFriendsByUserId(user.getUserId());
+        for(int i=0;i<loadedFriends.size();i++){
+            User loadedUser=Database.findUserById(loadedFriends.get(i).getFriendId());
+            friends.add(loadedUser);
+        }
+    }
+
     public void saveRequests(){
         File file=new File("./FriendRequests.json");
         try {
@@ -160,7 +168,7 @@ public class Friend_Manager {
         saveRequests();
         friends.add(sender); // Add to friends list
         sender.getManager().getFriends().add(receiver);
-        user.getNotifier().addObserver((ContentObserver) sender);
+//        user.getNotifier().addObserver((ContentObserver) sender);
         user.getFriendHandler().addFriend(request.getReceiver().getUserId(),request.getSender().getUserId());
         user.getFriendHandler().saveFriends();
 
