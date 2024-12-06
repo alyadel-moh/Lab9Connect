@@ -24,7 +24,7 @@ public class Requests_Management extends JFrame{
                 user.getManager().accept(request);
                 user.getRequests().remove(request);
                 panel1.remove(customPanel);
-                repaint();
+                refreshUI();
             });
 
             // Decline Request
@@ -32,7 +32,7 @@ public class Requests_Management extends JFrame{
                 user.getManager().decline(request);
                 user.getRequests().remove(request);
                 panel1.remove(customPanel);
-                repaint();
+                refreshUI();
             });
 
             panel1.add(customPanel);
@@ -47,4 +47,10 @@ public class Requests_Management extends JFrame{
         setLocationRelativeTo(null);
         setVisible(true);
     }
+
+    private void refreshUI() {
+        panel1.revalidate(); // Recalculate layout
+        panel1.repaint();   // Redraw components
+    }
 }
+

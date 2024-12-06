@@ -6,13 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="b070c600-f384-439e-b49a-9b65b4c8f3b6" name="Changes" comment="Merge branch 'main' of https://github.com/shamsquraytum/Lab9Connect&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/ContentCreation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/ContentCreation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Users.json" beforeDir="false" afterPath="$PROJECT_DIR$/Users.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/coding/CustomPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/CustomPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/FriendHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/FriendHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/coding/Friend_Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Friend_Manager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Notifications.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Notifications.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Observer/ContentNotifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Observer/ContentNotifier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Window1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Window1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/Requests_Management.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Requests_Management.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +45,7 @@
   "editorReviewEnabled": false
 }]]></component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
