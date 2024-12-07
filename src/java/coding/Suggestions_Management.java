@@ -11,6 +11,7 @@ public class Suggestions_Management extends JFrame {
     private JPanel panel1;
 
     Suggestions_Management(User user, UserService service, JPanel homePanel) {
+        setTitle("Friends Suggestions");
         this.user = user;
         this.service = service;
 

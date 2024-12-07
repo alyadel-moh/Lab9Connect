@@ -30,8 +30,8 @@ public class Homepage extends JFrame {
         this.user = user;
         this.userService = userService;
 
-        setTitle("Homepage");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setTitle("Homepage");
         setBounds(100,100,1400,900);
         setLocationRelativeTo(null);
 
@@ -65,6 +65,8 @@ public class Homepage extends JFrame {
 
         add(mainPanel);
         setVisible(true);
+        user.getHandler().deleteExpiredStories();
+        user.getHandler().saveStories();
 
     }
 
@@ -372,7 +374,6 @@ public class Homepage extends JFrame {
             displaySuggestions();
             System.out.println(user.getHandler().getStories().size());
             System.out.println(user.getHandler().getStoriesByUserId(user.getUserId()).size());
-            user.getHandler().deleteExpiredStories();
             System.out.println(user.getHandler().getStories().size());
             System.out.println(user.getHandler().getStoriesByUserId(user.getUserId()).size());
             user.getHandler().saveStories();
@@ -383,6 +384,7 @@ public class Homepage extends JFrame {
             mainPanel.repaint();
 
             setVisible(false);
+
             new Homepage(userService, user);
 
             JOptionPane.showMessageDialog(this, "Page Refreshed");

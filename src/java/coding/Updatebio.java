@@ -11,6 +11,7 @@ public class Updatebio extends JFrame{
     private JButton updateBioButton;
 
     Updatebio(User user){
+        setTitle("Update Bio");
         setContentPane(panel);
         updateBioButton.setFocusable(false);
         enterNewBioTextField.setBorder(new LineBorder(Color.BLACK));

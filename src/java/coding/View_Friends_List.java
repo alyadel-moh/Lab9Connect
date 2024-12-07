@@ -10,6 +10,7 @@ public class View_Friends_List extends JFrame {
     private JPanel panel1;
 
     View_Friends_List(User user, UserService service) {
+        setTitle("View Friends List");
         this.user = user;
         this.service = service;
 

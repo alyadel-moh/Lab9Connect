@@ -12,6 +12,7 @@ public class FriendManagement extends JFrame{
 
     FriendManagement(User user,UserService userService)
         {
+            setTitle("Manage Friends");
             viewFriendRequestsButton.setFocusable(false);
             viewFriendsListButton.setFocusable(false);
             viewFriendSuggestionsButton.setFocusable(false);

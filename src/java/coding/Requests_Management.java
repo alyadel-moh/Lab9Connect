@@ -9,6 +9,7 @@ public class Requests_Management extends JFrame {
     private JPanel panel1;
 
     Requests_Management(User user) {
+        setTitle("View Requests");
         this.user = user;
 
         panel1 = new JPanel();
