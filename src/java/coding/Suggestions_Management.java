@@ -32,7 +32,7 @@ public class Suggestions_Management extends JFrame {
 
         setContentPane(scrollPane);
 
-        if (homePanel == null){
+        if (homePanel == null) {
             setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             setResizable(false);
             setBounds(100, 100, 700, 400);
@@ -45,7 +45,7 @@ public class Suggestions_Management extends JFrame {
         // Clear the panel
         panel1.removeAll();
 
-        if(suggestions.isEmpty()){
+        if (suggestions.isEmpty()) {
             panel1.add(new JLabel("No Suggestions to View!"));
             refreshUI();
             return;
