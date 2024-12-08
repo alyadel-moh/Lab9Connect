@@ -261,9 +261,36 @@ public class Homepage extends JFrame {
         Title.setFont(new Font("Arial", Font.BOLD, 24));
         headerPanel.add(Title);
 
+
+        //Search Field
         JTextField searchField = new JTextField(20);
         searchField.setText("Search");
         headerPanel.add(searchField);
+        // Add a button with a PNG image
+        JButton searchButton = new JButton();
+        searchButton.setPreferredSize(new Dimension(25, 25));
+        try {
+            // Load the image from a PNG file
+            ImageIcon searchIcon = new ImageIcon("./download.jpg");
+            Image scaledImage = searchIcon.getImage().getScaledInstance(25, 25, Image.SCALE_SMOOTH); // Scale image
+            searchButton.setIcon(new ImageIcon(scaledImage)); // Set the scaled image as icon
+            // Remove button borders and background to make it look like just an image
+            searchButton.setFocusPainted(false);
+            searchButton.setContentAreaFilled(false);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        headerPanel.add(searchButton);
+
+        // Add ActionListener to the search button
+        searchButton.addActionListener(e -> {
+            String searchedText = searchField.getText();
+            if(searchedText.isEmpty()){
+                JOptionPane.showMessageDialog(null,"Enter something to search for ", "Error",JOptionPane.ERROR_MESSAGE);
+            }
+            new SearchManagement(user,userService,null,searchedText);
+            System.out.println("pressed search String is : "+searchedText );
+        });
 
         JButton friendButton = createbutton("Manage Friends",headerPanel);
         JButton notificationButton = createbutton("Notifications",headerPanel);
