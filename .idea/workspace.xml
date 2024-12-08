@@ -5,16 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b070c600-f384-439e-b49a-9b65b4c8f3b6" name="Changes" comment="Merge branch 'main' of https://github.com/shamsquraytum/Lab9Connect&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
-      <change afterPath="$PROJECT_DIR$/src/java/coding/Groupmanager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/java/coding/View_Friends_List2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/java/coding/View_Friends_List3.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FriendRequests.json" beforeDir="false" afterPath="$PROJECT_DIR$/FriendRequests.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Users.json" beforeDir="false" afterPath="$PROJECT_DIR$/Users.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/CreateGroupGui.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/CreateGroupGui.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/CreateGroupGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/CreateGroupGui.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Friend_Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Friend_Manager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Group.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/FriendHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/FriendHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -218,7 +209,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733339629637</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Merge branch 'main' of https://github.com/shamsquraytum/Lab9Connect&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
+      <option name="closed" value="true" />
+      <created>1733694956588</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1733694956588</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

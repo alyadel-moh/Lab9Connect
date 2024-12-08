@@ -13,9 +13,9 @@ public class FriendHandler {
     //private static ContentHandler instance;
     private final ObjectMapper objectMapper;
     private ArrayList<Friend> friends;
-    private ArrayList<FriendReq> friendReqs;
+    private ArrayList<FriendRequest> friendReqs;
     private ArrayList<FriendSuggestions> friendSuggestions;
-    private static ArrayList<FriendReq> allFriendReq=new ArrayList<FriendReq>();//static to be shared with all instances to save all posts
+    private static ArrayList<FriendRequest> allFriendReq= new ArrayList<>();//static to be shared with all instances to save all posts
     private static ArrayList<Friend> allFriends=new ArrayList<Friend>();//will intialize it with empty arraylist once the class is loaded
     private static ArrayList<FriendSuggestions> allFriendSuggestions=new ArrayList<FriendSuggestions>();
 
@@ -97,7 +97,7 @@ public class FriendHandler {
     // Check if a friend request is pending
     public boolean hasPendingRequest(String userId, String friendId) {
         return allFriendReq.stream().anyMatch(request ->
-                request.getUserId().equals(userId) && request.getFriendId().equals(friendId)
+                request.getSender().getUserId().equals(userId) && request.getReceiver().getUserId().equals(friendId)
         );
     }
 
@@ -116,7 +116,7 @@ public class FriendHandler {
         return friends;
     }
 
-    public ArrayList<FriendReq> getFriendReqs(){
+    public ArrayList<FriendRequest> getFriendReqs(){
         return friendReqs;
     }
 
@@ -141,10 +141,10 @@ public class FriendHandler {
         return friendSuggestionsById;
     }
 
-    public ArrayList<FriendReq> getFriendReqsByUserId(String userId){
-        ArrayList<FriendReq> friendReqsById=new ArrayList<>();
+    public ArrayList<FriendRequest> getFriendReqsByUserId(String userId){
+        ArrayList<FriendRequest> friendReqsById=new ArrayList<>();
         for(int i=0;i<allFriendReq.size();i++){
-            if(allFriendReq.get(i).getUserId().equals(userId)){
+            if(allFriendReq.get(i).getSender().getUserId().equals(userId)){
                 friendReqsById.add(allFriendReq.get(i));
             }
         }
@@ -186,16 +186,19 @@ public class FriendHandler {
         File file = new File("./FriendRequests.json");
         if (file.exists()) {
             try {
-                allFriendReq = objectMapper.readValue(file, new TypeReference<ArrayList<FriendReq>>() {});
+                allFriendReq = objectMapper.readValue(file, new TypeReference<ArrayList<FriendRequest>>() {});
+                // Use an iterator to safely remove elements
+                allFriendReq.removeIf(request -> !"Pending".equalsIgnoreCase(request.getState()));
             } catch (IOException e) {
-                System.out.println("Error occurred while loading posts.");
-                System.out.println(e);
+                System.out.println("Error occurred while loading requests.");
+                e.printStackTrace(); // Improved logging
             }
         } else {
             System.out.println("Request file not found. Initializing an empty list.");
             allFriendReq = new ArrayList<>();
         }
     }
+
 
     //load friends of each user according to their id
     public void loadHisOwnFriends(String userId){
@@ -224,7 +227,7 @@ public class FriendHandler {
 
     public void loadHisOwnFriendReq(String userId){
         loadFriendReqs();
-        ArrayList<FriendReq> loadedFriendReqs = getFriendReqsByUserId(userId);
+        ArrayList<FriendRequest> loadedFriendReqs = getFriendReqsByUserId(userId);
 
         if(!loadedFriendReqs.isEmpty()){
             for(int i=0;i<loadedFriendReqs.size();i++){
@@ -265,7 +268,7 @@ public class FriendHandler {
         return allFriends;
     }
 
-    public static ArrayList<FriendReq> getAllFriendReq() {
+    public static ArrayList<FriendRequest> getAllFriendReq() {
         return allFriendReq;
     }
 
