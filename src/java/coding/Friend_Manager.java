@@ -97,6 +97,10 @@ public class Friend_Manager {
         }
     }
 
+    public ArrayList<User> getBlocked() {
+        return blocked;
+    }
+
     public void sendRequest(User receiver) {
         if (receiver == null) {
             throw new IllegalArgumentException("Receiver cannot be null.");

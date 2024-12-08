@@ -16,9 +16,11 @@ public class CreateGroupGui extends JFrame {
     private JButton addFriendsButton;
     private JButton createGroupButton;
     private String profilepath;
-
-    CreateGroupGui(User user)
+    private User primaryadmin;
+    CreateGroupGui(User primaryadmin)
     {
+        Group group = new Group(primaryadmin);
+        this.primaryadmin = primaryadmin;
         setTitle("Create Group");
         setContentPane(panel);
         setBounds(100,100,570,500);
@@ -29,6 +31,7 @@ public class CreateGroupGui extends JFrame {
         addFriendsButton.setFocusable(false);
         addOtherAdminsButton.setFocusable(false);
         addProfileButton.setFocusable(false);
+        createGroupButton.setFocusable(false);
        addProfileButton.addActionListener(e -> {
            JFileChooser fileChooser = new JFileChooser();//Create the JfileChooser to show the save dialog
            fileChooser.setDialogTitle("Choose an Image");
@@ -48,17 +51,17 @@ public class CreateGroupGui extends JFrame {
                    JOptionPane.showMessageDialog(null, "Please Choose an Image!", "Message", JOptionPane.ERROR_MESSAGE);
                }
            }
-            setVisible(false);
         });
        addOtherAdminsButton.addActionListener(e -> {
-            setVisible(false);
+            new View_Friends_List3(primaryadmin,group);
         });
-       addFriendsButton.addActionListener(e -> {
-            setVisible(false);
-        });
+        addFriendsButton.addActionListener(e -> new View_Friends_List2(primaryadmin,group) );
         createGroupButton.addActionListener(e -> {
-            Group group = new Group(user,null,profilepath,textField2.getText(),textField1.getText(),null);
-            setVisible(false);
+            group.setProfilepath(profilepath);
+            group.setName(textField1.getText());
+            group.setDescription(textField2.getText());
+            System.out.println(group.toString());
+          //  setVisible(false);
         });
         setVisible(true);
     }
