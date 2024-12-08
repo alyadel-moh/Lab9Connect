@@ -271,6 +271,7 @@ public class Homepage extends JFrame {
         JButton addPostButton =createbutton("Create Content",headerPanel);
         JButton logoutButton = createbutton("Logout",headerPanel);
         refreshButton =  createbutton("Refresh",headerPanel);
+        JButton groupmanagment = createbutton("Group mangment",headerPanel);
 
         headerPanel.setBackground(Color.LIGHT_GRAY);
         mainPanel.add(headerPanel, BorderLayout.NORTH);
@@ -279,6 +280,7 @@ public class Homepage extends JFrame {
         profileButton.addActionListener(e -> new ProfileManagement(user, userService));
 
         notificationButton.addActionListener(e -> new Notifications(user));
+        groupmanagment.addActionListener(e -> new GroupGui(user));
 
         friendButton.addActionListener(e -> {
             centerPanel.removeAll();
