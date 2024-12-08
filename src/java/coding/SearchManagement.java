@@ -99,17 +99,34 @@ public class SearchManagement extends JFrame {
             viewProfileButton.setForeground(Color.WHITE);
             userPanel.add(viewProfileButton);
 
-            // Action listeners for the buttons - logic can be added here
+            //Add Friend Button
             addFriendButton.addActionListener(e -> {
                 // Logic to send friend request (empty method for now)
+                boolean flag=false;//indicating he is not your friend
+            for(int i=0;i<user.getManager().getFriends().size();i++){
+                if(user.getManager().getFriends().get(i).getUserId().equals(searchedUser.getUserId())){
+                    JOptionPane.showMessageDialog(null,"This is already your friend");
+                    flag=true;//they are friends
+                }
+            }
+            if(!flag){
+                user.getManager().getFriends().add(searchedUser);
+                user.getFriendHandler().addFriend(user.getUserId(),searchedUser.getUserId());
+            }
             });
 
+            //Remove Friend Button
             removeFriendButton.addActionListener(e -> {
                 // Logic to ignore the user (empty method for now)
+                user.getManager().remove(searchedUser);
+                JOptionPane.showMessageDialog(null,"Friend Removed Successfully");
             });
 
+            //Block Friend Button
             blockUserButton.addActionListener(e -> {
                 // Logic to ignore the user (empty method for now)
+                user.getManager().block(searchedUser);//this user will block the searched user
+                JOptionPane.showMessageDialog(null,"User Blocked Successfully");
             });
 
             viewProfileButton.addActionListener(e -> {

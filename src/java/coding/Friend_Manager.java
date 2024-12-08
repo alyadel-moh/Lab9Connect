@@ -232,7 +232,8 @@ public class Friend_Manager {
         }
 
         friends.remove(friend);
-        friend.getManager().getFriends().remove(user);
+//        friend.getManager().getFriends().remove(user);
+        user.getFriendHandler().deleteFriend(user,friend);
         user.getNotifier().removeObserver((ContentObserver) friend);
         suggestions.add(friend);
     }
