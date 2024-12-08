@@ -3,6 +3,8 @@ package coding;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class ProfileManagement extends JFrame{
     private JButton updateProfilePhotoButton;
@@ -10,6 +12,7 @@ public class ProfileManagement extends JFrame{
     private JButton updateBioButton;
     private JButton updateCoverPhotoButton, backButton;
     private JPanel panel;
+    private JButton ViewProfile;
     private User user;
     private UserService userService;
 
@@ -53,6 +56,13 @@ public class ProfileManagement extends JFrame{
         backButton.addActionListener(e -> {
             setVisible(false);
             new Homepage(userService, user);
+        });
+        ViewProfile.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                new Profile(user);
+            }
         });
     }
 }
