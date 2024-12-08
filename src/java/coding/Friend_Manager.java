@@ -206,6 +206,7 @@ public class Friend_Manager {
         }
 
         friends.remove(friend);
+        user.getFriendHandler().deleteFriend(user,friend);
         friend.getManager().getFriends().remove(user);
         user.getNotifier().removeObserver((ContentObserver) friend);
         blocked.add(friend);

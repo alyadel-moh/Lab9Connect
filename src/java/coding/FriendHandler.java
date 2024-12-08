@@ -85,26 +85,7 @@ public class FriendHandler {
             saveFriends();
         }
     }
-    // Add a friend request
-    public void addFriendRequest(String userId, String friendId) {
-        if (!isFriend(userId, friendId) && !hasPendingRequest(userId, friendId)) {
-            FriendReq newRequest = new FriendReq(userId, friendId);
-            friendReqs.add(newRequest);
-            allFriendReq.add(newRequest);
-            saveFriendReqs();
-        }
-    }
-    // Add a friend suggestion
-    public void addFriendSuggestion(String userId, String suggestionId) {
-        if (!isFriend(userId, suggestionId) && !hasPendingRequest(userId, suggestionId)) {
-            FriendSuggestions suggestion = new FriendSuggestions(userId, suggestionId);
-            if (!isSuggested(userId, suggestionId)) {
-                friendSuggestions.add(suggestion);
-                allFriendSuggestions.add(suggestion);
-                saveFriendSuggestions();
-            }
-        }
-    }
+
     // Check if userId is friends with friendId
     public boolean isFriend(String userId, String friendId) {
         return allFriends.stream().anyMatch(friend ->
@@ -251,6 +232,34 @@ public class FriendHandler {
             }
         }
     }
+
+    public Friend getFriendByUserAndFriendId(User user,User friend){
+        for(int i=0;i<allFriends.size();i++){
+            if(allFriends.get(i).getUserId().equals(user.getUserId())&&allFriends.get(i).getFriendId().equals(friend.getUserId())){
+                return allFriends.get(i);
+            }
+        }
+        return null;
+    }
+
+    //Delete Friend
+    public void deleteFriend(User user,User friend){
+        System.out.println(allFriends.size() + " friends size");
+        Friend friend1=getFriendByUserAndFriendId(user,friend);
+        Friend friend2=getFriendByUserAndFriendId(friend,user);
+        // Remove both directions of the friendship
+        if(friend1!=null){
+            allFriends.remove(friend1);
+            friends.remove(friend1);
+        }
+        if(friend2!=null){
+            allFriends.remove(friend2);
+            friends.remove(friend2);
+        }
+        System.out.println(allFriends.size() + " after friends size");
+        saveFriends();
+        }
+
 
     public static ArrayList<Friend> getAllFriends() {
         return allFriends;

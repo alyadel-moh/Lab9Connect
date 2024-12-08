@@ -68,6 +68,7 @@ public class View_Friends_List extends JFrame {
             // Remove Action
             customPanel.button2.addActionListener(e -> {
                 user.getManager().getFriends().remove(friend);
+                user.getFriendHandler().deleteFriend(user,friend);
                 panel1.remove(customPanel);
                 refreshUI();
             });
