@@ -180,15 +180,15 @@ public class Homepage extends JFrame {
         for (User suggested : user.getSuggestions()) {
             String state = "not available";
 
-            if (user.getManager().getRequests().contains(new FriendRequest(user, suggested))) {
-                state = user.getManager().getRequestbySender(user, suggested).getState();
+            if (user.getManager().getRequest(suggested) != null) {
+                state = user.getManager().getRequest(suggested).getState();
             }
 
             if ("Pending".equalsIgnoreCase(state)) {
                 // Create a panel for the "Pending" state
                 CustomPanel pendingPanel = new CustomPanel(suggested, "Pending");
                 pendingPanel.button1.addActionListener(e -> {
-                    user.getManager().getRequestbySender(user, suggested).setState("new");
+                    user.getManager().cancelRequest(suggested);
                     friendSuggestionsPanel.remove(pendingPanel);
 
                     CustomPanel sendRequestPanel = createSendRequestPanel(suggested);
@@ -203,6 +203,7 @@ public class Homepage extends JFrame {
                 friendSuggestionsPanel.add(sendRequestPanel);
             }
         }
+
 
         // Refresh the UI after adding all panels
         refreshUI();

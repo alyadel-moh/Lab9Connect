@@ -97,6 +97,40 @@ public class Friend_Manager {
         }
     }
 
+    public void cancelRequest(User receiver){
+        if (receiver == null) {
+            throw new IllegalArgumentException("Receiver cannot be null.");
+        }
+
+        if (receiver.getManager().getFriends().contains(this.user)){
+            throw new IllegalArgumentException("Already Friends");
+        }
+
+        FriendRequest request = receiver.getManager().getRequestbySender(this.user, receiver);
+
+        if (request == null){
+            throw new IllegalArgumentException("Request Doesn't exist anymore!");
+        }
+
+        if ("Pending".equalsIgnoreCase(request.getState())){
+            receiver.getManager().getRequest(receiver).setState("Cancelled");
+            receiver.getManager().getRequests().remove(request);
+            FriendHandler.getAllFriendReq().remove(request);
+        }
+
+
+    }
+
+    public FriendRequest getRequest(User receiver) {
+        if (receiver != null && !friends.contains(receiver)) {
+            for (FriendRequest request : requests){
+                if (receiver.equals(request.getReceiver()))
+                    return request;
+            }
+        }
+        return null;
+    }
+
     public ArrayList<User> getBlocked() {
         return blocked;
     }
