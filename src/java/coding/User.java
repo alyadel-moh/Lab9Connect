@@ -37,7 +37,7 @@ public class User {
 @JsonIgnore
     private ContentNotifier notifier;
     @JsonIgnore
-    private Groupmanager groupmanager;
+    private Group_Manager groupManager;
     private boolean receivedRequest;
 
     // Private constructor for User
@@ -56,7 +56,7 @@ public class User {
         this.coverpath = getCoverpath();
         this.bio = getBio();
         this.notifier = new ContentNotifier();
-        this.groupmanager = new Groupmanager();
+        this.groupManager = new Group_Manager();
     }
 
 
@@ -270,12 +270,12 @@ public class User {
 
     public ContentNotifier getNotifier(){ return notifier;}
 
-    public Groupmanager getGroupmanager() {
-        return groupmanager;
+    public Group_Manager getGroupmanager() {
+        return groupManager;
     }
 
-    public void setGroupmanager(Groupmanager groupmanager) {
-        this.groupmanager = groupmanager;
+    public void setGroupmanager(Group_Manager groupManager) {
+        this.groupManager = groupManager;
     }
 
     @JsonIgnore

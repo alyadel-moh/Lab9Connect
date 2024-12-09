@@ -62,7 +62,7 @@ public class CreateGroupGui extends JFrame {
             group.setDescription(textField2.getText());
             System.out.println(group.toString());
             primaryadmin.getGroupmanager().addGroup(group);
-            System.out.println(Groupmanager.allgroups);
+            System.out.println(Group_Manager.getAllgroups());
             System.out.println(primaryadmin.getGroupmanager().getGroups());
           setVisible(false);
         });

@@ -54,7 +54,9 @@ public class Suggestions_Management extends JFrame {
         for (User suggested : suggestions) {
             String state = "not available";
 
-            if (user.getManager().getRequests().contains(new FriendRequest(user, suggested))) {
+            FriendRequest request = (FriendRequest) RequestFactory.createRequest("friend request", user, suggested.getUserId());
+
+            if (user.getManager().getRequests().contains(request)) {
                 state = user.getManager().getRequestbySender(user, suggested).getState();
             }
 

@@ -36,8 +36,8 @@ public class Friend_Manager {
 
     public void setFriends(String userId){
         ArrayList<Friend>loadedFriends=user.getFriendHandler().getFriendsByUserId(user.getUserId());
-        for(int i=0;i<loadedFriends.size();i++){
-            User loadedUser=Database.findUserById(loadedFriends.get(i).getFriendId());
+        for (Friend loadedFriend : loadedFriends) {
+            User loadedUser = Database.findUserById(loadedFriend.getFriendId());
             friends.add(loadedUser);
         }
     }
@@ -72,18 +72,18 @@ public class Friend_Manager {
         ArrayList<FriendRequest> loadedrequests = getFriendRequestByUserId(userId);
 
         if(!loadedrequests.isEmpty()){
-            for(int i=0;i<loadedrequests.size();i++){
-                requests.add(loadedrequests.get(i));
-            }
+            requests.addAll(loadedrequests);
         }
+
         System.out.println("his own requests size "+requests.size());
         System.out.println("all requests size "+allRequests.size());
     }
     public ArrayList<FriendRequest> getFriendRequestByUserId(String userId){
         ArrayList<FriendRequest>friendRequestsByUserId=new ArrayList<>();
-        for(int i=0;i<allRequests.size();i++){
-            if(allRequests.get(i).getReceiver().getUserId().equals(userId)){
-                friendRequestsByUserId.add(allRequests.get(i));
+
+        for (FriendRequest request : allRequests) {
+            if (((User)request.getReceiver()).getUserId().equals(userId)) {
+                friendRequestsByUserId.add(request);
             }
         }
         return friendRequestsByUserId;
@@ -154,7 +154,7 @@ public class Friend_Manager {
         }
 
         // Create and send new request
-        FriendRequest newRequest = new FriendRequest(this.user, receiver);
+        FriendRequest newRequest = (FriendRequest) RequestFactory.createRequest("friend request", this.user, receiver.getUserId());
         receiver.getManager().setReceivedRequest(newRequest);
         user.getNotifier().notifyObservers(user, " sent you a friend request", receiver);
     }
@@ -173,7 +173,7 @@ public class Friend_Manager {
             throw new IllegalArgumentException("Invalid FriendRequest");
         }
 
-        request.getReceiver().setRequestState(true);
+        ((User)request.getReceiver()).setRequestState(true);
 
         // Prevent duplicates
         if (!requests.contains(request)) {
@@ -191,7 +191,7 @@ public class Friend_Manager {
         }
 
         User sender = request.getSender();
-        User receiver = request.getReceiver();
+        User receiver = (User) request.getReceiver();
 
         if (friends.contains(sender)) {
             JOptionPane.showMessageDialog(null, "Already friends.");
@@ -207,7 +207,7 @@ public class Friend_Manager {
         friends.add(sender); // Add to friends list
         sender.getManager().getFriends().add(receiver);
 //        user.getNotifier().addObserver((ContentObserver) sender);
-        user.getFriendHandler().addFriend(request.getReceiver().getUserId(),request.getSender().getUserId());
+        user.getFriendHandler().addFriend(((User) request.getReceiver()).getUserId(),request.getSender().getUserId());
         user.getFriendHandler().saveFriends();
 
         if (requests.isEmpty()) {
@@ -312,10 +312,8 @@ public class Friend_Manager {
                 if ("online".equalsIgnoreCase(friend.getStatus())) {
                     // Get friend's profile picture
                     ImageIcon profilePic = new ImageIcon(friend.getProfilepath());
-                    if (profilePic != null) {
-                        JLabel profileLabel = createCircularLabel(profilePic);
-                        activePanel.add(profileLabel);
-                    }
+                    JLabel profileLabel = createCircularLabel(profilePic);
+                    activePanel.add(profileLabel);
                 }
             }
 

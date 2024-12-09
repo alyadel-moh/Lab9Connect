@@ -14,6 +14,7 @@ public class Group  {
     public Group(){
 
     }
+
     Group(User primaryadmin,ArrayList<User> members,String profilepath,String description,String name,ArrayList<User> otheradmins) {
         setPrimaryadmin(primaryadmin);
         setDescription(description);
@@ -22,6 +23,7 @@ public class Group  {
         setName(name);
         setOtheradmins(otheradmins);
     }
+
     Group(User primaryadmin)
     {
         setPrimaryadmin(primaryadmin);

@@ -58,7 +58,7 @@ public class View_Groups_List extends JFrame {
             });
             customPanel.button2.addActionListener(_ -> {
                 primaryadmin.getGroupmanager().getGroups().remove(groups.get(key));
-                Groupmanager.allgroups.remove(groups.get(key));
+                Group_Manager.getAllgroups().remove(groups.get(key));
                 panel1.remove(customPanel);
                 refreshUI();
             });
