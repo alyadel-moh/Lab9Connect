@@ -45,6 +45,7 @@ public class Groupmanager {
     {
         if((group.getOtheradmins().contains(otheradmin) || group.getPrimaryadmin().equals(primaryadmin)) && group.getPosts().contains(post)){
            group.getPosts().remove(post);
+           saveGroups();
         }
         else
             JOptionPane.showMessageDialog(null,"user not an admin !");
@@ -60,8 +61,10 @@ public class Groupmanager {
     public void viewsuggestions(User user)
     {
         for (String key : allgroups.keySet()){
-            if(!ismember(user,allgroups.get(key)) && !suggestions.contains(allgroups.get(key)) && !friendManager.getBlocked().contains(allgroups.get(key).getPrimaryadmin()))
+            if(!ismember(user,allgroups.get(key)) && !suggestions.contains(allgroups.get(key)) && !friendManager.getBlocked().contains(allgroups.get(key).getPrimaryadmin())){
                 suggestions.add(allgroups.get(key));
+                saveSuggestionGroups();
+            }
         }
 
     }
@@ -88,8 +91,10 @@ public class Groupmanager {
         if(group.getPrimaryadmin().equals(primaryadmin))
         group.getMembers().remove(member);
         else if (group.getOtheradmins().contains(otheradmin)) {
-            if(!group.getOtheradmins().contains(member) && !group.getPrimaryadmin().equals(primaryadmin))
+            if(!group.getOtheradmins().contains(member) && !group.getPrimaryadmin().equals(primaryadmin)){
                  group.getMembers().remove(member);
+                 saveGroups();
+            }
                 else
             JOptionPane.showMessageDialog(null,"not accessed to remove an admin");
         }
