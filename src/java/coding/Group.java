@@ -11,7 +11,6 @@ public class Group  {
     private String name;
     private ArrayList<User> otheradmins;
     private ArrayList<Posts> posts;
-    private Groupmanager manager;
     Group(User primaryadmin,ArrayList<User> members,String profilepath,String description,String name,ArrayList<User> otheradmins) {
         setPrimaryadmin(primaryadmin);
         setDescription(description);
@@ -19,22 +18,14 @@ public class Group  {
         setProfilepath(profilepath);
         setName(name);
         setOtheradmins(otheradmins);
-        manager = new Groupmanager(this,primaryadmin,otheradmins);
     }
     Group(User primaryadmin)
     {
         setPrimaryadmin(primaryadmin);
         this.members = new ArrayList<>();
         this.otheradmins = new ArrayList<>();
-        manager = new Groupmanager(this,primaryadmin,otheradmins);
-    }
-    public Groupmanager getManager() {
-        return manager;
     }
 
-    public void setManager(Groupmanager manager) {
-        this.manager = manager;
-    }
 
     public ArrayList<Posts> getPosts() {
         return posts;
@@ -112,7 +103,6 @@ public class Group  {
                 ", name='" + name + '\'' +
                 ", otheradmins=" + otheradmins +
                 ", posts=" + posts +
-                ", manager=" + manager +
                 '}';
     }
 }

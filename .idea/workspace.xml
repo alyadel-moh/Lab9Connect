@@ -5,7 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b070c600-f384-439e-b49a-9b65b4c8f3b6" name="Changes" comment="Merge branch 'main' of https://github.com/shamsquraytum/Lab9Connect&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
-      <change beforePath="$PROJECT_DIR$/src/java/coding/FriendHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/FriendHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/java/coding/Custompanel2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/java/coding/View_Groups_List.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/java/coding/View_Groups_List2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Users.json" beforeDir="false" afterPath="$PROJECT_DIR$/Users.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/CreateGroupGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/CreateGroupGui.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Group.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/GroupGui.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/GroupGui.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/GroupGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/GroupGui.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/Groupmanager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Groupmanager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

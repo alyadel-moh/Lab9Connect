@@ -5,21 +5,32 @@ import java.awt.*;
 
 public class GroupGui extends JFrame{
     private JButton createGroupButton;
-    private JButton manageYourGroupButton;
+    private JButton otherAdminButton;
     private JPanel panel;
+    private JButton primaryAdminButton;
+    private JButton normalUserButton;
+
     GroupGui(User user)
     {
         setTitle("Group mangment");
         setContentPane(panel);
-        setBounds(100,100,400,350);
+        setBounds(100,100,400,500);
         setResizable(false);
         setLocationRelativeTo(null);
         createGroupButton.setFocusable(false);
-       manageYourGroupButton.setFocusable(false);
+       otherAdminButton.setFocusable(false);
+       primaryAdminButton.setFocusable(false);
+       normalUserButton.setFocusable(false);
         createGroupButton.setFont(new Font("Arial", Font.BOLD,15));
-      manageYourGroupButton.setFont(new Font("Arial", Font.BOLD,15));
-       manageYourGroupButton.addActionListener(e -> {
-           new Managegroup(user);
+      otherAdminButton.setFont(new Font("Arial", Font.BOLD,15));
+        normalUserButton.setFont(new Font("Arial", Font.BOLD,15));
+        primaryAdminButton.setFont(new Font("Arial", Font.BOLD,15));
+        primaryAdminButton.addActionListener(e -> {
+             new View_Groups_List(user,user.getGroupmanager().getGroups());
+            setVisible(false);
+        });
+       otherAdminButton.addActionListener(e -> {
+           new View_Groups_List2(user,user.getGroupmanager().getGroups());
             setVisible(false);
         });
         createGroupButton.addActionListener(e -> {
