@@ -2,24 +2,26 @@ package coding;
 
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Groupmanager {
-   private ArrayList<Group> groups;
+    private Map<String, Group> groups;
    private Posts post;
-   private User primaryadmin;
-   private ArrayList<User> otheradmin;
    private ArrayList<Group> suggestions;
    private Friend_Manager friendManager;
-   Groupmanager(Group group,User primaryadmin,ArrayList<User> otheradmin)
+    static Map<String,Group> allgroups = new HashMap<>();
+   Groupmanager()
    {
-       setPrimaryadmin(primaryadmin);
-       setOtheradmin(otheradmin);
-       this.groups = new ArrayList<>();
+       this.groups = new HashMap<>();
    }
    public void deletegroup(Group group,User primaryadmin,User otheradmin)
    {
        if(group.getOtheradmins().contains(otheradmin) || group.getPrimaryadmin().equals(primaryadmin))
-           groups.remove(group);
+       {
+           groups.remove(group.getName(),group);
+           allgroups.remove(group.getName(),group);
+       }
        else
            JOptionPane.showMessageDialog(null,"user not an admin !");
    }
@@ -40,20 +42,12 @@ public class Groupmanager {
     }
     public void viewsuggestions(User user)
     {
-        for (Group group : groups){
-            if(!ismember(user,group) && !suggestions.contains(group) && !friendManager.getBlocked().contains(group.getPrimaryadmin()))
-                suggestions.add(group);
+        for (String key : allgroups.keySet()){
+            if(!ismember(user,allgroups.get(key)) && !suggestions.contains(allgroups.get(key)) && !friendManager.getBlocked().contains(allgroups.get(key).getPrimaryadmin()))
+                suggestions.add(allgroups.get(key));
         }
 
     }
-    public ArrayList<Group> getGroups() {
-        return groups;
-    }
-
-    public void setGroups(ArrayList<Group> groups) {
-        this.groups = groups;
-    }
-
     public Posts getPost() {
         return post;
     }
@@ -64,17 +58,12 @@ public class Groupmanager {
 
 
 
-    public User getPrimaryadmin() {
-        return primaryadmin;
-    }
-
-    public void setPrimaryadmin(User primaryadmin) {
-        this.primaryadmin = primaryadmin;
-    }
-
     public void addGroup(Group group)
     {
-        groups.add(group);
+        if(group != null ) {
+            groups.put(group.getName(),group);
+            allgroups.put(group.getName(),group);
+        }
     }
     public void removemember(Group group,User member,User primaryadmin,User otheradmin)
     {
@@ -94,17 +83,23 @@ public class Groupmanager {
                 "friendManager=" + friendManager +
                 ", groups=" + groups +
                 ", post=" + post +
-                ", primaryadmin=" + primaryadmin +
-                ", otheradmin=" + otheradmin +
                 ", suggestions=" + suggestions +
                 '}';
     }
 
-    public ArrayList<User> getOtheradmin() {
-        return otheradmin;
+    public Map<String, Group> getGroups() {
+        return groups;
     }
 
-    public void setOtheradmin(ArrayList<User> otheradmin) {
-        this.otheradmin = otheradmin;
+    public void setGroups(Map<String, Group> groups) {
+        this.groups = groups;
+    }
+
+    public static Map<String, Group> getAllgroups() {
+        return allgroups;
+    }
+
+    public static void setAllgroups(Map<String, Group> allgroups) {
+        Groupmanager.allgroups = allgroups;
     }
 }

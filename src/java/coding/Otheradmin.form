@@ -34,7 +34,7 @@
         </constraints>
         <properties>
           <background color="-16777216"/>
-          <foreground color="-3331"/>
+          <foreground color="-2104859"/>
           <text value="view posts"/>
         </properties>
       </component>
@@ -48,7 +48,7 @@
         </constraints>
         <properties>
           <background color="-16777216"/>
-          <foreground color="-3331"/>
+          <foreground color="-2104859"/>
           <text value="view members"/>
         </properties>
       </component>

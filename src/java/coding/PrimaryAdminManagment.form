@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="coding.Managegroup">
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="coding.PrimaryAdminManagment">
   <grid id="27dc6" binding="panel" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
@@ -7,10 +7,25 @@
     </constraints>
     <properties>
       <background color="-11775908"/>
+      <foreground color="-854792"/>
     </properties>
     <border type="none"/>
     <children>
-      <component id="6e51c" class="javax.swing.JButton" binding="primaryAdminButton" default-binding="true">
+      <component id="c8ec8" class="javax.swing.JButton" binding="viewPostsButton" default-binding="true">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
+            <minimum-size width="-1" height="80"/>
+            <preferred-size width="250" height="-1"/>
+            <maximum-size width="250" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-16777216"/>
+          <foreground color="-3331"/>
+          <text value="View Posts"/>
+        </properties>
+      </component>
+      <component id="95b5" class="javax.swing.JButton" binding="viewMembersButton" default-binding="true">
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="-1" height="80"/>
@@ -21,21 +36,7 @@
         <properties>
           <background color="-16777216"/>
           <foreground color="-3331"/>
-          <text value="Primary admin"/>
-        </properties>
-      </component>
-      <component id="a523" class="javax.swing.JButton" binding="otherAdminButton" default-binding="true">
-        <constraints>
-          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
-            <minimum-size width="-1" height="80"/>
-            <preferred-size width="250" height="-1"/>
-            <maximum-size width="250" height="-1"/>
-          </grid>
-        </constraints>
-        <properties>
-          <background color="-16777216"/>
-          <foreground color="-854792"/>
-          <text value="Other admin"/>
+          <text value="View Members"/>
         </properties>
       </component>
     </children>
