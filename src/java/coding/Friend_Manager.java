@@ -115,10 +115,10 @@ public class Friend_Manager {
 
         if ("Pending".equalsIgnoreCase(request.getState())){
             receiver.getManager().getRequest(receiver).setState("Cancelled");
-            saveRequests();
-            friendHandler.saveFriendReqs();
+            request.setState("Cancelled");
             receiver.getManager().getRequests().remove(request);
             FriendHandler.getAllFriendReq().remove(request);
+            allRequests.remove(request);
             saveRequests();
             friendHandler.saveFriendReqs();
         }

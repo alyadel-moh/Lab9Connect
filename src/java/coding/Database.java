@@ -88,6 +88,8 @@ public class Database {
                 user.getManager().setFriends(user.getUserId());
                 user.getFriendHandler().loadHisOwnFriendSuggestions(user.getUserId());
                 user.getManager().loadHisOwnRequets(user.getUserId());
+                user.getGroupmanager().loadGroups();
+                user.getGroupmanager().loadSuggestionGroups();
 
 
                 if(user.getProfilepath() == null){

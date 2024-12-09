@@ -11,6 +11,9 @@ public class Group  {
     private String name;
     private ArrayList<User> otheradmins;
     private ArrayList<Posts> posts;
+    public Group(){
+
+    }
     Group(User primaryadmin,ArrayList<User> members,String profilepath,String description,String name,ArrayList<User> otheradmins) {
         setPrimaryadmin(primaryadmin);
         setDescription(description);

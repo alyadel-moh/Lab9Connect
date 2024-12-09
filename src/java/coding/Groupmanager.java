@@ -1,6 +1,12 @@
 package coding;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+
 import javax.swing.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,24 +17,35 @@ public class Groupmanager {
    private ArrayList<Group> suggestions;
    private Friend_Manager friendManager;
     static Map<String,Group> allgroups = new HashMap<>();
+    private static final ObjectMapper objectMapper = new ObjectMapper();
+
+    static {
+        objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+        // Register the JavaTimeModule for handling LocalDate
+        objectMapper.registerModule(new JavaTimeModule());
+        // Optional: Configure the object mapper to handle dates more flexibly
+        objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+    }
    Groupmanager()
    {
        this.groups = new HashMap<>();
    }
-   public void deletegroup(Group group,User primaryadmin,User otheradmin)
+   public void deletegroup(Group group,User primaryadmin)
    {
-       if(group.getOtheradmins().contains(otheradmin) || group.getPrimaryadmin().equals(primaryadmin))
+       if(group.getPrimaryadmin().equals(primaryadmin))
        {
            groups.remove(group.getName(),group);
            allgroups.remove(group.getName(),group);
+           saveGroups();
        }
        else
            JOptionPane.showMessageDialog(null,"user not an admin !");
    }
     public void deletepost(Group group,User primaryadmin,User otheradmin,Posts post)
     {
-        if((group.getOtheradmins().contains(otheradmin) || group.getPrimaryadmin().equals(primaryadmin)) && group.getPosts().contains(post))
+        if((group.getOtheradmins().contains(otheradmin) || group.getPrimaryadmin().equals(primaryadmin)) && group.getPosts().contains(post)){
            group.getPosts().remove(post);
+        }
         else
             JOptionPane.showMessageDialog(null,"user not an admin !");
     }
@@ -63,6 +80,7 @@ public class Groupmanager {
         if(group != null ) {
             groups.put(group.getName(),group);
             allgroups.put(group.getName(),group);
+            saveGroups();
         }
     }
     public void removemember(Group group,User member,User primaryadmin,User otheradmin)
@@ -102,4 +120,49 @@ public class Groupmanager {
     public static void setAllgroups(Map<String, Group> allgroups) {
         Groupmanager.allgroups = allgroups;
     }
+    public void saveGroups(){
+       try{
+           objectMapper.writeValue(new File("Groups.json"),allgroups);
+           System.out.println("Groups saved successfully");
+       }catch (IOException e){
+           e.printStackTrace();
+       }
+    }
+    public void loadGroups(){
+        File file = new File("Groups.json");
+        if (!file.exists()) {
+            System.out.println("Groups file not found. Initializing an empty group list.");
+            this.groups = new HashMap<>();
+            return;
+        }
+        try{
+            Map<String, Group> loadedGroups  = objectMapper.readValue(file,objectMapper.getTypeFactory().constructMapType(Map.class, String.class, Group.class));
+            this.groups = loadedGroups;
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+    public void saveSuggestionGroups(){
+        try{
+            objectMapper.writeValue(new File("SuggestionGroups.json"),suggestions);
+            System.out.println("Groups saved successfully");
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+    public void loadSuggestionGroups(){
+        File file = new File("SuggestionGroups.json");
+        if (!file.exists()) {
+            System.out.println("Suggestion groups file not found. Initializing an empty suggestions list.");
+            this.suggestions = new ArrayList<>();
+            return;
+        }
+        try{
+            ArrayList<Group> loadedSuggestions = objectMapper.readValue(file,objectMapper.getTypeFactory().constructCollectionType(ArrayList.class, Group.class));
+            this.suggestions = loadedSuggestions;
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
 }

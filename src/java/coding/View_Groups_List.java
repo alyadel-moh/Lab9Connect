@@ -11,8 +11,10 @@ public class View_Groups_List extends JFrame {
     private Group group;
     private User primaryadmin;
     Map<String,Group> groups;
+    private Groupmanager groupmanager;
     View_Groups_List(User primaryadmin,Map<String,Group> groups)
     {
+        this.groupmanager = primaryadmin.getGroupmanager();
         this.groups = groups;
         this.primaryadmin = primaryadmin;
         this.primaryadmin = primaryadmin;
@@ -49,6 +51,11 @@ public class View_Groups_List extends JFrame {
         }
 
         for (String key : groups.keySet()) {
+            Group currentGroup = groups.get(key);
+            if(currentGroup == null){
+                System.out.println("Null group");
+                continue;
+            }
             Custompanel2 customPanel = new Custompanel2(groups.get(key), "manage","remove");
             panel1.add(customPanel);
             customPanel.setPreferredSize(new Dimension(700, 30));
@@ -57,8 +64,14 @@ public class View_Groups_List extends JFrame {
                 refreshUI();
             });
             customPanel.button2.addActionListener(_ -> {
-                primaryadmin.getGroupmanager().getGroups().remove(groups.get(key));
-                Groupmanager.allgroups.remove(groups.get(key));
+                if (this.groupmanager != null) {
+                    this.groupmanager.saveGroups();
+                } else {
+                    System.err.println("Groupmanager is not initialized!");
+                }
+                groupmanager.deletegroup(currentGroup, primaryadmin);
+                groups.remove(key);
+                groupmanager.saveGroups();
                 panel1.remove(customPanel);
                 refreshUI();
             });
