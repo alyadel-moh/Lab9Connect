@@ -9,6 +9,7 @@ public class Updatebio extends JFrame{
     private JTextField textField2;
     private JPanel panel;
     private JButton updateBioButton;
+    private UserService userService;
 
     Updatebio(User user){
         setContentPane(panel);
@@ -19,9 +20,15 @@ public class Updatebio extends JFrame{
         setVisible(true);
         updateBioButton.addActionListener(e -> {
             user.setBio(textField2.getText().trim());
+            Database database = Database.getInstance();
+            database.saveUsers();
+            JOptionPane.showMessageDialog(null,"Bio updated successfully!");
+            setVisible(false);
         });
     }
     public static void main
             (String[] args) {
-        new Updatebio(null);}
+        new Updatebio(null);
+
+    }
 }
