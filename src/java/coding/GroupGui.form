@@ -24,7 +24,7 @@
           <text value="Create Group"/>
         </properties>
       </component>
-      <component id="4f913" class="javax.swing.JButton" binding="otherAdminButton">
+      <component id="4f913" class="javax.swing.JButton" binding="normalUserButton">
         <constraints>
           <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="-1" height="80"/>
@@ -35,7 +35,7 @@
         <properties>
           <background color="-16777216"/>
           <foreground color="-3331"/>
-          <text value="Other Admin"/>
+          <text value="Normal User"/>
         </properties>
       </component>
       <component id="d7d68" class="javax.swing.JButton" binding="primaryAdminButton" default-binding="true">
@@ -52,7 +52,7 @@
           <text value="Primary Admin"/>
         </properties>
       </component>
-      <component id="da71f" class="javax.swing.JButton" binding="normalUserButton" default-binding="true">
+      <component id="da71f" class="javax.swing.JButton" binding="otherAdminButton">
         <constraints>
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="-1" height="80"/>
@@ -63,7 +63,7 @@
         <properties>
           <background color="-16777216"/>
           <foreground color="-3331"/>
-          <text value="normal User"/>
+          <text value="Other Admin"/>
         </properties>
       </component>
     </children>

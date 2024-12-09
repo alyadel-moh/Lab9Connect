@@ -53,10 +53,12 @@ public class View_Groups_List extends JFrame {
             panel1.add(customPanel);
             customPanel.setPreferredSize(new Dimension(700, 30));
             customPanel.button1.addActionListener(_ -> {
-                panel1.remove(customPanel);
+                new PrimaryAdminManagment(primaryadmin,groups.get(key));
                 refreshUI();
             });
-            customPanel.button1.addActionListener(_ -> {
+            customPanel.button2.addActionListener(_ -> {
+                primaryadmin.getGroupmanager().getGroups().remove(groups.get(key));
+                Groupmanager.allgroups.remove(groups.get(key));
                 panel1.remove(customPanel);
                 refreshUI();
             });

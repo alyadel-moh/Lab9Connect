@@ -2,18 +2,16 @@ package coding;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Map;
+import java.util.List;
 
-public class View_Groups_List2 extends JFrame {
+public class View_Members_List extends JFrame{
     private JPanel panel1;
     private Group group;
-    private User otheradmin;
-    Map<String,Group> groups;
-    View_Groups_List2(User otheradmin,Map<String,Group> groups)
+    View_Members_List(Group group)
     {
-        this.groups = groups;
-        this.otheradmin = otheradmin;
-        setTitle("view my Groups");
+
+        this.group = group;
+        setTitle("view Members");
 
         this.panel1 = new JPanel();
         panel1.setLayout(new GridLayout(0,1));
@@ -23,7 +21,7 @@ public class View_Groups_List2 extends JFrame {
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 
         // Add suggestions to the panel
-        populateGroups(otheradmin.getGroupmanager().getGroups());
+        populateMembers(group.getMembers());
 
         setContentPane(scrollPane);
 
@@ -34,22 +32,23 @@ public class View_Groups_List2 extends JFrame {
         setVisible(true);
     }
 
-    private void populateGroups(Map<String,Group> groups) {
+    private void populateMembers(List<User> members) {
         // Clear the panel
         panel1.removeAll();
 
-        if(groups.isEmpty()){
-            panel1.add(new JLabel("No Groups to View!"));
+        if(members.isEmpty()){
+            panel1.add(new JLabel("No Members to View!"));
             refreshUI();
             return;
         }
 
-        for (String key : groups.keySet()) {
-            Custompanel2 customPanel = new Custompanel2(groups.get(key), "manage");
-            panel1.add(customPanel);
+        for (User member : members) {
+            CustomPanel customPanel = new CustomPanel(member, "Remove");
             customPanel.setPreferredSize(new Dimension(700, 30));
+            panel1.add(customPanel);
             customPanel.button1.addActionListener(_ -> {
-               new Otheradmin(otheradmin,groups.get(key));
+                group.getMembers().remove(member);
+                panel1.remove(customPanel);
                 refreshUI();
             });
         }
@@ -61,4 +60,4 @@ public class View_Groups_List2 extends JFrame {
         panel1.revalidate(); // Recalculate layout
         panel1.repaint(); // Redraw components
     }
-}
+    }

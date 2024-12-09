@@ -4,37 +4,26 @@ import javax.swing.*;
 
 public class Primaryadmin extends JFrame{
     private JButton promoteOrDemoteOtherButton;
-    private JButton deleteGroupButton;
+    private JButton viewCreatedGroupsButton;
     private JButton viewPostsButton;
     private JButton viewMembersButton;
     private JPanel panel;
-    private User user;
-    private Group group;
-    Primaryadmin(User user,Group group)
+    private User primaryadmin;
+    Primaryadmin(User primaryadmin)
     {
             setTitle("primary Admin");
-            this.group = group;
-            this.user = user;
+            this.primaryadmin = primaryadmin;
             setContentPane(panel);
-
             promoteOrDemoteOtherButton.setFocusable(false);
-           deleteGroupButton.setFocusable(false);
-            viewMembersButton.setFocusable(false);
-            viewPostsButton.setFocusable(false);
-
-            setBounds(100,100,350,550);
+           viewCreatedGroupsButton.setFocusable(false);
+            setBounds(100,100,400,350);
             setLocationRelativeTo(null);
             setVisible(true);
             promoteOrDemoteOtherButton.addActionListener(e -> {
             });
-          deleteGroupButton.addActionListener(e -> {
-            });
-         viewMembersButton.addActionListener(e -> {
-            });
-            viewPostsButton.addActionListener(e -> {
+          viewCreatedGroupsButton.addActionListener(e -> {
+              new View_Groups_List(primaryadmin,primaryadmin.getGroupmanager().getGroups());
+              setVisible(false);
             });
         }
-    public static void main(String[] args) {
-        new Primaryadmin(null,null);
-    }
     }
