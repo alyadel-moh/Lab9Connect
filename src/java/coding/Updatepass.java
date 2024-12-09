@@ -40,6 +40,8 @@ public class Updatepass extends JFrame {
             }
 
             user.setPassword(hashedNewPassword);
+            Database database = Database.getInstance();
+            database.saveUsers();
             JOptionPane.showMessageDialog(null, "password updated successfully !");
             setVisible(false);
         });

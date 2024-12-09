@@ -163,6 +163,8 @@ public class User {
             if(selectedFile.exists()){
 
                 coverpath = selectedFile.getAbsolutePath();
+                Database database = Database.getInstance();
+                database.saveUsers();
                 JOptionPane.showMessageDialog(null,"Image Chosen successfully");
             }
             else{
@@ -184,6 +186,8 @@ public class User {
             if(selectedFile.exists()){
 
                 profilepath = selectedFile.getAbsolutePath();
+                Database database = Database.getInstance();
+                database.saveUsers();
                 JOptionPane.showMessageDialog(null,"Image Chosen successfully");
             }
             else{

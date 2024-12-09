@@ -46,7 +46,7 @@ public class Homepage extends JFrame {
 
         friendsArea = new JPanel();
         friendsArea.setLayout(new BoxLayout(friendsArea, BoxLayout.Y_AXIS));
-       // friendsArea.setLayout(new GridLayout(2,1));
+        // friendsArea.setLayout(new GridLayout(2,1));
 
         createHeader();
         createContentArea();
@@ -153,11 +153,11 @@ public class Homepage extends JFrame {
 
         // loop through each friend to check if active
         for (User friend : user.getManager().getFriends()){
-          // if ("online".equalsIgnoreCase(friend.getStatus())){
-                CustomPanel custom = new CustomPanel(friend, "Active");
-                found = true;
-                friendsPanel.add(custom);
-             // }
+            // if ("online".equalsIgnoreCase(friend.getStatus())){
+            CustomPanel custom = new CustomPanel(friend, "Active");
+            found = true;
+            friendsPanel.add(custom);
+            // }
         }
 
         if (!found){
@@ -359,7 +359,7 @@ public class Homepage extends JFrame {
 
         //mainPanel.add(contentPanel, BorderLayout.CENTER);
         //centerPanel.add(contentPanel);
-       // mainPanel.add(centerPanel, BorderLayout.CENTER);
+        // mainPanel.add(centerPanel, BorderLayout.CENTER);
 
 
     }
@@ -448,5 +448,3 @@ public class Homepage extends JFrame {
 
     }
 }
-
-

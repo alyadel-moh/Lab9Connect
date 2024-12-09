@@ -22,6 +22,7 @@ public class Friend_Manager {
     private final ArrayList<User> blocked;
     private ObjectMapper objectMapper;
     private static ArrayList<FriendRequest>allRequests=new ArrayList<>();
+    private FriendHandler friendHandler;
 
     Friend_Manager(User user) {
         this.user = user;
@@ -114,8 +115,12 @@ public class Friend_Manager {
 
         if ("Pending".equalsIgnoreCase(request.getState())){
             receiver.getManager().getRequest(receiver).setState("Cancelled");
+            saveRequests();
+            friendHandler.saveFriendReqs();
             receiver.getManager().getRequests().remove(request);
             FriendHandler.getAllFriendReq().remove(request);
+            saveRequests();
+            friendHandler.saveFriendReqs();
         }
 
 
