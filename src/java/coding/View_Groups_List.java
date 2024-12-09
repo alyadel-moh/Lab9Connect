@@ -49,16 +49,16 @@ public class View_Groups_List extends JFrame {
         }
 
         for (String key : groups.keySet()) {
-            Custompanel2 customPanel = new Custompanel2(groups.get(key), "manage","remove");
+            Group group = groups.get(key);
+            Custompanel2 customPanel = new Custompanel2(group, "manage","remove");
             panel1.add(customPanel);
             customPanel.setPreferredSize(new Dimension(700, 30));
             customPanel.button1.addActionListener(_ -> {
-                new PrimaryAdminManagment(primaryadmin,groups.get(key));
+                new PrimaryAdminManagment(primaryadmin,group);
                 refreshUI();
             });
             customPanel.button2.addActionListener(_ -> {
-                primaryadmin.getGroupmanager().getGroups().remove(groups.get(key));
-                Groupmanager.allgroups.remove(groups.get(key));
+                primaryadmin.getGroupmanager().deletegroup(group,primaryadmin);
                 panel1.remove(customPanel);
                 refreshUI();
             });

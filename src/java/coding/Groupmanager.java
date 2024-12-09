@@ -15,9 +15,9 @@ public class Groupmanager {
    {
        this.groups = new HashMap<>();
    }
-   public void deletegroup(Group group,User primaryadmin,User otheradmin)
+   public void deletegroup(Group group,User primaryadmin)
    {
-       if(group.getOtheradmins().contains(otheradmin) || group.getPrimaryadmin().equals(primaryadmin))
+       if(group.getPrimaryadmin().equals(primaryadmin))
        {
            groups.remove(group.getName(),group);
            allgroups.remove(group.getName(),group);

@@ -44,6 +44,8 @@ public class View_Friends_List3 extends JFrame {
         }
 
         for (User friend : friends) {
+            if(group.getOtheradmins().contains(friend))
+                continue;
             CustomPanel customPanel = new CustomPanel(friend, "add");
             panel1.add(customPanel);
             customPanel.setPreferredSize(new Dimension(700, 30));

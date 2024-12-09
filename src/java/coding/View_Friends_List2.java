@@ -2,6 +2,7 @@ package coding;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class View_Friends_List2 extends  JFrame{
@@ -36,7 +37,6 @@ public class View_Friends_List2 extends  JFrame{
     private void populateFriends(List<User> friends) {
         // Clear the panel
         panel1.removeAll();
-
         if(friends.isEmpty()){
             panel1.add(new JLabel("No Friends to View!"));
             refreshUI();
@@ -44,6 +44,8 @@ public class View_Friends_List2 extends  JFrame{
         }
 
         for (User friend : friends) {
+            if(group.getMembers().contains(friend))
+                continue;
             CustomPanel customPanel = new CustomPanel(friend, "add");
             customPanel.setPreferredSize(new Dimension(700, 30));
             panel1.add(customPanel);
