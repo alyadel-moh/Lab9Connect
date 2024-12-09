@@ -83,12 +83,13 @@ public class Database {
             for (User user : users) {
                 user.getHandler().loadHisOwnPosts(user.getUserId());
                 user.getHandler().loadHisOwnStories(user.getUserId());
-                user.getManager().setSuggestions(users);
                 user.getFriendHandler().loadHisOwnFriends(user.getUserId());
-                user.getManager().setFriends(user.getUserId());
-                user.getFriendHandler().loadHisOwnFriendSuggestions(user.getUserId());
-                user.getManager().loadHisOwnRequets(user.getUserId());
 
+                user.getManager().setSuggestions(users);
+                user.getManager().setFriends(user.getUserId());
+
+                user.getFriendHandler().loadHisOwnFriendSuggestions(user.getUserId());
+                user.getManager().loadHisOwnRequests(user.getUserId());
 
                 if(user.getProfilepath() == null){
                     user.setProfilepath();

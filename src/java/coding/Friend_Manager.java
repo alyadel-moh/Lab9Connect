@@ -13,6 +13,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class Friend_Manager {
     private User user;
@@ -32,6 +33,8 @@ public class Friend_Manager {
         this.objectMapper = new ObjectMapper();
         this.objectMapper.registerModule(new JavaTimeModule());//JavaTimeModule helps to write the localTime to file
         this.objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+
+        //loadRequests();
     }
 
     public void setFriends(String userId){
@@ -52,13 +55,20 @@ public class Friend_Manager {
     }
 
     public void loadRequests(){
+        if (!allRequests.isEmpty()){
+            return;
+        }
+
         File file = new File("./FriendRequests.json");
         if (file.exists()) {
             try {
-                allRequests = objectMapper.readValue(file, new TypeReference<ArrayList<FriendRequest>>() {});
+                allRequests = objectMapper.readValue(file, new TypeReference<>() {
+                });
+                // Use an iterator to safely remove elements
+                allRequests.removeIf(request -> !"Pending".equalsIgnoreCase(request.getState()));
             } catch (IOException e) {
-                System.out.println("Error occurred while loading posts.");
-                System.out.println(e);
+                System.out.println("Error occurred while loading requests.");
+                e.printStackTrace(); // Improved logging
             }
         } else {
             System.out.println("Request file not found. Initializing an empty list.");
@@ -67,25 +77,25 @@ public class Friend_Manager {
     }
 
     //load posts of each user according to their id
-    public void loadHisOwnRequets(String userId){
+    public void loadHisOwnRequests(String userId){
         loadRequests();
-        ArrayList<FriendRequest> loadedrequests = getFriendRequestByUserId(userId);
+        ArrayList<FriendRequest> loadedRequests = getFriendRequestByUserId(userId);
 
-        if(!loadedrequests.isEmpty()){
-            for(int i=0;i<loadedrequests.size();i++){
-                requests.add(loadedrequests.get(i));
-            }
+        if (!loadedRequests.isEmpty()) {
+            requests.addAll(loadedRequests);
         }
+
         System.out.println("his own requests size "+requests.size());
         System.out.println("all requests size "+allRequests.size());
     }
     public ArrayList<FriendRequest> getFriendRequestByUserId(String userId){
-        ArrayList<FriendRequest>friendRequestsByUserId=new ArrayList<>();
-        for(int i=0;i<allRequests.size();i++){
-            if(allRequests.get(i).getReceiver().getUserId().equals(userId)){
-                friendRequestsByUserId.add(allRequests.get(i));
-            }
-        }
+        ArrayList<FriendRequest> friendRequestsByUserId =new ArrayList<>();
+
+        friendRequestsByUserId = (ArrayList<FriendRequest>) allRequests.stream()
+                .filter(request -> request.getReceiver().getUserId().equals(userId))
+                .collect(Collectors.toList());
+
+
         return friendRequestsByUserId;
     }
 
@@ -97,29 +107,38 @@ public class Friend_Manager {
         }
     }
 
-    public void cancelRequest(User receiver){
+    public void cancelRequest(User receiver) {
         if (receiver == null) {
             throw new IllegalArgumentException("Receiver cannot be null.");
         }
 
-        if (receiver.getManager().getFriends().contains(this.user)){
-            throw new IllegalArgumentException("Already Friends");
+        if (receiver.getManager().getFriends().contains(this.user)) {
+            throw new IllegalArgumentException("Already friends.");
         }
 
+        // Retrieve the friend request
         FriendRequest request = receiver.getManager().getRequestbySender(this.user, receiver);
 
-        if (request == null){
-            throw new IllegalArgumentException("Request Doesn't exist anymore!");
+        if (request == null) {
+            throw new IllegalArgumentException("Request doesn't exist anymore!");
         }
 
-        if ("Pending".equalsIgnoreCase(request.getState())){
-            receiver.getManager().getRequest(receiver).setState("Cancelled");
+        // Check if the request is still pending
+        if ("Pending".equalsIgnoreCase(request.getState())) {
+            user.getManager().decline(request);
+
+            request.setState("Cancelled");
             receiver.getManager().getRequests().remove(request);
             FriendHandler.getAllFriendReq().remove(request);
+
+            System.out.println("Request by " + request.getSender() + " to " +
+                    request.getReceiver() + " state: " +
+                    receiver.getManager().getRequestbySender(this.user, receiver).getState());
+        } else {
+            throw new IllegalArgumentException("Cannot cancel a non-pending request.");
         }
-
-
     }
+
 
     public FriendRequest getRequest(User receiver) {
         if (receiver != null && !friends.contains(receiver)) {
