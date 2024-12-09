@@ -1,5 +1,6 @@
 package coding;
 
+import coding.Interfaces.Requester;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Group_Manager {
+public class Group_Manager implements Requester {
     private Map<String, Group> groups;
     private Posts post;
     private ArrayList<Group> suggestions;
@@ -137,8 +138,7 @@ public class Group_Manager {
             return;
         }
         try {
-            Map<String, Group> loadedGroups = objectMapper.readValue(file, objectMapper.getTypeFactory().constructMapType(Map.class, String.class, Group.class));
-            this.groups = loadedGroups;
+            this.groups = objectMapper.readValue(file, objectMapper.getTypeFactory().constructMapType(Map.class, String.class, Group.class));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -161,11 +161,17 @@ public class Group_Manager {
             return;
         }
         try {
-            ArrayList<Group> loadedSuggestions = objectMapper.readValue(file, objectMapper.getTypeFactory().constructCollectionType(ArrayList.class, Group.class));
-            this.suggestions = loadedSuggestions;
+            this.suggestions = objectMapper.readValue(file, objectMapper.getTypeFactory().constructCollectionType(ArrayList.class, Group.class));
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void sendRequest(Object generic_receiver) {
+        Group receiver = (Group) generic_receiver;
+        //////////////to be implemented
+
     }
 }
 

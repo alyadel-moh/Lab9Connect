@@ -1,6 +1,7 @@
 package coding;
 
 import coding.Observer.ContentObserver;
+import coding.Interfaces.Requester;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -14,7 +15,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Friend_Manager {
+
+public class Friend_Manager implements Requester{
     private User user;
     private final ArrayList<FriendRequest> requests;
     private final ArrayList<User> friends;
@@ -135,7 +137,9 @@ public class Friend_Manager {
         return blocked;
     }
 
-    public void sendRequest(User receiver) {
+    public void sendRequest(Object general_receiver) {
+        User receiver = (User)general_receiver;
+
         if (receiver == null) {
             throw new IllegalArgumentException("Receiver cannot be null.");
         }
