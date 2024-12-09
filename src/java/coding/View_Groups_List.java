@@ -72,6 +72,7 @@ public class View_Groups_List extends JFrame {
                 groupmanager.deletegroup(currentGroup, primaryadmin);
                 groups.remove(key);
                 groupmanager.saveGroups();
+                
                 panel1.remove(customPanel);
                 refreshUI();
             });
