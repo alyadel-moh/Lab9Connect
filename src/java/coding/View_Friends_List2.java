@@ -2,6 +2,7 @@ package coding;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class View_Friends_List2 extends  JFrame{
@@ -36,7 +37,6 @@ public class View_Friends_List2 extends  JFrame{
     private void populateFriends(List<User> friends) {
         // Clear the panel
         panel1.removeAll();
-
         if(friends.isEmpty()){
             panel1.add(new JLabel("No Friends to View!"));
             refreshUI();

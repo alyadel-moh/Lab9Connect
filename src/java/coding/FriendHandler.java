@@ -30,15 +30,8 @@ public class FriendHandler {
         this.objectMapper.registerModule(new JavaTimeModule());//JavaTimeModule helps to write the localTime to file
         this.objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
-//        File file = new File(storyPath);
-//        if (!file.exists()) {
-//            file.mkdirs(); // Create folder if it doesn't exist
-//        }
-//        File file2 = new File(postsPath);
-//        if (!file2.exists()) {
-//            file2.mkdirs(); // Create folder if it doesn't exist
-//        }
-
+        //loadFriends();
+        //loadFriendSuggestions();
         // Register the JavaTimeModule to handle LocalDateTime serialization
         objectMapper.registerModule(new JavaTimeModule());
         //to show them as timeStamps
@@ -228,7 +221,6 @@ public class FriendHandler {
     public void loadHisOwnFriendReq(String userId){
         loadFriendReqs();
         ArrayList<FriendRequest> loadedFriendReqs = getFriendReqsByUserId(userId);
-
         if(!loadedFriendReqs.isEmpty()){
             for(int i=0;i<loadedFriendReqs.size();i++){
                 friendReqs.add(loadedFriendReqs.get(i));
