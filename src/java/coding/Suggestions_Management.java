@@ -1,5 +1,7 @@
 package coding;
 
+import coding.ENUMS.State;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -52,7 +54,7 @@ public class Suggestions_Management extends JFrame {
         }
 
         for (User suggested : suggestions) {
-            String state = "not available";
+            State state = null;
 
             FriendRequest request = (FriendRequest) RequestFactory.createRequest("friend request", user, suggested.getUserId());
 
@@ -60,11 +62,11 @@ public class Suggestions_Management extends JFrame {
                 state = user.getManager().getRequestbySender(user, suggested).getState();
             }
 
-            if ("Pending".equalsIgnoreCase(state)) {
+            if (state == State.PENDING) {
                 // Create a panel for the "Pending" state
                 CustomPanel pendingPanel = new CustomPanel(suggested, "Pending");
                 pendingPanel.button1.addActionListener(e -> {
-                    user.getManager().getRequestbySender(user, suggested).setState("new");
+                    user.getManager().getRequestbySender(user, suggested).setState(State.CANCELLED);
                     panel1.remove(pendingPanel);
 
                     CustomPanel sendRequestPanel = createSendRequestPanel(suggested);
@@ -94,7 +96,7 @@ public class Suggestions_Management extends JFrame {
 
             CustomPanel pendingPanel = new CustomPanel(suggested, "Pending");
             pendingPanel.button1.addActionListener(_ -> {
-                user.getManager().getRequestbySender(user, suggested).setState("new");
+                user.getManager().getRequestbySender(user, suggested).setState(State.CANCELLED);
                 panel1.remove(pendingPanel);
                 panel1.add(customPanel);
                 refreshUI();

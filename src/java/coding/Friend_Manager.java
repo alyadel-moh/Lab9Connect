@@ -1,5 +1,6 @@
 package coding;
 
+import coding.ENUMS.State;
 import coding.Observer.ContentObserver;
 import coding.Interfaces.Requester;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -117,8 +118,8 @@ public class Friend_Manager implements Requester{
             throw new IllegalArgumentException("Request Doesn't exist anymore!");
         }
 
-        if ("Pending".equalsIgnoreCase(request.getState())){
-            receiver.getManager().getRequest(receiver).setState("Cancelled");
+        if (request.getState() == State.PENDING){
+            receiver.getManager().getRequest(receiver).setState(State.CANCELLED);
             receiver.getManager().getRequests().remove(request);
             FriendHandler.getAllFriendReq().remove(request);
         }
@@ -154,7 +155,7 @@ public class Friend_Manager implements Requester{
         // Check if a similar request already exists
         for (FriendRequest req : receiver.getRequests()) {
             if (req.getSender().equals(this.user) && req.getReceiver().equals(receiver)) {
-                if (req.getState().equalsIgnoreCase("Pending")) {
+                if (req.getState() == State.PENDING) {
                     throw new IllegalArgumentException("Request already pending.");
                 }
             }
