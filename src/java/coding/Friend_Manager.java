@@ -1,7 +1,6 @@
 package coding;
 
 import coding.ENUMS.State;
-import coding.Observer.ContentObserver;
 import coding.Interfaces.Requester;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -70,12 +69,12 @@ public class Friend_Manager implements Requester{
     }
 
     //load posts of each user according to their id
-    public void loadHisOwnRequets(String userId){
+    public void loadHisOwnRequests(String userId){
         loadRequests();
-        ArrayList<FriendRequest> loadedrequests = getFriendRequestByUserId(userId);
+        ArrayList<FriendRequest> loadedRequests = getFriendRequestByUserId(userId);
 
-        if(!loadedrequests.isEmpty()){
-            requests.addAll(loadedrequests);
+        if(loadedRequests != null && !loadedRequests.isEmpty()){
+            requests.addAll(loadedRequests);
         }
 
         System.out.println("his own requests size "+requests.size());
