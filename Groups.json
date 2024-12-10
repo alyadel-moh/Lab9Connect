@@ -1,53 +1,47 @@
 {
-  "Fara3naaaa" : {
-    "members" : [ ],
-    "profilepath" : "C:\\Users\\Administrator\\Desktop\\egyptian-hieroglyphs-ancient-drawings-clay-tablets-papyri-background-art-egypt_90380-3685.avif",
-    "primaryadmin" : {
-      "profilepath" : "C:\\Users\\Administrator\\Documents\\images (1).jpeg",
-      "coverpath" : null,
-      "bio" : null,
-      "password" : "07723834f2ea5f82c49a7807f923f0f6e66ae3f0af50d52333c1d0d1b89d2b0e",
-      "email" : "shams@gmail.com",
-      "status" : "online",
-      "userId" : "e8ba13e9",
-      "userName" : "shams",
-      "dateOfBirth" : "2024-12-05",
-      "receivedRequest" : true
-    },
-    "description" : "all about Fara3naaa",
-    "name" : "Fara3naaaa",
-    "otheradmins" : [ ],
-    "posts" : null
-  },
-  "Another Group" : {
+  "" : {
     "members" : [ {
       "profilepath" : "images/account.png",
       "coverpath" : null,
       "bio" : null,
-      "password" : "7d980bbde514db41b1a9cbc7be8c6ac32111f32c63f29147fff16cc575d5401c",
-      "email" : "mai@gmail.com",
+      "password" : "189f40034be7a199f1fa9891668ee3ab6049f82d38c68be70f596eab2e1857b7",
+      "email" : "j@gmail.com",
       "status" : "offline",
-      "userId" : "e002e274",
-      "userName" : "mai",
+      "receivedRequest" : false,
+      "userId" : "4f325789",
+      "userName" : "j",
       "dateOfBirth" : "2024-12-09",
-      "receivedRequest" : false
+      "observer" : null
     } ],
     "profilepath" : null,
     "primaryadmin" : {
-      "profilepath" : "C:\\Users\\Administrator\\Documents\\images (1).jpeg",
+      "profilepath" : "C:\\Users\\alyad\\Pictures\\refactored.drawio (1).png",
       "coverpath" : null,
       "bio" : null,
-      "password" : "07723834f2ea5f82c49a7807f923f0f6e66ae3f0af50d52333c1d0d1b89d2b0e",
-      "email" : "shams@gmail.com",
+      "password" : "f789c4d98a4ee924f6611a858aed07c30b6c903ad874dd6a1961b42e8c9792b5",
+      "email" : "alyy@gmail.com",
       "status" : "online",
-      "userId" : "e8ba13e9",
-      "userName" : "shams",
+      "receivedRequest" : false,
+      "userId" : "0f2dd7ac",
+      "userName" : "alyy",
       "dateOfBirth" : "2024-12-05",
-      "receivedRequest" : true
+      "observer" : null
     },
-    "description" : "for ay 7aga",
-    "name" : "Another Group",
-    "otheradmins" : [ ],
+    "description" : "",
+    "name" : "",
+    "otheradmins" : [ {
+      "profilepath" : "images/account.png",
+      "coverpath" : null,
+      "bio" : null,
+      "password" : "f4a4ce5fa6340a35aa5db0b4b6d31a6fbaa6052356460dbb0537657d803f5be2",
+      "email" : "mo@gmail.com",
+      "status" : "offline",
+      "receivedRequest" : false,
+      "userId" : "be4d84ca",
+      "userName" : "mo",
+      "dateOfBirth" : "2024-12-08",
+      "observer" : null
+    } ],
     "posts" : null
   }
 }

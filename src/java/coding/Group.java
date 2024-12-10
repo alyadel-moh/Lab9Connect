@@ -103,10 +103,10 @@ public class Group  {
         return "Group{" +
                 "description='" + description + '\'' +
                 ", members=" + members +
-                ", profilepath='" + profilepath + '\'' +
-                ", primaryadmin=" + primaryadmin +
+                ", profile path='" + profilepath + '\'' +
+                ", primary admin=" + primaryadmin +
                 ", name='" + name + '\'' +
-                ", otheradmins=" + otheradmins +
+                ", other admins=" + otheradmins +
                 ", posts=" + posts +
                 '}';
     }

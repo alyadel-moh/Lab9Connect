@@ -1,8 +1,6 @@
 package coding;
 
 import javax.swing.*;
-import javax.swing.border.LineBorder;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -38,12 +36,12 @@ public class ProfileManagement extends JFrame{
         updateProfilePhotoButton.addActionListener(e -> {
             setVisible(false);
             user.setProfile();
-            System.out.println(user.getProfilepath());
+            System.out.println(user.getProfilePath());
         });
         updateCoverPhotoButton.addActionListener(e -> {
             setVisible(false);
             user.setCover();
-            System.out.println(user.getCoverpath());
+            System.out.println(user.getCoverPath());
         });
         updateBioButton.addActionListener(e -> {
             setVisible(false);

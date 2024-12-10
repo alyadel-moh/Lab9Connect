@@ -57,7 +57,7 @@ public class Group_Manager implements Requester {
         return false;
     }
 
-    public void viewsuggestions(User user) {
+    public void viewSuggestions(User user) {
         for (String key : allgroups.keySet()) {
             if (!isMember(user, allgroups.get(key)) && !suggestions.contains(allgroups.get(key)) && !friendManager.getBlocked().contains(allgroups.get(key).getPrimaryadmin()))
                 suggestions.add(allgroups.get(key));
@@ -83,7 +83,7 @@ public class Group_Manager implements Requester {
         }
     }
 
-    public void removemember(Group group, User member, User primaryadmin, User otheradmin) {
+    public void removeMember(Group group, User member, User primaryadmin, User otheradmin) {
         if (group.getPrimaryadmin().equals(primaryadmin))
             group.getMembers().remove(member);
         else if (group.getOtheradmins().contains(otheradmin)) {
@@ -97,7 +97,7 @@ public class Group_Manager implements Requester {
 
     @Override
     public String toString() {
-        return "Groupmanager{" +
+        return "Group manager{" +
                 "friendManager=" + friendManager +
                 ", groups=" + groups +
                 ", post=" + post +

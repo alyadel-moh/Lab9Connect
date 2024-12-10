@@ -49,7 +49,7 @@ public class Profile extends JFrame {
         panel.add(profileTitle);
 
         // Add Profile Picture
-        ImageIcon profileImageIcon = new ImageIcon(new ImageIcon(user.getProfilepath()).getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH));
+        ImageIcon profileImageIcon = new ImageIcon(new ImageIcon(user.getProfilePath()).getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH));
         JLabel profilePic = new JLabel(profileImageIcon);
         profilePic.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Add padding
         panel.add(profilePic);
@@ -63,7 +63,7 @@ public class Profile extends JFrame {
         panel.add(coverTitle);
 
         // Add Cover Picture
-        ImageIcon coverImageIcon = new ImageIcon(new ImageIcon(user.getCoverpath()).getImage().getScaledInstance(400, 200, Image.SCALE_SMOOTH));
+        ImageIcon coverImageIcon = new ImageIcon(new ImageIcon(user.getCoverPath()).getImage().getScaledInstance(400, 200, Image.SCALE_SMOOTH));
         JLabel coverPic = new JLabel(coverImageIcon);
         coverPic.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Add padding
         panel.add(coverPic);

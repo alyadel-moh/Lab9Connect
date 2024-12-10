@@ -16,8 +16,8 @@ import java.util.ArrayList;
 @JsonDeserialize(builder = User.UserBuilder.class)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class User {
-    private String profilepath;
-    private String  coverpath;
+    private String profilePath;
+    private String coverPath;
     private String bio;
     private String password;
     private String email;
@@ -55,8 +55,8 @@ public class User {
         this.friendHandler=new FriendHandler();
         this.receivedRequest = false;
 
-        this.profilepath = getProfilepath();
-        this.coverpath = getCoverpath();
+        this.profilePath = getProfilePath();
+        this.coverPath = getCoverPath();
         this.bio = getBio();
     }
 
@@ -146,8 +146,8 @@ public class User {
 
         public User build() {
              User user = new User(userId, password, userName, email, dateOfBirth, status);
-            user.profilepath = this.profilepath;
-            user.coverpath = this.coverpath;
+            user.profilePath = this.profilepath;
+            user.coverPath = this.coverpath;
             user.bio = this.bio;
             user.receivedRequest = this.receivedRequest;
             return user;
@@ -171,7 +171,7 @@ public class User {
             File selectedFile = fileChooser.getSelectedFile();
             if(selectedFile.exists()){
 
-                coverpath = selectedFile.getAbsolutePath();
+                coverPath = selectedFile.getAbsolutePath();
                 Database database = Database.getInstance();
                 database.saveUsers();
                 JOptionPane.showMessageDialog(null,"Image Chosen successfully");
@@ -194,7 +194,7 @@ public class User {
             File selectedFile = fileChooser.getSelectedFile();
             if(selectedFile.exists()){
 
-                profilepath = selectedFile.getAbsolutePath();
+                profilePath = selectedFile.getAbsolutePath();
                 Database database = Database.getInstance();
                 database.saveUsers();
                 JOptionPane.showMessageDialog(null,"Image Chosen successfully");
@@ -206,19 +206,19 @@ public class User {
     }
 
     public void setCoverpath(){
-        this.coverpath = "images/account.png";
+        this.coverPath = "images/account.png";
     }
 
     public void setProfilepath() {
-        this.profilepath = "images/account.png";
+        this.profilePath = "images/account.png";
     }
 
-    public String getProfilepath() {
-        return profilepath;
+    public String getProfilePath() {
+        return profilePath;
     }
 
-    public String getCoverpath() {
-        return coverpath;
+    public String getCoverPath() {
+        return coverPath;
     }
 
     public void setBio(String bio) {
@@ -299,11 +299,14 @@ public class User {
     }
 
 
-   /* public String toString(){
-        return "UserId" + userId +
-                "UserName" + userName +
-                "UserEmail" + email +
-                "password" + password;
+    /*public String toString(){
+        return "UserId: " + userId +
+                "UserName: " + userName +
+                "UserEmail: " + email +
+                "password" + password +
+                "Status: " + status +
+                "Date of Birth: " + dateOfBirth;
+
 
     }*/
 

@@ -325,7 +325,7 @@ public class Friend_Manager implements Requester{
             for (User friend : friends) {
                 if ("online".equalsIgnoreCase(friend.getStatus())) {
                     // Get friend's profile picture
-                    ImageIcon profilePic = new ImageIcon(friend.getProfilepath());
+                    ImageIcon profilePic = new ImageIcon(friend.getProfilePath());
                     JLabel profileLabel = createCircularLabel(profilePic);
                     activePanel.add(profileLabel);
                 }

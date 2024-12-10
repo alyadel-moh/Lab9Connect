@@ -1,9 +1,6 @@
 package coding;
 
-import coding.testtt.CircleButton;
-
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
@@ -99,7 +96,7 @@ public class CustomPanel extends JPanel {
         button.setBackground(Color.white);
         button.setBorder(BorderFactory.createLineBorder(Color.black));
         button.setFocusPainted(false);
-        Image image = new ImageIcon(user.getProfilepath()).getImage();
+        Image image = new ImageIcon(user.getProfilePath()).getImage();
         Image scaled = image.getScaledInstance(70,70,Image.SCALE_SMOOTH);
         button.setIcon(new ImageIcon(scaled));
         return button;
