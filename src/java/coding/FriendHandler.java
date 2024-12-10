@@ -90,7 +90,7 @@ public class FriendHandler {
     // Check if a friend request is pending
     public boolean hasPendingRequest(String userId, String friendId) {
         return allFriendReq.stream().anyMatch(request ->
-                request.getSender().getUserId().equals(userId) && request.getReceiver().getUserId().equals(friendId)
+                request.getSender().getUserId().equals(userId) && ((User)request.getReceiver()).getUserId().equals(friendId)
         );
     }
 

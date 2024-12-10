@@ -32,15 +32,13 @@ public class User {
     @JsonIgnore private final ContentHandler handler;
     @JsonIgnore private final ContentNotifier notifier;
     @JsonIgnore private Group_Manager groupManager;
+    @JsonIgnore  private Notifications notificationWindow;
 
     // User properties
     private final String userId;
     private final String userName;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private final LocalDate dateOfBirth;
-
-    // Notifications
-    private Notifications notificationWindow;
 
     // Constructor
     private User(String userId, String password, String userName, String email, LocalDate dateOfBirth, String status) {
