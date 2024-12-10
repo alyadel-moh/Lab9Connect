@@ -2,6 +2,7 @@ package coding;
 
 import coding.ENUMS.State;
 import coding.Interfaces.Requester;
+import coding.Observer.ContentObserver;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -17,12 +18,12 @@ import java.util.ArrayList;
 
 
 public class Friend_Manager implements Requester{
-    private User user;
+    private final User user;
     private final ArrayList<FriendRequest> requests;
     private final ArrayList<User> friends;
     private final ArrayList<User> suggestions;
     private final ArrayList<User> blocked;
-    private ObjectMapper objectMapper;
+    private final ObjectMapper objectMapper;
     private static ArrayList<FriendRequest>allRequests=new ArrayList<>();
 
     Friend_Manager(User user) {
@@ -210,10 +211,15 @@ public class Friend_Manager implements Requester{
         request.accept(); // Update request state
         requests.remove(request); // Remove request
         allRequests.remove(request);//remove from allRequests
+
         saveRequests();
         friends.add(sender); // Add to friends list
+
         sender.getManager().getFriends().add(receiver);
-//        user.getNotifier().addObserver((ContentObserver) sender);
+
+        sender.createObserver();
+        user.getNotifier().addObserver(sender.getObserver());
+
         user.getFriendHandler().addFriend(((User) request.getReceiver()).getUserId(),request.getSender().getUserId());
         user.getFriendHandler().saveFriends();
 
