@@ -34,14 +34,6 @@ public class ContentHandler {
         this.objectMapper.registerModule(new JavaTimeModule());//JavaTimeModule helps to write the localTime to file
         this.objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
-//        File file = new File(storyPath);
-//        if (!file.exists()) {
-//            file.mkdirs(); // Create folder if it doesn't exist
-//        }
-//        File file2 = new File(postsPath);
-//        if (!file2.exists()) {
-//            file2.mkdirs(); // Create folder if it doesn't exist
-//        }
 
         // Register the JavaTimeModule to handle LocalDateTime serialization
         objectMapper.registerModule(new JavaTimeModule());
@@ -51,9 +43,9 @@ public class ContentHandler {
 
     public ArrayList<Stories> getActiveStories() {
         ArrayList<Stories> activeStories = new ArrayList<>();
-        for(int i=0;i<stories.size();i++){
-            if(!stories.get(i).isExpired()){
-                activeStories.add(stories.get(i));
+        for (Stories story : stories) {
+            if (!story.isExpired()) {
+                activeStories.add(story);
             }
         }
         return activeStories;
@@ -65,6 +57,7 @@ public class ContentHandler {
                 allStories.remove(allStories.get(i));
             }
         }
+
         for(int i=0;i<stories.size();i++){
             if(stories.get(i).isExpired()){
                 stories.remove(stories.get(i));
@@ -94,13 +87,16 @@ public class ContentHandler {
         }
     }
 
-    public void addPost(Posts post){
+    public void addPost(Posts post, User user){
         posts.add(post);
         allPosts.add(post);
+        user.getNotifier().notifyObservers(user, " posted a new photo!", null);
     }
-    public void addStory(Stories story){
+
+    public void addStory(Stories story, User user){
         stories.add(story);
         allStories.add(story);
+        user.getNotifier().notifyObservers(user, " posted a new story", null);
     }
 
     public ArrayList<Stories> getStories(){

@@ -1,5 +1,6 @@
 package coding;
 
+import coding.ENUMS.REQUEST;
 import coding.ENUMS.STATE;
 import coding.Interfaces.Requester;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -162,7 +163,7 @@ public class Friend_Manager implements Requester{
         }
 
         // Create and send new request
-        FriendRequest newRequest = (FriendRequest) RequestFactory.createRequest("friend request", this.user, receiver.getUserId());
+        FriendRequest newRequest = (FriendRequest) RequestFactory.createRequest(REQUEST.FRIENDREQUEST, this.user, receiver.getUserId());
         receiver.getManager().setReceivedRequest(newRequest);
         user.getNotifier().notifyObservers(user, " sent you a friend request", receiver);
     }

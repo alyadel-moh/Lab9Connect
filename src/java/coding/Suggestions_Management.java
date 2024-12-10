@@ -1,5 +1,6 @@
 package coding;
 
+import coding.ENUMS.REQUEST;
 import coding.ENUMS.STATE;
 
 import javax.swing.*;
@@ -54,7 +55,7 @@ public class Suggestions_Management extends JFrame {
         for (User suggested : suggestions) {
             STATE state = null;
 
-            FriendRequest request = (FriendRequest) RequestFactory.createRequest("friend request", user, suggested.getUserId());
+            FriendRequest request = (FriendRequest) RequestFactory.createRequest(REQUEST.FRIENDREQUEST, user, suggested.getUserId());
 
             if (user.getManager().getRequests().contains(request)) {
                 state = user.getManager().getRequestbySender(user, suggested).getState();

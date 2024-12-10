@@ -5,20 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b070c600-f384-439e-b49a-9b65b4c8f3b6" name="Changes" comment="Merge branch 'main' of https://github.com/shamsquraytum/Lab9Connect&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
-      <change afterPath="$PROJECT_DIR$/src/java/coding/ENUMS/CONTENT_TYPE.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/java/coding/ENUMS/REQUEST.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FriendRequests.json" beforeDir="false" afterPath="$PROJECT_DIR$/FriendRequests.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Friends.json" beforeDir="false" afterPath="$PROJECT_DIR$/Friends.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Users.json" beforeDir="false" afterPath="$PROJECT_DIR$/Users.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/coding/AddPost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/AddPost.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/ContentFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/ContentFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/ENUMS/State.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/ENUMS/STATE.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/FriendHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/FriendHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/AddStory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/AddStory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/ContentHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/ContentHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/coding/Friend_Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Friend_Manager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Homepage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Homepage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Request.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/RequestFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/RequestFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/coding/Suggestions_Management.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Suggestions_Management.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +106,7 @@
       <recent name="C:\Users\Administrator\Documents\GitHub\Lab9Connect\src\java\coding" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.AddPost">
+  <component name="RunManager" selected="Application.Window1">
     <configuration name="AddPost" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="coding.AddPost" />
       <module name="Lab9Connect2" />
@@ -182,8 +174,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.AddPost" />
         <item itemvalue="Application.Window1" />
+        <item itemvalue="Application.AddPost" />
         <item itemvalue="Application.Homepage" />
         <item itemvalue="Application.Notifications" />
         <item itemvalue="Application.Feedpage" />

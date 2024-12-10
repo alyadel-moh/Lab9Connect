@@ -45,7 +45,8 @@ public class AddPost extends JFrame{
                     String content = textOfContent.getText() + "@" + imagepath;
                     String postId = "Post "+(user.getHandler().getPosts().size()+1);//Creates id for the content
                     Posts post = (Posts) ContentFactory.createContent(CONTENT_TYPE.POST, postId, user.getUserId(), content, currentTime);
-                    user.getHandler().addPost(post);
+
+                    user.getHandler().addPost(post, user);
                     JOptionPane.showMessageDialog(null,"Post Added Successfully");
                     setVisible(false);
                 }
