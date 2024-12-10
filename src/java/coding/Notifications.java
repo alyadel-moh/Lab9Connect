@@ -86,6 +86,7 @@ public class Notifications extends JFrame implements ContentObserver {
 
      public static void main(String[] args) {
          ContentNotifier notifier = new ContentNotifier();
+
          User user = new User.UserBuilder()
                  .setUserName("John Doe")
                  .build();

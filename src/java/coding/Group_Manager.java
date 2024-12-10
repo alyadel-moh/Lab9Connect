@@ -83,7 +83,7 @@ public class Group_Manager implements Requester {
         }
     }
 
-    public void removemember(Group group, User member, User primaryadmin, User otheradmin) {
+    public void removeMember(Group group, User member, User primaryadmin, User otheradmin) {
         if (group.getPrimaryadmin().equals(primaryadmin))
             group.getMembers().remove(member);
         else if (group.getOtheradmins().contains(otheradmin)) {
