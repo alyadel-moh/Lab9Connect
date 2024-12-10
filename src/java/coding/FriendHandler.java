@@ -1,5 +1,6 @@
 package coding;
 
+import coding.ENUMS.STATE;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -182,7 +183,7 @@ public class FriendHandler {
             try {
                 allFriendReq = objectMapper.readValue(file, new TypeReference<ArrayList<FriendRequest>>() {});
                 // Use an iterator to safely remove elements
-                allFriendReq.removeIf(request -> !"Pending".equalsIgnoreCase(request.getState()));
+                allFriendReq.removeIf(request -> !(request.getState() == STATE.PENDING));
             } catch (IOException e) {
                 System.out.println("Error occurred while loading requests.");
                 e.printStackTrace(); // Improved logging

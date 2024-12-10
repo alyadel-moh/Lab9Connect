@@ -1,6 +1,6 @@
 package coding;
 
-import coding.Observer.ContentObserver;
+import coding.ENUMS.STATE;
 import coding.Interfaces.Requester;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -17,12 +17,12 @@ import java.util.ArrayList;
 
 
 public class Friend_Manager implements Requester{
-    private User user;
+    private final User user;
     private final ArrayList<FriendRequest> requests;
     private final ArrayList<User> friends;
     private final ArrayList<User> suggestions;
     private final ArrayList<User> blocked;
-    private ObjectMapper objectMapper;
+    private final ObjectMapper objectMapper;
     private static ArrayList<FriendRequest>allRequests=new ArrayList<>();
 
     Friend_Manager(User user) {
@@ -69,26 +69,30 @@ public class Friend_Manager implements Requester{
     }
 
     //load posts of each user according to their id
-    public void loadHisOwnRequets(String userId){
+    public void loadHisOwnRequests(String userId){
         loadRequests();
-        ArrayList<FriendRequest> loadedrequests = getFriendRequestByUserId(userId);
+        ArrayList<FriendRequest> loadedRequests = getFriendRequestByUserId(userId);
 
-        if(!loadedrequests.isEmpty()){
-            requests.addAll(loadedrequests);
+        if(loadedRequests != null && !loadedRequests.isEmpty()){
+            requests.addAll(loadedRequests);
         }
 
         System.out.println("his own requests size "+requests.size());
         System.out.println("all requests size "+allRequests.size());
     }
-    public ArrayList<FriendRequest> getFriendRequestByUserId(String userId){
-        ArrayList<FriendRequest>friendRequestsByUserId=new ArrayList<>();
+
+    public ArrayList<FriendRequest> getFriendRequestByUserId(String userId) {
+        ArrayList<FriendRequest> friendRequestsByUserId = new ArrayList<>();
 
         for (FriendRequest request : allRequests) {
-            if (((User)request.getReceiver()).getUserId().equals(userId)) {
-                friendRequestsByUserId.add(request);
+            if (request.getReceiver() instanceof User receiver) {
+                if (receiver.getUserId().equals(userId)) {
+                    friendRequestsByUserId.add(request);
+                }
             }
+            return friendRequestsByUserId;
         }
-        return friendRequestsByUserId;
+        return null;
     }
 
     public void setSuggestions(ArrayList<User> users){
@@ -114,8 +118,8 @@ public class Friend_Manager implements Requester{
             throw new IllegalArgumentException("Request Doesn't exist anymore!");
         }
 
-        if ("Pending".equalsIgnoreCase(request.getState())){
-            receiver.getManager().getRequest(receiver).setState("Cancelled");
+        if (request.getState() == STATE.PENDING){
+            receiver.getManager().getRequest(receiver).setState(STATE.CANCELLED);
             receiver.getManager().getRequests().remove(request);
             FriendHandler.getAllFriendReq().remove(request);
         }
@@ -151,7 +155,7 @@ public class Friend_Manager implements Requester{
         // Check if a similar request already exists
         for (FriendRequest req : receiver.getRequests()) {
             if (req.getSender().equals(this.user) && req.getReceiver().equals(receiver)) {
-                if (req.getState().equalsIgnoreCase("Pending")) {
+                if (req.getState() == STATE.PENDING) {
                     throw new IllegalArgumentException("Request already pending.");
                 }
             }
@@ -207,10 +211,15 @@ public class Friend_Manager implements Requester{
         request.accept(); // Update request state
         requests.remove(request); // Remove request
         allRequests.remove(request);//remove from allRequests
+
         saveRequests();
         friends.add(sender); // Add to friends list
+
         sender.getManager().getFriends().add(receiver);
-//        user.getNotifier().addObserver((ContentObserver) sender);
+
+        sender.createObserver();
+        user.getNotifier().addObserver(sender.getObserver());
+
         user.getFriendHandler().addFriend(((User) request.getReceiver()).getUserId(),request.getSender().getUserId());
         user.getFriendHandler().saveFriends();
 

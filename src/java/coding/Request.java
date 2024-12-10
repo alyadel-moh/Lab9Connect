@@ -1,41 +1,55 @@
 package coding;
 
+import coding.ENUMS.STATE;
+
 public class Request<T> {
-    private String state;
+    private STATE state;
     private User sender;
     private T receiver;
 
-    public Request(){
-
+    // Default constructor
+    public Request() {
+        this.state = STATE.PENDING; // Default state
     }
 
+    // Parameterized constructor
     public Request(User sender, T receiver) {
-        this.state = "Pending";
+        this();
         this.sender = sender;
         this.receiver = receiver;
     }
 
-    public String getState() {
+
+    // Getter for state
+    public STATE getState() {
         return state;
     }
 
-    public void setState(String state) {
+    // Setter for state
+    public void setState(STATE state) {
+        if (state == null) {
+            throw new IllegalArgumentException("State cannot be null.");
+        }
         this.state = state;
     }
 
-    public User getSender(){
+    // Getter for sender
+    public User getSender() {
         return sender;
     }
 
+    // Getter for receiver
     public T getReceiver() {
         return receiver;
     }
 
+    // Decline the request
     public void decline() {
-        state = "Declined";
+        this.state = STATE.DECLINED;
     }
 
+    // Accept the request
     public void accept() {
-        state = "Accepted";
+        this.state = STATE.ACCEPTED;
     }
 }

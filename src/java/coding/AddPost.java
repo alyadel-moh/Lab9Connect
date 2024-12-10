@@ -1,5 +1,7 @@
 package coding;
 
+import coding.ENUMS.CONTENT_TYPE;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
@@ -41,8 +43,8 @@ public class AddPost extends JFrame{
                 else{
                     LocalDateTime currentTime= LocalDateTime.now();
                     String content = textOfContent.getText() + "@" + imagepath;
-                    String postId="Post "+(user.getHandler().getPosts().size()+1);//Creates id for the content
-                    Posts post=new Posts(postId,user.getUserId(),content,currentTime);
+                    String postId = "Post "+(user.getHandler().getPosts().size()+1);//Creates id for the content
+                    Posts post = (Posts) ContentFactory.createContent(CONTENT_TYPE.POST, postId, user.getUserId(), content, currentTime);
                     user.getHandler().addPost(post);
                     JOptionPane.showMessageDialog(null,"Post Added Successfully");
                     setVisible(false);

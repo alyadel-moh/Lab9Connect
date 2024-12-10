@@ -1,5 +1,7 @@
 package coding;
 
+import coding.ENUMS.CONTENT_TYPE;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
@@ -41,7 +43,8 @@ public class AddStory extends JFrame {
                     LocalDateTime currentTime= LocalDateTime.now();
                     String content=textOfContent.getText()+"@"+imagepath;
                     String storyId="Story "+user.getHandler().getStories().size()+1;//Creates id for the content
-                    Stories story=new Stories(storyId,user.getUserId(),content,currentTime);
+                    Stories story = (Stories) ContentFactory.createContent(CONTENT_TYPE.STORY, storyId, user.getUserId(), content, currentTime);
+
                     user.getHandler().addStory(story);
                     JOptionPane.showMessageDialog(null,"Story added Successfully");
                     setVisible(false);
