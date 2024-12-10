@@ -80,15 +80,18 @@ public class Friend_Manager implements Requester{
         System.out.println("his own requests size "+requests.size());
         System.out.println("all requests size "+allRequests.size());
     }
-    public ArrayList<FriendRequest> getFriendRequestByUserId(String userId){
-        ArrayList<FriendRequest>friendRequestsByUserId=new ArrayList<>();
+    public ArrayList<FriendRequest> getFriendRequestByUserId(String userId) {
+        ArrayList<FriendRequest> friendRequestsByUserId = new ArrayList<>();
 
         for (FriendRequest request : allRequests) {
-            if (((User)request.getReceiver()).getUserId().equals(userId)) {
-                friendRequestsByUserId.add(request);
+            if (request.getReceiver() instanceof User receiver) {
+                if (receiver.getUserId().equals(userId)) {
+                    friendRequestsByUserId.add(request);
+                }
             }
+            return friendRequestsByUserId;
         }
-        return friendRequestsByUserId;
+        return null;
     }
 
     public void setSuggestions(ArrayList<User> users){
