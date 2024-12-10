@@ -250,7 +250,7 @@ public class Friend_Manager implements Requester{
         friends.remove(friend);
         user.getFriendHandler().deleteFriend(user,friend);
         friend.getManager().getFriends().remove(user);
-        user.getNotifier().removeObserver((ContentObserver) friend);
+        user.getNotifier().removeObserver(friend.getObserver());
         blocked.add(friend);
     }
 
@@ -276,7 +276,7 @@ public class Friend_Manager implements Requester{
         friends.remove(friend);
 //        friend.getManager().getFriends().remove(user);
         user.getFriendHandler().deleteFriend(user,friend);
-        user.getNotifier().removeObserver((ContentObserver) friend);
+        user.getNotifier().removeObserver(friend.getObserver());
         suggestions.add(friend);
     }
 

@@ -6,11 +6,11 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class SearchManagement extends JFrame {
-    private User user;
-    private UserService service;
-    private JPanel panel1;
-    private String searchedString;
-    private Groupmanager groupmanager;
+    private final User user;
+    private final UserService service;
+    private final JPanel panel1;
+    private final String searchedString;
+    private final Group_Manager groupmanager;
     private Group group;
 
     SearchManagement(User user, UserService service, JPanel homePanel,String searchedString) {
@@ -18,7 +18,7 @@ public class SearchManagement extends JFrame {
         this.user = user;
         this.service = service;
         this.searchedString=searchedString;
-        this.groupmanager = user.getGroupmanager();
+        this.groupmanager = user.getGroupManager();
         // If the home panel isn't provided
         if (homePanel == null) {
             this.panel1 = new JPanel();
@@ -54,7 +54,7 @@ public class SearchManagement extends JFrame {
         }
 
         // Search for groups
-        for (Map.Entry<String, Group> entry : Groupmanager.getAllgroups().entrySet()) {
+        for (Map.Entry<String, Group> entry : Group_Manager.getAllgroups().entrySet()) {
             System.out.println("Group in manager: " + entry.getKey() + " - " + entry.getValue().getName());
             Group group = entry.getValue();
             if (group.getName().toLowerCase().contains(searchedString.toLowerCase())) {
@@ -76,12 +76,10 @@ public class SearchManagement extends JFrame {
 
         // Iterate through both user and group results
         for (Object result : searchResults) {
-            if (result instanceof User) {
-                User searchedUser = (User) result;
+            if (result instanceof User searchedUser) {
                 JPanel userPanel = createUserPanel(searchedUser);
                 panel1.add(userPanel);
-            } else if (result instanceof Group) {
-                Group searchedGroup = (Group) result;
+            } else if (result instanceof Group searchedGroup) {
                 System.out.println("Displaying group: " + searchedGroup.getName());
                 JPanel groupPanel = createGroupPanel(searchedGroup);
                 panel1.add(groupPanel);
@@ -203,7 +201,6 @@ public class SearchManagement extends JFrame {
     private void viewGroup(Group searchedGroup) {
         if (!searchedGroup.getMembers().contains(user)) {
             JOptionPane.showMessageDialog(null, "You need to join the group to view its posts.");
-            return;
         }
         // new GroupProfile(searchedGroup, user);
     }

@@ -23,7 +23,7 @@ public class View_Groups_List2 extends JFrame {
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 
         // Add suggestions to the panel
-        populateGroups(otheradmin.getGroupmanager().getGroups());
+        populateGroups(otheradmin.getGroupManager().getGroups());
 
         setContentPane(scrollPane);
 

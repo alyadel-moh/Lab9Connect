@@ -12,9 +12,9 @@ import java.util.ArrayList;
 public class FriendHandler {
     //private static ContentHandler instance;
     private final ObjectMapper objectMapper;
-    private ArrayList<Friend> friends;
-    private ArrayList<FriendRequest> friendReqs;
-    private ArrayList<FriendSuggestions> friendSuggestions;
+    private final ArrayList<Friend> friends;
+    private final ArrayList<FriendRequest> friendReqs;
+    private final ArrayList<FriendSuggestions> friendSuggestions;
     private static ArrayList<FriendRequest> allFriendReq= new ArrayList<>();//static to be shared with all instances to save all posts
     private static ArrayList<Friend> allFriends=new ArrayList<Friend>();//will intialize it with empty arraylist once the class is loaded
     private static ArrayList<FriendSuggestions> allFriendSuggestions=new ArrayList<FriendSuggestions>();
@@ -90,7 +90,7 @@ public class FriendHandler {
     // Check if a friend request is pending
     public boolean hasPendingRequest(String userId, String friendId) {
         return allFriendReq.stream().anyMatch(request ->
-                request.getSender().getUserId().equals(userId) && request.getReceiver().getUserId().equals(friendId)
+                request.getSender().getUserId().equals(userId) && ((User)request.getReceiver()).getUserId().equals(friendId)
         );
     }
 
@@ -116,9 +116,9 @@ public class FriendHandler {
     //return arraylist of friends that is related by a certain user by its ID
     public ArrayList<Friend> getFriendsByUserId(String userId){
         ArrayList<Friend> friendsById=new ArrayList<>();
-        for(int i=0;i<allFriends.size();i++){
-            if(allFriends.get(i).getUserId().equals(userId)){
-                friendsById.add(allFriends.get(i));
+        for (Friend allFriend : allFriends) {
+            if (allFriend.getUserId().equals(userId)) {
+                friendsById.add(allFriend);
             }
         }
         return friendsById;
@@ -126,9 +126,9 @@ public class FriendHandler {
 
     public ArrayList<FriendSuggestions> getFriendSuggestionsByUserId(String userId){
         ArrayList<FriendSuggestions> friendSuggestionsById=new ArrayList<>();
-        for(int i=0;i<allFriendSuggestions.size();i++){
-            if(allFriendSuggestions.get(i).getUserId().equals(userId)){
-                friendSuggestionsById.add(allFriendSuggestions.get(i));
+        for (FriendSuggestions allFriendSuggestion : allFriendSuggestions) {
+            if (allFriendSuggestion.getUserId().equals(userId)) {
+                friendSuggestionsById.add(allFriendSuggestion);
             }
         }
         return friendSuggestionsById;
@@ -136,9 +136,10 @@ public class FriendHandler {
 
     public ArrayList<FriendRequest> getFriendReqsByUserId(String userId){
         ArrayList<FriendRequest> friendReqsById=new ArrayList<>();
-        for(int i=0;i<allFriendReq.size();i++){
-            if(allFriendReq.get(i).getSender().getUserId().equals(userId)){
-                friendReqsById.add(allFriendReq.get(i));
+
+        for (FriendRequest friendRequest : allFriendReq) {
+            if (friendRequest.getSender().getUserId().equals(userId)) {
+                friendReqsById.add(friendRequest);
             }
         }
         return friendReqsById;
@@ -199,9 +200,7 @@ public class FriendHandler {
         ArrayList<Friend> loadedFriends = getFriendsByUserId(userId);
 
         if(!loadedFriends.isEmpty()){
-            for(int i=0;i<loadedFriends.size();i++){
-                friends.add(loadedFriends.get(i));
-            }
+            friends.addAll(loadedFriends);
         }
         System.out.println("own friends "+loadedFriends.size());
         System.out.println("all friends "+allFriends.size());
@@ -212,9 +211,7 @@ public class FriendHandler {
         ArrayList<FriendSuggestions> loadedFriendSuggestions = getFriendSuggestionsByUserId(userId);
 
         if(!loadedFriendSuggestions.isEmpty()){
-            for(int i=0;i<loadedFriendSuggestions.size();i++){
-                friendSuggestions.add(loadedFriendSuggestions.get(i));
-            }
+            friendSuggestions.addAll(loadedFriendSuggestions);
         }
     }
 
@@ -222,16 +219,14 @@ public class FriendHandler {
         loadFriendReqs();
         ArrayList<FriendRequest> loadedFriendReqs = getFriendReqsByUserId(userId);
         if(!loadedFriendReqs.isEmpty()){
-            for(int i=0;i<loadedFriendReqs.size();i++){
-                friendReqs.add(loadedFriendReqs.get(i));
-            }
+            friendReqs.addAll(loadedFriendReqs);
         }
     }
 
     public Friend getFriendByUserAndFriendId(User user,User friend){
-        for(int i=0;i<allFriends.size();i++){
-            if(allFriends.get(i).getUserId().equals(user.getUserId())&&allFriends.get(i).getFriendId().equals(friend.getUserId())){
-                return allFriends.get(i);
+        for (Friend allFriend : allFriends) {
+            if (allFriend.getUserId().equals(user.getUserId()) && allFriend.getFriendId().equals(friend.getUserId())) {
+                return allFriend;
             }
         }
         return null;

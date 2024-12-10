@@ -1,6 +1,7 @@
 package coding;
 
 import coding.Observer.ContentNotifier;
+import coding.Observer.ContentObserver;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -21,24 +22,21 @@ public class User {
     private String password;
     private String email;
     private String status;
+    private boolean receivedRequest;
 
     private final String userId;
     private final String userName;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private final LocalDate dateOfBirth;
-    @JsonIgnore
-    private final JFileChooser jFileChooser = new JFileChooser();
-    @JsonIgnore
-    private FriendHandler friendHandler;
-    @JsonIgnore
-    private Friend_Manager manager;
-    @JsonIgnore
-    private ContentHandler handler;
-@JsonIgnore
-    private ContentNotifier notifier;
-    @JsonIgnore
-    private Group_Manager groupManager;
-    private boolean receivedRequest;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @JsonIgnore private final JFileChooser jFileChooser = new JFileChooser();
+    @JsonIgnore private final FriendHandler friendHandler;
+    @JsonIgnore private final Friend_Manager manager;
+    @JsonIgnore private final ContentHandler handler;
+    @JsonIgnore private final ContentNotifier notifier;
+    @JsonIgnore private Group_Manager groupManager;
+    @JsonIgnore private Notifications notificationsWindow;
+
 
     // Private constructor for User
     private User(String userId, String password, String userName, String email, LocalDate dateOfBirth, String status) {
@@ -48,25 +46,34 @@ public class User {
         this.email = email;
         this.dateOfBirth = dateOfBirth;
         this.status = status;
+
         this.manager = new Friend_Manager(this);
         this.handler = new ContentHandler();
+        this.notifier = new ContentNotifier();
+        this.groupManager = new Group_Manager();
+
         this.friendHandler=new FriendHandler();
         this.receivedRequest = false;
+
         this.profilepath = getProfilepath();
         this.coverpath = getCoverpath();
         this.bio = getBio();
-        this.notifier = new ContentNotifier();
-        this.groupManager = new Group_Manager();
     }
 
+    public void createObserver(){
+        notificationsWindow = new Notifications(this);
+    }
 
     public String getUserId() {
         return userId;
     }
 
+    public ContentObserver getObserver() {
+        return notificationsWindow;
+    }
 
 
-// Builder class for User
+    // Builder class for User
 @JsonPOJOBuilder(withPrefix = "set")
     public static class UserBuilder {
         private String userId;
@@ -270,7 +277,7 @@ public class User {
 
     public ContentNotifier getNotifier(){ return notifier;}
 
-    public Group_Manager getGroupmanager() {
+    public Group_Manager getGroupManager() {
         return groupManager;
     }
 

@@ -2,8 +2,6 @@ package coding;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 public class View_Groups_List extends JFrame {
@@ -27,7 +25,7 @@ public class View_Groups_List extends JFrame {
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 
         // Add suggestions to the panel
-        populateGroups(primaryadmin.getGroupmanager().getGroups());
+        populateGroups(primaryadmin.getGroupManager().getGroups());
 
         setContentPane(scrollPane);
 
@@ -57,7 +55,7 @@ public class View_Groups_List extends JFrame {
                 refreshUI();
             });
             customPanel.button2.addActionListener(_ -> {
-                primaryadmin.getGroupmanager().getGroups().remove(groups.get(key));
+                primaryadmin.getGroupManager().getGroups().remove(groups.get(key));
                 Group_Manager.getAllgroups().remove(groups.get(key));
                 panel1.remove(customPanel);
                 refreshUI();
