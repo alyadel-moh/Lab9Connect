@@ -2,6 +2,7 @@ package coding;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import coding.ENUMS.CONTENT_TYPE;
 
 public class Test {
     public static void main(String[] args) {
@@ -20,8 +21,8 @@ public class Test {
 
         // Step 2: Add content (posts and stories) for the user
         LocalDateTime currentTime = LocalDateTime.now();
-        Posts post = (Posts) ContentFactory.createContent("post","post1", "user1", "Hello, this is my first post!", currentTime);
-        Stories story = (Stories) ContentFactory.createContent("story","story1", "user1", "This is my first story!", currentTime.minusHours(23));
+        Posts post = (Posts) ContentFactory.createContent(CONTENT_TYPE.POST,"post1", "user1", "Hello, this is my first post!", currentTime);
+        Stories story = (Stories) ContentFactory.createContent(CONTENT_TYPE.STORY,"story1", "user1", "This is my first story!", currentTime.minusHours(23));
 
         // Step 3: add content
 //        user.getHandler().addContent(post); // Add post to user

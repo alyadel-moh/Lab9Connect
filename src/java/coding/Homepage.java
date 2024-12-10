@@ -1,6 +1,6 @@
 package coding;
 
-import coding.ENUMS.State;
+import coding.ENUMS.STATE;
 
 import javax.swing.*;
 import java.awt.*;
@@ -180,13 +180,13 @@ public class Homepage extends JFrame {
         }
 
         for (User suggested : user.getSuggestions()) {
-            State state = null;
+            STATE state = null;
 
             if (user.getManager().getRequest(suggested) != null) {
                 state = user.getManager().getRequest(suggested).getState();
             }
 
-            if (state == State.PENDING) {
+            if (state == STATE.PENDING) {
                 // Create a panel for the "Pending" state
                 CustomPanel pendingPanel = new CustomPanel(suggested, "Pending");
                 pendingPanel.button1.addActionListener(e -> {
@@ -221,7 +221,7 @@ public class Homepage extends JFrame {
 
             CustomPanel pendingPanel = new CustomPanel(suggested, "Pending");
             pendingPanel.button1.addActionListener(_ -> {
-                user.getManager().getRequestbySender(user, suggested).setState(State.CANCELLED);
+                user.getManager().getRequestbySender(user, suggested).setState(STATE.CANCELLED);
                 friendSuggestionsPanel.remove(pendingPanel);
                 friendSuggestionsPanel.add(customPanel);
                 refreshUI();

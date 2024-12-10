@@ -1,8 +1,7 @@
 package coding;
 
-import coding.ENUMS.State;
+import coding.ENUMS.STATE;
 import coding.Interfaces.Requester;
-import coding.Observer.ContentObserver;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -81,6 +80,7 @@ public class Friend_Manager implements Requester{
         System.out.println("his own requests size "+requests.size());
         System.out.println("all requests size "+allRequests.size());
     }
+
     public ArrayList<FriendRequest> getFriendRequestByUserId(String userId) {
         ArrayList<FriendRequest> friendRequestsByUserId = new ArrayList<>();
 
@@ -118,8 +118,8 @@ public class Friend_Manager implements Requester{
             throw new IllegalArgumentException("Request Doesn't exist anymore!");
         }
 
-        if (request.getState() == State.PENDING){
-            receiver.getManager().getRequest(receiver).setState(State.CANCELLED);
+        if (request.getState() == STATE.PENDING){
+            receiver.getManager().getRequest(receiver).setState(STATE.CANCELLED);
             receiver.getManager().getRequests().remove(request);
             FriendHandler.getAllFriendReq().remove(request);
         }
@@ -155,7 +155,7 @@ public class Friend_Manager implements Requester{
         // Check if a similar request already exists
         for (FriendRequest req : receiver.getRequests()) {
             if (req.getSender().equals(this.user) && req.getReceiver().equals(receiver)) {
-                if (req.getState() == State.PENDING) {
+                if (req.getState() == STATE.PENDING) {
                     throw new IllegalArgumentException("Request already pending.");
                 }
             }

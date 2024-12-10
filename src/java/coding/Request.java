@@ -1,15 +1,15 @@
 package coding;
 
-import coding.ENUMS.State;
+import coding.ENUMS.STATE;
 
 public class Request<T> {
-    private State state;
+    private STATE state;
     private User sender;
     private T receiver;
 
     // Default constructor
     public Request() {
-        this.state = State.PENDING; // Default state
+        this.state = STATE.PENDING; // Default state
     }
 
     // Parameterized constructor
@@ -21,12 +21,12 @@ public class Request<T> {
 
 
     // Getter for state
-    public State getState() {
+    public STATE getState() {
         return state;
     }
 
     // Setter for state
-    public void setState(State state) {
+    public void setState(STATE state) {
         if (state == null) {
             throw new IllegalArgumentException("State cannot be null.");
         }
@@ -45,11 +45,11 @@ public class Request<T> {
 
     // Decline the request
     public void decline() {
-        this.state = State.DECLINED;
+        this.state = STATE.DECLINED;
     }
 
     // Accept the request
     public void accept() {
-        this.state = State.ACCEPTED;
+        this.state = STATE.ACCEPTED;
     }
 }

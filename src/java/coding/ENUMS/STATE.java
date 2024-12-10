@@ -1,6 +1,6 @@
 package coding.ENUMS;
 
-public enum State {
+public enum STATE {
     // Enum to define valid states
     PENDING,
     CANCELLED,
