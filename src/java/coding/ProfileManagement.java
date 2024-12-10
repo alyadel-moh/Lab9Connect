@@ -3,6 +3,8 @@ package coding;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class ProfileManagement extends JFrame{
     private JButton updateProfilePhotoButton;
@@ -10,6 +12,7 @@ public class ProfileManagement extends JFrame{
     private JButton updateBioButton;
     private JButton updateCoverPhotoButton, backButton;
     private JPanel panel;
+    private JButton ViewProfile;
     private User user;
     private UserService userService;
 
@@ -21,12 +24,7 @@ public class ProfileManagement extends JFrame{
 
         setContentPane(panel);
 
-        //updateProfilePhotoButton = new JButton();
-        // updatePasswordButton = new JButton();
-        //updateBioButton.setFocusable(false);
-        //updateCoverPhotoButton.setFocusable(false);
         backButton = new JButton();
-
 
         updateProfilePhotoButton.setFocusable(false);
         updatePasswordButton.setFocusable(false);
@@ -38,18 +36,33 @@ public class ProfileManagement extends JFrame{
         setLocationRelativeTo(null);
         setVisible(true);
         updateProfilePhotoButton.addActionListener(e -> {
+            setVisible(false);
+            user.setProfile();
+            System.out.println(user.getProfilepath());
         });
         updateCoverPhotoButton.addActionListener(e -> {
+            setVisible(false);
+            user.setCover();
+            System.out.println(user.getCoverpath());
         });
         updateBioButton.addActionListener(e -> {
+            setVisible(false);
            new Updatebio(user);
         });
         updatePasswordButton.addActionListener(e -> {
+            setVisible(false);
             new Updatepass(user,userService);
         });
         backButton.addActionListener(e -> {
             setVisible(false);
             new Homepage(userService, user);
+        });
+        ViewProfile.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                new Profile(user);
+            }
         });
     }
 }

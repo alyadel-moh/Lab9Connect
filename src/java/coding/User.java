@@ -1,29 +1,42 @@
 package coding;
 
+import coding.Observer.ContentNotifier;
+import coding.Observer.ContentObserver;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
 
 import javax.swing.*;
+import java.io.File;
 import java.time.LocalDate;
 import java.util.ArrayList;
-
+@JsonDeserialize(builder = User.UserBuilder.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class User {
-    private ImageIcon profile;
-    private ImageIcon cover;
+    private String profilepath;
+    private String  coverpath;
     private String bio;
     private String password;
     private String email;
     private String status;
+    private boolean receivedRequest;
 
     private final String userId;
     private final String userName;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private final LocalDate dateOfBirth;
-    private final JFileChooser jFileChooser = new JFileChooser();
-    private Friend_Manager manager;
-    private ContentHandler handler;
 
-    private boolean receivedRequest;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @JsonIgnore private final JFileChooser jFileChooser = new JFileChooser();
+    @JsonIgnore private final FriendHandler friendHandler;
+    @JsonIgnore private final Friend_Manager manager;
+    @JsonIgnore private final ContentHandler handler;
+    @JsonIgnore private final ContentNotifier notifier;
+    @JsonIgnore private Group_Manager groupManager;
+    @JsonIgnore private Notifications notificationsWindow;
+
 
     // Private constructor for User
     private User(String userId, String password, String userName, String email, LocalDate dateOfBirth, String status) {
@@ -33,24 +46,35 @@ public class User {
         this.email = email;
         this.dateOfBirth = dateOfBirth;
         this.status = status;
+
         this.manager = new Friend_Manager(this);
         this.handler = new ContentHandler();
+        this.notifier = new ContentNotifier();
+        this.groupManager = new Group_Manager();
+
+        this.friendHandler=new FriendHandler();
         this.receivedRequest = false;
+
+        this.profilepath = getProfilepath();
+        this.coverpath = getCoverpath();
+        this.bio = getBio();
+    }
+
+    public void createObserver(){
+        notificationsWindow = new Notifications(this);
     }
 
     public String getUserId() {
         return userId;
     }
-//    public User(String userId, String password, String userName, String email, LocalDate dateOfBirth, String status){
-//        this.userId = userId;
-//        this.password = password;
-//        this.userName = userName;
-//        this.email = email;
-//        this.dateOfBirth = dateOfBirth;
-//        this.status = status;
-//    }
 
-// Builder class for User
+    public ContentObserver getObserver() {
+        return notificationsWindow;
+    }
+
+
+    // Builder class for User
+@JsonPOJOBuilder(withPrefix = "set")
     public static class UserBuilder {
         private String userId;
         private String password;
@@ -58,6 +82,11 @@ public class User {
         private String email;
         private LocalDate dateOfBirth;
         private String status;
+    private String profilepath;
+    private String  coverpath;
+    private String bio;
+    private boolean receivedRequest;
+
 
         public UserBuilder() {
             this.userId = userId;
@@ -66,6 +95,7 @@ public class User {
             this.email = email;
             this.dateOfBirth = dateOfBirth;
             this.status = status;
+            this.receivedRequest= receivedRequest;
         }
         public UserBuilder setUserId(String userId) {
             this.userId = userId;
@@ -96,9 +126,31 @@ public class User {
             this.status = status;
             return this;
         }
+    public UserBuilder setProfilepath(String profilepath) {
+        this.profilepath = profilepath;
+        return this;
+    }
+
+    public UserBuilder setCoverpath(String coverpath) {
+        this.coverpath = coverpath;
+        return this;
+    }
+    public UserBuilder setBio(String bio){
+            this.bio = bio;
+            return this;
+    }
+    public UserBuilder setReceivedRequest(boolean receivedRequest) {
+        this.receivedRequest = receivedRequest;
+        return this;
+    }
 
         public User build() {
-            return new User(userId, password, userName, email, dateOfBirth, status);
+             User user = new User(userId, password, userName, email, dateOfBirth, status);
+            user.profilepath = this.profilepath;
+            user.coverpath = this.coverpath;
+            user.bio = this.bio;
+            user.receivedRequest = this.receivedRequest;
+            return user;
         }
     }
 
@@ -108,28 +160,71 @@ public class User {
 //    }
 
     public void setCover() {
-        int response = jFileChooser.showOpenDialog(null);
-        if (response == JFileChooser.APPROVE_OPTION) {
-            ImageIcon image = new ImageIcon(jFileChooser.getSelectedFile().getAbsolutePath());
-            this.cover = image;
+        JFileChooser fileChooser = new JFileChooser();//Create the JfileChooser to show the save dialog
+        fileChooser.setDialogTitle("Choose an Image");
+        int userChoice = fileChooser.showSaveDialog(null);//shows the save dialog//null is to be centered to the screen//returns 0 if the user clicked save//returns 1 then the user canceled//-1 error occured
+        if (userChoice == -1) {
+            JOptionPane.showMessageDialog(null, "An error has occurred");
+        } else if (userChoice == 1) {
+            JOptionPane.showMessageDialog(null, "The user Cancelled");
+        } else {
+            File selectedFile = fileChooser.getSelectedFile();
+            if(selectedFile.exists()){
+
+                coverpath = selectedFile.getAbsolutePath();
+                Database database = Database.getInstance();
+                database.saveUsers();
+                JOptionPane.showMessageDialog(null,"Image Chosen successfully");
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Please Choose an Image!", "Message", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
 
     public void setProfile() {
-        int response = jFileChooser.showOpenDialog(null);
-        if (response == JFileChooser.APPROVE_OPTION) {
-            ImageIcon image = new ImageIcon(jFileChooser.getSelectedFile().getAbsolutePath());
-            this.profile = image;
+        JFileChooser fileChooser = new JFileChooser();//Create the JfileChooser to show the save dialog
+        fileChooser.setDialogTitle("Choose an Image");
+        int userChoice = fileChooser.showSaveDialog(null);//shows the save dialog//null is to be centered to the screen//returns 0 if the user clicked save//returns 1 then the user canceled//-1 error occured
+        if (userChoice == -1) {
+            JOptionPane.showMessageDialog(null, "An error has occurred");
+        } else if (userChoice == 1) {
+            JOptionPane.showMessageDialog(null, "The user Cancelled");
+        } else {
+            File selectedFile = fileChooser.getSelectedFile();
+            if(selectedFile.exists()){
+
+                profilepath = selectedFile.getAbsolutePath();
+                Database database = Database.getInstance();
+                database.saveUsers();
+                JOptionPane.showMessageDialog(null,"Image Chosen successfully");
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Please Choose an Image!", "Message", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
 
-    public ImageIcon getProfile() {
-        return profile;
+    public void setCoverpath(){
+        this.coverpath = "images/account.png";
+    }
+
+    public void setProfilepath() {
+        this.profilepath = "images/account.png";
+    }
+
+    public String getProfilepath() {
+        return profilepath;
+    }
+
+    public String getCoverpath() {
+        return coverpath;
     }
 
     public void setBio(String bio) {
         this.bio = bio;
     }
+    public String getBio(){return bio;}
 
     public void setRequestState(boolean state) {
         this.receivedRequest = state;
@@ -143,6 +238,7 @@ public class User {
         return receivedRequest;
     }
 
+    @JsonIgnore
     public ArrayList<FriendRequest> getRequests() {
         return manager.getRequests();
     }
@@ -167,12 +263,31 @@ public class User {
         return dateOfBirth;
     }
 
+    public FriendHandler getFriendHandler() {
+        return friendHandler;
+    }
+
     public Friend_Manager getManager() {
         return manager;
     }
 
     public ContentHandler getHandler() {
         return handler;
+    }
+
+    public ContentNotifier getNotifier(){ return notifier;}
+
+    public Group_Manager getGroupManager() {
+        return groupManager;
+    }
+
+    public void setGroupmanager(Group_Manager groupManager) {
+        this.groupManager = groupManager;
+    }
+
+    @JsonIgnore
+    public ArrayList<User> getSuggestions(){
+        return manager.getSuggestions();
     }
 
     public void setPassword(String newPassword) {
@@ -183,12 +298,15 @@ public class User {
         this.status = newStatus;
     }
 
-    public String toString(){
+
+   /* public String toString(){
         return "UserId" + userId +
                 "UserName" + userName +
                 "UserEmail" + email +
                 "password" + password;
 
-    }
+    }*/
+
+
 
 }

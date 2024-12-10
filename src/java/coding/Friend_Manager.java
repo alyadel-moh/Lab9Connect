@@ -1,17 +1,29 @@
 package coding;
 
+import coding.Observer.ContentObserver;
+import coding.Interfaces.Requester;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
-public class Friend_Manager {
+
+public class Friend_Manager implements Requester{
     private User user;
     private final ArrayList<FriendRequest> requests;
     private final ArrayList<User> friends;
     private final ArrayList<User> suggestions;
     private final ArrayList<User> blocked;
+    private ObjectMapper objectMapper;
+    private static ArrayList<FriendRequest>allRequests=new ArrayList<>();
 
     Friend_Manager(User user) {
         this.user = user;
@@ -19,9 +31,115 @@ public class Friend_Manager {
         this.friends = new ArrayList<>();
         this.suggestions = new ArrayList<>();
         this.blocked = new ArrayList<>();
+        this.objectMapper = new ObjectMapper();
+        this.objectMapper.registerModule(new JavaTimeModule());//JavaTimeModule helps to write the localTime to file
+        this.objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
     }
 
-    public void sendRequest(User receiver) {
+    public void setFriends(String userId){
+        ArrayList<Friend>loadedFriends=user.getFriendHandler().getFriendsByUserId(user.getUserId());
+        for (Friend loadedFriend : loadedFriends) {
+            User loadedUser = Database.findUserById(loadedFriend.getFriendId());
+            friends.add(loadedUser);
+        }
+    }
+
+    public void saveRequests(){
+        File file=new File("./FriendRequests.json");
+        try {
+            objectMapper.writeValue(file, allRequests);
+        } catch (IOException e) {
+            System.out.println("Error happened when trying to save request.");
+        }
+    }
+
+    public void loadRequests(){
+        File file = new File("./FriendRequests.json");
+        if (file.exists()) {
+            try {
+                allRequests = objectMapper.readValue(file, new TypeReference<ArrayList<FriendRequest>>() {});
+            } catch (IOException e) {
+                System.out.println("Error occurred while loading posts.");
+                System.out.println(e);
+            }
+        } else {
+            System.out.println("Request file not found. Initializing an empty list.");
+            allRequests = new ArrayList<>();
+        }
+    }
+
+    //load posts of each user according to their id
+    public void loadHisOwnRequets(String userId){
+        loadRequests();
+        ArrayList<FriendRequest> loadedrequests = getFriendRequestByUserId(userId);
+
+        if(!loadedrequests.isEmpty()){
+            requests.addAll(loadedrequests);
+        }
+
+        System.out.println("his own requests size "+requests.size());
+        System.out.println("all requests size "+allRequests.size());
+    }
+    public ArrayList<FriendRequest> getFriendRequestByUserId(String userId){
+        ArrayList<FriendRequest>friendRequestsByUserId=new ArrayList<>();
+
+        for (FriendRequest request : allRequests) {
+            if (((User)request.getReceiver()).getUserId().equals(userId)) {
+                friendRequestsByUserId.add(request);
+            }
+        }
+        return friendRequestsByUserId;
+    }
+
+    public void setSuggestions(ArrayList<User> users){
+        for(User user : users){
+            if (!friends.contains(user) && !blocked.contains(user) && !user.equals(this.user) && !suggestions.contains(user)){
+                suggestions.add(user);
+            }
+        }
+    }
+
+    public void cancelRequest(User receiver){
+        if (receiver == null) {
+            throw new IllegalArgumentException("Receiver cannot be null.");
+        }
+
+        if (receiver.getManager().getFriends().contains(this.user)){
+            throw new IllegalArgumentException("Already Friends");
+        }
+
+        FriendRequest request = receiver.getManager().getRequestbySender(this.user, receiver);
+
+        if (request == null){
+            throw new IllegalArgumentException("Request Doesn't exist anymore!");
+        }
+
+        if ("Pending".equalsIgnoreCase(request.getState())){
+            receiver.getManager().getRequest(receiver).setState("Cancelled");
+            receiver.getManager().getRequests().remove(request);
+            FriendHandler.getAllFriendReq().remove(request);
+        }
+
+
+    }
+
+    public FriendRequest getRequest(User receiver) {
+        if (receiver != null && !friends.contains(receiver)) {
+            for (FriendRequest request : requests){
+                if (receiver.equals(request.getReceiver()))
+                    return request;
+            }
+        }
+        return null;
+    }
+
+    public ArrayList<User> getBlocked() {
+        return blocked;
+    }
+
+    public void sendRequest(Object general_receiver) {
+        User receiver = (User)general_receiver;
+
         if (receiver == null) {
             throw new IllegalArgumentException("Receiver cannot be null.");
         }
@@ -40,8 +158,18 @@ public class Friend_Manager {
         }
 
         // Create and send new request
-        FriendRequest newRequest = new FriendRequest(this.user, receiver);
+        FriendRequest newRequest = (FriendRequest) RequestFactory.createRequest("friend request", this.user, receiver.getUserId());
         receiver.getManager().setReceivedRequest(newRequest);
+        user.getNotifier().notifyObservers(user, " sent you a friend request", receiver);
+    }
+
+    public FriendRequest getRequestbySender(User sender,User receiver){
+        for (FriendRequest request : receiver.getRequests()){
+            if (sender.equals(request.getSender()))
+                return request;
+        }
+        JOptionPane.showMessageDialog(null,"Request Not Found");
+        return null;
     }
 
     public void setReceivedRequest(FriendRequest request) {
@@ -49,11 +177,14 @@ public class Friend_Manager {
             throw new IllegalArgumentException("Invalid FriendRequest");
         }
 
-        request.getReceiver().setRequestState(true);
+        ((User)request.getReceiver()).setRequestState(true);
 
         // Prevent duplicates
         if (!requests.contains(request)) {
             requests.add(request);
+            allRequests.add(request);
+            saveRequests();
+            System.out.println("added");
         }
     }
 
@@ -64,6 +195,8 @@ public class Friend_Manager {
         }
 
         User sender = request.getSender();
+        User receiver = (User) request.getReceiver();
+
         if (friends.contains(sender)) {
             JOptionPane.showMessageDialog(null, "Already friends.");
             return;
@@ -73,7 +206,13 @@ public class Friend_Manager {
 
         request.accept(); // Update request state
         requests.remove(request); // Remove request
+        allRequests.remove(request);//remove from allRequests
+        saveRequests();
         friends.add(sender); // Add to friends list
+        sender.getManager().getFriends().add(receiver);
+//        user.getNotifier().addObserver((ContentObserver) sender);
+        user.getFriendHandler().addFriend(((User) request.getReceiver()).getUserId(),request.getSender().getUserId());
+        user.getFriendHandler().saveFriends();
 
         if (requests.isEmpty()) {
             this.user.setRequestState(false);
@@ -91,6 +230,8 @@ public class Friend_Manager {
 
         request.decline(); // Update request state
         requests.remove(request); // Remove request
+        allRequests.remove(request);
+        saveRequests();
 
         User sender = request.getSender();
         if (!suggestions.contains(sender))
@@ -107,7 +248,24 @@ public class Friend_Manager {
         }
 
         friends.remove(friend);
+        user.getFriendHandler().deleteFriend(user,friend);
+        friend.getManager().getFriends().remove(user);
+        user.getNotifier().removeObserver(friend.getObserver());
         blocked.add(friend);
+    }
+
+    public void unblock(User account){
+        if(account == null){
+            throw new IllegalArgumentException("Account doesn't exist");
+        }
+
+        if(this.blocked.contains(account)){
+            this.blocked.remove(account);
+            suggestions.add(account);
+            JOptionPane.showMessageDialog(null, "Account has been unblocked");
+        }else{
+            JOptionPane.showMessageDialog(null, "Account was not unblocked");
+        }
     }
 
     public void remove(User friend) {
@@ -116,8 +274,10 @@ public class Friend_Manager {
         }
 
         friends.remove(friend);
+//        friend.getManager().getFriends().remove(user);
+        user.getFriendHandler().deleteFriend(user,friend);
+        user.getNotifier().removeObserver(friend.getObserver());
         suggestions.add(friend);
-
     }
 
     public void DisplayStatus(Homepage page) {
@@ -133,6 +293,10 @@ public class Friend_Manager {
 
     public ArrayList<User> getFriends() {
         return friends;
+    }
+
+    public ArrayList<User> getSuggestions() {
+        return suggestions;
     }
 
     /////////////////////////  UI class ///////////////////////////////////////
@@ -151,11 +315,9 @@ public class Friend_Manager {
             for (User friend : friends) {
                 if ("online".equalsIgnoreCase(friend.getStatus())) {
                     // Get friend's profile picture
-                    ImageIcon profilePic = friend.getProfile();
-                    if (profilePic != null) {
-                        JLabel profileLabel = createCircularLabel(profilePic);
-                        activePanel.add(profileLabel);
-                    }
+                    ImageIcon profilePic = new ImageIcon(friend.getProfilepath());
+                    JLabel profileLabel = createCircularLabel(profilePic);
+                    activePanel.add(profileLabel);
                 }
             }
 
@@ -180,5 +342,6 @@ public class Friend_Manager {
             return activePanel;
         }
     }
+
 
 }

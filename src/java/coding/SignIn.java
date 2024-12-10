@@ -1,7 +1,5 @@
 package coding;
 
-import coding.UserService;
-
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
@@ -38,8 +36,44 @@ public class SignIn extends JFrame{
            User user =  userService.login(email,password);
            if(user != null) {
                setVisible(false);
+
+               int count = 1;
+/////////////////////////////////////////////
+               System.out.println("Suggested: ");
+               for (User suggested : user.getSuggestions()){
+                   System.out.print(count++ + "_");
+                   System.out.println(suggested);
+
+                   //user.getManager().getFriends().add(suggested);
+                   //user.getManager().sendRequest(suggested);
+               }
+               if (user.getManager().getFriends().isEmpty()){
+                   System.out.println("No request yet");
+               }else {
+                   count = 1;
+                   System.out.println("Requests: ");
+                   for (FriendRequest suggested : user.getRequests()) {
+                       System.out.print(count++ + "_");
+                       System.out.println(suggested);
+                   }
+               }
+
+               if (user.getManager().getFriends().isEmpty()){
+                   System.out.println("No friends yet");
+               }else{
+                   count = 1;
+                   for (User suggested : user.getManager().getFriends()){
+                       System.out.print(count++ + "_");
+                       System.out.println(suggested);
+                   }
+               }
+
+           /////////////////////////////////////////////////////
                new Homepage(userService,user);
 //               new Feedpage(user,userService);
+               user.getHandler().loadPosts();
+               user.getHandler().loadStories();
+               user.getManager().setSuggestions(userService.getDatabase().getUsers());
                }
            else
                JOptionPane.showMessageDialog(null, "User not found");

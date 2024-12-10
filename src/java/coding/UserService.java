@@ -45,6 +45,7 @@ public class UserService {
                 .setStatus("offline")
                         .build();
 
+         newUser.setProfilepath();
         database.addUser(newUser);
 
         for (User user : database.getUsers()){
