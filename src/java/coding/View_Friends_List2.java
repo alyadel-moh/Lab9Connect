@@ -50,7 +50,7 @@ public class View_Friends_List2 extends  JFrame{
             customPanel.setPreferredSize(new Dimension(700, 30));
             panel1.add(customPanel);
             customPanel.button1.addActionListener(_ -> {
-                  group.getMembers().add(friend);
+                  group.getMembers().add((Member) friend);
                   friend.getGroupManager().getGroups().put(group.getName(),group);
                   panel1.remove(customPanel);
                 refreshUI();

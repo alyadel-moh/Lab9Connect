@@ -1,22 +1,28 @@
 [ {
+  "primaryAdmin" : null,
+  "description" : "jjjjjjjjjjjjjjjjjjj",
+  "name" : "3adawt",
   "members" : [ ],
-  "profilepath" : null,
-  "primaryadmin" : {
-    "profilePath" : "images/account.png",
-    "coverPath" : null,
-    "bio" : null,
-    "password" : "f789c4d98a4ee924f6611a858aed07c30b6c903ad874dd6a1961b42e8c9792b5",
-    "email" : "alyy@gmail.com",
-    "status" : "offline",
-    "receivedRequest" : false,
-    "userId" : "0f2dd7ac",
-    "userName" : "alyy",
-    "dateOfBirth" : "2024-12-05",
-    "observer" : null
-  },
-  "description" : "",
-  "name" : "alyy",
-  "otheradmins" : [ ],
   "posts" : [ ],
-  "requests" : [ ]
+  "requests" : [ ],
+  "profilepath" : "C:\\Users\\basem\\Documents\\Capture 1.PNG",
+  "otherAdmins" : [ ]
+}, {
+  "primaryAdmin" : null,
+  "description" : "howaaaa",
+  "name" : "fara3naaa",
+  "members" : [ ],
+  "posts" : [ ],
+  "requests" : [ ],
+  "profilepath" : "C:\\Users\\basem\\Documents\\Untitled.png",
+  "otherAdmins" : [ ]
+}, {
+  "primaryAdmin" : null,
+  "description" : "hoooo",
+  "name" : "olaaa",
+  "members" : [ ],
+  "posts" : [ ],
+  "requests" : [ ],
+  "profilepath" : "C:\\Users\\basem\\Documents\\rqt_graph.png",
+  "otherAdmins" : [ ]
 } ]

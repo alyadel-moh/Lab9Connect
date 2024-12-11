@@ -45,7 +45,7 @@ public class View_Groups_List extends JFrame {
         }
 
         for (String key : groups.keySet()) {
-            Custompanel2 customPanel = new Custompanel2(groups.get(key), "manage","remove");
+            CustomPanel customPanel = new CustomPanel(groups.get(key), "manage","remove");
             panel1.add(customPanel);
             customPanel.setPreferredSize(new Dimension(700, 30));
             customPanel.button1.addActionListener(_ -> {

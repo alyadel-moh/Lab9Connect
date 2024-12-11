@@ -17,14 +17,24 @@ public class Group  {
     private ArrayList<Group_Request> requests;
     private Notifications notifications;
 
-    Group(Member primaryAdmin)
+    Group(User primary)
     {
-        primaryAdmin.setGroup_status(GROUP_STATUS.PRIMARY);
-        setPrimaryAdmin(primaryAdmin);
-
         this.members = new ArrayList<>();
         this.posts = new ArrayList<>();
         this.requests = new ArrayList<>();
+
+        if (primary != null) {
+            if (primary instanceof Member primaryAdmin) {
+                primaryAdmin.setGroup_status(GROUP_STATUS.PRIMARY);
+                members.add(primaryAdmin);
+                setPrimaryAdmin(primaryAdmin);
+            } else {
+                setPrimaryAdmin(null);
+            }
+        } else {
+            setPrimaryAdmin(null);
+        }
+
     }
 
     public ArrayList<Posts> getPosts() {

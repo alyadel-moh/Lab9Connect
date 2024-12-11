@@ -61,10 +61,13 @@ public class Group_Manager implements Requester {
     }
 
     public boolean isMember(User user, Group group) {
-        if (group.getMembers().contains((Member) user) && !(((Member) user).getGroup_status() == GROUP_STATUS.NOTMEMBER))
-            return true;
-        else
-            System.out.println("user not a member !");
+        if (user instanceof Member) {
+            if (group.getMembers().contains((Member) user) && !(((Member) user).getGroup_status() == GROUP_STATUS.NOTMEMBER))
+                return true;
+            else
+                System.out.println("user not a member !");
+            return false;
+        }
         return false;
     }
 

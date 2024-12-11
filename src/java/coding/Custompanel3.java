@@ -88,7 +88,7 @@ public class Custompanel3 extends JPanel {
 
         testUser.setProfile();
 
-        Group group = new Group(testUser);
+        Group group = new Group((Member) testUser);
 
         //System.out.println(testUser.getProfile());
 
