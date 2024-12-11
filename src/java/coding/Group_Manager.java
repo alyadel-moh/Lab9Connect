@@ -1,5 +1,7 @@
 package coding;
 
+import coding.ENUMS.REQUEST;
+import coding.ENUMS.STATE;
 import coding.Interfaces.Requester;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -19,6 +21,8 @@ public class Group_Manager implements Requester {
     private Friend_Manager friendManager;
     private static Map<String, Group> allgroups = new HashMap<>();
     private static final ObjectMapper objectMapper = new ObjectMapper();
+    private static ArrayList<Group_Request> allRequests = new ArrayList<>();
+    private User user;
 
     static {
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
@@ -28,8 +32,10 @@ public class Group_Manager implements Requester {
         objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
     }
 
-    Group_Manager() {
+
+    Group_Manager(User user) {
         this.groups = new HashMap<>();
+        this.user = user;
     }
 
     public void deletegroup(Group group, User primaryadmin) {
@@ -59,6 +65,9 @@ public class Group_Manager implements Requester {
     }
 
     public void viewSuggestions(User user) {
+        loadGroups();
+        loadSuggestionGroups();
+
         for (String key : allgroups.keySet()) {
             if (!isMember(user, allgroups.get(key)) && !suggestions.contains(allgroups.get(key)) && !friendManager.getBlocked().contains(allgroups.get(key).getPrimaryadmin()))
                 suggestions.add(allgroups.get(key));
@@ -66,6 +75,9 @@ public class Group_Manager implements Requester {
         }
     }
 
+    public ArrayList<Group> getSuggestions() {
+        return suggestions;
+    }
 
     public Posts getPost() {
         return post;
@@ -161,6 +173,7 @@ public class Group_Manager implements Requester {
             this.suggestions = new ArrayList<>();
             return;
         }
+
         try {
             this.suggestions = objectMapper.readValue(file, objectMapper.getTypeFactory().constructCollectionType(ArrayList.class, Group.class));
         } catch (IOException e) {
@@ -171,8 +184,67 @@ public class Group_Manager implements Requester {
     @Override
     public void sendRequest(Object generic_receiver) {
         Group receiver = (Group) generic_receiver;
+
+        if (receiver == null) {
+            throw new IllegalArgumentException("Receiver cannot be null.");
+        }
+
+        if (isMember(this.user, receiver)) {
+            JOptionPane.showMessageDialog(null,"Already a member of the group!");
+            throw new IllegalArgumentException("Already a member of the group!");
+        }
+
+        // Check if a similar request already exists
+        for (Group_Request req : receiver.getRequests()) {
+            if (req.getSender().equals(this.user) && req.getReceiver().equals(receiver)) {
+                if (req.getState() == STATE.PENDING) {
+                    JOptionPane.showMessageDialog(null,"Request already pending!");
+                    throw new IllegalArgumentException("Request already pending.");
+                }
+            }
+        }
+
+        // Create and send new request
+        Group_Request newRequest = (Group_Request) RequestFactory.createRequest(REQUEST.GROUPREQUEST, this.user, receiver.getName());
+        updateReceiverRequests(newRequest);
+        user.getNotifier().notifyObservers(user, " requested to join group", receiver);
+
+
         //////////////to be implemented
 
+    }
+
+    @Override
+    ////// Get request to receiver by this user
+    public Group_Request getRequest(Object generic_receiver){
+        Group receiver = (Group) generic_receiver;
+
+        if (receiver != null && !groups.containsKey(receiver.getName())){
+            for (Group_Request request : receiver.getRequests()) {
+                if (user.equals(request.getSender()))
+                    return request;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public void updateReceiverRequests(Request old_request) {
+        Group_Request request = (Group_Request) old_request;
+
+        if (request == null || request.getReceiver() == null) {
+            throw new IllegalArgumentException("Invalid FriendRequest");
+        }
+
+        Group receiver = (Group) request.getReceiver();
+
+        // Prevent duplicates
+        if (!receiver.getRequests().contains(request)) {
+            receiver.getRequests().add(request);
+            allRequests.add(request);
+            //saveRequests();
+            System.out.println("Request Sent");
+        }
     }
 }
 

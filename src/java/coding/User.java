@@ -50,9 +50,9 @@ public class User {
         this.manager = new Friend_Manager(this);
         this.handler = new ContentHandler();
         this.notifier = new ContentNotifier();
-        this.groupManager = new Group_Manager();
+        this.groupManager = new Group_Manager(this);
 
-        this.friendHandler=new FriendHandler();
+        this.friendHandler = new FriendHandler();
         this.receivedRequest = false;
 
         this.profilePath = getProfilePath();

@@ -11,12 +11,16 @@ public class Group  {
     private String name;
     private ArrayList<User> otheradmins;
     private ArrayList<Posts> posts;
+    private ArrayList<Group_Request> requests;
+    private Notifications notifications;
+
     Group(User primaryadmin)
     {
         setPrimaryadmin(primaryadmin);
         this.members = new ArrayList<>();
         this.otheradmins = new ArrayList<>();
         this.posts = new ArrayList<>();
+        this.requests = new ArrayList<>();
     }
 
     public ArrayList<Posts> getPosts() {
@@ -99,5 +103,13 @@ public class Group  {
                 ", other admins=" + otheradmins +
                 ", posts=" + posts +
                 '}';
+    }
+
+    public ArrayList<Group_Request> getRequests() {
+        return requests;
+    }
+
+    public void setRequests(ArrayList<Group_Request> requests) {
+        this.requests = requests;
     }
 }

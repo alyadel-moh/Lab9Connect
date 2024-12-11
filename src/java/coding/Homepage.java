@@ -170,6 +170,32 @@ public class Homepage extends JFrame {
         }
     }
 
+    private void displayGroupSuggestion(){
+        // Clear the panel
+        GroupSuggestionPanel.removeAll();
+
+        user.getGroupManager().viewSuggestions(user);
+
+        if(user.getGroupManager().getSuggestions().isEmpty()){
+            GroupSuggestionPanel.add(new JLabel("No Suggestions to View!"));
+            refreshUI();
+            return;
+        }
+
+        for (Group suggested : user.getGroupManager().getSuggestions()){
+            STATE state = null;
+
+            if (user.getGroupManager().getRequest(suggested) != null){
+                state = user.getGroupManager().getRequest(suggested).getState();
+            }
+
+            if (state == STATE.PENDING){
+
+            }
+        }
+
+    }
+
     private void displayFriendSuggestions() {
         // Clear the panel
         friendSuggestionsPanel.removeAll();
@@ -217,19 +243,23 @@ public class Homepage extends JFrame {
 
         // Send Request Action
         customPanel.button1.addActionListener(e -> {
-            user.getManager().sendRequest(suggested);
-            friendSuggestionsPanel.remove(customPanel);
+            try {
+                user.getManager().sendRequest(suggested);
+                friendSuggestionsPanel.remove(customPanel);
 
-            CustomPanel pendingPanel = new CustomPanel(suggested, "Pending");
-            pendingPanel.button1.addActionListener(_ -> {
-                user.getManager().getRequestbySender(user, suggested).setState(STATE.CANCELLED);
-                friendSuggestionsPanel.remove(pendingPanel);
-                friendSuggestionsPanel.add(customPanel);
+                CustomPanel pendingPanel = new CustomPanel(suggested, "Pending");
+                pendingPanel.button1.addActionListener(_ -> {
+                    user.getManager().cancelRequest(suggested);
+                    friendSuggestionsPanel.remove(pendingPanel);
+                    friendSuggestionsPanel.add(customPanel);
+                    refreshUI();
+                });
+
+                friendSuggestionsPanel.add(pendingPanel);
                 refreshUI();
-            });
-
-            friendSuggestionsPanel.add(pendingPanel);
-            refreshUI();
+            }catch (IllegalArgumentException ex) {
+                throw new RuntimeException(ex);
+            }
         });
 
         // Ignore Action
