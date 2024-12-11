@@ -19,13 +19,14 @@ public class ViewPost2 extends JFrame {
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS)); // Use BoxLayout for stacking
 
         ArrayList<Posts> posts = group.getPosts();
-        for (int i = 0; i < posts.size(); i++) {
-            String content = posts.get(i).getContent();
+        for (Posts post : posts) {
+            String content = post.getContent();
             String[] contentDelim = content.split("@");
             String text = contentDelim[0];
             JLabel label = new JLabel(text);
             System.out.println(text);
             panel.add(label);
+
             try {
                 String imagePath = contentDelim[1];
                 if (!imagePath.isEmpty()) {

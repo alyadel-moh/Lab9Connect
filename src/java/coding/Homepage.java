@@ -226,6 +226,11 @@ public class Homepage extends JFrame {
         }
 
         for (User suggested : user.getSuggestions()) {
+            if (user.getManager().getFriends().contains(suggested)){
+                user.getSuggestions().remove(suggested);
+                continue;
+            }
+
             STATE state = null;
 
             if (user.getManager().getRequest(suggested) != null) {
