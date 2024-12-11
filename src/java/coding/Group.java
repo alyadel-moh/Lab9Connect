@@ -1,6 +1,7 @@
 package coding;
 
 import javax.swing.*;
+import java.io.File;
 import java.util.ArrayList;
 
 public class Group  {
@@ -84,6 +85,9 @@ public class Group  {
     public void setProfilepath(String profilepath) {
         this.profilepath = profilepath;
     }
+
+    public void setProfilepath(){this.profilepath = "images/account.png";}
+
     public void addotheradmin(User primaryadmin,Group group,User otheradmin)
     {
         if(group.getPrimaryadmin().equals(primaryadmin))
@@ -111,5 +115,28 @@ public class Group  {
 
     public void setRequests(ArrayList<Group_Request> requests) {
         this.requests = requests;
+    }
+
+    public void setProfile() {
+        JFileChooser fileChooser = new JFileChooser();//Create the JfileChooser to show the save dialog
+        fileChooser.setDialogTitle("Choose an Image");
+        int userChoice = fileChooser.showSaveDialog(null);//shows the save dialog//null is to be centered to the screen//returns 0 if the user clicked save//returns 1 then the user canceled//-1 error occured
+        if (userChoice == -1) {
+            JOptionPane.showMessageDialog(null, "An error has occurred");
+        } else if (userChoice == 1) {
+            JOptionPane.showMessageDialog(null, "The user Cancelled");
+        } else {
+            File selectedFile = fileChooser.getSelectedFile();
+            if(selectedFile.exists()){
+
+                profilepath = selectedFile.getAbsolutePath();
+                Database database = Database.getInstance();
+                database.saveUsers();
+                JOptionPane.showMessageDialog(null,"Image Chosen successfully");
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Please Choose an Image!", "Message", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }
 }

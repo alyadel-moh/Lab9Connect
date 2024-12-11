@@ -1,0 +1,22 @@
+[ {
+  "members" : [ ],
+  "profilepath" : "C:\\Users\\basem\\Documents\\Untitled.png",
+  "primaryadmin" : {
+    "profilePath" : "images/account.png",
+    "coverPath" : null,
+    "bio" : null,
+    "password" : "f6e0a1e2ac41945a9aa7ff8a8aaa0cebc12a3bcc981a929ad5cf810a090e11ae",
+    "email" : "mazen@gmail.com",
+    "status" : "online",
+    "receivedRequest" : false,
+    "userId" : "206eba58",
+    "userName" : "mazen",
+    "dateOfBirth" : "2024-12-11",
+    "observer" : null
+  },
+  "description" : "el  toppp",
+  "name" : "zikooo",
+  "otheradmins" : [ ],
+  "posts" : [ ],
+  "requests" : [ ]
+} ]

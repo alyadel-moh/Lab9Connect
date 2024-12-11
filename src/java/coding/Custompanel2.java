@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 
-public class Custompanel2 extends JPanel{
+public class Custompanel2 extends CustomPanel{
     private Group group;
     private int buttonCount;
     protected JButton button1;
@@ -16,7 +16,7 @@ public class Custompanel2 extends JPanel{
     }
 
     public Custompanel2(Group group, String text, String text2) {
-        super();
+        super(group, text, text2);
        this.group = group;
         this.buttonCount = (text2 == null) ? 1 : 2;
         this.button1 = createbutton(text);
@@ -110,7 +110,9 @@ public class Custompanel2 extends JPanel{
                 .build();
 
         testUser.setProfile();
-        //System.out.println(testUser.getProfile());
+
+        Group group = new Group(testUser);
+
 
         // Create a JFrame for testing
         JFrame frame = new JFrame("Custom Panel Test");
@@ -119,12 +121,12 @@ public class Custompanel2 extends JPanel{
         frame.setSize(400, 200);
 
         // Test with one button
-        CustomPanel panel1 = new CustomPanel(testUser, "Accept");
+        Custompanel2 panel1 = new Custompanel2(group, "Accept");
         frame.add(panel1);
 
         //Uncomment the following lines to test with two buttons:
         frame.getContentPane().removeAll(); // Clear previous content
-        CustomPanel panel2 = new CustomPanel(testUser, "Accept", "Decline");
+        Custompanel2 panel2 = new Custompanel2(group, "Accept", "Decline");
         frame.add(panel2);
 
         frame.setVisible(true);

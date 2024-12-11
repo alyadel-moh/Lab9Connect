@@ -1,68 +1,24 @@
 {
-  "" : {
-    "members" : [ {
-      "profilePath" : "images/account.png",
-      "coverPath" : null,
-      "bio" : null,
-      "password" : "189f40034be7a199f1fa9891668ee3ab6049f82d38c68be70f596eab2e1857b7",
-      "email" : "j@gmail.com",
-      "status" : "online",
-      "receivedRequest" : false,
-      "userId" : "4f325789",
-      "userName" : "j",
-      "dateOfBirth" : "2024-12-09",
-      "observer" : null
-    } ],
-    "profilepath" : null,
+  "zikoooo" : {
+    "members" : [ ],
+    "profilepath" : "C:\\Users\\basem\\Documents\\Contours.png",
     "primaryadmin" : {
       "profilePath" : "images/account.png",
       "coverPath" : null,
       "bio" : null,
-      "password" : "f789c4d98a4ee924f6611a858aed07c30b6c903ad874dd6a1961b42e8c9792b5",
-      "email" : "alyy@gmail.com",
-      "status" : "offline",
-      "receivedRequest" : false,
-      "userId" : "0f2dd7ac",
-      "userName" : "alyy",
-      "dateOfBirth" : "2024-12-05",
-      "observer" : null
-    },
-    "description" : "",
-    "name" : "",
-    "otheradmins" : [ ],
-    "posts" : [ ]
-  },
-  "eeeeee" : {
-    "members" : [ {
-      "profilePath" : "images/account.png",
-      "coverPath" : null,
-      "bio" : null,
-      "password" : "f789c4d98a4ee924f6611a858aed07c30b6c903ad874dd6a1961b42e8c9792b5",
-      "email" : "alyy@gmail.com",
-      "status" : "offline",
-      "receivedRequest" : false,
-      "userId" : "0f2dd7ac",
-      "userName" : "alyy",
-      "dateOfBirth" : "2024-12-05",
-      "observer" : null
-    } ],
-    "profilepath" : null,
-    "primaryadmin" : {
-      "profilePath" : "images/account.png",
-      "coverPath" : null,
-      "bio" : null,
-      "password" : "189f40034be7a199f1fa9891668ee3ab6049f82d38c68be70f596eab2e1857b7",
-      "email" : "j@gmail.com",
+      "password" : "f6e0a1e2ac41945a9aa7ff8a8aaa0cebc12a3bcc981a929ad5cf810a090e11ae",
+      "email" : "aly@gmail.com",
       "status" : "online",
-      "receivedRequest" : false,
-      "userId" : "4f325789",
-      "userName" : "j",
-      "dateOfBirth" : "2024-12-09",
+      "receivedRequest" : true,
+      "userId" : "840a2c9a",
+      "userName" : "aly",
+      "dateOfBirth" : "2024-12-11",
       "observer" : null
     },
-    "description" : "",
-    "name" : "eeeeee",
+    "description" : "ssssss",
+    "name" : "zikoooo",
     "otheradmins" : [ ],
-    "posts" : [ ]
+    "posts" : [ ],
+    "requests" : [ ]
   }
 }

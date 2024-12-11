@@ -65,6 +65,7 @@ public class Homepage extends JFrame {
         viewStory();
         displayStatus();
         displayFriendSuggestions();
+        displayGroupSuggestion();
 
         mainPanel.add(centerPanel, BorderLayout.CENTER);
 
@@ -176,7 +177,7 @@ public class Homepage extends JFrame {
 
         user.getGroupManager().viewSuggestions(user);
 
-        if(user.getGroupManager().getSuggestions().isEmpty()){
+        if(user.getGroupManager().getSuggestions() == null || user.getGroupManager().getSuggestions().isEmpty()){
             GroupSuggestionPanel.add(new JLabel("No Suggestions to View!"));
             refreshUI();
             return;
@@ -190,11 +191,29 @@ public class Homepage extends JFrame {
             }
 
             if (state == STATE.PENDING){
+                // Create a panel for the "Pending" state
+                CustomPanel pendingPanel = new CustomPanel(suggested, "Pending");
+                pendingPanel.button1.addActionListener(e -> {
+                    user.getGroupManager().cancelRequest(suggested);
+                    GroupSuggestionPanel.remove(pendingPanel);
 
+                    CustomPanel sendRequestPanel = createSendRequestPanel(suggested, GroupSuggestionPanel);
+                    GroupSuggestionPanel.add(sendRequestPanel);
+                    refreshUI();
+                });
+
+                GroupSuggestionPanel.add(pendingPanel);
+            } else {
+                // Create a panel for the "Send Request" and "Ignore" actions
+                CustomPanel sendRequestPanel = createSendRequestPanel(suggested, GroupSuggestionPanel);
+                GroupSuggestionPanel.add(sendRequestPanel);
             }
         }
 
+        // Refresh the UI after adding all panels
+        refreshUI();
     }
+
 
     private void displayFriendSuggestions() {
         // Clear the panel
@@ -220,7 +239,7 @@ public class Homepage extends JFrame {
                     user.getManager().cancelRequest(suggested);
                     friendSuggestionsPanel.remove(pendingPanel);
 
-                    CustomPanel sendRequestPanel = createSendRequestPanel(suggested);
+                    CustomPanel sendRequestPanel = createSendRequestPanel(suggested, friendSuggestionsPanel);
                     friendSuggestionsPanel.add(sendRequestPanel);
                     refreshUI();
                 });
@@ -228,7 +247,7 @@ public class Homepage extends JFrame {
                 friendSuggestionsPanel.add(pendingPanel);
             } else {
                 // Create a panel for the "Send Request" and "Ignore" actions
-                CustomPanel sendRequestPanel = createSendRequestPanel(suggested);
+                CustomPanel sendRequestPanel = createSendRequestPanel(suggested, friendSuggestionsPanel);
                 friendSuggestionsPanel.add(sendRequestPanel);
             }
         }
@@ -238,24 +257,24 @@ public class Homepage extends JFrame {
         refreshUI();
     }
 
-    private CustomPanel createSendRequestPanel(User suggested) {
+    private CustomPanel createSendRequestPanel(Object suggested, JPanel panel) {
         CustomPanel customPanel = new CustomPanel(suggested, "Send Request", "Ignore");
 
         // Send Request Action
         customPanel.button1.addActionListener(e -> {
             try {
                 user.getManager().sendRequest(suggested);
-                friendSuggestionsPanel.remove(customPanel);
+                panel.remove(customPanel);
 
                 CustomPanel pendingPanel = new CustomPanel(suggested, "Pending");
                 pendingPanel.button1.addActionListener(_ -> {
                     user.getManager().cancelRequest(suggested);
-                    friendSuggestionsPanel.remove(pendingPanel);
-                    friendSuggestionsPanel.add(customPanel);
+                    panel.remove(pendingPanel);
+                    panel.add(customPanel);
                     refreshUI();
                 });
 
-                friendSuggestionsPanel.add(pendingPanel);
+                panel.add(pendingPanel);
                 refreshUI();
             }catch (IllegalArgumentException ex) {
                 throw new RuntimeException(ex);
@@ -265,7 +284,7 @@ public class Homepage extends JFrame {
         // Ignore Action
         customPanel.button2.addActionListener(e -> {
             user.getSuggestions().remove(suggested);
-            friendSuggestionsPanel.remove(customPanel);
+            panel.remove(customPanel);
             refreshUI();
         });
 
@@ -273,8 +292,8 @@ public class Homepage extends JFrame {
     }
 
     private void refreshUI() {
-        friendSuggestionsPanel.revalidate(); // Recalculate layout
-        friendSuggestionsPanel.repaint();   // Redraw components
+        SocialArea.revalidate(); // Recalculate layout
+        SocialArea.repaint();   // Redraw components
     }
 
 
@@ -444,6 +463,7 @@ public class Homepage extends JFrame {
             viewStory();
             displayStatus();
             displayFriendSuggestions();
+            displayGroupSuggestion();
             System.out.println(user.getHandler().getStories().size());
             System.out.println(user.getHandler().getStoriesByUserId(user.getUserId()).size());
             System.out.println(user.getHandler().getStories().size());

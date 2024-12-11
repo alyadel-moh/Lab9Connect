@@ -69,7 +69,7 @@ public class Group_Manager implements Requester {
         loadSuggestionGroups();
 
         for (String key : allgroups.keySet()) {
-            if (!isMember(user, allgroups.get(key)) && !suggestions.contains(allgroups.get(key)) && !friendManager.getBlocked().contains(allgroups.get(key).getPrimaryadmin()))
+            if (!isMember(user, allgroups.get(key)) && !suggestions.contains(allgroups.get(key)) && !user.getManager().getBlocked().contains(allgroups.get(key).getPrimaryadmin()))
                 suggestions.add(allgroups.get(key));
             saveSuggestionGroups();
         }
@@ -245,6 +245,38 @@ public class Group_Manager implements Requester {
             //saveRequests();
             System.out.println("Request Sent");
         }
+    }
+
+    @Override
+    public void cancelRequest(Object generic_receiver){
+        Group receiver = (Group) generic_receiver;
+
+        if (receiver == null) {
+            throw new IllegalArgumentException("Receiver cannot be null.");
+        }
+
+        if (isMember(this.user, receiver)) {
+            JOptionPane.showMessageDialog(null,"Already a member of the group!");
+            throw new IllegalArgumentException("Already a member of the group!");
+        }
+
+        Group_Request request = getRequest(receiver);
+
+        if (request == null){
+            throw new IllegalArgumentException("Request Doesn't exist anymore!");
+        }
+
+        if (request.getState() == STATE.PENDING){
+            for (Group_Request group_request : receiver.getRequests()){
+                if (group_request.equals(request)){
+                    group_request.setState(STATE.CANCELLED);
+                    receiver.getRequests().remove(group_request);
+                    System.out.println("Friend Request Cancelled");
+                }
+            }
+        }
+
+
     }
 }
 

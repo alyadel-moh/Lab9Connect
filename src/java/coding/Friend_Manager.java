@@ -104,7 +104,10 @@ public class Friend_Manager implements Requester{
         }
     }
 
-    public void cancelRequest(User receiver){
+    @Override
+    public void cancelRequest(Object generic_receiver){
+        User receiver = (User) generic_receiver;
+
         if (receiver == null) {
             throw new IllegalArgumentException("Receiver cannot be null.");
         }
@@ -146,7 +149,11 @@ public class Friend_Manager implements Requester{
         return blocked;
     }
 
+    @Override
     public void sendRequest(Object general_receiver) {
+        if (general_receiver instanceof Group)
+            return;
+
         User receiver = (User)general_receiver;
 
         if (receiver == null) {

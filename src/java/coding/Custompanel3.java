@@ -87,6 +87,9 @@ public class Custompanel3 extends JPanel {
                 .build();
 
         testUser.setProfile();
+
+        Group group = new Group(testUser);
+
         //System.out.println(testUser.getProfile());
 
         // Create a JFrame for testing
@@ -96,12 +99,12 @@ public class Custompanel3 extends JPanel {
         frame.setSize(400, 200);
 
         // Test with one button
-        CustomPanel panel1 = new CustomPanel(testUser, "Accept");
+        Custompanel3 panel1 = new Custompanel3(group, "Accept");
         frame.add(panel1);
 
         //Uncomment the following lines to test with two buttons:
         frame.getContentPane().removeAll(); // Clear previous content
-        CustomPanel panel2 = new CustomPanel(testUser, "Accept", "Decline");
+        Custompanel3 panel2 = new Custompanel3(group, "Accept", "Decline");
         frame.add(panel2);
 
         frame.setVisible(true);
