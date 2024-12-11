@@ -5,6 +5,8 @@ import coding.Observer.ContentObserver;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
@@ -13,6 +15,9 @@ import javax.swing.*;
 import java.io.File;
 import java.time.LocalDate;
 import java.util.ArrayList;
+
+import static coding.Group_Manager.objectMapper;
+
 @JsonDeserialize(builder = User.UserBuilder.class)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class User {
@@ -36,7 +41,11 @@ public class User {
     @JsonIgnore private final ContentNotifier notifier;
     @JsonIgnore private Group_Manager groupManager;
     @JsonIgnore private Notifications notificationsWindow;
-
+    @JsonIgnore @JsonProperty
+    private String observer;
+    static {
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+    }
 
     // Private constructor for User
     protected User(String userId, String password, String userName, String email, LocalDate dateOfBirth, String status) {
@@ -95,6 +104,7 @@ public class User {
         private String  coverpath;
         private String bio;
         private boolean receivedRequest;
+        private String observer;
 
 
         public UserBuilder() {
@@ -146,6 +156,10 @@ public class User {
         this.receivedRequest = receivedRequest;
         return this;
     }
+        public UserBuilder observer(String observer) {
+            this.observer = observer;
+            return this;
+        }
 
         public User build() {
              User user = new User(userId, password, userName, email, dateOfBirth, status);
@@ -153,6 +167,7 @@ public class User {
             user.coverPath = this.coverpath;
             user.bio = this.bio;
             user.receivedRequest = this.receivedRequest;
+            user.observer = this.observer;
             return user;
         }
     }
