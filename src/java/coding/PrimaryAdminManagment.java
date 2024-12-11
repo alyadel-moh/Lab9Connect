@@ -28,5 +28,9 @@ public class PrimaryAdminManagment extends JFrame {
             setVisible(false);
             new AddGroupPost(group,primaryadmin);
         });
+        viewPostsButton.addActionListener(e -> {
+            setVisible(false);
+            new ViewPost2(group);
+        });
     }
 }
