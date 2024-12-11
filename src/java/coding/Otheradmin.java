@@ -30,6 +30,8 @@ public class Otheradmin extends JFrame{
            new View_Members_List(group);
         });
         viewPostsButton.addActionListener(e -> {
+            setVisible(false);
+            new ViewPost2(group);
         });
         addPostButton.addActionListener(e -> {
             new AddGroupPost(group,otheradmin);
