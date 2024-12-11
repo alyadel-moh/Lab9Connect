@@ -83,6 +83,7 @@ public class Group_Manager implements Requester {
                 suggestions.add(allgroups.get(key));
                 saveSuggestionGroups();
             }
+            allgroups.get(key).getName();
         }
     }
 
