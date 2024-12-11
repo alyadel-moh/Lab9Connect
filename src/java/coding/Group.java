@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class Group  {
     private String profilePath;
-    private Member primaryAdmin;
+    private User primaryAdmin;
     private String description;
     private String name;
 
@@ -24,12 +24,13 @@ public class Group  {
         this.requests = new ArrayList<>();
 
         if (primary != null) {
-            if (primary instanceof Member primaryAdmin) {
-                primaryAdmin.setGroup_status(GROUP_STATUS.PRIMARY);
-                members.add(primaryAdmin);
-                setPrimaryAdmin(primaryAdmin);
-            } else {
-                setPrimaryAdmin(null);
+            if (primary instanceof Member admin) {
+                admin.setGroup_status(GROUP_STATUS.PRIMARY);
+                members.add(admin);
+                setPrimaryAdmin(admin);
+            }else{
+                setPrimaryAdmin(primary);
+                //members.add(primaryAdmin);
             }
         } else {
             setPrimaryAdmin(null);
@@ -85,7 +86,7 @@ public class Group  {
     }
 
     public void setPrimaryAdmin(User primaryAdmin) {
-        this.primaryAdmin = (Member) primaryAdmin;
+        this.primaryAdmin =  primaryAdmin;
     }
 
     public ArrayList<Member> getMembers() {
