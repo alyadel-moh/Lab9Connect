@@ -5,5 +5,6 @@ module coding {
     requires jcalendar;
     requires jdk.jshell;
     exports coding;
+    exports coding.ENUMS to com.fasterxml.jackson.databind;
     opens coding to com.fasterxml.jackson.databind;
 }

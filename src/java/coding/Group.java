@@ -17,6 +17,8 @@ public class Group  {
     private ArrayList<Group_Request> requests;
     private Notifications notifications;
 
+    public Group() {
+    }
     Group(User primary)
     {
         this.members = new ArrayList<>();

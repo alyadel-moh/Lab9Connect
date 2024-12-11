@@ -54,7 +54,10 @@ public class View_Groups_List extends JFrame {
             });
             customPanel.button2.addActionListener(_ -> {
                 primaryadmin.getGroupManager().deletegroup(groups.get(key),primaryadmin);
+                primaryadmin.getGroupManager().saveGroups();
+                primaryadmin.getGroupManager().saveSuggestionGroups();
                 panel1.remove(customPanel);
+                JOptionPane.showMessageDialog(null,"Group deleted successfully!");
                 refreshUI();
             });
         }
