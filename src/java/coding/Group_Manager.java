@@ -126,8 +126,12 @@ public class Group_Manager implements Requester {
 
             castedUser.setGroup_status(GROUP_STATUS.NORMAL);
             group.addMember(castedUser);
+            return;
+
             //group.getMembers().add(castedUser);
         }
+
+        group.addMember(member);
     }
 
     @Override
@@ -315,7 +319,7 @@ public class Group_Manager implements Requester {
 
         public void filterGroup(Group group){
             if (group != null && !group.getMembers().isEmpty()){
-                group.getMembers().removeIf(member -> member.getGroup_status() == GROUP_STATUS.NOTMEMBER);
+                group.getMembers().removeIf(member -> ((Member)member).getGroup_status() == GROUP_STATUS.NOTMEMBER);
             }
 
         }

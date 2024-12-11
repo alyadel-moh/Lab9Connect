@@ -12,7 +12,7 @@ public class Group  {
     private String description;
     private String name;
 
-    private ArrayList<Member> members;
+    private ArrayList<User> members;
     private ArrayList<Posts> posts;
     private ArrayList<Group_Request> requests;
     private Notifications notifications;
@@ -56,9 +56,9 @@ public class Group  {
     public ArrayList<Member> getOtherAdmins() {
         ArrayList<Member> otherAdmins = new ArrayList<>();
 
-        for (Member member : members){
-            if (member.getGroup_status() == GROUP_STATUS.ADMIN)
-                otherAdmins.add(member);
+        for (User member : members){
+            if (((Member)member).getGroup_status() == GROUP_STATUS.ADMIN)
+                otherAdmins.add((Member) member);
         }
 
         return otherAdmins;
@@ -89,11 +89,11 @@ public class Group  {
         this.primaryAdmin =  primaryAdmin;
     }
 
-    public ArrayList<Member> getMembers() {
+    public ArrayList<User> getMembers() {
         return members;
     }
 
-    public void setMembers(ArrayList<Member> members) {
+    public void setMembers(ArrayList<User> members) {
         this.members = members;
     }
 
@@ -118,7 +118,10 @@ public class Group  {
 
             castedMember.setGroup_status(GROUP_STATUS.NORMAL);
             members.add(castedMember);
+            return;
         }
+
+        members.add(member);
     }
 
     @Override

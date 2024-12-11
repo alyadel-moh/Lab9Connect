@@ -34,7 +34,7 @@ public class View_Members_List extends JFrame{
         setVisible(true);
     }
 
-    private void populateMembers(ArrayList<Member> members) {
+    private void populateMembers(ArrayList<User> members) {
         // Clear the panel
         panel1.removeAll();
 
@@ -44,7 +44,7 @@ public class View_Members_List extends JFrame{
             return;
         }
 
-        for (Member member : members) {
+        for (User member : members) {
             CustomPanel customPanel = new CustomPanel(member, "Remove");
             customPanel.setPreferredSize(new Dimension(700, 30));
             panel1.add(customPanel);
