@@ -20,6 +20,8 @@ public class ViewPost2 extends JFrame {
 
         ArrayList<Posts> posts = group.getPosts();
         for (Posts post : posts) {
+            Custompanel3 custompanel3 = new Custompanel3(group,"edit","remove");
+            panel.add(custompanel3);
             String content = post.getContent();
             String[] contentDelim = content.split("@");
             String text = contentDelim[0];

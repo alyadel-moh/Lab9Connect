@@ -43,7 +43,7 @@ public class AddGroupPost extends JFrame{
                     String content = textOfContent.getText() + "@" + imagepath;
                     String postId = "Post "+(group.getPosts().size()+1);//Creates id for the content
                     Posts post = (Posts) ContentFactory.createContent(CONTENT_TYPE.POST, postId, user.getUserId(), content, currentTime);
-                    group.addpost(post);
+                    group.addPost(post);
                     JOptionPane.showMessageDialog(null,"Post Added Successfully");
                     setVisible(false);
                 }
