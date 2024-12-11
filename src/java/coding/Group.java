@@ -34,7 +34,6 @@ public class Group  {
         } else {
             setPrimaryAdmin(null);
         }
-
     }
 
     public ArrayList<Posts> getPosts() {
@@ -107,14 +106,18 @@ public class Group  {
 
     public void setProfilepath(){this.profilePath = "images/account.png";}
 
-    public void addMember(User primaryAdmin,Group group,User otherAdmin)
+    public void addMember(User member)
     {
-        if(group.getPrimaryAdmin().equals(primaryAdmin)) {
-            Member admin = (Member) otherAdmin;
-            admin.setGroup_status(GROUP_STATUS.ADMIN);
-            group.getMembers().add(admin);
-        }else
-            JOptionPane.showMessageDialog(null,"user not a primary admin !");
+        if (member == null)
+            return;
+
+        if (member instanceof Member castedMember) {
+            if (members.contains(castedMember))
+                return;
+
+            castedMember.setGroup_status(GROUP_STATUS.NORMAL);
+            members.add(castedMember);
+        }
     }
 
     @Override

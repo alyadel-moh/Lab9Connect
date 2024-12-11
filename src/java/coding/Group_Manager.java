@@ -116,6 +116,19 @@ public class Group_Manager implements Requester {
         }
     }
 
+    public void addMember(Group group, User member){
+        if (group == null || member == null)
+            return;
+
+        if (isMember(member, group))
+            return;
+
+        Member castedUser = (Member) member;
+        castedUser.setGroup_status(GROUP_STATUS.NORMAL);
+
+        group.getMembers().add(castedUser);
+    }
+
     @Override
     public String toString() {
         return "Group manager{" +
