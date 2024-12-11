@@ -44,12 +44,12 @@ public class Group  {
         this.posts = posts;
     }
 
-    public void addpost(Posts post)
+    public void addPost(Posts post)
     {
         posts.add(post);
         System.out.println("Post added: " + post);
         System.out.println("Total posts: " + posts.size());
-        System.out.println(posts.get(0));
+        System.out.println(posts.getFirst());
     }
 
     public ArrayList<Member> getOtherAdmins() {

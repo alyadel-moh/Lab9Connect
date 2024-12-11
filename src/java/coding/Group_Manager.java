@@ -120,13 +120,14 @@ public class Group_Manager implements Requester {
         if (group == null || member == null)
             return;
 
-        if (isMember(member, group))
-            return;
+        if (member instanceof Member castedUser) {
+            if (isMember(member, group))
+                return;
 
-        Member castedUser = (Member) member;
-        castedUser.setGroup_status(GROUP_STATUS.NORMAL);
-
-        group.getMembers().add(castedUser);
+            castedUser.setGroup_status(GROUP_STATUS.NORMAL);
+            group.addMember(castedUser);
+            //group.getMembers().add(castedUser);
+        }
     }
 
     @Override
