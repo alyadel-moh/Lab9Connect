@@ -67,7 +67,9 @@ public class CreateGroupGui extends JFrame {
             group.setProfilepath(profilepath);
             group.setName(textField1.getText());
             group.setDescription(textField2.getText());
+
             System.out.println(group.toString());
+
             primaryadmin.getGroupManager().addGroup(group);
             System.out.println(Group_Manager.getAllgroups());
             System.out.println(primaryadmin.getGroupManager().getGroups());

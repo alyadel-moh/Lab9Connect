@@ -15,13 +15,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Group_Manager implements Requester {
-    private Map<String, Group> groups;
-    private Posts post;
-    private ArrayList<Group> suggestions;
-    private Friend_Manager friendManager;
     private static Map<String, Group> allgroups = new HashMap<>();
-    private static final ObjectMapper objectMapper = new ObjectMapper();
     private static ArrayList<Group_Request> allRequests = new ArrayList<>();
+    private static final ObjectMapper objectMapper = new ObjectMapper();
+
+    private Map<String, Group> groups;
+    private ArrayList<Group> suggestions;
+
+    private Posts post;
     private User user;
 
     static {
@@ -35,6 +36,7 @@ public class Group_Manager implements Requester {
 
     Group_Manager(User user) {
         this.groups = new HashMap<>();
+        this.suggestions = new ArrayList<>();
         this.user = user;
     }
 
@@ -60,13 +62,13 @@ public class Group_Manager implements Requester {
         if (group.getMembers().contains(user))
             return true;
         else
-            JOptionPane.showMessageDialog(null, "user not a member !");
+            System.out.println("user not a member !");
         return false;
     }
 
     public void viewSuggestions(User user) {
-        loadGroups();
-        loadSuggestionGroups();
+        //loadGroups();
+        //loadSuggestionGroups();
 
         for (String key : allgroups.keySet()) {
             if (!isMember(user, allgroups.get(key)) && !suggestions.contains(allgroups.get(key)) && !user.getManager().getBlocked().contains(allgroups.get(key).getPrimaryadmin()))
@@ -111,7 +113,6 @@ public class Group_Manager implements Requester {
     @Override
     public String toString() {
         return "Group manager{" +
-                "friendManager=" + friendManager +
                 ", groups=" + groups +
                 ", post=" + post +
                 ", suggestions=" + suggestions +
