@@ -5,6 +5,8 @@ import coding.Observer.ContentObserver;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
@@ -13,6 +15,9 @@ import javax.swing.*;
 import java.io.File;
 import java.time.LocalDate;
 import java.util.ArrayList;
+
+import static coding.Group_Manager.objectMapper;
+
 @JsonDeserialize(builder = User.UserBuilder.class)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class User {
@@ -36,6 +41,12 @@ public class User {
     @JsonIgnore private final ContentNotifier notifier;
     @JsonIgnore private Group_Manager groupManager;
     @JsonIgnore private Notifications notificationsWindow;
+    @JsonIgnore @JsonProperty
+    private String observer;
+    static {
+    objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+    }
+
 
 
     // Private constructor for User
@@ -83,17 +94,21 @@ public class User {
 
 
     // Builder class for User
-    @JsonPOJOBuilder(withPrefix = "set")
+    @JsonIgnoreProperties(ignoreUnknown = true)
+@JsonPOJOBuilder(withPrefix = "set")
     public static class UserBuilder {
         private String userId;
         private String password;
         private String userName;
         private String email;
-        private LocalDate dateOfBirth;
+
         private String status;
-        private String profilepath;
-        private String  coverpath;
+        private String profilePath;
+        private String coverPath;
         private String bio;
+
+        private String observer;
+        private LocalDate dateOfBirth;
         private boolean receivedRequest;
 
 
@@ -130,12 +145,12 @@ public class User {
             return this;
         }
     public UserBuilder setProfilepath(String profilepath) {
-        this.profilepath = profilepath;
+        this.profilePath = profilepath;
         return this;
     }
 
     public UserBuilder setCoverpath(String coverpath) {
-        this.coverpath = coverpath;
+        this.coverPath = coverpath;
         return this;
     }
     public UserBuilder setBio(String bio){
@@ -146,11 +161,15 @@ public class User {
         this.receivedRequest = receivedRequest;
         return this;
     }
+        public UserBuilder observer(String observer) {
+            this.observer = observer;
+            return this;
+        }
 
         public User build() {
              User user = new User(userId, password, userName, email, dateOfBirth, status);
-            user.profilePath = this.profilepath;
-            user.coverPath = this.coverpath;
+            user.profilePath = this.profilePath;
+            user.coverPath = this.coverPath;
             user.bio = this.bio;
             user.receivedRequest = this.receivedRequest;
             return user;
@@ -298,14 +317,11 @@ public class User {
     }
 
 
-    /*public String toString(){
-        return "UserId: " + userId +
-                "UserName: " + userName +
-                "UserEmail: " + email +
-                "password" + password +
-                "Status: " + status +
-                "Date of Birth: " + dateOfBirth;
-
+   /* public String toString(){
+        return "UserId" + userId +
+                "UserName" + userName +
+                "UserEmail" + email +
+                "password" + password;
 
     }*/
 

@@ -18,7 +18,7 @@ import java.util.Map;
 public class Group_Manager implements Requester {
     private static Map<String, Group> allgroups = new HashMap<>();
     private static ArrayList<Group_Request> allRequests = new ArrayList<>();
-    private static final ObjectMapper objectMapper = new ObjectMapper();
+    static final ObjectMapper objectMapper = new ObjectMapper();
 
     private Map<String, Group> groups;
     private ArrayList<Group> suggestions;
@@ -45,6 +45,9 @@ public class Group_Manager implements Requester {
         if (group.getPrimaryAdmin().equals(primaryadmin)) {
             groups.remove(group.getName(), group);
             allgroups.remove(group.getName(), group);
+            this.suggestions.remove(group);
+            saveSuggestionGroups();
+            saveGroups();
         } else
             JOptionPane.showMessageDialog(null, "user not an admin !");
     }
@@ -56,6 +59,7 @@ public class Group_Manager implements Requester {
         if ((group.getOtherAdmins().contains((Member) otherAdmin) || group.getPrimaryAdmin().equals(primaryAdmin)) && group.getPosts().contains(post)) {
             group.getPosts().remove(post);
             saveGroups();
+            saveSuggestionGroups();
         } else
             JOptionPane.showMessageDialog(null, "user not an admin !");
     }
@@ -96,10 +100,17 @@ public class Group_Manager implements Requester {
 
 
     public void addGroup(Group group) {
+        if (this.suggestions == null) {
+            System.out.println("Suggestions list is null. Initializing...");
+            this.suggestions = new ArrayList<>();
+        }
+
         if (group != null) {
             groups.put(group.getName(), group);
             allgroups.put(group.getName(), group);
+            this.suggestions.add(group);
             saveGroups();
+            saveSuggestionGroups();
         }
     }
 
@@ -111,6 +122,7 @@ public class Group_Manager implements Requester {
             if (!group.getOtherAdmins().contains((Member) member) && !group.getPrimaryAdmin().equals(primaryAdmin)) {
                 group.getMembers().remove(member);
                 saveGroups();
+                saveSuggestionGroups();
             } else
                 JOptionPane.showMessageDialog(null, "not accessed to remove an admin");
         }
@@ -174,13 +186,15 @@ public class Group_Manager implements Requester {
         try {
             this.groups = objectMapper.readValue(file, objectMapper.getTypeFactory().constructMapType(Map.class, String.class, Group.class));
         } catch (IOException e) {
+            System.err.println("Error loading groups: " + e.getMessage());
             e.printStackTrace();
+            this.groups = new HashMap<>();
         }
     }
 
     public void saveSuggestionGroups() {
         try {
-            objectMapper.writeValue(new File("SuggestionGroups.json"), suggestions);
+            objectMapper.writeValue(new File("SuggestionGroups.json"), this.suggestions);
             System.out.println("Groups saved successfully");
         } catch (IOException e) {
             e.printStackTrace();
@@ -198,7 +212,9 @@ public class Group_Manager implements Requester {
         try {
             this.suggestions = objectMapper.readValue(file, objectMapper.getTypeFactory().constructCollectionType(ArrayList.class, Group.class));
         } catch (IOException e) {
+            System.err.println("Error loading suggestion groups: " + e.getMessage());
             e.printStackTrace();
+            this.suggestions = new ArrayList<>();
         }
     }
 
@@ -319,7 +335,6 @@ public class Group_Manager implements Requester {
             }
 
         }
-
 
 }
 

@@ -17,6 +17,16 @@
       <change beforePath="$PROJECT_DIR$/src/java/coding/Notifications.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Notifications.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/coding/Observer/ContentNotifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Observer/ContentNotifier.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/coding/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FriendRequests.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Friends.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Groups.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Stories.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Users.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/Group_Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Group_Manager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/View_Groups_List.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/View_Groups_List.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,13 +55,13 @@
     &quot;assignee&quot;: &quot;menna812&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/alyadel-moh/Lab9Connect.git&quot;,
-    &quot;accountId&quot;: &quot;1db9ec48-67ea-454a-949e-00fecef44143&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/alyadel-moh/Lab9Connect.git",
+    "accountId": "872e7326-fc10-4149-b651-a91a59b95075"
   },
-  &quot;editorReviewEnabled&quot;: false
-}</component>
+  "editorReviewEnabled": false
+}]]></component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -104,8 +114,46 @@
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.AddPost.executor": "Run",
+    "Application.AddStory.executor": "Run",
+    "Application.ContentCreation.executor": "Run",
+    "Application.CreateGroupGui.executor": "Run",
+    "Application.CustomPanel.executor": "Run",
+    "Application.Feedpage.executor": "Run",
+    "Application.GroupGui.executor": "Run",
+    "Application.Homepage.executor": "Run",
+    "Application.Managegroup.executor": "Run",
+    "Application.Notifications.executor": "Run",
+    "Application.Otheradmin.executor": "Run",
+    "Application.Primaryadmin.executor": "Run",
+    "Application.ProfileManagement.executor": "Run",
+    "Application.SignIn.executor": "Run",
+    "Application.SignUp.executor": "Run",
+    "Application.Test.executor": "Run",
+    "Application.Updatebio.executor": "Run",
+    "Application.Updatepass.executor": "Run",
+    "Application.ViewPost.executor": "Run",
+    "Application.Window.executor": "Run",
+    "Application.Window1.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/alyad/Documents/GitHub/Lab9Connect/src/java/coding",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "onboarding.tips.debug.path": "C:/Users/alyad/IdeaProjects/Connecthub/src/Main.java",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\alyad\Documents\GitHub\Lab9Connect\src\java\coding" />
@@ -114,6 +162,9 @@
       <recent name="C:\Users\Administrator\Documents\GitHub\Lab9Connect\src\java\coding" />
     </key>
   </component>
+  <component name="RunManager" selected="Application.Window1">
+    <configuration name="AddPost" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="coding.AddPost" />
   <component name="RunManager" selected="Application.Window1">
     <configuration name="CustomPanel" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="coding.CustomPanel" />
@@ -183,6 +234,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Window1" />
+        <item itemvalue="Application.AddPost" />
+        <item itemvalue="Application.Homepage" />
         <item itemvalue="Application.Notifications" />
         <item itemvalue="Application.CustomPanel" />
         <item itemvalue="Application.Custompanel3" />
