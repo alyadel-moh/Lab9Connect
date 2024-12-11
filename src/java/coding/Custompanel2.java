@@ -102,31 +102,4 @@ public class Custompanel2 extends JPanel{
         return button;
     }
 
-
-    public static void main(String[] args) {
-        // Create a sample User object
-        User testUser = new User.UserBuilder()
-                .setUserName("JohnDoe123")
-                .build();
-
-        testUser.setProfile();
-        //System.out.println(testUser.getProfile());
-
-        // Create a JFrame for testing
-        JFrame frame = new JFrame("Custom Panel Test");
-        frame.setLayout(new GridLayout(1,1));
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(400, 200);
-
-        // Test with one button
-        CustomPanel panel1 = new CustomPanel(testUser, "Accept");
-        frame.add(panel1);
-
-        //Uncomment the following lines to test with two buttons:
-        frame.getContentPane().removeAll(); // Clear previous content
-        CustomPanel panel2 = new CustomPanel(testUser, "Accept", "Decline");
-        frame.add(panel2);
-
-        frame.setVisible(true);
-    }
 }

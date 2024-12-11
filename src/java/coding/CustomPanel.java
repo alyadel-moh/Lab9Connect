@@ -1,24 +1,21 @@
 package coding;
 
-import coding.testtt.CircleButton;
-
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 
-public class CustomPanel extends JPanel {
-    private User user;
+public class CustomPanel<T> extends JPanel {
+    private T user;
     private int buttonCount;
     protected JButton button1;
     protected JButton button2;
 
-    public CustomPanel(User user, String text) {
+    public CustomPanel(T user, String text) {
         this(user, text, null); // Call the other constructor with null for text2
     }
 
-    public CustomPanel(User user, String text, String text2) {
+    public CustomPanel(T user, String text, String text2) {
         super();
         this.user = user;
         this.buttonCount = (text2 == null) ? 1 : 2;
@@ -40,7 +37,13 @@ public class CustomPanel extends JPanel {
         //JLabel profileLabel = createCircularLabel(new ImageIcon(user.getProfilepath()));
 
         JButton profileView = createImageButton();
-        JLabel label2 = new JLabel(user.getUserName());
+        JLabel label2;
+
+        if (user instanceof User) {
+             label2 = new JLabel(((User) user).getUserName());
+        }else{
+             label2 = new JLabel(((Group) user).getName());
+        }
 
         profilePanel.add(profileView);
         profilePanel.add(label2);
@@ -99,7 +102,13 @@ public class CustomPanel extends JPanel {
         button.setBackground(Color.white);
         button.setBorder(BorderFactory.createLineBorder(Color.black));
         button.setFocusPainted(false);
-        Image image = new ImageIcon(user.getProfilepath()).getImage();
+        Image image;
+
+        if (user instanceof User) {
+            image = new ImageIcon(((User) user).getProfilePath()).getImage();
+        }else {
+            image = new ImageIcon(((Group) user).getProfilepath()).getImage();
+        }
         Image scaled = image.getScaledInstance(70,70,Image.SCALE_SMOOTH);
         button.setIcon(new ImageIcon(scaled));
         return button;
@@ -112,8 +121,10 @@ public class CustomPanel extends JPanel {
                 .setUserName("JohnDoe123")
                 .build();
 
-        testUser.setProfile();
-        //System.out.println(testUser.getProfile());
+        //testUser.setProfile();
+
+        Group group = new Group((Member) testUser);
+        group.setProfilepath();
 
         // Create a JFrame for testing
         JFrame frame = new JFrame("Custom Panel Test");
@@ -122,12 +133,12 @@ public class CustomPanel extends JPanel {
         frame.setSize(400, 200);
 
         // Test with one button
-        CustomPanel panel1 = new CustomPanel(testUser, "Accept");
-        frame.add(panel1);
+        //CustomPanel panel1 = new CustomPanel(testUser, "Accept");
+        //frame.add(panel1);
 
         //Uncomment the following lines to test with two buttons:
         frame.getContentPane().removeAll(); // Clear previous content
-        CustomPanel panel2 = new CustomPanel(testUser, "Accept", "Decline");
+        CustomPanel panel2 = new CustomPanel(group, "Accept", "Decline");
          frame.add(panel2);
 
         frame.setVisible(true);
