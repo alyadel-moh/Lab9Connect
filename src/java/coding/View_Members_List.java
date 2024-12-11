@@ -2,11 +2,13 @@ package coding;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class View_Members_List extends JFrame{
     private JPanel panel1;
     private Group group;
+
     View_Members_List(Group group)
     {
 
@@ -32,7 +34,7 @@ public class View_Members_List extends JFrame{
         setVisible(true);
     }
 
-    private void populateMembers(List<Member> members) {
+    private void populateMembers(ArrayList<Member> members) {
         // Clear the panel
         panel1.removeAll();
 
@@ -42,7 +44,7 @@ public class View_Members_List extends JFrame{
             return;
         }
 
-        for (User member : members) {
+        for (Member member : members) {
             CustomPanel customPanel = new CustomPanel(member, "Remove");
             customPanel.setPreferredSize(new Dimension(700, 30));
             panel1.add(customPanel);
