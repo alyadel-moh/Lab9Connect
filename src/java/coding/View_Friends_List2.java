@@ -51,6 +51,7 @@ public class View_Friends_List2 extends  JFrame{
             panel1.add(customPanel);
             customPanel.button1.addActionListener(_ -> {
                   group.getMembers().add(friend);
+                  friend.getGroupManager().getGroups().put(group.getName(),group);
                   panel1.remove(customPanel);
                 refreshUI();
             });

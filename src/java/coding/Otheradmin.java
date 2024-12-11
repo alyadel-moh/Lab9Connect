@@ -7,6 +7,7 @@ public class Otheradmin extends JFrame{
     private JButton viewPostsButton;
     private JButton viewMembersButton;
     private JPanel panel;
+    private JButton addPostButton;
     private User otheradmin;
     private Group group;
     Otheradmin(User otheradmin,Group group)
@@ -15,6 +16,7 @@ public class Otheradmin extends JFrame{
         this.otheradmin = otheradmin;
         setContentPane(panel);
 
+        addPostButton.setFocusable(false);
         viewMembersButton.setFocusable(false);
         viewMembershipRequestsButton.setFocusable(false);
        viewPostsButton.setFocusable(false);
@@ -29,5 +31,10 @@ public class Otheradmin extends JFrame{
         });
         viewPostsButton.addActionListener(e -> {
         });
+        addPostButton.addActionListener(e -> {
+            new AddGroupPost(group,otheradmin);
+            setVisible(false);
+        });
+
     }
 }

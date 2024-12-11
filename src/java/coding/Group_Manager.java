@@ -18,7 +18,6 @@ public class Group_Manager implements Requester {
     private ArrayList<Group> suggestions;
     private Friend_Manager friendManager;
     private static Map<String, Group> allgroups = new HashMap<>();
-
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
     static {
@@ -40,7 +39,9 @@ public class Group_Manager implements Requester {
         } else
             JOptionPane.showMessageDialog(null, "user not an admin !");
     }
-
+    public void leavegroup(Group group) {
+            groups.remove(group.getName(), group);
+    }
     public void deletepost(Group group, User primaryadmin, User otheradmin, Posts post) {
         if ((group.getOtheradmins().contains(otheradmin) || group.getPrimaryadmin().equals(primaryadmin)) && group.getPosts().contains(post)) {
             group.getPosts().remove(post);

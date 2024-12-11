@@ -1,12 +1,12 @@
 {
   "" : {
     "members" : [ {
-      "profilepath" : "images/account.png",
-      "coverpath" : null,
+      "profilePath" : "images/account.png",
+      "coverPath" : null,
       "bio" : null,
       "password" : "189f40034be7a199f1fa9891668ee3ab6049f82d38c68be70f596eab2e1857b7",
       "email" : "j@gmail.com",
-      "status" : "offline",
+      "status" : "online",
       "receivedRequest" : false,
       "userId" : "4f325789",
       "userName" : "j",
@@ -15,12 +15,12 @@
     } ],
     "profilepath" : null,
     "primaryadmin" : {
-      "profilepath" : "C:\\Users\\alyad\\Pictures\\refactored.drawio (1).png",
-      "coverpath" : null,
+      "profilePath" : "images/account.png",
+      "coverPath" : null,
       "bio" : null,
       "password" : "f789c4d98a4ee924f6611a858aed07c30b6c903ad874dd6a1961b42e8c9792b5",
       "email" : "alyy@gmail.com",
-      "status" : "online",
+      "status" : "offline",
       "receivedRequest" : false,
       "userId" : "0f2dd7ac",
       "userName" : "alyy",
@@ -29,19 +29,40 @@
     },
     "description" : "",
     "name" : "",
-    "otheradmins" : [ {
-      "profilepath" : "images/account.png",
-      "coverpath" : null,
+    "otheradmins" : [ ],
+    "posts" : [ ]
+  },
+  "eeeeee" : {
+    "members" : [ {
+      "profilePath" : "images/account.png",
+      "coverPath" : null,
       "bio" : null,
-      "password" : "f4a4ce5fa6340a35aa5db0b4b6d31a6fbaa6052356460dbb0537657d803f5be2",
-      "email" : "mo@gmail.com",
+      "password" : "f789c4d98a4ee924f6611a858aed07c30b6c903ad874dd6a1961b42e8c9792b5",
+      "email" : "alyy@gmail.com",
       "status" : "offline",
       "receivedRequest" : false,
-      "userId" : "be4d84ca",
-      "userName" : "mo",
-      "dateOfBirth" : "2024-12-08",
+      "userId" : "0f2dd7ac",
+      "userName" : "alyy",
+      "dateOfBirth" : "2024-12-05",
       "observer" : null
     } ],
-    "posts" : null
+    "profilepath" : null,
+    "primaryadmin" : {
+      "profilePath" : "images/account.png",
+      "coverPath" : null,
+      "bio" : null,
+      "password" : "189f40034be7a199f1fa9891668ee3ab6049f82d38c68be70f596eab2e1857b7",
+      "email" : "j@gmail.com",
+      "status" : "online",
+      "receivedRequest" : false,
+      "userId" : "4f325789",
+      "userName" : "j",
+      "dateOfBirth" : "2024-12-09",
+      "observer" : null
+    },
+    "description" : "",
+    "name" : "eeeeee",
+    "otheradmins" : [ ],
+    "posts" : [ ]
   }
 }

@@ -11,26 +11,13 @@ public class Group  {
     private String name;
     private ArrayList<User> otheradmins;
     private ArrayList<Posts> posts;
-    public Group(){
-
-    }
-
-    Group(User primaryadmin,ArrayList<User> members,String profilepath,String description,String name,ArrayList<User> otheradmins) {
-        setPrimaryadmin(primaryadmin);
-        setDescription(description);
-        setMembers(members);
-        setProfilepath(profilepath);
-        setName(name);
-        setOtheradmins(otheradmins);
-    }
-
     Group(User primaryadmin)
     {
         setPrimaryadmin(primaryadmin);
         this.members = new ArrayList<>();
         this.otheradmins = new ArrayList<>();
+        this.posts = new ArrayList<>();
     }
-
 
     public ArrayList<Posts> getPosts() {
         return posts;
@@ -39,9 +26,12 @@ public class Group  {
     public void setPosts(ArrayList<Posts> posts) {
         this.posts = posts;
     }
-    public void addpost(Posts post,User user)
+    public void addpost(Posts post)
     {
-        //posts.add(new Posts(user));
+        posts.add(post);
+        System.out.println("Post added: " + post);
+        System.out.println("Total posts: " + posts.size());
+        System.out.println(posts.get(0));
     }
     public ArrayList<User> getOtheradmins() {
         return otheradmins;

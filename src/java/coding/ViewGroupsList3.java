@@ -4,16 +4,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Map;
 
-public class View_Groups_List extends JFrame {
+public class ViewGroupsList3 extends JFrame{
     private JPanel panel1;
     private Group group;
-    private User primaryadmin;
+    private User normaluser;
     Map<String,Group> groups;
-    View_Groups_List(User primaryadmin,Map<String,Group> groups)
+    ViewGroupsList3(User normaluser,Map<String,Group> groups)
     {
         this.groups = groups;
-        this.primaryadmin = primaryadmin;
-        setTitle("view Created Groups");
+        this.normaluser = normaluser;
+        setTitle("view joined Groups");
 
         this.panel1 = new JPanel();
         panel1.setLayout(new GridLayout(0,1));
@@ -23,7 +23,7 @@ public class View_Groups_List extends JFrame {
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 
         // Add suggestions to the panel
-        populateGroups(primaryadmin.getGroupManager().getGroups());
+        populateGroups(normaluser.getGroupManager().getGroups());
 
         setContentPane(scrollPane);
 
@@ -45,16 +45,18 @@ public class View_Groups_List extends JFrame {
         }
 
         for (String key : groups.keySet()) {
-            Custompanel2 customPanel = new Custompanel2(groups.get(key), "manage","remove");
+            Custompanel2 customPanel = new Custompanel2(groups.get(key), "add Post","Leave");
             panel1.add(customPanel);
             customPanel.setPreferredSize(new Dimension(700, 30));
             customPanel.button1.addActionListener(_ -> {
-                new PrimaryAdminManagment(primaryadmin,groups.get(key));
+                new AddGroupPost(groups.get(key),normaluser);
                 refreshUI();
             });
             customPanel.button2.addActionListener(_ -> {
-                primaryadmin.getGroupManager().deletegroup(groups.get(key),primaryadmin);
+                normaluser.getGroupManager().leavegroup(groups.get(key));
                 panel1.remove(customPanel);
+                System.out.println("After removal: " + groups);
+                System.out.println("After removal: " + normaluser.getGroupManager().getGroups());
                 refreshUI();
             });
         }
@@ -66,4 +68,4 @@ public class View_Groups_List extends JFrame {
         panel1.revalidate(); // Recalculate layout
         panel1.repaint(); // Redraw components
     }
-    }
+}
