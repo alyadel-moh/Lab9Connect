@@ -71,7 +71,7 @@ public class Group_Manager implements Requester {
         //loadSuggestionGroups();
 
         for (String key : allgroups.keySet()) {
-            if (!isMember(user, allgroups.get(key)) && !suggestions.contains(allgroups.get(key)) && !user.getManager().getBlocked().contains(allgroups.get(key).getPrimaryadmin()))
+            if (!isMember(user, allgroups.get(key)) && !suggestions.contains(allgroups.get(key)) && !user.getManager().getBlocked().contains(allgroups.get(key).getPrimaryadmin()) && !allgroups.get(key).getPrimaryadmin().equals(user) && !allgroups.get(key).getOtheradmins().contains(user))
                 suggestions.add(allgroups.get(key));
             saveSuggestionGroups();
         }
