@@ -9,17 +9,8 @@
       <change beforePath="$PROJECT_DIR$/FriendRequests.json" beforeDir="false" afterPath="$PROJECT_DIR$/FriendRequests.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Friends.json" beforeDir="false" afterPath="$PROJECT_DIR$/Friends.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Groups.json" beforeDir="false" afterPath="$PROJECT_DIR$/Groups.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SuggestionGroups.json" beforeDir="false" afterPath="$PROJECT_DIR$/SuggestionGroups.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Users.json" beforeDir="false" afterPath="$PROJECT_DIR$/Users.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/AddGroupPost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/AddGroupPost.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/CustomPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/CustomPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Custompanel2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Custompanel2.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/coding/Custompanel3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Custompanel3.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/CustomPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/CustomPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Custompanel3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Custompanel3.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Group.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Homepage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Homepage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/coding/ViewPost2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/ViewPost2.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/coding/View_Groups_List.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/View_Groups_List.java" afterDir="false" />
     </list>
@@ -98,7 +89,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW": "true",
-    "git-widget-placeholder": "mazen-w-aly",
+    "git-widget-placeholder": "#30 on mazen-w-aly",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/alyad/Documents/GitHub/Lab9Connect/src/java/coding",
     "node.js.detected.package.eslint": "true",

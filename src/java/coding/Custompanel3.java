@@ -29,23 +29,7 @@ public class Custompanel3 extends JPanel{
 
     private void setupLayout() {
         setLayout(new GridLayout(1,2));
-        JPanel profilePanel = new JPanel(new GridLayout(1,3));
         JPanel buttonPanel = new JPanel();
-
-        //CircleButton profileView = new CircleButton(n);
-        //JLabel profileLabel = createCircularLabel(new ImageIcon(user.getProfilepath()));
-
-        JButton profileView = createImageButton();
-        JLabel label2 = new JLabel(group.getName());
-
-        profilePanel.add(profileView);
-        profilePanel.add(label2);
-        profilePanel.add(new JLabel());
-
-        // label2.setMaximumSize(new Dimension(20,30));
-
-        add(profilePanel);
-
         buttonPanel.setLayout(new GridLayout(1,0));
 
         if (buttonCount >= 1) {
@@ -57,7 +41,7 @@ public class Custompanel3 extends JPanel{
 
         add(buttonPanel);
 
-        setMaximumSize(new Dimension(600,20));
+        setMaximumSize(new Dimension(300,20));
         //setMinimumSize(new Dimension(100,30));
         setPreferredSize(new Dimension(100,30));
     }
@@ -69,35 +53,6 @@ public class Custompanel3 extends JPanel{
         button.setForeground(Color.white);
         button.setFocusable(false);
         button.setText(text);
-        return button;
-    }
-
-    public void add(String text){
-        JLabel label = new JLabel(text);
-        add(label, 2);
-    }
-
-    private JLabel createCircularLabel(ImageIcon imageIcon) {
-        int size = 100; // Desired size for profile picture
-        Image scaledImage = imageIcon.getImage().getScaledInstance(size, size, Image.SCALE_SMOOTH);
-        BufferedImage circularImage = new BufferedImage(size, size, BufferedImage.TYPE_INT_ARGB);
-
-        Graphics2D g2 = circularImage.createGraphics();
-        g2.setClip(new Ellipse2D.Double(0, 0, size, size));
-        g2.drawImage(scaledImage, 0, 0, null);
-        g2.dispose();
-
-        return new JLabel(new ImageIcon(circularImage));
-    }
-
-    private JButton createImageButton(){
-        JButton button = createbutton(null);
-        button.setBackground(Color.white);
-        button.setBorder(BorderFactory.createLineBorder(Color.black));
-        button.setFocusPainted(false);
-        Image image = new ImageIcon(group.getProfilepath()).getImage();
-        Image scaled = image.getScaledInstance(70,70,Image.SCALE_SMOOTH);
-        button.setIcon(new ImageIcon(scaled));
         return button;
     }
 }

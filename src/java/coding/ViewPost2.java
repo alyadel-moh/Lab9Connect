@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class ViewPost2 extends JFrame {
     private Group group;
     private JPanel panel;
+    JLabel pic;
     public ViewPost2(Group group) {
         this.group = group;
         setTitle("View Posts");
@@ -28,12 +29,11 @@ public class ViewPost2 extends JFrame {
             JLabel label = new JLabel(text);
             System.out.println(text);
             panel.add(label);
-
             try {
                 String imagePath = contentDelim[1];
                 if (!imagePath.isEmpty()) {
                     ImageIcon imageIcon = new ImageIcon(new ImageIcon(imagePath).getImage().getScaledInstance(300, 300, Image.SCALE_SMOOTH)); // Scale image
-                    JLabel pic = new JLabel(imageIcon);
+                    pic = new JLabel(imageIcon);
                     pic.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Add padding
                     panel.add(pic);
                     System.out.println(imagePath);
@@ -41,7 +41,14 @@ public class ViewPost2 extends JFrame {
             } catch (ArrayIndexOutOfBoundsException e) {
                 System.out.println("No image");
             }
-
+            custompanel3.button2.addActionListener(_ -> {
+                group.getPosts().remove(post);
+                panel.remove(custompanel3);
+                panel.remove(pic);
+                panel.remove(label);
+                refreshUI();
+            });
+            refreshUI();
         }
 
         // Add panel to a scroll pane for scrolling
@@ -51,5 +58,9 @@ public class ViewPost2 extends JFrame {
 
         setVisible(true);
 
+    }
+    private void refreshUI() {
+        panel.revalidate(); // Recalculate layout
+        panel.repaint(); // Redraw components
     }
 }
