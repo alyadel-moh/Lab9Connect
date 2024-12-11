@@ -12,20 +12,24 @@ import java.util.ArrayList;
 public class Homepage extends JFrame {
     private static Homepage instance;
     private final JPanel mainPanel;
-    private JPanel centralPanel;
-    private JPanel centerPanel;
+    private final JPanel centralPanel;
+    private final JPanel centerPanel;
+    private final JPanel SocialArea;
+
     private JPanel postsPanel;
     private JPanel storiesPanel;
-    private JPanel friendsArea;
     private JPanel friendsPanel;
     private JPanel friendSuggestionsPanel;
     private JPanel subSuggestionPanel;
     private JPanel activePanel;
+    private JPanel GroupSuggestionPanel;
+    private JPanel subGroupsPanel;
+
+
     private JTextArea contentCreationArea;
     private JButton postButton,refreshButton;
     private User user;
     private UserService userService;
-
 
 
     public Homepage(UserService userService, User user) {
@@ -46,21 +50,22 @@ public class Homepage extends JFrame {
         centralPanel = new JPanel();
         centralPanel.setLayout(new BorderLayout());
 
-        friendsArea = new JPanel();
-        friendsArea.setLayout(new BoxLayout(friendsArea, BoxLayout.Y_AXIS));
+        SocialArea = new JPanel();
+        SocialArea.setLayout(new BoxLayout(SocialArea, BoxLayout.Y_AXIS));
         // friendsArea.setLayout(new GridLayout(2,1));
 
         createHeader();
         createContentArea();
-        createFriendList();
+        createSocialList();
 
         centerPanel.add(centralPanel);
-        centerPanel.add(friendsArea);
+        centerPanel.add(SocialArea);
 
         viewPosts();
         viewStory();
         displayStatus();
-        displaySuggestions();
+        displayFriendSuggestions();
+        displayGroupSuggestion();
 
         mainPanel.add(centerPanel, BorderLayout.CENTER);
 
@@ -72,23 +77,18 @@ public class Homepage extends JFrame {
 
     }
 
-    public static synchronized Homepage getInstance(UserService service, User user) {
-        if (instance == null) {
-            instance = new Homepage(service, user);
-        }
-        return instance;
-    }
 
     private void viewStory() {
         storiesPanel.removeAll();
-        ArrayList<User> users = userService.getDatabase().getUsers();
+        ArrayList<User> users = Database.getUsers();
+
         if (users != null && !users.isEmpty()) {
             for (User user : users) {
                 JButton button = createbutton("",storiesPanel);
                 button.setBackground(Color.white);
                 button.setBorder(BorderFactory.createLineBorder(Color.black));
                 button.setFocusPainted(false);
-                Image image = new ImageIcon(user.getProfilepath()).getImage();
+                Image image = new ImageIcon(user.getProfilePath()).getImage();
                 Image scaled = image.getScaledInstance(70,70,Image.SCALE_SMOOTH);
                 button.setIcon(new ImageIcon(scaled));
                 storiesPanel.add(button);
@@ -105,13 +105,14 @@ public class Homepage extends JFrame {
 
         storiesPanel.revalidate();
         storiesPanel.repaint();
+        refreshUI();
     }
 
 
 
     private void viewPosts() {
         postsPanel.removeAll(); // Clear previous posts
-        ArrayList<User> users = userService.getDatabase().getUsers();
+        ArrayList<User> users = Database.getUsers();
 
         if (users != null) {
             users.forEach(user -> {
@@ -127,6 +128,7 @@ public class Homepage extends JFrame {
         // Refresh UI
         postsPanel.revalidate();
         postsPanel.repaint();
+        refreshUI();
     }
 
     private void displayPost(Posts post) {
@@ -169,7 +171,51 @@ public class Homepage extends JFrame {
         }
     }
 
-    private void displaySuggestions() {
+    private void displayGroupSuggestion(){
+        // Clear the panel
+        GroupSuggestionPanel.removeAll();
+
+        user.getGroupManager().viewSuggestions(user);
+
+        if(user.getGroupManager().getSuggestions() == null || user.getGroupManager().getSuggestions().isEmpty()){
+            GroupSuggestionPanel.add(new JLabel("No Suggestions to View!"));
+            refreshUI();
+            return;
+        }
+
+        for (Group suggested : user.getGroupManager().getSuggestions()){
+            STATE state = null;
+
+            if (user.getGroupManager().getRequest(suggested) != null){
+                state = user.getGroupManager().getRequest(suggested).getState();
+            }
+
+            if (state == STATE.PENDING){
+                // Create a panel for the "Pending" state
+                CustomPanel pendingPanel = new CustomPanel(suggested, "Pending");
+                pendingPanel.button1.addActionListener(e -> {
+                    user.getGroupManager().cancelRequest(suggested);
+                    GroupSuggestionPanel.remove(pendingPanel);
+
+                    CustomPanel sendRequestPanel = createSendRequestPanel(suggested, GroupSuggestionPanel);
+                    GroupSuggestionPanel.add(sendRequestPanel);
+                    refreshUI();
+                });
+
+                GroupSuggestionPanel.add(pendingPanel);
+            } else {
+                // Create a panel for the "Send Request" and "Ignore" actions
+                CustomPanel sendRequestPanel = createSendRequestPanel(suggested, GroupSuggestionPanel);
+                GroupSuggestionPanel.add(sendRequestPanel);
+            }
+        }
+
+        // Refresh the UI after adding all panels
+        refreshUI();
+    }
+
+
+    private void displayFriendSuggestions() {
         // Clear the panel
         friendSuggestionsPanel.removeAll();
 
@@ -180,6 +226,11 @@ public class Homepage extends JFrame {
         }
 
         for (User suggested : user.getSuggestions()) {
+            if (user.getManager().getFriends().contains(suggested)){
+                //user.getSuggestions().remove(suggested);
+                continue;
+            }
+
             STATE state = null;
 
             if (user.getManager().getRequest(suggested) != null) {
@@ -193,7 +244,7 @@ public class Homepage extends JFrame {
                     user.getManager().cancelRequest(suggested);
                     friendSuggestionsPanel.remove(pendingPanel);
 
-                    CustomPanel sendRequestPanel = createSendRequestPanel(suggested);
+                    CustomPanel sendRequestPanel = createSendRequestPanel(suggested, friendSuggestionsPanel);
                     friendSuggestionsPanel.add(sendRequestPanel);
                     refreshUI();
                 });
@@ -201,7 +252,7 @@ public class Homepage extends JFrame {
                 friendSuggestionsPanel.add(pendingPanel);
             } else {
                 // Create a panel for the "Send Request" and "Ignore" actions
-                CustomPanel sendRequestPanel = createSendRequestPanel(suggested);
+                CustomPanel sendRequestPanel = createSendRequestPanel(suggested, friendSuggestionsPanel);
                 friendSuggestionsPanel.add(sendRequestPanel);
             }
         }
@@ -211,30 +262,34 @@ public class Homepage extends JFrame {
         refreshUI();
     }
 
-    private CustomPanel createSendRequestPanel(User suggested) {
+    private CustomPanel createSendRequestPanel(Object suggested, JPanel panel) {
         CustomPanel customPanel = new CustomPanel(suggested, "Send Request", "Ignore");
 
         // Send Request Action
         customPanel.button1.addActionListener(e -> {
-            user.getManager().sendRequest(suggested);
-            friendSuggestionsPanel.remove(customPanel);
+            try {
+                user.getManager().sendRequest(suggested);
+                panel.remove(customPanel);
 
-            CustomPanel pendingPanel = new CustomPanel(suggested, "Pending");
-            pendingPanel.button1.addActionListener(_ -> {
-                user.getManager().getRequestbySender(user, suggested).setState(STATE.CANCELLED);
-                friendSuggestionsPanel.remove(pendingPanel);
-                friendSuggestionsPanel.add(customPanel);
+                CustomPanel pendingPanel = new CustomPanel(suggested, "Pending");
+                pendingPanel.button1.addActionListener(_ -> {
+                    user.getManager().cancelRequest(suggested);
+                    panel.remove(pendingPanel);
+                    panel.add(customPanel);
+                    refreshUI();
+                });
+
+                panel.add(pendingPanel);
                 refreshUI();
-            });
-
-            friendSuggestionsPanel.add(pendingPanel);
-            refreshUI();
+            }catch (IllegalArgumentException ex) {
+                throw new RuntimeException(ex);
+            }
         });
 
         // Ignore Action
         customPanel.button2.addActionListener(e -> {
             user.getSuggestions().remove(suggested);
-            friendSuggestionsPanel.remove(customPanel);
+            panel.remove(customPanel);
             refreshUI();
         });
 
@@ -242,8 +297,8 @@ public class Homepage extends JFrame {
     }
 
     private void refreshUI() {
-        friendSuggestionsPanel.revalidate(); // Recalculate layout
-        friendSuggestionsPanel.repaint();   // Redraw components
+        SocialArea.revalidate(); // Recalculate layout
+        SocialArea.repaint();   // Redraw components
     }
 
 
@@ -301,7 +356,7 @@ public class Homepage extends JFrame {
         JButton addPostButton =createbutton("Create Content",headerPanel);
         JButton logoutButton = createbutton("Logout",headerPanel);
         refreshButton =  createbutton("Refresh",headerPanel);
-        JButton groupmanagment = createbutton("Group mangment",headerPanel);
+        JButton groupManagement = createbutton("Group Management",headerPanel);
 
         headerPanel.setBackground(Color.LIGHT_GRAY);
         mainPanel.add(headerPanel, BorderLayout.NORTH);
@@ -310,7 +365,7 @@ public class Homepage extends JFrame {
         profileButton.addActionListener(e -> new ProfileManagement(user, userService));
 
         notificationButton.addActionListener(e -> new Notifications(user));
-        groupmanagment.addActionListener(e -> new GroupGui(user));
+        groupManagement.addActionListener(e -> new GroupGui(user));
 
         friendButton.addActionListener(e -> {
             centerPanel.removeAll();
@@ -366,9 +421,9 @@ public class Homepage extends JFrame {
 
     }
 
-    private void createFriendList(){
+    private void createSocialList(){
         JPanel friendListPanel = new JPanel();
-        friendListPanel.setLayout(new GridLayout(2,1));
+        friendListPanel.setLayout(new GridLayout(3,1));
 
         friendsPanel = new JPanel();
         friendsPanel.setLayout(new GridLayout(0, 1));
@@ -383,11 +438,20 @@ public class Homepage extends JFrame {
         subSuggestionPanel.setBorder(BorderFactory.createTitledBorder("List View"));
         friendSuggestionsPanel.add(subSuggestionPanel);
 
+        GroupSuggestionPanel = new JPanel();
+        GroupSuggestionPanel.setLayout(new GridLayout(0, 1));
+        GroupSuggestionPanel.setBorder(BorderFactory.createTitledBorder("Group Suggestions"));
+
+        subGroupsPanel = new JPanel();
+        subGroupsPanel.setLayout(new GridLayout(0, 1));
+        subGroupsPanel.setBorder(BorderFactory.createTitledBorder("List View"));
+        GroupSuggestionPanel.add(subGroupsPanel);
 
         friendListPanel.add(friendsPanel);
         friendListPanel.add(new JScrollPane(friendSuggestionsPanel));
+        friendListPanel.add(new JScrollPane(GroupSuggestionPanel));
 
-        friendsArea.add(friendListPanel);
+        SocialArea.add(friendListPanel);
         //friendsArea.add(friendSuggestionsPanel);
 
     }
@@ -403,7 +467,8 @@ public class Homepage extends JFrame {
             viewPosts();
             viewStory();
             displayStatus();
-            displaySuggestions();
+            displayFriendSuggestions();
+            displayGroupSuggestion();
             System.out.println(user.getHandler().getStories().size());
             System.out.println(user.getHandler().getStoriesByUserId(user.getUserId()).size());
             System.out.println(user.getHandler().getStories().size());

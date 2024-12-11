@@ -17,22 +17,28 @@ public class CreateGroupGui extends JFrame {
     private JButton createGroupButton;
     private String profilepath;
     private User primaryadmin;
-    CreateGroupGui(User primaryadmin)
+    private Group group = null;
+    CreateGroupGui(User primaryAdmin)
     {
-        Group group = new Group(primaryadmin);
-        this.primaryadmin = primaryadmin;
+        if (primaryAdmin != null) {
+             group = new Group(primaryAdmin);
+            this.primaryadmin = primaryAdmin;
+        }
+
         setTitle("Create Group");
         setContentPane(panel);
         setBounds(100,100,570,500);
         setResizable(false);
         setLocationRelativeTo(null);
+
         setGroupNameTextField.setBorder(new LineBorder(Color.black));
         setGroupDescriptionTextField.setBorder(new LineBorder(Color.black));
         addFriendsButton.setFocusable(false);
         addOtherAdminsButton.setFocusable(false);
         addProfileButton.setFocusable(false);
         createGroupButton.setFocusable(false);
-       addProfileButton.addActionListener(e -> {
+
+        addProfileButton.addActionListener(e -> {
            JFileChooser fileChooser = new JFileChooser();//Create the JfileChooser to show the save dialog
            fileChooser.setDialogTitle("Choose an Image");
            int userChoice = fileChooser.showSaveDialog(null);//shows the save dialog//null is to be centered to the screen//returns 0 if the user clicked save//returns 1 then the user canceled//-1 error occured
@@ -52,20 +58,30 @@ public class CreateGroupGui extends JFrame {
                }
            }
         });
+
        addOtherAdminsButton.addActionListener(e -> {
-            new View_Friends_List3(primaryadmin,group);
+           assert primaryAdmin != null;
+           new View_Friends_List3(primaryAdmin,group);
         });
-        addFriendsButton.addActionListener(e -> new View_Friends_List2(primaryadmin,group) );
-        createGroupButton.addActionListener(e -> {
+
+       addFriendsButton.addActionListener(e -> {
+           assert primaryAdmin != null;
+           new View_Friends_List2(primaryAdmin,group);
+       });
+
+       createGroupButton.addActionListener(e -> {
             group.setProfilepath(profilepath);
             group.setName(textField1.getText());
             group.setDescription(textField2.getText());
+
             System.out.println(group.toString());
-            primaryadmin.getGroupManager().addGroup(group);
+
+            primaryAdmin.getGroupManager().addGroup(group);
             System.out.println(Group_Manager.getAllgroups());
-            System.out.println(primaryadmin.getGroupManager().getGroups());
+            System.out.println(primaryAdmin.getGroupManager().getGroups());
           setVisible(false);
         });
+
         setVisible(true);
     }
     public static void main(String[] args) {

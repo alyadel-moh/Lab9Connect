@@ -4,7 +4,7 @@ import coding.User;
 
 import java.util.ArrayList;
 
-public class ContentNotifier {
+public class ContentNotifier<T> {
     private final ArrayList<ContentObserver> observers = new ArrayList<>();
 
     // Add an observer
@@ -20,7 +20,7 @@ public class ContentNotifier {
     }
 
     // Notify all observers
-    public void notifyObservers(User user, String text, User target) {
+    public void notifyObservers(User user, String text, T target) {
         for (ContentObserver observer : observers) {
             if (target == null || observer.equals(target)) {
                 observer.update(user, text);

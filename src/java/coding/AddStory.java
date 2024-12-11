@@ -45,7 +45,7 @@ public class AddStory extends JFrame {
                     String storyId="Story "+user.getHandler().getStories().size()+1;//Creates id for the content
                     Stories story = (Stories) ContentFactory.createContent(CONTENT_TYPE.STORY, storyId, user.getUserId(), content, currentTime);
 
-                    user.getHandler().addStory(story);
+                    user.getHandler().addStory(story, user);
                     JOptionPane.showMessageDialog(null,"Story added Successfully");
                     setVisible(false);
                 }

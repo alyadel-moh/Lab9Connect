@@ -90,7 +90,7 @@ public class Database {
                 user.getManager().loadHisOwnRequests(user.getUserId());
 
 
-                if(user.getProfilepath() == null){
+                if(user.getProfilePath() == null){
                     user.setProfilepath();
                 }
             }

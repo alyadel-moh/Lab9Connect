@@ -94,7 +94,7 @@ public class SearchManagement extends JFrame {
         JPanel userPanel = new JPanel();
         userPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 
-        ImageIcon userIcon = new ImageIcon(new ImageIcon(searchedUser.getProfilepath()).getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH));
+        ImageIcon userIcon = new ImageIcon(new ImageIcon(searchedUser.getProfilePath()).getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH));
         JLabel userImage = new JLabel(userIcon);
         userPanel.add(userImage);
 
@@ -183,7 +183,7 @@ public class SearchManagement extends JFrame {
             JOptionPane.showMessageDialog(null, "You are already a member of this group.");
             return;
         }
-        searchedGroup.getMembers().add(user);
+        searchedGroup.getMembers().add((Member) user);
         JOptionPane.showMessageDialog(null, "Joined group successfully.");
     }
 

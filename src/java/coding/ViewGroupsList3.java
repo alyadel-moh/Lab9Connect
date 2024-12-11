@@ -2,18 +2,18 @@ package coding;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Map;
 
-public class View_Members_List extends JFrame{
+public class ViewGroupsList3 extends JFrame{
     private JPanel panel1;
     private Group group;
-
-    View_Members_List(Group group)
+    private User normaluser;
+    Map<String,Group> groups;
+    ViewGroupsList3(User normaluser,Map<String,Group> groups)
     {
-
-        this.group = group;
-        setTitle("view Members");
+        this.groups = groups;
+        this.normaluser = normaluser;
+        setTitle("view joined Groups");
 
         this.panel1 = new JPanel();
         panel1.setLayout(new GridLayout(0,1));
@@ -23,7 +23,7 @@ public class View_Members_List extends JFrame{
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 
         // Add suggestions to the panel
-        populateMembers(group.getMembers());
+        populateGroups(normaluser.getGroupManager().getGroups());
 
         setContentPane(scrollPane);
 
@@ -34,23 +34,29 @@ public class View_Members_List extends JFrame{
         setVisible(true);
     }
 
-    private void populateMembers(ArrayList<Member> members) {
+    private void populateGroups(Map<String,Group> groups) {
         // Clear the panel
         panel1.removeAll();
 
-        if(members.isEmpty()){
-            panel1.add(new JLabel("No Members to View!"));
+        if(groups.isEmpty()){
+            panel1.add(new JLabel("No Groups to View!"));
             refreshUI();
             return;
         }
 
-        for (Member member : members) {
-            CustomPanel customPanel = new CustomPanel(member, "Remove");
-            customPanel.setPreferredSize(new Dimension(700, 30));
+        for (String key : groups.keySet()) {
+            Custompanel2 customPanel = new Custompanel2(groups.get(key), "add Post","Leave");
             panel1.add(customPanel);
+            customPanel.setPreferredSize(new Dimension(700, 30));
             customPanel.button1.addActionListener(_ -> {
-                group.getMembers().remove(member);
+                new AddGroupPost(groups.get(key),normaluser);
+                refreshUI();
+            });
+            customPanel.button2.addActionListener(_ -> {
+                normaluser.getGroupManager().leavegroup(groups.get(key));
                 panel1.remove(customPanel);
+                System.out.println("After removal: " + groups);
+                System.out.println("After removal: " + normaluser.getGroupManager().getGroups());
                 refreshUI();
             });
         }
@@ -62,4 +68,4 @@ public class View_Members_List extends JFrame{
         panel1.revalidate(); // Recalculate layout
         panel1.repaint(); // Redraw components
     }
-    }
+}

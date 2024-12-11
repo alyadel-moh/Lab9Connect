@@ -37,6 +37,10 @@ public class GroupGui extends JFrame{
             new CreateGroupGui(user);
             setVisible(false);
         });
+        normalUserButton.addActionListener(e -> {
+        new ViewGroupsList3(user,user.getGroupManager().getGroups());
+        setVisible(false);
+    });
         setVisible(true);
     }
     public static void main(String[] args) {

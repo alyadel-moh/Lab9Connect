@@ -1,5 +1,6 @@
 package coding;
 
+import coding.ENUMS.REQUEST;
 import coding.ENUMS.STATE;
 import coding.Interfaces.Requester;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -103,7 +104,10 @@ public class Friend_Manager implements Requester{
         }
     }
 
-    public void cancelRequest(User receiver){
+    @Override
+    public void cancelRequest(Object generic_receiver){
+        User receiver = (User) generic_receiver;
+
         if (receiver == null) {
             throw new IllegalArgumentException("Receiver cannot be null.");
         }
@@ -119,18 +123,22 @@ public class Friend_Manager implements Requester{
         }
 
         if (request.getState() == STATE.PENDING){
-            receiver.getManager().getRequest(receiver).setState(STATE.CANCELLED);
+            receiver.getManager().getRequestbySender(this.user, receiver).setState(STATE.CANCELLED);
             receiver.getManager().getRequests().remove(request);
             FriendHandler.getAllFriendReq().remove(request);
+            System.out.println("Friend Request Cancelled");
         }
 
 
     }
 
-    public FriendRequest getRequest(User receiver) {
+    @Override
+    ////// Get request to receiver by this user
+    public FriendRequest getRequest(Object generic_receiver) {
+        User receiver = (User) generic_receiver;
         if (receiver != null && !friends.contains(receiver)) {
-            for (FriendRequest request : requests){
-                if (receiver.equals(request.getReceiver()))
+            for (FriendRequest request : receiver.getRequests()){
+                if (user.equals(request.getSender()))
                     return request;
             }
         }
@@ -141,7 +149,11 @@ public class Friend_Manager implements Requester{
         return blocked;
     }
 
+    @Override
     public void sendRequest(Object general_receiver) {
+        if (general_receiver instanceof Group)
+            return;
+
         User receiver = (User)general_receiver;
 
         if (receiver == null) {
@@ -149,6 +161,7 @@ public class Friend_Manager implements Requester{
         }
 
         if (friends.contains(receiver)) {
+            JOptionPane.showMessageDialog(null,"Friend already added!");
             throw new IllegalArgumentException("Friend already added.");
         }
 
@@ -156,14 +169,15 @@ public class Friend_Manager implements Requester{
         for (FriendRequest req : receiver.getRequests()) {
             if (req.getSender().equals(this.user) && req.getReceiver().equals(receiver)) {
                 if (req.getState() == STATE.PENDING) {
+                    JOptionPane.showMessageDialog(null,"Request already pending!");
                     throw new IllegalArgumentException("Request already pending.");
                 }
             }
         }
 
         // Create and send new request
-        FriendRequest newRequest = (FriendRequest) RequestFactory.createRequest("friend request", this.user, receiver.getUserId());
-        receiver.getManager().setReceivedRequest(newRequest);
+        FriendRequest newRequest = (FriendRequest) RequestFactory.createRequest(REQUEST.FRIENDREQUEST, this.user, receiver.getUserId());
+        receiver.getManager().updateReceiverRequests(newRequest);
         user.getNotifier().notifyObservers(user, " sent you a friend request", receiver);
     }
 
@@ -176,7 +190,9 @@ public class Friend_Manager implements Requester{
         return null;
     }
 
-    public void setReceivedRequest(FriendRequest request) {
+    public void updateReceiverRequests(Request old_request) {
+       FriendRequest request = (FriendRequest) old_request;
+
         if (request == null || request.getReceiver() == null) {
             throw new IllegalArgumentException("Invalid FriendRequest");
         }
@@ -188,7 +204,7 @@ public class Friend_Manager implements Requester{
             requests.add(request);
             allRequests.add(request);
             saveRequests();
-            System.out.println("added");
+            System.out.println("Request Sent");
         }
     }
 
@@ -324,7 +340,7 @@ public class Friend_Manager implements Requester{
             for (User friend : friends) {
                 if ("online".equalsIgnoreCase(friend.getStatus())) {
                     // Get friend's profile picture
-                    ImageIcon profilePic = new ImageIcon(friend.getProfilepath());
+                    ImageIcon profilePic = new ImageIcon(friend.getProfilePath());
                     JLabel profileLabel = createCircularLabel(profilePic);
                     activePanel.add(profileLabel);
                 }

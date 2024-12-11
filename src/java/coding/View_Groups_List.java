@@ -13,8 +13,6 @@ public class View_Groups_List extends JFrame {
     {
         this.groups = groups;
         this.primaryadmin = primaryadmin;
-        this.primaryadmin = primaryadmin;
-        this.group = group;
         setTitle("view Created Groups");
 
         this.panel1 = new JPanel();
@@ -55,8 +53,7 @@ public class View_Groups_List extends JFrame {
                 refreshUI();
             });
             customPanel.button2.addActionListener(_ -> {
-                primaryadmin.getGroupManager().getGroups().remove(groups.get(key));
-                Group_Manager.getAllgroups().remove(groups.get(key));
+                primaryadmin.getGroupManager().deletegroup(groups.get(key),primaryadmin);
                 panel1.remove(customPanel);
                 refreshUI();
             });

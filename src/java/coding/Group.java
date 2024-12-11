@@ -1,36 +1,41 @@
 package coding;
 
+import coding.ENUMS.GROUP_STATUS;
+
 import javax.swing.*;
+import java.io.File;
 import java.util.ArrayList;
 
 public class Group  {
-    private ArrayList<User> members;
-    private String profilepath;
-    private User primaryadmin;
+    private String profilePath;
+    private User primaryAdmin;
     private String description;
     private String name;
-    private ArrayList<User> otheradmins;
+
+    private ArrayList<Member> members;
     private ArrayList<Posts> posts;
-    public Group(){
+    private ArrayList<Group_Request> requests;
+    private Notifications notifications;
 
-    }
-
-    Group(User primaryadmin,ArrayList<User> members,String profilepath,String description,String name,ArrayList<User> otheradmins) {
-        setPrimaryadmin(primaryadmin);
-        setDescription(description);
-        setMembers(members);
-        setProfilepath(profilepath);
-        setName(name);
-        setOtheradmins(otheradmins);
-    }
-
-    Group(User primaryadmin)
+    Group(User primary)
     {
-        setPrimaryadmin(primaryadmin);
         this.members = new ArrayList<>();
-        this.otheradmins = new ArrayList<>();
-    }
+        this.posts = new ArrayList<>();
+        this.requests = new ArrayList<>();
 
+        if (primary != null) {
+            if (primary instanceof Member admin) {
+                admin.setGroup_status(GROUP_STATUS.PRIMARY);
+                members.add(admin);
+                setPrimaryAdmin(admin);
+            }else{
+                setPrimaryAdmin(primary);
+                //members.add(primaryAdmin);
+            }
+        } else {
+            setPrimaryAdmin(null);
+        }
+    }
 
     public ArrayList<Posts> getPosts() {
         return posts;
@@ -39,17 +44,26 @@ public class Group  {
     public void setPosts(ArrayList<Posts> posts) {
         this.posts = posts;
     }
-    public void addpost(Posts post,User user)
+
+    public void addPost(Posts post)
     {
-        //posts.add(new Posts(user));
+        posts.add(post);
+        System.out.println("Post added: " + post);
+        System.out.println("Total posts: " + posts.size());
+        System.out.println(posts.getFirst());
     }
-    public ArrayList<User> getOtheradmins() {
-        return otheradmins;
+
+    public ArrayList<Member> getOtherAdmins() {
+        ArrayList<Member> otherAdmins = new ArrayList<>();
+
+        for (Member member : members){
+            if (member.getGroup_status() == GROUP_STATUS.ADMIN)
+                otherAdmins.add(member);
+        }
+
+        return otherAdmins;
     }
-    
-    public void setOtheradmins(ArrayList<User> otheradmins) {
-        this.otheradmins = otheradmins;
-    }
+
 
     public String getName() {
         return name;
@@ -67,35 +81,44 @@ public class Group  {
         this.description = description;
     }
 
-    public User getPrimaryadmin() {
-        return primaryadmin;
+    public User getPrimaryAdmin() {
+        return primaryAdmin;
     }
 
-    public void setPrimaryadmin(User primaryadmin) {
-        this.primaryadmin = primaryadmin;
+    public void setPrimaryAdmin(User primaryAdmin) {
+        this.primaryAdmin =  primaryAdmin;
     }
 
-    public ArrayList<User> getMembers() {
+    public ArrayList<Member> getMembers() {
         return members;
     }
 
-    public void setMembers(ArrayList<User> members) {
+    public void setMembers(ArrayList<Member> members) {
         this.members = members;
     }
 
     public String getProfilepath() {
-        return profilepath;
+        return profilePath;
     }
 
     public void setProfilepath(String profilepath) {
-        this.profilepath = profilepath;
+        this.profilePath = profilepath;
     }
-    public void addotheradmin(User primaryadmin,Group group,User otheradmin)
+
+    public void setProfilepath(){this.profilePath = "images/account.png";}
+
+    public void addMember(User member)
     {
-        if(group.getPrimaryadmin().equals(primaryadmin))
-            group.getOtheradmins().add(otheradmin);
-        else
-            JOptionPane.showMessageDialog(null,"user not a primary admin !");
+        if (member == null)
+            return;
+
+        if (member instanceof Member castedMember) {
+            if (members.contains(castedMember))
+                return;
+
+            castedMember.setGroup_status(GROUP_STATUS.NORMAL);
+            members.add(castedMember);
+        }
     }
 
     @Override
@@ -103,11 +126,42 @@ public class Group  {
         return "Group{" +
                 "description='" + description + '\'' +
                 ", members=" + members +
-                ", profilepath='" + profilepath + '\'' +
-                ", primaryadmin=" + primaryadmin +
+                ", profile path='" + profilePath + '\'' +
+                ", primary admin=" + primaryAdmin +
                 ", name='" + name + '\'' +
-                ", otheradmins=" + otheradmins +
+                ", other admins= " + getOtherAdmins() +
                 ", posts=" + posts +
                 '}';
+    }
+
+    public ArrayList<Group_Request> getRequests() {
+        return requests;
+    }
+
+    public void setRequests(ArrayList<Group_Request> requests) {
+        this.requests = requests;
+    }
+
+    public void setProfile() {
+        JFileChooser fileChooser = new JFileChooser();//Create the JfileChooser to show the save dialog
+        fileChooser.setDialogTitle("Choose an Image");
+        int userChoice = fileChooser.showSaveDialog(null);//shows the save dialog//null is to be centered to the screen//returns 0 if the user clicked save//returns 1 then the user canceled//-1 error occured
+        if (userChoice == -1) {
+            JOptionPane.showMessageDialog(null, "An error has occurred");
+        } else if (userChoice == 1) {
+            JOptionPane.showMessageDialog(null, "The user Cancelled");
+        } else {
+            File selectedFile = fileChooser.getSelectedFile();
+            if(selectedFile.exists()){
+
+                profilePath = selectedFile.getAbsolutePath();
+                Database database = Database.getInstance();
+                database.saveUsers();
+                JOptionPane.showMessageDialog(null,"Image Chosen successfully");
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Please Choose an Image!", "Message", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }
 }
