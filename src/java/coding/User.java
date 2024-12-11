@@ -62,7 +62,8 @@ public class User {
 
 
     public void createObserver(){
-        notificationsWindow = new Notifications(this);
+        if (notificationsWindow == null)
+            notificationsWindow = new Notifications(this);
     }
 
     public String getUserId() {
@@ -70,12 +71,19 @@ public class User {
     }
 
     public ContentObserver getObserver() {
+        createObserver();
         return notificationsWindow;
+    }
+
+    public void populateObservers(){
+        for (User friend : manager.getFriends()){
+            notifier.addObserver(friend.getObserver());
+        }
     }
 
 
     // Builder class for User
-@JsonPOJOBuilder(withPrefix = "set")
+    @JsonPOJOBuilder(withPrefix = "set")
     public static class UserBuilder {
         private String userId;
         private String password;
@@ -83,21 +91,15 @@ public class User {
         private String email;
         private LocalDate dateOfBirth;
         private String status;
-    private String profilepath;
-    private String  coverpath;
-    private String bio;
-    private boolean receivedRequest;
+        private String profilepath;
+        private String  coverpath;
+        private String bio;
+        private boolean receivedRequest;
 
 
         public UserBuilder() {
-            this.userId = userId;
-            this.password = password;
-            this.userName = userName;
-            this.email = email;
-            this.dateOfBirth = dateOfBirth;
-            this.status = status;
-            this.receivedRequest= receivedRequest;
         }
+
         public UserBuilder setUserId(String userId) {
             this.userId = userId;
             return this;
@@ -155,10 +157,6 @@ public class User {
         }
     }
 
-    // Other methods
-//    public ArrayList<Content> getContentList() {
-//        return handler.getContents();
-//    }
 
     public void setCover() {
         JFileChooser fileChooser = new JFileChooser();//Create the JfileChooser to show the save dialog

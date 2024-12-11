@@ -24,6 +24,8 @@ public class ContentHandler {
 //    private String storyPath="./JsonFilesStories/";
 //    private String postsPath="./JsonFilesPosts/";
 
+
+
     public ContentHandler() {
         this.objectMapper = new ObjectMapper();
         this.posts = new ArrayList<>();
@@ -65,7 +67,9 @@ public class ContentHandler {
         }
     }
 
-
+    public void addNotification(CustomPanel notification) {
+        this.notifications.add(notification);
+    }
 
     //Saving all Posts
     public void savePosts(){
@@ -110,6 +114,8 @@ public class ContentHandler {
     public ArrayList<CustomPanel> getNotifications(){
         return notifications;
     }
+
+
 
     public ArrayList<Stories> getArchieved() {
         return archieved;

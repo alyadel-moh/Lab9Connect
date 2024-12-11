@@ -28,7 +28,7 @@ public class Notifications extends JFrame implements ContentObserver {
         setResizable(false);
         setBounds(100, 100, 300, 400);
         setLocationRelativeTo(null);
-        setVisible(true);
+        //setVisible(true);
     }
 
     /**
@@ -36,6 +36,11 @@ public class Notifications extends JFrame implements ContentObserver {
      */
     private void populateNotifications(List<CustomPanel> notifications) {
         panel1.removeAll(); // Clear existing notifications
+        if (notifications.isEmpty()) {
+            panel1.add(new JLabel("No New Notificatons!"));
+            return;
+        }
+
         for (CustomPanel customPanel : notifications) {
             setupCustomPanelActions(customPanel);
             panel1.add(customPanel);

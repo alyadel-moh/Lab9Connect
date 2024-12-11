@@ -233,7 +233,7 @@ public class Friend_Manager implements Requester{
 
         sender.getManager().getFriends().add(receiver);
 
-        sender.createObserver();
+        //sender.createObserver();
         user.getNotifier().addObserver(sender.getObserver());
 
         user.getFriendHandler().addFriend(((User) request.getReceiver()).getUserId(),request.getSender().getUserId());

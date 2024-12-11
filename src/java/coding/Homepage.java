@@ -28,8 +28,8 @@ public class Homepage extends JFrame {
 
     private JTextArea contentCreationArea;
     private JButton postButton,refreshButton;
-    private User user;
-    private UserService userService;
+    private final User user;
+    private final UserService userService;
 
 
     public Homepage(UserService userService, User user) {
@@ -364,7 +364,8 @@ public class Homepage extends JFrame {
         // Event Listeners
         profileButton.addActionListener(e -> new ProfileManagement(user, userService));
 
-        notificationButton.addActionListener(e -> new Notifications(user));
+        notificationButton.addActionListener(e -> (new Notifications(user)).setVisible(true));
+
         groupManagement.addActionListener(e -> new GroupGui(user));
 
         friendButton.addActionListener(e -> {
@@ -463,6 +464,7 @@ public class Homepage extends JFrame {
             storiesPanel.removeAll();
             friendsPanel.removeAll();
             friendSuggestionsPanel.removeAll();
+            GroupSuggestionPanel.removeAll();
 
             viewPosts();
             viewStory();
@@ -483,6 +485,7 @@ public class Homepage extends JFrame {
             setVisible(false);
 
             new Homepage(userService, user);
+            user.populateObservers();
 
             JOptionPane.showMessageDialog(this, "Page Refreshed");
         } catch (Exception e) {
@@ -506,7 +509,7 @@ public class Homepage extends JFrame {
     public static void main(String[] args) {
         Database database =Database.getInstance();
         database.loadUsers();
-        ArrayList<User> users = database.getUsers();
+        ArrayList<User> users = Database.getUsers();
         UserService userService = new UserService(database);
         // User user = users.getFirst();
         LocalDate date = LocalDate.now();
