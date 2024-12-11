@@ -9,6 +9,7 @@ public class View_Friends_List2 extends  JFrame{
     private JPanel panel1;
     private Group group;
     private User primaryadmin;
+
     View_Friends_List2(User primaryadmin,Group group)
     {
         this.primaryadmin = primaryadmin;
@@ -44,13 +45,15 @@ public class View_Friends_List2 extends  JFrame{
         }
 
         for (User friend : friends) {
-            if(group.getMembers().contains(friend))
+            if(friend instanceof Member && group.getMembers().contains((Member) friend))
                 continue;
             CustomPanel customPanel = new CustomPanel(friend, "add");
             customPanel.setPreferredSize(new Dimension(700, 30));
             panel1.add(customPanel);
             customPanel.button1.addActionListener(_ -> {
-                  group.getMembers().add(friend);
+                assert friend instanceof Member;
+                //primaryadmin.getGroupManager().addMember(group, friend);
+                  group.addMember(friend);
                   friend.getGroupManager().getGroups().put(group.getName(),group);
                   panel1.remove(customPanel);
                 refreshUI();

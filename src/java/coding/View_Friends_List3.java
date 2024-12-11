@@ -5,9 +5,9 @@ import java.awt.*;
 import java.util.List;
 
 public class View_Friends_List3 extends JFrame {
-    private JPanel panel1;
-    private Group group;
-    private User primaryadmin;
+    private final JPanel panel1;
+    private final Group group;
+    private final User primaryadmin;
     View_Friends_List3(User primaryadmin,Group group)
     {
         this.primaryadmin = primaryadmin;
@@ -44,15 +44,16 @@ public class View_Friends_List3 extends JFrame {
         }
 
         for (User friend : friends) {
-            if(group.getOtheradmins().contains(friend))
+            if(friend instanceof Member && group.getMembers().contains((Member) friend))
                 continue;
             CustomPanel customPanel = new CustomPanel(friend, "add");
             panel1.add(customPanel);
             customPanel.setPreferredSize(new Dimension(700, 30));
             customPanel.button1.addActionListener(_ -> {
-                group.getOtheradmins().add(friend);
-                if(group.getMembers().contains(friend))
-                    group.getMembers().remove(friend);
+                assert friend instanceof Member;
+                group.addMember(friend);
+                //group.getOtherAdmins().add((Member) friend);
+                group.getMembers().remove(friend);
                 panel1.remove(customPanel);
                 refreshUI();
             });

@@ -1,27 +1,39 @@
 package coding;
 
+import coding.ENUMS.GROUP_STATUS;
+
 import javax.swing.*;
 import java.io.File;
 import java.util.ArrayList;
 
 public class Group  {
-    private ArrayList<User> members;
-    private String profilepath;
-    private User primaryadmin;
+    private String profilePath;
+    private Member primaryAdmin;
     private String description;
     private String name;
-    private ArrayList<User> otheradmins;
+
+    private ArrayList<Member> members;
     private ArrayList<Posts> posts;
     private ArrayList<Group_Request> requests;
     private Notifications notifications;
 
-    Group(User primaryadmin)
+    Group(User primary)
     {
-        setPrimaryadmin(primaryadmin);
         this.members = new ArrayList<>();
-        this.otheradmins = new ArrayList<>();
         this.posts = new ArrayList<>();
         this.requests = new ArrayList<>();
+
+        if (primary != null) {
+            if (primary instanceof Member primaryAdmin) {
+                primaryAdmin.setGroup_status(GROUP_STATUS.PRIMARY);
+                members.add(primaryAdmin);
+                setPrimaryAdmin(primaryAdmin);
+            } else {
+                setPrimaryAdmin(null);
+            }
+        } else {
+            setPrimaryAdmin(null);
+        }
     }
 
     public ArrayList<Posts> getPosts() {
@@ -31,6 +43,7 @@ public class Group  {
     public void setPosts(ArrayList<Posts> posts) {
         this.posts = posts;
     }
+
     public void addpost(Posts post)
     {
         posts.add(post);
@@ -38,13 +51,18 @@ public class Group  {
         System.out.println("Total posts: " + posts.size());
         System.out.println(posts.get(0));
     }
-    public ArrayList<User> getOtheradmins() {
-        return otheradmins;
+
+    public ArrayList<Member> getOtherAdmins() {
+        ArrayList<Member> otherAdmins = new ArrayList<>();
+
+        for (Member member : members){
+            if (member.getGroup_status() == GROUP_STATUS.ADMIN)
+                otherAdmins.add(member);
+        }
+
+        return otherAdmins;
     }
-    
-    public void setOtheradmins(ArrayList<User> otheradmins) {
-        this.otheradmins = otheradmins;
-    }
+
 
     public String getName() {
         return name;
@@ -62,38 +80,44 @@ public class Group  {
         this.description = description;
     }
 
-    public User getPrimaryadmin() {
-        return primaryadmin;
+    public User getPrimaryAdmin() {
+        return primaryAdmin;
     }
 
-    public void setPrimaryadmin(User primaryadmin) {
-        this.primaryadmin = primaryadmin;
+    public void setPrimaryAdmin(User primaryAdmin) {
+        this.primaryAdmin = (Member) primaryAdmin;
     }
 
-    public ArrayList<User> getMembers() {
+    public ArrayList<Member> getMembers() {
         return members;
     }
 
-    public void setMembers(ArrayList<User> members) {
+    public void setMembers(ArrayList<Member> members) {
         this.members = members;
     }
 
     public String getProfilepath() {
-        return profilepath;
+        return profilePath;
     }
 
     public void setProfilepath(String profilepath) {
-        this.profilepath = profilepath;
+        this.profilePath = profilepath;
     }
 
-    public void setProfilepath(){this.profilepath = "images/account.png";}
+    public void setProfilepath(){this.profilePath = "images/account.png";}
 
-    public void addotheradmin(User primaryadmin,Group group,User otheradmin)
+    public void addMember(User member)
     {
-        if(group.getPrimaryadmin().equals(primaryadmin))
-            group.getOtheradmins().add(otheradmin);
-        else
-            JOptionPane.showMessageDialog(null,"user not a primary admin !");
+        if (member == null)
+            return;
+
+        if (member instanceof Member castedMember) {
+            if (members.contains(castedMember))
+                return;
+
+            castedMember.setGroup_status(GROUP_STATUS.NORMAL);
+            members.add(castedMember);
+        }
     }
 
     @Override
@@ -101,10 +125,10 @@ public class Group  {
         return "Group{" +
                 "description='" + description + '\'' +
                 ", members=" + members +
-                ", profile path='" + profilepath + '\'' +
-                ", primary admin=" + primaryadmin +
+                ", profile path='" + profilePath + '\'' +
+                ", primary admin=" + primaryAdmin +
                 ", name='" + name + '\'' +
-                ", other admins=" + otheradmins +
+                ", other admins= " + getOtherAdmins() +
                 ", posts=" + posts +
                 '}';
     }
@@ -129,7 +153,7 @@ public class Group  {
             File selectedFile = fileChooser.getSelectedFile();
             if(selectedFile.exists()){
 
-                profilepath = selectedFile.getAbsolutePath();
+                profilePath = selectedFile.getAbsolutePath();
                 Database database = Database.getInstance();
                 database.saveUsers();
                 JOptionPane.showMessageDialog(null,"Image Chosen successfully");

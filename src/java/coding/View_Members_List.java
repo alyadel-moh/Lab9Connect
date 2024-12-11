@@ -32,7 +32,7 @@ public class View_Members_List extends JFrame{
         setVisible(true);
     }
 
-    private void populateMembers(List<User> members) {
+    private void populateMembers(List<Member> members) {
         // Clear the panel
         panel1.removeAll();
 

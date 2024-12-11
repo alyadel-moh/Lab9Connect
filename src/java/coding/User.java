@@ -39,7 +39,7 @@ public class User {
 
 
     // Private constructor for User
-    private User(String userId, String password, String userName, String email, LocalDate dateOfBirth, String status) {
+    protected User(String userId, String password, String userName, String email, LocalDate dateOfBirth, String status) {
         this.userId = userId;
         this.password = password;
         this.userName = userName;
@@ -59,6 +59,7 @@ public class User {
         this.coverPath = getCoverPath();
         this.bio = getBio();
     }
+
 
     public void createObserver(){
         notificationsWindow = new Notifications(this);

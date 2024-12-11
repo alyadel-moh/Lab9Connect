@@ -183,7 +183,7 @@ public class SearchManagement extends JFrame {
             JOptionPane.showMessageDialog(null, "You are already a member of this group.");
             return;
         }
-        searchedGroup.getMembers().add(user);
+        searchedGroup.getMembers().add((Member) user);
         JOptionPane.showMessageDialog(null, "Joined group successfully.");
     }
 

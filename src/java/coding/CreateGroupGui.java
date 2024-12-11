@@ -17,11 +17,13 @@ public class CreateGroupGui extends JFrame {
     private JButton createGroupButton;
     private String profilepath;
     private User primaryadmin;
-    CreateGroupGui(User primaryadmin)
+    private Group group = null;
+    CreateGroupGui(User primaryAdmin)
     {
-        Group group = new Group(primaryadmin);
-
-        this.primaryadmin = primaryadmin;
+        if (primaryAdmin != null) {
+             group = new Group(primaryAdmin);
+            this.primaryadmin = primaryAdmin;
+        }
 
         setTitle("Create Group");
         setContentPane(panel);
@@ -58,10 +60,14 @@ public class CreateGroupGui extends JFrame {
         });
 
        addOtherAdminsButton.addActionListener(e -> {
-            new View_Friends_List3(primaryadmin,group);
+           assert primaryAdmin != null;
+           new View_Friends_List3(primaryAdmin,group);
         });
 
-       addFriendsButton.addActionListener(e -> new View_Friends_List2(primaryadmin,group) );
+       addFriendsButton.addActionListener(e -> {
+           assert primaryAdmin != null;
+           new View_Friends_List2(primaryAdmin,group);
+       });
 
        createGroupButton.addActionListener(e -> {
             group.setProfilepath(profilepath);
@@ -70,9 +76,9 @@ public class CreateGroupGui extends JFrame {
 
             System.out.println(group.toString());
 
-            primaryadmin.getGroupManager().addGroup(group);
+            primaryAdmin.getGroupManager().addGroup(group);
             System.out.println(Group_Manager.getAllgroups());
-            System.out.println(primaryadmin.getGroupManager().getGroups());
+            System.out.println(primaryAdmin.getGroupManager().getGroups());
           setVisible(false);
         });
 

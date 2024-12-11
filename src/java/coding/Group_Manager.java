@@ -1,5 +1,6 @@
 package coding;
 
+import coding.ENUMS.GROUP_STATUS;
 import coding.ENUMS.REQUEST;
 import coding.ENUMS.STATE;
 import coding.Interfaces.Requester;
@@ -41,7 +42,7 @@ public class Group_Manager implements Requester {
     }
 
     public void deletegroup(Group group, User primaryadmin) {
-        if (group.getPrimaryadmin().equals(primaryadmin)) {
+        if (group.getPrimaryAdmin().equals(primaryadmin)) {
             groups.remove(group.getName(), group);
             allgroups.remove(group.getName(), group);
         } else
@@ -50,8 +51,9 @@ public class Group_Manager implements Requester {
     public void leavegroup(Group group) {
             groups.remove(group.getName(), group);
     }
-    public void deletepost(Group group, User primaryadmin, User otheradmin, Posts post) {
-        if ((group.getOtheradmins().contains(otheradmin) || group.getPrimaryadmin().equals(primaryadmin)) && group.getPosts().contains(post)) {
+
+    public void deletepost(Group group, User primaryAdmin, User otherAdmin, Posts post) {
+        if ((group.getOtherAdmins().contains((Member) otherAdmin) || group.getPrimaryAdmin().equals(primaryAdmin)) && group.getPosts().contains(post)) {
             group.getPosts().remove(post);
             saveGroups();
         } else
@@ -59,10 +61,13 @@ public class Group_Manager implements Requester {
     }
 
     public boolean isMember(User user, Group group) {
-        if (group.getMembers().contains(user))
-            return true;
-        else
-            System.out.println("user not a member !");
+        if (user instanceof Member) {
+            if (group.getMembers().contains((Member) user) && !(((Member) user).getGroup_status() == GROUP_STATUS.NOTMEMBER))
+                return true;
+            else
+                System.out.println("user not a member !");
+            return false;
+        }
         return false;
     }
 
@@ -71,7 +76,7 @@ public class Group_Manager implements Requester {
         //loadSuggestionGroups();
 
         for (String key : allgroups.keySet()) {
-            if (!isMember(user, allgroups.get(key)) && !suggestions.contains(allgroups.get(key)) && !user.getManager().getBlocked().contains(allgroups.get(key).getPrimaryadmin()) && !allgroups.get(key).getPrimaryadmin().equals(user) && !allgroups.get(key).getOtheradmins().contains(user))
+            if (!isMember(user, allgroups.get(key)) && !suggestions.contains(allgroups.get(key)) && !user.getManager().getBlocked().contains(allgroups.get(key).getPrimaryAdmin()))
                 suggestions.add(allgroups.get(key));
             saveSuggestionGroups();
         }
@@ -98,16 +103,30 @@ public class Group_Manager implements Requester {
         }
     }
 
-    public void removeMember(Group group, User member, User primaryadmin, User otheradmin) {
-        if (group.getPrimaryadmin().equals(primaryadmin))
-            group.getMembers().remove(member);
-        else if (group.getOtheradmins().contains(otheradmin)) {
-            if (!group.getOtheradmins().contains(member) && !group.getPrimaryadmin().equals(primaryadmin)) {
+    public void removeMember(Group group, User member, User primaryAdmin, User otherAdmin) {
+        if (group.getPrimaryAdmin().equals(primaryAdmin))
+            group.getMembers().remove((Member) member);
+
+        else if (group.getOtherAdmins().contains((Member) otherAdmin)) {
+            if (!group.getOtherAdmins().contains((Member) member) && !group.getPrimaryAdmin().equals(primaryAdmin)) {
                 group.getMembers().remove(member);
                 saveGroups();
             } else
                 JOptionPane.showMessageDialog(null, "not accessed to remove an admin");
         }
+    }
+
+    public void addMember(Group group, User member){
+        if (group == null || member == null)
+            return;
+
+        if (isMember(member, group))
+            return;
+
+        Member castedUser = (Member) member;
+        castedUser.setGroup_status(GROUP_STATUS.NORMAL);
+
+        group.getMembers().add(castedUser);
     }
 
     @Override
@@ -210,9 +229,6 @@ public class Group_Manager implements Requester {
         updateReceiverRequests(newRequest);
         user.getNotifier().notifyObservers(user, " requested to join group", receiver);
 
-
-        //////////////to be implemented
-
     }
 
     @Override
@@ -276,9 +292,34 @@ public class Group_Manager implements Requester {
                 }
             }
         }
-
-
     }
+
+        public void promote(Group group,User member){
+            if(group.getMembers().contains((Member) member)){
+                switch (((Member) member).getGroup_status()){
+                    case NORMAL -> ((Member) member).setGroup_status(GROUP_STATUS.ADMIN);
+                    default -> throw new RuntimeException("Current Member status is not promotable");
+                }
+            }
+        }
+
+        public void delegate(Group group,User member){
+            if(group.getMembers().contains((Member) member)){
+                switch (((Member) member).getGroup_status()){
+                    case ADMIN -> ((Member) member).setGroup_status(GROUP_STATUS.NORMAL);
+                    default -> throw new RuntimeException("Cannot delegate Member!");
+                }
+            }
+        }
+
+        public void filterGroup(Group group){
+            if (group != null && !group.getMembers().isEmpty()){
+                group.getMembers().removeIf(member -> member.getGroup_status() == GROUP_STATUS.NOTMEMBER);
+            }
+
+        }
+
+
 }
 
 
