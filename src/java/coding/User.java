@@ -1,7 +1,6 @@
 package coding;
 
-import coding.Observer.ContentNotifier;
-import coding.Observer.ContentObserver;
+import coding.Observer.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -20,6 +19,7 @@ import static coding.Group_Manager.objectMapper;
 
 @JsonDeserialize(builder = User.UserBuilder.class)
 @JsonIgnoreProperties(ignoreUnknown = true)
+
 public class User {
     private String profilePath;
     private String coverPath;
@@ -38,8 +38,14 @@ public class User {
     @JsonIgnore private final FriendHandler friendHandler;
     @JsonIgnore private final Friend_Manager manager;
     @JsonIgnore private final ContentHandler handler;
-    @JsonIgnore private final ContentNotifier notifier;
+    @JsonIgnore private final Notifier notifier;
     @JsonIgnore private Group_Manager groupManager;
+
+    @JsonIgnore private Content_Observer content_observer;
+    @JsonIgnore private Request_Observer request_observer;
+    @JsonIgnore private Group_Observer  group_observer;
+
+
     @JsonIgnore private Notifications notificationsWindow;
     @JsonIgnore @JsonProperty
     private String observer;
@@ -58,7 +64,7 @@ public class User {
 
         this.manager = new Friend_Manager(this);
         this.handler = new ContentHandler();
-        this.notifier = new ContentNotifier();
+        this.notifier = new Notifier();
         this.groupManager = new Group_Manager(this);
 
         this.friendHandler = new FriendHandler();
@@ -67,19 +73,25 @@ public class User {
         this.profilePath = getProfilePath();
         this.coverPath = getCoverPath();
         this.bio = getBio();
-    }
 
-
-    public void createObserver(){
-        if (notificationsWindow == null)
-            notificationsWindow = new Notifications(this);
+        this.content_observer = new Content_Observer();
+        this.group_observer = new Group_Observer();
+        this.request_observer = new Request_Observer();
     }
 
     public String getUserId() {
         return userId;
     }
 
-    public ContentObserver getObserver() {
+
+    ////////////////////// Observer ///////////////////////////////////
+    public void createObserver(){
+        if (notificationsWindow == null)
+            notificationsWindow = new Notifications(this);
+    }
+
+
+    public NotificationObserver getObserver() {
         createObserver();
         return notificationsWindow;
     }
@@ -90,6 +102,31 @@ public class User {
         }
     }
 
+    public Content_Observer getContent_observer() {
+        return content_observer;
+    }
+
+    public void setContent_observer(Content_Observer content_observer) {
+        this.content_observer = content_observer;
+    }
+
+    public Request_Observer getRequest_observer() {
+        return request_observer;
+    }
+
+    public void setRequest_observer(Request_Observer request_observer) {
+        this.request_observer = request_observer;
+    }
+
+    public Group_Observer getGroup_observer() {
+        return group_observer;
+    }
+
+    public void setGroup_observer(Group_Observer group_observer) {
+        this.group_observer = group_observer;
+    }
+
+    ////////////////////////////////////////////////////////////
 
     // Builder class for User
     @JsonPOJOBuilder(withPrefix = "set")
@@ -289,7 +326,7 @@ public class User {
         return handler;
     }
 
-    public ContentNotifier getNotifier(){ return notifier;}
+    public Notifier getNotifier(){ return notifier;}
 
     public Group_Manager getGroupManager() {
         return groupManager;

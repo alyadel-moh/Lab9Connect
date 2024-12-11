@@ -9,8 +9,8 @@ import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 
 public class CustomPanel<T> extends JPanel {
-    private final T user;
-    private final int buttonCount;
+    protected final T user;
+    protected final int buttonCount;
     protected JButton button1;
     protected JButton button2;
 
@@ -31,7 +31,7 @@ public class CustomPanel<T> extends JPanel {
         setupLayout();
     }
 
-    private void setupLayout() {
+    protected void setupLayout() {
         setLayout(new GridLayout(1,2));
         JPanel profilePanel = new JPanel(new GridLayout(1,3));
         JPanel buttonPanel = new JPanel();
@@ -72,7 +72,7 @@ public class CustomPanel<T> extends JPanel {
         setPreferredSize(new Dimension(100,30));
     }
 
-    private JButton createbutton(String text)
+    protected JButton createbutton(String text)
     {
         JButton button = new JButton();
         button.setBackground(Color.black);
@@ -87,7 +87,7 @@ public class CustomPanel<T> extends JPanel {
         add(label, 2);
     }
 
-    private JLabel createCircularLabel(ImageIcon imageIcon) {
+    protected JLabel createCircularLabel(ImageIcon imageIcon) {
         int size = 100; // Desired size for profile picture
         Image scaledImage = imageIcon.getImage().getScaledInstance(size, size, Image.SCALE_SMOOTH);
         BufferedImage circularImage = new BufferedImage(size, size, BufferedImage.TYPE_INT_ARGB);
@@ -100,7 +100,7 @@ public class CustomPanel<T> extends JPanel {
         return new JLabel(new ImageIcon(circularImage));
     }
 
-    private JButton createImageButton(){
+    protected JButton createImageButton(){
         JButton button = createbutton(null);
 
         button.setBackground(Color.white);

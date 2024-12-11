@@ -1,6 +1,6 @@
 package coding;
 
-import coding.Observer.ContentObserver;
+import coding.Observer.NotificationObserver;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -16,7 +16,7 @@ public class ContentHandler {
     private ArrayList<Posts>posts;
     private final ArrayList<Stories> archieved;
     private ArrayList<Stories>stories;
-    private final ArrayList<ContentObserver> observers;
+    private final ArrayList<NotificationObserver> observers;
     private static ArrayList<Posts>allPosts=new ArrayList<Posts>();//static to be shared with all instances to save all posts
     private static ArrayList<Stories>allStories=new ArrayList<Stories>();//will intialize it with empty arraylist once the class is loaded
     private ArrayList<CustomPanel> notifications;

@@ -1,12 +1,12 @@
 package coding;
 
-import coding.Observer.ContentNotifier;
-import coding.Observer.ContentObserver;
+import coding.Observer.Notifier;
+import coding.Observer.NotificationObserver;
 
 import javax.swing.*;
 import java.util.List;
 
-public class Notifications extends JFrame implements ContentObserver {
+public class Notifications extends JFrame implements NotificationObserver {
     private User user;
     private UserService service;
     private JPanel panel1;
@@ -90,7 +90,7 @@ public class Notifications extends JFrame implements ContentObserver {
     }
 
      public static void main(String[] args) {
-         ContentNotifier notifier = new ContentNotifier();
+         Notifier notifier = new Notifier();
          User user = new User.UserBuilder()
                  .setUserName("John Doe")
                  .build();

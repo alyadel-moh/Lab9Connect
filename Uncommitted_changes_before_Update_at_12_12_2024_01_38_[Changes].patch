@@ -1,0 +1,486 @@
+Subject: [PATCH] Uncommitted changes before Update at 12/12/2024 01:38 [Changes]
+---
+Index: src/java/coding/CustomPanel.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/java/coding/CustomPanel.java b/src/java/coding/CustomPanel.java
+--- a/src/java/coding/CustomPanel.java	(revision c15eb02ac632af36b4b1345b9c338f0d10fa1432)
++++ b/src/java/coding/CustomPanel.java	(date 1733956631325)
+@@ -9,8 +9,8 @@
+ import java.awt.image.BufferedImage;
+ 
+ public class CustomPanel<T> extends JPanel {
+-    private final T user;
+-    private final int buttonCount;
++    protected final T user;
++    protected final int buttonCount;
+     protected JButton button1;
+     protected JButton button2;
+ 
+@@ -31,7 +31,7 @@
+         setupLayout();
+     }
+ 
+-    private void setupLayout() {
++    protected void setupLayout() {
+         setLayout(new GridLayout(1,2));
+         JPanel profilePanel = new JPanel(new GridLayout(1,3));
+         JPanel buttonPanel = new JPanel();
+@@ -72,7 +72,7 @@
+         setPreferredSize(new Dimension(100,30));
+     }
+ 
+-    private JButton createbutton(String text)
++    protected JButton createbutton(String text)
+     {
+         JButton button = new JButton();
+         button.setBackground(Color.black);
+@@ -87,7 +87,7 @@
+         add(label, 2);
+     }
+ 
+-    private JLabel createCircularLabel(ImageIcon imageIcon) {
++    protected JLabel createCircularLabel(ImageIcon imageIcon) {
+         int size = 100; // Desired size for profile picture
+         Image scaledImage = imageIcon.getImage().getScaledInstance(size, size, Image.SCALE_SMOOTH);
+         BufferedImage circularImage = new BufferedImage(size, size, BufferedImage.TYPE_INT_ARGB);
+@@ -100,7 +100,7 @@
+         return new JLabel(new ImageIcon(circularImage));
+     }
+ 
+-    private JButton createImageButton(){
++    protected JButton createImageButton(){
+         JButton button = createbutton(null);
+ 
+         button.setBackground(Color.white);
+Index: src/java/coding/User.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/java/coding/User.java b/src/java/coding/User.java
+--- a/src/java/coding/User.java	(revision c15eb02ac632af36b4b1345b9c338f0d10fa1432)
++++ b/src/java/coding/User.java	(date 1733956631305)
+@@ -1,7 +1,6 @@
+ package coding;
+ 
+-import coding.Observer.ContentNotifier;
+-import coding.Observer.ContentObserver;
++import coding.Observer.*;
+ import com.fasterxml.jackson.annotation.JsonFormat;
+ import com.fasterxml.jackson.annotation.JsonIgnore;
+ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+@@ -15,6 +14,7 @@
+ import java.util.ArrayList;
+ @JsonDeserialize(builder = User.UserBuilder.class)
+ @JsonIgnoreProperties(ignoreUnknown = true)
++
+ public class User {
+     private String profilePath;
+     private String coverPath;
+@@ -33,8 +33,14 @@
+     @JsonIgnore private final FriendHandler friendHandler;
+     @JsonIgnore private final Friend_Manager manager;
+     @JsonIgnore private final ContentHandler handler;
+-    @JsonIgnore private final ContentNotifier notifier;
++    @JsonIgnore private final Notifier notifier;
+     @JsonIgnore private Group_Manager groupManager;
++
++    @JsonIgnore private Content_Observer content_observer;
++    @JsonIgnore private Request_Observer request_observer;
++    @JsonIgnore private Group_Observer  group_observer;
++
++
+     @JsonIgnore private Notifications notificationsWindow;
+ 
+ 
+@@ -49,7 +55,7 @@
+ 
+         this.manager = new Friend_Manager(this);
+         this.handler = new ContentHandler();
+-        this.notifier = new ContentNotifier();
++        this.notifier = new Notifier();
+         this.groupManager = new Group_Manager(this);
+ 
+         this.friendHandler = new FriendHandler();
+@@ -58,19 +64,25 @@
+         this.profilePath = getProfilePath();
+         this.coverPath = getCoverPath();
+         this.bio = getBio();
++
++        this.content_observer = new Content_Observer();
++        this.group_observer = new Group_Observer();
++        this.request_observer = new Request_Observer();
+     }
+ 
++    public String getUserId() {
++        return userId;
++    }
+ 
++
++    ////////////////////// Observer ///////////////////////////////////
+     public void createObserver(){
+         if (notificationsWindow == null)
+             notificationsWindow = new Notifications(this);
+     }
+ 
+-    public String getUserId() {
+-        return userId;
+-    }
+ 
+-    public ContentObserver getObserver() {
++    public NotificationObserver getObserver() {
+         createObserver();
+         return notificationsWindow;
+     }
+@@ -81,6 +93,31 @@
+         }
+     }
+ 
++    public Content_Observer getContent_observer() {
++        return content_observer;
++    }
++
++    public void setContent_observer(Content_Observer content_observer) {
++        this.content_observer = content_observer;
++    }
++
++    public Request_Observer getRequest_observer() {
++        return request_observer;
++    }
++
++    public void setRequest_observer(Request_Observer request_observer) {
++        this.request_observer = request_observer;
++    }
++
++    public Group_Observer getGroup_observer() {
++        return group_observer;
++    }
++
++    public void setGroup_observer(Group_Observer group_observer) {
++        this.group_observer = group_observer;
++    }
++
++    ////////////////////////////////////////////////////////////
+ 
+     // Builder class for User
+     @JsonPOJOBuilder(withPrefix = "set")
+@@ -274,7 +311,7 @@
+         return handler;
+     }
+ 
+-    public ContentNotifier getNotifier(){ return notifier;}
++    public Notifier getNotifier(){ return notifier;}
+ 
+     public Group_Manager getGroupManager() {
+         return groupManager;
+Index: src/java/coding/Observer/ContentObserver.java
+===================================================================
+diff --git a/src/java/coding/Observer/ContentObserver.java b/src/java/coding/Observer/NotificationObserver.java
+rename from src/java/coding/Observer/ContentObserver.java
+rename to src/java/coding/Observer/NotificationObserver.java
+--- a/src/java/coding/Observer/ContentObserver.java	(revision c15eb02ac632af36b4b1345b9c338f0d10fa1432)
++++ b/src/java/coding/Observer/NotificationObserver.java	(date 1733956631460)
+@@ -2,7 +2,7 @@
+ 
+ import coding.User;
+ 
+-public interface ContentObserver {
++public interface NotificationObserver {
+     public void update(User user, String text);
+ 
+ }
+Index: src/java/coding/ENUMS/Mapper.java
+===================================================================
+diff --git a/src/java/coding/ENUMS/Mapper.java b/src/java/coding/ENUMS/Mapper.java
+new file mode 100644
+--- /dev/null	(date 1733955374121)
++++ b/src/java/coding/ENUMS/Mapper.java	(date 1733955374121)
+@@ -0,0 +1,29 @@
++package coding.ENUMS;
++
++import coding.ENUMS.NOTIFICATIONS.CONTENT;
++import coding.ENUMS.NOTIFICATIONS.GROUP;
++import coding.ENUMS.NOTIFICATIONS.REQUEST;
++
++import java.util.HashMap;
++
++public class Mapper {
++    private static final HashMap<Enum<?>, String> mapper = new HashMap<>();
++
++    // Static initializer block to populate the map
++    static {
++        mapper.put(CONTENT.POST, " added a new post!");
++        mapper.put(CONTENT.STORY, " posted a new story!");
++
++        mapper.put(GROUP.ADDED, "added to group!");
++        mapper.put(GROUP.POST, " new post in group");
++        mapper.put(GROUP.CHANGE_STATUS, " status change in group");
++
++        mapper.put(REQUEST.RECEIVE, " sent you a friend request!");
++        mapper.put(REQUEST.SEND, " friend request sent!");
++    }
++
++    // Static method to retrieve the message
++    public static String getMessage(Enum<?> code) {
++        return mapper.getOrDefault(code, "Unknown code");
++    }
++}
+Index: src/java/coding/ENUMS/NOTIFICATIONS/CONTENT.java
+===================================================================
+diff --git a/src/java/coding/ENUMS/NOTIFICATIONS/CONTENT.java b/src/java/coding/ENUMS/NOTIFICATIONS/CONTENT.java
+new file mode 100644
+--- /dev/null	(date 1733955262865)
++++ b/src/java/coding/ENUMS/NOTIFICATIONS/CONTENT.java	(date 1733955262865)
+@@ -0,0 +1,5 @@
++package coding.ENUMS.NOTIFICATIONS;
++
++public enum CONTENT {
++    STORY, POST
++}
+Index: src/java/coding/Notifications.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/java/coding/Notifications.java b/src/java/coding/Notifications.java
+--- a/src/java/coding/Notifications.java	(revision c15eb02ac632af36b4b1345b9c338f0d10fa1432)
++++ b/src/java/coding/Notifications.java	(date 1733956631285)
+@@ -1,12 +1,12 @@
+ package coding;
+ 
+-import coding.Observer.ContentNotifier;
+-import coding.Observer.ContentObserver;
++import coding.Observer.Notifier;
++import coding.Observer.NotificationObserver;
+ 
+ import javax.swing.*;
+ import java.util.List;
+ 
+-public class Notifications extends JFrame implements ContentObserver {
++public class Notifications extends JFrame implements NotificationObserver {
+     private User user;
+     private UserService service;
+     private JPanel panel1;
+@@ -90,7 +90,7 @@
+     }
+ 
+      public static void main(String[] args) {
+-         ContentNotifier notifier = new ContentNotifier();
++         Notifier notifier = new Notifier();
+          User user = new User.UserBuilder()
+                  .setUserName("John Doe")
+                  .build();
+Index: src/java/coding/Notifications_Panel.java
+===================================================================
+diff --git a/src/java/coding/Notifications_Panel.java b/src/java/coding/Notifications_Panel.java
+new file mode 100644
+--- /dev/null	(date 1733956631480)
++++ b/src/java/coding/Notifications_Panel.java	(date 1733956631480)
+@@ -0,0 +1,65 @@
++package coding;
++
++import coding.ENUMS.Mapper;
++
++import javax.swing.*;
++import java.awt.*;
++
++public class Notifications_Panel extends CustomPanel{
++    private Enum code;
++
++    public Notifications_Panel(Object user, Enum code, String text) {
++        super(user, text);
++        this.code = code;
++    }
++
++    public Notifications_Panel(Object user, Enum code, String text, String text2) {
++        super(user, text, text2);
++        this.code = code;
++    }
++
++    @Override
++    public void setupLayout(){
++        setLayout(new GridLayout(1,3));
++
++        ////// Profile Part //////////////
++        JPanel profilePanel = new JPanel(new GridLayout(1,3));
++        JPanel buttonPanel = new JPanel();
++
++        JButton profileView = createImageButton();
++        JLabel label2;
++
++        if (user instanceof User) {
++            label2 = new JLabel(((User) user).getUserName());
++        }else{
++            label2 = new JLabel(((Group) user).getName());
++        }
++
++        profilePanel.add(profileView);
++        profilePanel.add(label2);
++        profilePanel.add(new JLabel());
++
++        add(profilePanel);
++
++        //////// Message Part //////////////
++        //// add Message
++        add(new JLabel(Mapper.getMessage(code)));
++
++
++        ////// Buttons Part //////////////
++        buttonPanel.setLayout(new GridLayout(1,0));
++
++        if (buttonCount >= 1) {
++            buttonPanel.add(button1);
++        }
++        if (buttonCount == 2) {
++            buttonPanel.add(button2);
++        }
++
++        add(buttonPanel);
++
++        setMaximumSize(new Dimension(600,20));
++        //setMinimumSize(new Dimension(100,30));
++        setPreferredSize(new Dimension(100,30));
++    }
++}
+Index: src/java/coding/Observer/Content_Observer.java
+===================================================================
+diff --git a/src/java/coding/Observer/Content_Observer.java b/src/java/coding/Observer/Content_Observer.java
+new file mode 100644
+--- /dev/null	(date 1733956631490)
++++ b/src/java/coding/Observer/Content_Observer.java	(date 1733956631490)
+@@ -0,0 +1,10 @@
++package coding.Observer;
++
++import coding.User;
++
++public class Content_Observer implements NotificationObserver {
++    @Override
++    public void update(User user, String text) {
++
++    }
++}
+Index: src/java/coding/ENUMS/NOTIFICATIONS/REQUEST.java
+===================================================================
+diff --git a/src/java/coding/ENUMS/NOTIFICATIONS/REQUEST.java b/src/java/coding/ENUMS/NOTIFICATIONS/REQUEST.java
+new file mode 100644
+--- /dev/null	(date 1733955374151)
++++ b/src/java/coding/ENUMS/NOTIFICATIONS/REQUEST.java	(date 1733955374151)
+@@ -0,0 +1,5 @@
++package coding.ENUMS.NOTIFICATIONS;
++
++public enum REQUEST {
++    SEND, RECEIVE
++}
+Index: src/java/coding/ENUMS/NOTIFICATIONS/GROUP.java
+===================================================================
+diff --git a/src/java/coding/ENUMS/NOTIFICATIONS/GROUP.java b/src/java/coding/ENUMS/NOTIFICATIONS/GROUP.java
+new file mode 100644
+--- /dev/null	(date 1733955262790)
++++ b/src/java/coding/ENUMS/NOTIFICATIONS/GROUP.java	(date 1733955262790)
+@@ -0,0 +1,5 @@
++package coding.ENUMS.NOTIFICATIONS;
++
++public enum GROUP {
++    ADDED, POST, CHANGE_STATUS,
++}
+Index: src/java/coding/ContentHandler.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/java/coding/ContentHandler.java b/src/java/coding/ContentHandler.java
+--- a/src/java/coding/ContentHandler.java	(revision c15eb02ac632af36b4b1345b9c338f0d10fa1432)
++++ b/src/java/coding/ContentHandler.java	(date 1733956631362)
+@@ -1,6 +1,6 @@
+ package coding;
+ 
+-import coding.Observer.ContentObserver;
++import coding.Observer.NotificationObserver;
+ import com.fasterxml.jackson.databind.ObjectMapper;
+ import com.fasterxml.jackson.core.type.TypeReference;
+ import com.fasterxml.jackson.databind.SerializationFeature;
+@@ -16,7 +16,7 @@
+     private ArrayList<Posts>posts;
+     private final ArrayList<Stories> archieved;
+     private ArrayList<Stories>stories;
+-    private final ArrayList<ContentObserver> observers;
++    private final ArrayList<NotificationObserver> observers;
+     private static ArrayList<Posts>allPosts=new ArrayList<Posts>();//static to be shared with all instances to save all posts
+     private static ArrayList<Stories>allStories=new ArrayList<Stories>();//will intialize it with empty arraylist once the class is loaded
+     private ArrayList<CustomPanel> notifications;
+Index: src/java/coding/Observer/Request_Observer.java
+===================================================================
+diff --git a/src/java/coding/Observer/Request_Observer.java b/src/java/coding/Observer/Request_Observer.java
+new file mode 100644
+--- /dev/null	(date 1733956631387)
++++ b/src/java/coding/Observer/Request_Observer.java	(date 1733956631387)
+@@ -0,0 +1,10 @@
++package coding.Observer;
++
++import coding.User;
++
++public class Request_Observer implements NotificationObserver{
++    @Override
++    public void update(User user, String text) {
++
++    }
++}
+Index: src/java/coding/Observer/Group_Observer.java
+===================================================================
+diff --git a/src/java/coding/Observer/Group_Observer.java b/src/java/coding/Observer/Group_Observer.java
+new file mode 100644
+--- /dev/null	(date 1733956631249)
++++ b/src/java/coding/Observer/Group_Observer.java	(date 1733956631249)
+@@ -0,0 +1,10 @@
++package coding.Observer;
++
++import coding.User;
++
++public class Group_Observer implements NotificationObserver{
++    @Override
++    public void update(User user, String text) {
++
++    }
++}
+Index: src/java/coding/Observer/ContentNotifier.java
+===================================================================
+diff --git a/src/java/coding/Observer/ContentNotifier.java b/src/java/coding/Observer/Notifier.java
+rename from src/java/coding/Observer/ContentNotifier.java
+rename to src/java/coding/Observer/Notifier.java
+--- a/src/java/coding/Observer/ContentNotifier.java	(revision c15eb02ac632af36b4b1345b9c338f0d10fa1432)
++++ b/src/java/coding/Observer/Notifier.java	(date 1733956631265)
+@@ -5,18 +5,18 @@
+ 
+ import java.util.ArrayList;
+ 
+-public class ContentNotifier<T> {
+-    private final ArrayList<ContentObserver> observers = new ArrayList<>();
++public class Notifier<T> {
++    private final ArrayList<NotificationObserver> observers = new ArrayList<>();
+ 
+     // Add an observer
+-    public void addObserver(ContentObserver observer) {
++    public void addObserver(NotificationObserver observer) {
+         if (observer != null && !observers.contains(observer)) {
+             observers.add(observer);
+         }
+     }
+ 
+     // Remove an observer
+-    public void removeObserver(ContentObserver observer) {
++    public void removeObserver(NotificationObserver observer) {
+         if(observer != null)
+             observers.remove(observer);
+     }
+@@ -25,7 +25,7 @@
+     public void notifyObservers(User user, String text, T target) {
+         updateNotifications(user);
+ 
+-        for (ContentObserver observer : observers) {
++        for (NotificationObserver observer : observers) {
+             if (target == null || observer.equals(target)) {
+                 observer.update(user, text);
+             }

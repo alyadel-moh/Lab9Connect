@@ -5,18 +5,18 @@ import coding.User;
 
 import java.util.ArrayList;
 
-public class ContentNotifier<T> {
-    private final ArrayList<ContentObserver> observers = new ArrayList<>();
+public class Notifier<T> {
+    private final ArrayList<NotificationObserver> observers = new ArrayList<>();
 
     // Add an observer
-    public void addObserver(ContentObserver observer) {
+    public void addObserver(NotificationObserver observer) {
         if (observer != null && !observers.contains(observer)) {
             observers.add(observer);
         }
     }
 
     // Remove an observer
-    public void removeObserver(ContentObserver observer) {
+    public void removeObserver(NotificationObserver observer) {
         if(observer != null)
             observers.remove(observer);
     }
@@ -25,7 +25,7 @@ public class ContentNotifier<T> {
     public void notifyObservers(User user, String text, T target) {
         updateNotifications(user);
 
-        for (ContentObserver observer : observers) {
+        for (NotificationObserver observer : observers) {
             if (target == null || observer.equals(target)) {
                 observer.update(user, text);
             }
