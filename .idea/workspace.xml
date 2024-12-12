@@ -4,21 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b070c600-f384-439e-b49a-9b65b4c8f3b6" name="Changes" comment="Merge branch 'main' of https://github.com/shamsquraytum/Lab9Connect&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FriendRequests.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Friends.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Groups.json" beforeDir="false" afterPath="$PROJECT_DIR$/Groups.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SuggestionGroups.json" beforeDir="false" afterPath="$PROJECT_DIR$/SuggestionGroups.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Users.json" beforeDir="false" afterPath="$PROJECT_DIR$/Users.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Group_Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Group_Manager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Observer/Group_Observer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Observer/Group_Observer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Observer/Request_Observer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Observer/Request_Observer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/SearchManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/SearchManagement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/ViewPost2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/ViewPost2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/View_Groups_List.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/View_Groups_List.java" afterDir="false" />
-    </list>
+    <list default="true" id="b070c600-f384-439e-b49a-9b65b4c8f3b6" name="Changes" comment="Merge branch 'main' of https://github.com/shamsquraytum/Lab9Connect&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
