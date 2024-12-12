@@ -15,7 +15,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-
 import static coding.ENUMS.NOTIFICATIONS.REQUEST.RECEIVE;
 import static coding.ENUMS.NOTIFICATIONS.REQUEST.SEND;
 
@@ -54,6 +53,7 @@ public class Friend_Manager implements Requester{
         File file=new File("./FriendRequests.json");
         try {
             objectMapper.writeValue(file, allRequests);
+            System.out.println("Requests saved successfully");
         } catch (IOException e) {
             System.out.println("Error happened when trying to save request.");
         }
@@ -63,9 +63,9 @@ public class Friend_Manager implements Requester{
         File file = new File("./FriendRequests.json");
         if (file.exists()) {
             try {
-                allRequests = objectMapper.readValue(file, new TypeReference<ArrayList<FriendRequest>>() {});
+                allRequests = objectMapper.readValue(file, objectMapper.getTypeFactory().constructCollectionType(ArrayList.class, FriendRequest.class));
             } catch (IOException e) {
-                System.out.println("Error occurred while loading posts.");
+                System.out.println("Error occurred while loading requests");
                 System.out.println(e);
             }
         } else {
@@ -91,6 +91,7 @@ public class Friend_Manager implements Requester{
         ArrayList<FriendRequest> friendRequestsByUserId = new ArrayList<>();
 
         for (FriendRequest request : allRequests) {
+            System.out.println("Requesstt "+request.getReceiver());
             if (request.getReceiver() instanceof User receiver) {
                 if (receiver.getUserId().equals(userId)) {
                     friendRequestsByUserId.add(request);
@@ -129,8 +130,11 @@ public class Friend_Manager implements Requester{
 
         if (request.getState() == STATE.PENDING){
             receiver.getManager().getRequestbySender(this.user, receiver).setState(STATE.CANCELLED);
-            receiver.getManager().getRequests().remove(request);
-            FriendHandler.getAllFriendReq().remove(request);
+            System.out.println("Requests "+requests.size());
+            System.out.println("all requests "+allRequests.size());
+            requests.remove(request);
+            allRequests.remove(request);
+            saveRequests();
             System.out.println("Friend Request Cancelled");
         }
 
@@ -262,6 +266,7 @@ public class Friend_Manager implements Requester{
         requests.remove(request); // Remove request
         allRequests.remove(request);
         saveRequests();
+        System.out.println("saved");
 
         User sender = request.getSender();
         if (!suggestions.contains(sender))

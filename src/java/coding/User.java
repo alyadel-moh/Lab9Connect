@@ -144,8 +144,10 @@ public class User {
         private String email;
         private LocalDate dateOfBirth;
         private String status;
+        @JsonProperty("profilePath")
         private String profilepath;
-        private String  coverpath;
+        @JsonProperty("coverPath")
+        private String  coverPath;
         private String bio;
         private boolean receivedRequest;
         private String observer;
@@ -183,13 +185,14 @@ public class User {
             this.status = status;
             return this;
         }
+        @JsonProperty("profilePath")
     public UserBuilder setProfilepath(String profilepath) {
         this.profilepath = profilepath;
         return this;
     }
 
-    public UserBuilder setCoverpath(String coverpath) {
-        this.coverpath = coverpath;
+    public UserBuilder setCoverpath(String coverPath) {
+        this.coverPath = coverPath;
         return this;
     }
     public UserBuilder setBio(String bio){
@@ -208,7 +211,7 @@ public class User {
         public User build() {
              User user = new User(userId, password, userName, email, dateOfBirth, status);
             user.profilePath = this.profilepath;
-            user.coverPath = this.coverpath;
+            user.coverPath = this.coverPath;
             user.bio = this.bio;
             user.receivedRequest = this.receivedRequest;
             user.observer = this.observer;
@@ -263,7 +266,8 @@ public class User {
         }
     }
 
-    public void setCoverpath(){
+    @JsonProperty("coverPath")
+    public void setCoverPath(){
         this.coverPath = "images/account.png";
     }
 
