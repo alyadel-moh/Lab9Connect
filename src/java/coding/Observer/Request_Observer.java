@@ -1,6 +1,8 @@
 package coding.Observer;
 
 import coding.CustomPanel;
+import coding.ENUMS.Mapper;
+import coding.Notifications_Panel;
 import coding.User;
 
 public class Request_Observer implements NotificationObserver {
@@ -11,8 +13,9 @@ public class Request_Observer implements NotificationObserver {
     }
 
     @Override
-    public void update(User user, String text) {
-        CustomPanel customPanel =  new CustomPanel<>(user, "Accept" ,"Request");
-        customPanel.get
+    public void update(User user, Enum CODE) {
+        Notifications_Panel customPanel =  new Notifications_Panel(user, CODE ,"Accept" ,"Request");
+        System.out.println(this.user.getUserName() + " :" +user.getUserName() + Mapper.getMessage(CODE));
+        this.user.getObserver().update(user, CODE);
     }
 }

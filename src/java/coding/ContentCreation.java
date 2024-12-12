@@ -4,6 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import coding.ENUMS.NOTIFICATIONS.CONTENT;
+
+import static coding.ENUMS.CONTENT_TYPE.POST;
+import static coding.ENUMS.CONTENT_TYPE.STORY;
 
 public class ContentCreation extends JFrame{
     private JPanel Container1;
@@ -54,7 +58,7 @@ public class ContentCreation extends JFrame{
                 }
                 else{
                 user.getHandler().savePosts();
-                user.getNotifier().notifyObservers(user, " posted a new post!", null);
+                user.getNotifier().notifyObservers(user, POST, null);
                 JOptionPane.showMessageDialog(null,"Posts has been added to the file Successfully");
             }}
         });
@@ -66,7 +70,7 @@ public class ContentCreation extends JFrame{
                 }
                 else{
                     user.getHandler().saveStories();
-                    user.getNotifier().notifyObservers(user, " posted a new Story!", null);
+                    user.getNotifier().notifyObservers(user, STORY, null);
                     JOptionPane.showMessageDialog(null,"Stories has been added to the file Successfully");
                 }
             }

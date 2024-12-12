@@ -8,6 +8,7 @@ public class Otheradmin extends JFrame{
     private JButton viewMembersButton;
     private JPanel panel;
     private JButton addPostButton;
+    private JButton viewGroupProfileButton;
     private User otheradmin;
     private Group group;
     Otheradmin(User otheradmin,Group group)
@@ -20,7 +21,8 @@ public class Otheradmin extends JFrame{
         viewMembersButton.setFocusable(false);
         viewMembershipRequestsButton.setFocusable(false);
        viewPostsButton.setFocusable(false);
-        setBounds(100,100,400,450);
+       viewGroupProfileButton.setFocusable(false);
+        setBounds(100,100,400,500);
         setLocationRelativeTo(null);
         setVisible(true);
         viewMembershipRequestsButton.addActionListener(e -> {
@@ -35,6 +37,10 @@ public class Otheradmin extends JFrame{
         });
         addPostButton.addActionListener(e -> {
             new AddGroupPost(group,otheradmin);
+            setVisible(false);
+        });
+        viewGroupProfileButton.addActionListener(e -> {
+            new Groupprofile(group);
             setVisible(false);
         });
 

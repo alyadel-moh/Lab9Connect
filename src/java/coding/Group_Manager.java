@@ -15,6 +15,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import static coding.ENUMS.NOTIFICATIONS.GROUP.POST;
+import static coding.ENUMS.NOTIFICATIONS.GROUP.ADDED;
+import static coding.ENUMS.NOTIFICATIONS.GROUP.CHANGE_STATUS;
+import static coding.ENUMS.NOTIFICATIONS.REQUEST.SENDGROUP;
+
+
 public class Group_Manager implements Requester {
     private static Map<String, Group> allgroups = new HashMap<>();
     private static ArrayList<Group_Request> allRequests = new ArrayList<>();
@@ -282,7 +288,7 @@ public class Group_Manager implements Requester {
         // Create and send new request
         Group_Request newRequest = (Group_Request) RequestFactory.createRequest(REQUEST.GROUPREQUEST, this.user, receiver.getName());
         updateReceiverRequests(newRequest);
-        user.getNotifier().notifyObservers(user, " requested to join group", receiver);
+        user.getNotifier().notifyObservers(user, SENDGROUP, receiver.getPrimaryAdmin().getGroup_observer());
 
     }
 
