@@ -4,7 +4,7 @@ import coding.ENUMS.Mapper;
 import coding.Observer.*;
 
 import javax.swing.*;
-import java.util.Collections;
+import java.awt.*;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -17,30 +17,26 @@ import static coding.ENUMS.NOTIFICATIONS.GROUP.ADDED;
 
 public class Notifications extends JFrame implements NotificationObserver {
     private final User user;
-    private final DefaultListModel<Notifications_Panel> model;
-    private final JList<Notifications_Panel> notificationList;
+    private final JPanel notificationPanel;
     private final List<Notifications_Panel> notifications;
 
     public List<Notifications_Panel> getNotifications() {
         return notifications;
     }
 
-    public void refreshUI(){
-        repaint();
-        revalidate();
+    public void refreshUI() {
+        this.repaint();
+        this.revalidate();
     }
 
     public Notifications(User user) {
         this.user = user;
         this.notifications = new CopyOnWriteArrayList<>(); // Thread-safe notifications list
-        this.model = new DefaultListModel<>();
-        this.notificationList = new JList<>(model);
-
-        // Customize the JList
-        notificationList.setCellRenderer((list, value, index, isSelected, cellHasFocus) -> value);
+        this.notificationPanel = new JPanel();
+        notificationPanel.setLayout(new BoxLayout(notificationPanel, BoxLayout.Y_AXIS));
 
         // Set up the JScrollPane and add to JFrame
-        JScrollPane scrollPane = new JScrollPane(notificationList);
+        JScrollPane scrollPane = new JScrollPane(notificationPanel);
         setContentPane(scrollPane);
 
         // Set up JFrame
@@ -56,29 +52,61 @@ public class Notifications extends JFrame implements NotificationObserver {
     }
 
     /**
-     * Populate the notification list dynamically.
+     * Populate the notification panel dynamically.
      */
     private void populateNotifications(List<Notifications_Panel> newNotifications) {
-        model.clear(); // Clear existing notifications
+        notificationPanel.removeAll(); // Clear existing notifications
         if (newNotifications.isEmpty()) {
-            Notifications_Panel emptyPanel = new Notifications_Panel(user, null, "", ""); // Create an empty panel
-            emptyPanel.add(new JLabel("No New Notifications!")); // Add the message to the panel
-            model.addElement(emptyPanel); // Add the panel to the model
+            JLabel emptyLabel = new JLabel("No New Notifications!");
+            emptyLabel.setHorizontalAlignment(SwingConstants.CENTER);
+            emptyLabel.setFont(new Font("Arial", Font.PLAIN, 16));
+            notificationPanel.add(emptyLabel);
         } else {
             for (Notifications_Panel panel : newNotifications) {
                 setupCustomPanelActions(panel);
-                model.addElement(panel); // Add notification panels to the model
+                notificationPanel.add(panel); // Add notification panels to the panel
             }
         }
+        refreshUI();
     }
-
 
     /**
      * Set up actions for buttons in each notification panel.
      */
     private void setupCustomPanelActions(Notifications_Panel customPanel) {
-        customPanel.button1.addActionListener(e -> removeNotification(customPanel)); // Accept
-        customPanel.button2.addActionListener(e -> removeNotification(customPanel)); // Decline
+        switch (customPanel.getCode()) {
+            case RECEIVE -> {
+                customPanel.button1.addActionListener(e -> {
+                    new Requests_Management(user);
+                    removeNotification(customPanel);
+                }); // Accept
+                customPanel.button2.addActionListener(e -> removeNotification(customPanel)); // Decline
+            }
+            case ADDED -> {
+                customPanel.button1.addActionListener(e -> removeNotification(customPanel)); // Accept
+                customPanel.button2.addActionListener(e -> removeNotification(customPanel)); // Decline
+            }
+            case POST -> {
+                customPanel.button1.addActionListener(e -> {
+                    new ViewPost(user);
+                    removeNotification(customPanel);
+                }); // Accept
+                customPanel.button2.addActionListener(e -> removeNotification(customPanel)); // Decline
+            }
+            case STORY -> {
+                customPanel.button1.addActionListener(e -> {
+                    new ViewStories(user);
+                    removeNotification(customPanel);
+                }); // Accept
+                customPanel.button2.addActionListener(e -> removeNotification(customPanel)); // Decline
+            }
+
+            case CHANGE_STATUS -> {
+                customPanel.button1.addActionListener(e -> removeNotification(customPanel)); // Accept
+                customPanel.button2.addActionListener(e -> removeNotification(customPanel));
+            }
+            default -> throw new IllegalStateException("Unexpected value: " + customPanel.getCode());
+        }
     }
 
     /**
@@ -86,7 +114,7 @@ public class Notifications extends JFrame implements NotificationObserver {
      */
     private void removeNotification(Notifications_Panel customPanel) {
         notifications.remove(customPanel);
-        model.removeElement(customPanel);
+        populateNotifications(notifications);
     }
 
     /**
@@ -99,7 +127,8 @@ public class Notifications extends JFrame implements NotificationObserver {
             newNotification.add(Mapper.getMessage(message));
             setupCustomPanelActions(newNotification);
             notifications.add(newNotification);
-            model.addElement(newNotification);
+            populateNotifications(notifications);
+            System.out.println(user.getUserName() + ", " + notifications.size() + " notifications!");
         });
     }
 
@@ -123,12 +152,9 @@ public class Notifications extends JFrame implements NotificationObserver {
         System.out.println(user2.getContent_observer());
 
         // Simulating new notifications
-        notifier.notifyObservers(new User.UserBuilder().setUserName("Jane Smith").build(), STORY, null);
-        System.out.println();
-        notifier.notifyObservers(new User.UserBuilder().setUserName("Michael Owens").build(), RECEIVE, null);
-        System.out.println();
-        notifier.notifyObservers(new User.UserBuilder().setUserName("Wagdyy Owens").build(), CHANGE_STATUS, null);
-        System.out.println();
-        notifier.notifyObservers(new User.UserBuilder().setUserName("Wael Fathy").build(), ADDED, null);
+        notifier.notifyObservers(new User.UserBuilder().setUserName("Jane Smith").build(),STORY, null);
+        notifier.notifyObservers(new User.UserBuilder().setUserName("Michael Owens").build(),RECEIVE, null);
+        notifier.notifyObservers(new User.UserBuilder().setUserName("Wagdyy Owens").build(),CHANGE_STATUS, null);
+        notifier.notifyObservers(new User.UserBuilder().setUserName("Wael Fathy").build(),ADDED, null);
     }
 }

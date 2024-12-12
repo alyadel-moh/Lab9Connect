@@ -10,8 +10,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static coding.ENUMS.CONTENT_TYPE.POST;
-import static coding.ENUMS.CONTENT_TYPE.STORY;
+import static coding.ENUMS.NOTIFICATIONS.CONTENT.POST;
+import static coding.ENUMS.NOTIFICATIONS.CONTENT.STORY;
 
 
 public class ContentHandler {

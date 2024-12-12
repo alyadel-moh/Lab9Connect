@@ -1,6 +1,7 @@
 package coding;
 
 import coding.ENUMS.CONTENT_TYPE;
+import coding.ENUMS.NOTIFICATIONS.GROUP;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -19,6 +20,7 @@ public class AddGroupPost extends JFrame{
     private JPanel panel;
     private Group group;
     private String imagepath= "";
+
     AddGroupPost(Group group,User user)
     {
         addButton.setFocusable(false);
@@ -31,6 +33,7 @@ public class AddGroupPost extends JFrame{
         setContentPane(panel);
         setLocationRelativeTo(null);
         this.group = group;
+
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -45,6 +48,7 @@ public class AddGroupPost extends JFrame{
                     Posts post = (Posts) ContentFactory.createContent(CONTENT_TYPE.POST, postId, user.getUserId(), content, currentTime);
                     group.addPost(post);
                     JOptionPane.showMessageDialog(null,"Post Added Successfully");
+                    group.getNotifier().notifyGroupObservers(user, GROUP.POST, null);
                     setVisible(false);
                 }
             }

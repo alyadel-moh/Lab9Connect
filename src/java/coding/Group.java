@@ -1,6 +1,8 @@
 package coding;
 
 import coding.ENUMS.GROUP_STATUS;
+import coding.Observer.Notifier;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.swing.*;
 import java.io.File;
@@ -15,15 +17,19 @@ public class Group  {
     private ArrayList<Member> members;
     private ArrayList<Posts> posts;
     private ArrayList<Group_Request> requests;
-    private Notifications notifications;
+
+    @JsonIgnore private Notifier notifier;
 
     public Group() {
     }
+
     Group(User primary)
     {
         this.members = new ArrayList<>();
         this.posts = new ArrayList<>();
         this.requests = new ArrayList<>();
+
+        this.notifier = new Notifier();
 
         if (primary != null) {
             if (primary instanceof Member admin) {
@@ -37,6 +43,16 @@ public class Group  {
         } else {
             setPrimaryAdmin(null);
         }
+    }
+
+    public void populateObservers(){
+        for (User member : members){
+            notifier.addObserver(member.getGroup_observer());
+        }
+    }
+
+    public Notifier getNotifier() {
+        return notifier;
     }
 
     public ArrayList<Posts> getPosts() {

@@ -35,6 +35,27 @@ public class Notifier {
         }
     }
 
+    // Notify all observers
+    public void notifyGroupObservers(User user, Enum code, NotificationObserver target) {
+        //updateNotifications(user);
+
+        for (NotificationObserver observer : observers) {
+            if (target == null || observer.equals(target)) {
+                observer.update(user, code);
+            }
+        }
+    }
+
+    // Notify all observers
+    public void notifyFriendObservers(User user, Enum code, NotificationObserver target) {
+        //updateNotifications(user);
+        for (NotificationObserver observer : observers) {
+            if (target == null || observer.equals(target)) {
+                observer.update(user, code);
+            }
+        }
+    }
+
     public void updateNotifications(User user){
         for(User friend : user.getManager().getFriends()){
             friend.getHandler().addNotification(new CustomPanel<>(user, "Notification", "Ignore"));
