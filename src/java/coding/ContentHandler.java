@@ -10,6 +10,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static coding.ENUMS.CONTENT_TYPE.POST;
+import static coding.ENUMS.CONTENT_TYPE.STORY;
+
+
 public class ContentHandler {
     private static ContentHandler instance;
     private final ObjectMapper objectMapper;
@@ -94,13 +98,13 @@ public class ContentHandler {
     public void addPost(Posts post, User user){
         posts.add(post);
         allPosts.add(post);
-        user.getNotifier().notifyObservers(user, " posted a new photo!", null);
+        user.getNotifier().notifyObservers(user, POST, null);
     }
 
     public void addStory(Stories story, User user){
         stories.add(story);
         allStories.add(story);
-        user.getNotifier().notifyObservers(user, " posted a new story", null);
+        user.getNotifier().notifyObservers(user, STORY, null);
     }
 
     public ArrayList<Stories> getStories(){

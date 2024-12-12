@@ -5,7 +5,7 @@ import coding.User;
 
 import java.util.ArrayList;
 
-public class Notifier<T> {
+public class Notifier {
     private final ArrayList<NotificationObserver> observers = new ArrayList<>();
 
     // Add an observer
@@ -22,12 +22,11 @@ public class Notifier<T> {
     }
 
     // Notify all observers
-    public void notifyObservers(User user, String text, T target) {
-        updateNotifications(user);
-
+    public void notifyObservers(User user, Enum code, NotificationObserver target) {
+        //updateNotifications(user);
         for (NotificationObserver observer : observers) {
             if (target == null || observer.equals(target)) {
-                observer.update(user, text);
+                observer.update(user, code);
             }
         }
     }

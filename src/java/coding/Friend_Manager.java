@@ -16,6 +16,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static coding.ENUMS.NOTIFICATIONS.REQUEST.RECEIVE;
+import static coding.ENUMS.NOTIFICATIONS.REQUEST.SEND;
+
+
+
 
 public class Friend_Manager implements Requester{
     private final User user;
@@ -178,7 +183,7 @@ public class Friend_Manager implements Requester{
         // Create and send new request
         FriendRequest newRequest = (FriendRequest) RequestFactory.createRequest(REQUEST.FRIENDREQUEST, this.user, receiver.getUserId());
         receiver.getManager().updateReceiverRequests(newRequest);
-        user.getNotifier().notifyObservers(user, " sent you a friend request", receiver);
+        user.getNotifier().notifyObservers(user, RECEIVE, receiver.getRequest_observer());
     }
 
     public FriendRequest getRequestbySender(User sender,User receiver){

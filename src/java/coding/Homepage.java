@@ -358,6 +358,11 @@ public class Homepage extends JFrame {
         refreshButton =  createbutton("Refresh",headerPanel);
         JButton groupManagement = createbutton("Group Management",headerPanel);
 
+        if (!user.getObserver().getNotifications().isEmpty()){
+            notificationButton.setBackground(Color.CYAN);
+        }else
+            notificationButton.setBackground(Color.BLACK);
+
         headerPanel.setBackground(Color.LIGHT_GRAY);
         mainPanel.add(headerPanel, BorderLayout.NORTH);
 
@@ -448,7 +453,7 @@ public class Homepage extends JFrame {
         subGroupsPanel.setBorder(BorderFactory.createTitledBorder("List View"));
         GroupSuggestionPanel.add(subGroupsPanel);
 
-        friendListPanel.add(friendsPanel);
+        friendListPanel.add(new JScrollPane(friendsPanel));
         friendListPanel.add(new JScrollPane(friendSuggestionsPanel));
         friendListPanel.add(new JScrollPane(GroupSuggestionPanel));
 

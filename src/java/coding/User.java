@@ -74,9 +74,9 @@ public class User {
         this.coverPath = getCoverPath();
         this.bio = getBio();
 
-        this.content_observer = new Content_Observer();
-        this.group_observer = new Group_Observer();
-        this.request_observer = new Request_Observer();
+        this.content_observer = new Content_Observer(this);
+        this.group_observer = new Group_Observer(this);
+        this.request_observer = new Request_Observer(this);
     }
 
     public String getUserId() {
@@ -91,7 +91,7 @@ public class User {
     }
 
 
-    public NotificationObserver getObserver() {
+    public Notifications getObserver() {
         createObserver();
         return notificationsWindow;
     }

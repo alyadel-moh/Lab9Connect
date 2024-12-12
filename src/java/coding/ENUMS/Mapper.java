@@ -20,6 +20,7 @@ public class Mapper {
 
         mapper.put(REQUEST.RECEIVE, " sent you a friend request!");
         mapper.put(REQUEST.SEND, " friend request sent!");
+        mapper.put(REQUEST.SENDGROUP, " requested to join group ");
     }
 
     // Static method to retrieve the message

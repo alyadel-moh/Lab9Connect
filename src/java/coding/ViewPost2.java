@@ -49,7 +49,7 @@ public class ViewPost2 extends JFrame {
                if(Choice == JOptionPane.YES_OPTION) {
                    post.setContent(JOptionPane.showInputDialog(null, "Enter new Post text ") + "@" + imagePath);
                    refreshUI();
-               }a
+               }
                else
                    System.out.println("User closed the dialog or clicked cancel.");
                 Choice = JOptionPane.showConfirmDialog(null,"Do you want to change photo ?","Change photo",JOptionPane.YES_OPTION,JOptionPane.QUESTION_MESSAGE);
