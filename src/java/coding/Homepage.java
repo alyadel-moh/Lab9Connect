@@ -72,6 +72,7 @@ public class Homepage extends JFrame {
         user.getHandler().deleteExpiredStories();
         user.getHandler().saveStories();
         user.populateObservers();
+        checkObservers();
 
         add(mainPanel);
         setVisible(true);
@@ -384,7 +385,7 @@ public class Homepage extends JFrame {
         // Event Listeners
         profileButton.addActionListener(e -> new ProfileManagement(user, userService));
 
-        notificationButton.addActionListener(e -> (new Notifications(user)).setVisible(true));
+        notificationButton.addActionListener(e -> (user.getObserver()).setVisible(true));
 
         groupManagement.addActionListener(e -> new GroupGui(user));
 
@@ -513,16 +514,20 @@ public class Homepage extends JFrame {
             new Homepage(userService, user);
 
 
-            if (user.getNotifier().getObservers().isEmpty()){
-                System.out.println("No Observers yet");
-            }else {
-                System.out.println(user.getUserName() + " Observers: " + user.getNotifier().getObservers().size());
-            }
+
 
             JOptionPane.showMessageDialog(this, "Page Refreshed");
         } catch (Exception e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(this, "An error occurred while refreshing: " + e.getMessage());
+        }
+    }
+
+    private void checkObservers(){
+        if (user.getNotifier().getObservers().isEmpty()){
+            System.out.println("No Observers yet");
+        }else {
+            System.out.println(user.getUserName() + " Observers: " + user.getNotifier().getObservers().size());
         }
     }
 

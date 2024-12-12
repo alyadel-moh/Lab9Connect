@@ -6,8 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import coding.ENUMS.NOTIFICATIONS.CONTENT;
 
-import static coding.ENUMS.CONTENT_TYPE.POST;
-import static coding.ENUMS.CONTENT_TYPE.STORY;
+import static coding.ENUMS.NOTIFICATIONS.CONTENT.POST;
+import static coding.ENUMS.NOTIFICATIONS.CONTENT.STORY;
 
 public class ContentCreation extends JFrame{
     private JPanel Container1;

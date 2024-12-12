@@ -23,7 +23,7 @@ public class Notifications_Panel extends CustomPanel{
         setLayout(new GridLayout(1,3));
 
         ////// Profile Part //////////////
-        JPanel profilePanel = new JPanel(new GridLayout(1,3));
+        JPanel profilePanel = new JPanel(new GridLayout(1,2));
         JPanel buttonPanel = new JPanel();
 
         JButton profileView = createImageButton();
@@ -37,13 +37,16 @@ public class Notifications_Panel extends CustomPanel{
 
         profilePanel.add(profileView);
         profilePanel.add(label2);
-        profilePanel.add(new JLabel());
+        //profilePanel.add(new JLabel());
 
         add(profilePanel);
 
         //////// Message Part //////////////
         //// add Message
-        add(new JLabel(Mapper.getMessage(code)));
+        //add(new JLabel(Mapper.getMessage(code)));
+        //add(new JLabel(String.valueOf(code)));
+        add(new JLabel());
+
 
 
         ////// Buttons Part //////////////
@@ -58,8 +61,16 @@ public class Notifications_Panel extends CustomPanel{
 
         add(buttonPanel);
 
-        setMaximumSize(new Dimension(600,20));
+        setMaximumSize(new Dimension(900,20));
         //setMinimumSize(new Dimension(100,30));
         setPreferredSize(new Dimension(100,30));
+    }
+
+    public Enum getCode() {
+        return code;
+    }
+
+    public void setCode(Enum code) {
+        this.code = code;
     }
 }
