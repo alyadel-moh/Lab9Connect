@@ -5,22 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b070c600-f384-439e-b49a-9b65b4c8f3b6" name="Changes" comment="Merge branch 'main' of https://github.com/shamsquraytum/Lab9Connect&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
-      <change afterPath="$PROJECT_DIR$/src/java/coding/View_Friends_List4.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/java/coding/DemoteUi.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/java/coding/PromoteUi.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Groups.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Stories.json" beforeDir="false" afterPath="$PROJECT_DIR$/Stories.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Users.json" beforeDir="false" afterPath="$PROJECT_DIR$/Users.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/CreateGroupGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/CreateGroupGui.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/coding/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Group.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/GroupGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/GroupGui.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/coding/Group_Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Group_Manager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Otheradmin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Otheradmin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Primaryadmin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Primaryadmin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/View_Friends_List2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/View_Friends_List2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/View_Friends_List3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/View_Friends_List3.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/View_Groups_List.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/View_Groups_List.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/View_Groups_List2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/View_Groups_List2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/View_Members_List.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/View_Members_List.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/PrimaryAdminManagment.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/PrimaryAdminManagment.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/PrimaryAdminManagment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/PrimaryAdminManagment.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,13 +41,13 @@
     &quot;assignee&quot;: &quot;menna812&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/alyadel-moh/Lab9Connect.git",
-    "accountId": "1db9ec48-67ea-454a-949e-00fecef44143"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/alyadel-moh/Lab9Connect.git&quot;,
+    &quot;accountId&quot;: &quot;1db9ec48-67ea-454a-949e-00fecef44143&quot;
   },
-  "editorReviewEnabled": false
-}]]></component>
+  &quot;editorReviewEnabled&quot;: false
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>

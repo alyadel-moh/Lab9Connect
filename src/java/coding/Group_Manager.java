@@ -361,23 +361,6 @@ public class Group_Manager implements Requester {
         }
     }
 
-        public void promote(Group group,User member){
-            if(group.getMembers().contains((Member) member)){
-                switch (((Member) member).getGroup_status()){
-                    case NORMAL -> ((Member) member).setGroup_status(GROUP_STATUS.ADMIN);
-                    default -> throw new RuntimeException("Current Member status is not promotable");
-                }
-            }
-        }
-
-        public void delegate(Group group,User member){
-            if(group.getMembers().contains((Member) member)){
-                switch (((Member) member).getGroup_status()){
-                    case ADMIN -> ((Member) member).setGroup_status(GROUP_STATUS.NORMAL);
-                    default -> throw new RuntimeException("Cannot delegate Member!");
-                }
-            }
-        }
 
         }
 

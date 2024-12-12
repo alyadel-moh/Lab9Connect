@@ -125,6 +125,16 @@ public class Group  {
     public void setRequests(ArrayList<Group_Request> requests) {
         this.requests = requests;
     }
+    public void promote(Group group,User member){
+            members.remove(member);
+            otheradmins.add(member);
+    }
+
+    public void demote(Group group,User member){
+                otheradmins.remove(member);
+                     members.add(member);
+    }
+
 
     public void setProfile() {
         JFileChooser fileChooser = new JFileChooser();//Create the JfileChooser to show the save dialog
