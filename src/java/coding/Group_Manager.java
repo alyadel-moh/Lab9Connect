@@ -288,7 +288,8 @@ public class Group_Manager implements Requester {
         // Create and send new request
         Group_Request newRequest = (Group_Request) RequestFactory.createRequest(REQUEST.GROUPREQUEST, this.user, receiver.getName());
         updateReceiverRequests(newRequest);
-        user.getNotifier().notifyObservers(user, SENDGROUP, receiver.getPrimaryAdmin().getGroup_observer());
+        user.getNotifier().notifyObservers(user, SENDGROUP, null);
+        //user.getNotifier().notifyObservers(user, SENDGROUP, receiver.getPrimaryAdmin().getGroup_observer());
 
     }
 

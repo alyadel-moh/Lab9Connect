@@ -9,4 +9,8 @@ public class FriendRequest extends Request{
         super(sender, receiver);
     }
 
+    public User getReceiver(){
+        return (User) this.receiver;
+    }
+
 }

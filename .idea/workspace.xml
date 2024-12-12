@@ -11,9 +11,11 @@
       <change beforePath="$PROJECT_DIR$/Users.json" beforeDir="false" afterPath="$PROJECT_DIR$/Users.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/coding/CustomPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/CustomPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/coding/Friend_Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Friend_Manager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/Group_Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Group_Manager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/coding/Homepage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Homepage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/coding/Notifications.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Notifications.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/coding/SearchManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/SearchManagement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,7 +113,7 @@
       <recent name="C:\Users\Administrator\Documents\GitHub\Lab9Connect\src\java\coding" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Notifications">
+  <component name="RunManager" selected="Application.Window1">
     <configuration name="CustomPanel" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="coding.CustomPanel" />
       <module name="Lab9Connect2" />
@@ -179,8 +181,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Notifications" />
         <item itemvalue="Application.Window1" />
+        <item itemvalue="Application.Notifications" />
         <item itemvalue="Application.CustomPanel" />
         <item itemvalue="Application.Custompanel3" />
         <item itemvalue="Application.Custompanel2" />

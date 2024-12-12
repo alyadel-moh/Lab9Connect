@@ -1,9 +1,7 @@
 package coding;
 
 import coding.ENUMS.Mapper;
-import coding.Observer.Content_Observer;
-import coding.Observer.Notifier;
-import coding.Observer.NotificationObserver;
+import coding.Observer.*;
 
 import javax.swing.*;
 import java.util.Collections;
@@ -27,6 +25,10 @@ public class Notifications extends JFrame implements NotificationObserver {
         return notifications;
     }
 
+    public void refreshUI(){
+        repaint();
+        revalidate();
+    }
 
     public Notifications(User user) {
         this.user = user;
@@ -108,11 +110,11 @@ public class Notifications extends JFrame implements NotificationObserver {
         Group group = new Group(user3);
         group.setName("3ala Allah");
 
-        Notifier notifier = new Notifier();
+        Notifier notifier = user.getNotifier();
 
-        Content_Observer observer1 = new Content_Observer(user);
-        Content_Observer observer2 = new Content_Observer(user2);
-        Content_Observer observer3 = new Content_Observer(user3);
+        NotificationObserver observer1 = new Content_Observer(user);
+        NotificationObserver observer2 = new Request_Observer(user2);
+        NotificationObserver observer3 = new Group_Observer(user3);
 
         notifier.addObserver(observer1);
         notifier.addObserver(observer2);
@@ -123,7 +125,7 @@ public class Notifications extends JFrame implements NotificationObserver {
         // Simulating new notifications
         notifier.notifyObservers(new User.UserBuilder().setUserName("Jane Smith").build(), STORY, null);
         System.out.println();
-        notifier.notifyObservers(new User.UserBuilder().setUserName("Michael Owens").build(), RECEIVE, user2.getObserver());
+        notifier.notifyObservers(new User.UserBuilder().setUserName("Michael Owens").build(), RECEIVE, null);
         System.out.println();
         notifier.notifyObservers(new User.UserBuilder().setUserName("Wagdyy Owens").build(), CHANGE_STATUS, null);
         System.out.println();

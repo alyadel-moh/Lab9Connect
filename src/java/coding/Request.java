@@ -5,7 +5,7 @@ import coding.ENUMS.STATE;
 public class Request<T> {
     private STATE state;
     private User sender;
-    private T receiver;
+    protected T receiver;
 
     // Default constructor
     public Request() {

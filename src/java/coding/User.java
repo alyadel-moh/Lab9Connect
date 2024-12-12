@@ -92,6 +92,7 @@ public class User {
     public void createObserver(){
         if (notificationsWindow == null)
             notificationsWindow = new Notifications(this);
+        notificationsWindow.refreshUI();
     }
 
 
