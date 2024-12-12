@@ -57,17 +57,19 @@ public class Notifications extends JFrame implements NotificationObserver {
      * Populate the notification list dynamically.
      */
     private void populateNotifications(List<Notifications_Panel> newNotifications) {
-        model.clear();
+        model.clear(); // Clear existing notifications
         if (newNotifications.isEmpty()) {
-            model.addElement((Notifications_Panel) new CustomPanel(user,"No New Notifications!"));
-                   // new JLabel());
+            Notifications_Panel emptyPanel = new Notifications_Panel(user, null, "", ""); // Create an empty panel
+            emptyPanel.add(new JLabel("No New Notifications!")); // Add the message to the panel
+            model.addElement(emptyPanel); // Add the panel to the model
         } else {
             for (Notifications_Panel panel : newNotifications) {
                 setupCustomPanelActions(panel);
-                model.addElement(panel);
+                model.addElement(panel); // Add notification panels to the model
             }
         }
     }
+
 
     /**
      * Set up actions for buttons in each notification panel.

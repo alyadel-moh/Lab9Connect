@@ -4,22 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b070c600-f384-439e-b49a-9b65b4c8f3b6" name="Changes" comment="Merge branch 'main' of https://github.com/shamsquraytum/Lab9Connect&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
     <list default="true" id="b070c600-f384-439e-b49a-9b65b4c8f3b6" name="Changes" comment="Merge branch 'main' of https://github.com/shamsquraytum/Lab9Connect&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FriendRequests.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Friends.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Groups.json" beforeDir="false" afterPath="$PROJECT_DIR$/Groups.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SuggestionGroups.json" beforeDir="false" afterPath="$PROJECT_DIR$/SuggestionGroups.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Posts.json" beforeDir="false" afterPath="$PROJECT_DIR$/Posts.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Stories.json" beforeDir="false" afterPath="$PROJECT_DIR$/Stories.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Users.json" beforeDir="false" afterPath="$PROJECT_DIR$/Users.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Group_Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Group_Manager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Observer/Group_Observer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Observer/Group_Observer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Observer/Request_Observer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Observer/Request_Observer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/CustomPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/CustomPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/Friend_Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Friend_Manager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/Homepage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Homepage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/coding/Notifications.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Notifications.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/coding/SearchManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/SearchManagement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/ViewPost2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/ViewPost2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/View_Groups_List.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/View_Groups_List.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,7 +111,7 @@
       <recent name="C:\Users\Administrator\Documents\GitHub\Lab9Connect\src\java\coding" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Window1">
+  <component name="RunManager" selected="Application.Notifications">
     <configuration name="CustomPanel" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="coding.CustomPanel" />
       <module name="Lab9Connect2" />
@@ -185,8 +179,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Window1" />
         <item itemvalue="Application.Notifications" />
+        <item itemvalue="Application.Window1" />
         <item itemvalue="Application.CustomPanel" />
         <item itemvalue="Application.Custompanel3" />
         <item itemvalue="Application.Custompanel2" />
