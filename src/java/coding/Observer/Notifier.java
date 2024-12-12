@@ -8,6 +8,10 @@ import java.util.ArrayList;
 public class Notifier {
     private final ArrayList<NotificationObserver> observers = new ArrayList<>();
 
+    public ArrayList<NotificationObserver> getObservers() {
+        return observers;
+    }
+
     // Add an observer
     public void addObserver(NotificationObserver observer) {
         if (observer != null && !observers.contains(observer)) {

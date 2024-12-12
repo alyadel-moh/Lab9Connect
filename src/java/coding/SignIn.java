@@ -62,13 +62,20 @@ public class SignIn extends JFrame{
                    System.out.println("No friends yet");
                }else{
                    count = 1;
+                   System.out.println("Friends");
                    for (User suggested : user.getManager().getFriends()){
                        System.out.print(count++ + "_");
                        System.out.println(suggested);
                    }
                }
 
-           /////////////////////////////////////////////////////
+               if (user.getNotifier().getObservers().isEmpty()){
+                   System.out.println("No Observers yet");
+               }else {
+                   System.out.println(user.getUserName() + " Observers: " + user.getNotifier().getObservers().size());
+               }
+
+               /////////////////////////////////////////////////////
                new Homepage(userService,user);
 //               new Feedpage(user,userService);
                user.getHandler().loadPosts();

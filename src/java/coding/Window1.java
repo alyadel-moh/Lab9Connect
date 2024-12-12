@@ -1,5 +1,7 @@
 package coding;
 
+import coding.Observer.NotificationObserver;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -37,13 +39,22 @@ public class Window1 extends JFrame  {
     public static void main(String[] args) {
             Database database = Database.getInstance();
             int count = 1;
-        /*
+
+
+        ////////////////////////////////////////////
         System.out.println("Users: ");
-        for (User user : database.getUsers()){
+        for (User user : database.getUsers()) {
+            System.out.println(user.getUserName() + " Observers: " + user.getNotifier().getObservers().size());
+
+            for (NotificationObserver observer : user.getNotifier().getObservers()) {
                 System.out.print(count++);
-                System.out.println(user);
+                System.out.println(observer);
             }
-        */
+        }
+
+        ////////////////////////////////////
+
+
             UserService userService = new UserService(database);
             new Window1(userService);
             Runtime.getRuntime().addShutdownHook(new Thread(() -> {

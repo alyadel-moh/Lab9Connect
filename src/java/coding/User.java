@@ -81,6 +81,8 @@ public class User {
         this.content_observer = new Content_Observer(this);
         this.group_observer = new Group_Observer(this);
         this.request_observer = new Request_Observer(this);
+
+       // this.notificationsWindow = new Notifications(this);
     }
 
     public String getUserId() {
