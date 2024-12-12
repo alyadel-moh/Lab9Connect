@@ -7,17 +7,19 @@ public class PrimaryAdminManagment extends JFrame {
     private JButton viewMembersButton;
     private JPanel panel;
     private JButton addPostButton;
+    private JButton groupProfileButton;
 
     PrimaryAdminManagment(User primaryadmin,Group group)
     {
         setTitle("Primary Admin Role");
         setContentPane(panel);
-        setBounds(100,100,400,350);
+        setBounds(100,100,400,400);
         setResizable(false);
         setLocationRelativeTo(null);
         addPostButton.setFocusable(false);
         viewMembersButton.setFocusable(false);
         viewPostsButton.setFocusable(false);
+        groupProfileButton.setFocusable(false);
         setLocationRelativeTo(null);
         setVisible(true);
         viewMembersButton.addActionListener(e -> {
@@ -32,5 +34,10 @@ public class PrimaryAdminManagment extends JFrame {
             setVisible(false);
             new ViewPost2(group);
         });
+       groupProfileButton.addActionListener(e -> {
+            setVisible(false);
+            new Groupprofile(group);
+        });
+
     }
 }

@@ -40,7 +40,7 @@
   "otherAdmins" : [ ]
 }, {
   "primaryAdmin" : {
-    "profilePath" : "images/account.png",
+    "profilePath" : null,
     "coverPath" : null,
     "bio" : null,
     "password" : "f789c4d98a4ee924f6611a858aed07c30b6c903ad874dd6a1961b42e8c9792b5",
@@ -60,7 +60,7 @@
   "otherAdmins" : [ ]
 }, {
   "primaryAdmin" : {
-    "profilePath" : "images/account.png",
+    "profilePath" : null,
     "coverPath" : null,
     "bio" : null,
     "password" : "f789c4d98a4ee924f6611a858aed07c30b6c903ad874dd6a1961b42e8c9792b5",
@@ -77,5 +77,45 @@
   "posts" : [ ],
   "requests" : [ ],
   "profilepath" : "C:\\Users\\alyad\\Pictures\\WhatsApp Image 2024-08-02 at 16.19.02_b5c294d5.jpg",
+  "otherAdmins" : [ ]
+}, {
+  "primaryAdmin" : {
+    "profilePath" : "images/account.png",
+    "coverPath" : null,
+    "bio" : null,
+    "password" : "f789c4d98a4ee924f6611a858aed07c30b6c903ad874dd6a1961b42e8c9792b5",
+    "email" : "alyy@gmail.com",
+    "status" : "online",
+    "receivedRequest" : false,
+    "userId" : "0f2dd7ac",
+    "userName" : "alyy",
+    "dateOfBirth" : "2024-12-05"
+  },
+  "description" : "aaaaaaaaaaaa",
+  "name" : "eeeeeeeee",
+  "members" : [ ],
+  "posts" : [ ],
+  "requests" : [ ],
+  "profilepath" : "C:\\Users\\alyad\\Pictures\\WhatsApp Image 2024-08-02 at 16.19.02_b5c294d5.jpg",
+  "otherAdmins" : [ ]
+}, {
+  "primaryAdmin" : {
+    "profilePath" : "images/account.png",
+    "coverPath" : null,
+    "bio" : null,
+    "password" : "f789c4d98a4ee924f6611a858aed07c30b6c903ad874dd6a1961b42e8c9792b5",
+    "email" : "alyy@gmail.com",
+    "status" : "online",
+    "receivedRequest" : false,
+    "userId" : "0f2dd7ac",
+    "userName" : "alyy",
+    "dateOfBirth" : "2024-12-05"
+  },
+  "description" : "wwwwwwwwwww",
+  "name" : "aaaaaaaaaaaaa",
+  "members" : [ ],
+  "posts" : [ ],
+  "requests" : [ ],
+  "profilepath" : "C:\\Users\\alyad\\Pictures\\WhatsApp Image 2024-08-02 at 16.19.02_b5c294d5.png",
   "otherAdmins" : [ ]
 } ]
