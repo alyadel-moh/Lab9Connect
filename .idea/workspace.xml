@@ -7,14 +7,12 @@
     <list default="true" id="b070c600-f384-439e-b49a-9b65b4c8f3b6" name="Changes" comment="Merge branch 'main' of https://github.com/shamsquraytum/Lab9Connect&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FriendRequests.json" beforeDir="false" afterPath="$PROJECT_DIR$/FriendRequests.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Friends.json" beforeDir="false" afterPath="$PROJECT_DIR$/Friends.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Posts.json" beforeDir="false" afterPath="$PROJECT_DIR$/Posts.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Stories.json" beforeDir="false" afterPath="$PROJECT_DIR$/Stories.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Users.json" beforeDir="false" afterPath="$PROJECT_DIR$/Users.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/CustomPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/CustomPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/Homepage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Homepage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/coding/Notifications.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Notifications.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Notifications_Panel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Notifications_Panel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Storiesview.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Storiesview.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/ViewPost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/ViewPost.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

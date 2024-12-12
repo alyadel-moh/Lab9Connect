@@ -14,7 +14,7 @@ public class ViewPost extends JFrame {
 
     public ViewPost(User user) {
         this.user = user;
-        setTitle("View Posts");
+        setTitle(user.getUserName() + "'s Posts");
         setSize(new Dimension(1000, 1000));
         setLocationRelativeTo(null);
 

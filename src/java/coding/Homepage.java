@@ -506,12 +506,12 @@ public class Homepage extends JFrame {
             mainPanel.repaint();
 
             setVisible(false);
+            new Homepage(userService, user);
 
             for (Window window : Window.getWindows()){
+                if(!(window instanceof Homepage))
                     window.dispose();
             }
-
-            new Homepage(userService, user);
 
 
 

@@ -5,8 +5,11 @@ import coding.Observer.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.function.Supplier;
 
 import static coding.ENUMS.NOTIFICATIONS.REQUEST.RECEIVE;
 import static coding.ENUMS.NOTIFICATIONS.REQUEST.SEND;
@@ -19,6 +22,8 @@ public class Notifications extends JFrame implements NotificationObserver {
     private final User user;
     private final JPanel notificationPanel;
     private final List<Notifications_Panel> notifications;
+    private final Map<Notifications_Panel, Window> openWindows = new HashMap<>();
+
 
     public List<Notifications_Panel> getNotifications() {
         return notifications;
@@ -75,27 +80,35 @@ public class Notifications extends JFrame implements NotificationObserver {
      */
     private void setupCustomPanelActions(Notifications_Panel customPanel) {
         switch (customPanel.getCode()) {
+            ///// Receive friend request
             case RECEIVE -> {
                 customPanel.button1.addActionListener(e -> {
-                    new Requests_Management(user);
+                    openOrFocusWindow(customPanel, () -> new Requests_Management(user)); // Opens Requests_Management and tracks the window
                     removeNotification(customPanel);
                 }); // Accept
                 customPanel.button2.addActionListener(e -> removeNotification(customPanel)); // Decline
             }
+
+            ///// Added to group or change status: no specific action
             case ADDED, CHANGE_STATUS -> {
                 customPanel.button1.addActionListener(e -> removeNotification(customPanel)); // Accept
                 customPanel.button2.addActionListener(e -> removeNotification(customPanel)); // Decline
             }
+
+            //////// Post created by friend
             case POST -> {
                 customPanel.button1.addActionListener(e -> {
-                    new ViewPost(user);
+                    openOrFocusWindow(customPanel, () -> new ViewPost((User) customPanel.getUser())); // Opens ViewPost and tracks the window
                     removeNotification(customPanel);
                 }); // Accept
                 customPanel.button2.addActionListener(e -> removeNotification(customPanel)); // Decline
             }
+
+
+            /////// Story posted by friend
             case STORY -> {
                 customPanel.button1.addActionListener(e -> {
-                    new Storiesview((User) customPanel.getUser(), 0);
+                    openOrFocusWindow(customPanel, () -> new Storiesview((User) customPanel.getUser(), 0)); // Opens Storiesview and tracks the window
                     removeNotification(customPanel);
                 }); // Accept
                 customPanel.button2.addActionListener(e -> removeNotification(customPanel)); // Decline
@@ -106,11 +119,48 @@ public class Notifications extends JFrame implements NotificationObserver {
     }
 
     /**
+     * Ensures only one window per notification is opened, and tracks the windows.
+     */
+    private void openOrFocusWindow(Notifications_Panel customPanel, Supplier<Window> windowSupplier) {
+        if (openWindows.containsKey(customPanel)) {
+            // Bring the existing window to the front
+            Window window = openWindows.get(customPanel);
+            window.toFront();
+            window.requestFocus();
+        } else {
+            // Create and track a new window
+            Window window = windowSupplier.get();
+            openWindows.put(customPanel, window);
+
+            // Add a listener to remove the window from the map when closed
+            window.addWindowListener(new java.awt.event.WindowAdapter() {
+                @Override
+                public void windowClosed(java.awt.event.WindowEvent e) {
+                    openWindows.remove(customPanel);
+                    disposeOtherWindows(); // Clean up other unrelated windows
+                }
+            });
+        }
+    }
+
+    /**
      * Remove a notification from the list and update the UI.
      */
     private void removeNotification(Notifications_Panel customPanel) {
         notifications.remove(customPanel);
         populateNotifications(notifications);
+    }
+
+
+    /**
+     * Disposes of windows not associated with notifications.
+     */
+    private void disposeOtherWindows() {
+        for (Window window : Window.getWindows()) {
+            if (window != this && !(window instanceof Homepage) && !openWindows.containsValue(window)) {
+                window.dispose();
+            }
+        }
     }
 
     /**
