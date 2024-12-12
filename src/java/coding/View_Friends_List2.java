@@ -74,8 +74,7 @@ public class View_Friends_List2 extends  JFrame {
                 System.out.println("Adding member to group: " + friend.getUserName());
 
                 // Add the member to the group
-                group.addMember(friend);
-                primaryadmin.getGroupManager().addMember(group, friend);
+                group.getMembers().add(friend);
 
                 // Update the member's group
                 friend.getGroupManager().getGroups().put(group.getName(), group);

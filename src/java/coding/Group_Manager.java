@@ -27,6 +27,8 @@ public class Group_Manager implements Requester {
     static final ObjectMapper objectMapper = new ObjectMapper();
 
     private Map<String, Group> groups;
+    private Map<String, Group> primary;
+    private Map<String, Group> other;
     private ArrayList<Group> suggestions;
 
     private Posts post;
@@ -45,8 +47,9 @@ public class Group_Manager implements Requester {
         this.groups = new HashMap<>();
         this.suggestions = new ArrayList<>();
         this.user = user;
+        this.primary = new HashMap<>();
+        this.other = new HashMap<>();
     }
-
     public void deletegroup(Group group, User primaryadmin) {
         if (group.getPrimaryAdmin().getUserId().equals(primaryadmin.getUserId())) {
             System.out.println("Deleting group: " + group.getName());
@@ -108,6 +111,22 @@ public class Group_Manager implements Requester {
         return post;
     }
 
+    public Map<String, Group> getOther() {
+        return other;
+    }
+
+    public void setOther(Map<String, Group> other) {
+        this.other = other;
+    }
+
+    public Map<String, Group> getPrimary() {
+        return primary;
+    }
+
+    public void setPrimary(Map<String, Group> primary) {
+        this.primary = primary;
+    }
+
     public void setPost(Posts post) {
         this.post = post;
     }
@@ -154,20 +173,6 @@ public class Group_Manager implements Requester {
         }
     }
 
-    public void addMember(Group group, User member){
-        if (group == null || member == null)
-            return;
-
-        if (member instanceof Member castedUser) {
-            if (isMember(member, group))
-                return;
-
-            castedUser.setGroup_status(GROUP_STATUS.NORMAL);
-            group.addMember(castedUser);
-            saveGroups();
-            //group.getMembers().add(castedUser);
-        }
-    }
 
     @Override
     public String toString() {
@@ -374,14 +379,7 @@ public class Group_Manager implements Requester {
             }
         }
 
-        public void filterGroup(Group group){
-            if (group != null && !group.getMembers().isEmpty()){
-                group.getMembers().removeIf(member -> member.getGroup_status() == GROUP_STATUS.NOTMEMBER);
-            }
-
         }
 
-
-}
 
 

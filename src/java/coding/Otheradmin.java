@@ -26,6 +26,7 @@ public class Otheradmin extends JFrame{
         setLocationRelativeTo(null);
         setVisible(true);
         viewMembershipRequestsButton.addActionListener(e -> {
+            new View_Friends_List4(group);
         });
        viewMembersButton.addActionListener(e -> {
            setVisible(false);

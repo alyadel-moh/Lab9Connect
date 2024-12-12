@@ -44,15 +44,13 @@ public class View_Friends_List3 extends JFrame {
         }
 
         for (User friend : friends) {
-            if(friend instanceof Member && group.getMembers().contains((Member) friend))
-                continue;
             CustomPanel customPanel = new CustomPanel(friend, "add");
             panel1.add(customPanel);
             customPanel.setPreferredSize(new Dimension(700, 30));
             customPanel.button1.addActionListener(_ -> {
-                assert friend instanceof Member;
-                group.addMember(friend);
-                //group.getOtherAdmins().add((Member) friend);
+                group.getOtherAdmins().add(friend);
+                friend.getGroupManager().getOther().put(group.getName(),group);
+                if(group.getMembers().contains(friend))
                 group.getMembers().remove(friend);
                 panel1.remove(customPanel);
                 refreshUI();

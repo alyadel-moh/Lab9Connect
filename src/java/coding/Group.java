@@ -14,41 +14,35 @@ public class Group  {
     private String description;
     private String name;
 
-    private ArrayList<Member> members;
+    private ArrayList<User> members;
+    private ArrayList<User> otheradmins;
     private ArrayList<Posts> posts;
     private ArrayList<Group_Request> requests;
 
     @JsonIgnore private Notifier notifier;
-
-    public Group() {
-    }
 
     Group(User primary)
     {
         this.members = new ArrayList<>();
         this.posts = new ArrayList<>();
         this.requests = new ArrayList<>();
-
+        this.otheradmins = new ArrayList<>();
         this.notifier = new Notifier();
 
-        if (primary != null) {
-            if (primary instanceof Member admin) {
-                admin.setGroup_status(GROUP_STATUS.PRIMARY);
-                members.add(admin);
-                setPrimaryAdmin(admin);
-            }else{
-                setPrimaryAdmin(primary);
-                //members.add(primaryAdmin);
-            }
-        } else {
-            setPrimaryAdmin(null);
-        }
     }
 
     public void populateObservers(){
         for (User member : members){
             notifier.addObserver(member.getGroup_observer());
         }
+    }
+
+    public ArrayList<User> getMembers() {
+        return members;
+    }
+
+    public void setMembers(ArrayList<User> members) {
+        this.members = members;
     }
 
     public Notifier getNotifier() {
@@ -71,15 +65,8 @@ public class Group  {
         System.out.println(posts.getFirst());
     }
 
-    public ArrayList<Member> getOtherAdmins() {
-        ArrayList<Member> otherAdmins = new ArrayList<>();
-
-        for (Member member : members){
-            if (member.getGroup_status() == GROUP_STATUS.ADMIN)
-                otherAdmins.add(member);
-        }
-
-        return otherAdmins;
+    public ArrayList<User> getOtherAdmins() {
+      return otheradmins;
     }
 
 
@@ -107,14 +94,6 @@ public class Group  {
         this.primaryAdmin =  primaryAdmin;
     }
 
-    public ArrayList<Member> getMembers() {
-        return members;
-    }
-
-    public void setMembers(ArrayList<Member> members) {
-        this.members = members;
-    }
-
     public String getProfilepath() {
         return profilePath;
     }
@@ -125,19 +104,6 @@ public class Group  {
 
     public void setProfilepath(){this.profilePath = "images/account.png";}
 
-    public void addMember(User member)
-    {
-        if (member == null)
-            return;
-
-        if (member instanceof Member castedMember) {
-            if (members.contains(castedMember))
-                return;
-
-            castedMember.setGroup_status(GROUP_STATUS.NORMAL);
-            members.add(castedMember);
-        }
-    }
 
     @Override
     public String toString() {

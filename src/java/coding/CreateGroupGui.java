@@ -60,12 +60,10 @@ public class CreateGroupGui extends JFrame {
         });
 
        addOtherAdminsButton.addActionListener(e -> {
-           assert primaryAdmin != null;
            new View_Friends_List3(primaryAdmin,group);
         });
 
        addFriendsButton.addActionListener(e -> {
-           assert primaryAdmin != null;
            new View_Friends_List2(primaryAdmin,group);
        });
 
@@ -76,9 +74,10 @@ public class CreateGroupGui extends JFrame {
 
             System.out.println(group.toString());
 
-            primaryAdmin.getGroupManager().addGroup(group);
+            primaryAdmin.getGroupManager().getPrimary().put(group.getName(),group);
+           primaryAdmin.getGroupManager().getAllgroups().put(group.getName(),group);
             System.out.println(Group_Manager.getAllgroups());
-            System.out.println(primaryAdmin.getGroupManager().getGroups());
+            System.out.println(primaryAdmin.getGroupManager().getPrimary());
           setVisible(false);
         });
 

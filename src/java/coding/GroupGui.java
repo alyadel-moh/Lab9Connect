@@ -30,7 +30,7 @@ public class GroupGui extends JFrame{
             setVisible(false);
         });
       otherAdminButton.addActionListener(e -> {
-           new View_Groups_List2(user,user.getGroupManager().getGroups());
+           new View_Groups_List2(user,user.getGroupManager().getOther());
             setVisible(false);
         });
         createGroupButton.addActionListener(e -> {
