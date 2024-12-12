@@ -43,6 +43,7 @@ public class Storiesview extends JFrame {
         add(panel);
         setVisible(true);
     }
+
     public void viewStory(Stories story)
     {
             String content = story.getContent();

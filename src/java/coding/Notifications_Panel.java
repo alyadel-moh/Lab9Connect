@@ -61,9 +61,9 @@ public class Notifications_Panel extends CustomPanel{
 
         add(buttonPanel);
 
-        setMaximumSize(new Dimension(900,20));
+        setMaximumSize(new Dimension(900,40));
         //setMinimumSize(new Dimension(100,30));
-        setPreferredSize(new Dimension(100,30));
+        setPreferredSize(new Dimension(100,40));
     }
 
     public Enum getCode() {

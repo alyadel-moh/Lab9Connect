@@ -45,7 +45,7 @@ public class Notifications extends JFrame implements NotificationObserver {
         setResizable(false);
         setBounds(100, 100, 800, 400);
         setLocationRelativeTo(null);
-        setVisible(true);
+        //setVisible(true);
 
         // Populate with initial notifications
         populateNotifications(notifications);
@@ -82,7 +82,7 @@ public class Notifications extends JFrame implements NotificationObserver {
                 }); // Accept
                 customPanel.button2.addActionListener(e -> removeNotification(customPanel)); // Decline
             }
-            case ADDED -> {
+            case ADDED, CHANGE_STATUS -> {
                 customPanel.button1.addActionListener(e -> removeNotification(customPanel)); // Accept
                 customPanel.button2.addActionListener(e -> removeNotification(customPanel)); // Decline
             }
@@ -95,16 +95,12 @@ public class Notifications extends JFrame implements NotificationObserver {
             }
             case STORY -> {
                 customPanel.button1.addActionListener(e -> {
-                    new ViewStories(user);
+                    new Storiesview((User) customPanel.getUser(), 0);
                     removeNotification(customPanel);
                 }); // Accept
                 customPanel.button2.addActionListener(e -> removeNotification(customPanel)); // Decline
             }
 
-            case CHANGE_STATUS -> {
-                customPanel.button1.addActionListener(e -> removeNotification(customPanel)); // Accept
-                customPanel.button2.addActionListener(e -> removeNotification(customPanel));
-            }
             default -> throw new IllegalStateException("Unexpected value: " + customPanel.getCode());
         }
     }
@@ -151,6 +147,8 @@ public class Notifications extends JFrame implements NotificationObserver {
 
         System.out.println(user2.getContent_observer());
 
+
+        user.getObserver().setVisible(true);
         // Simulating new notifications
         notifier.notifyObservers(new User.UserBuilder().setUserName("Jane Smith").build(),STORY, null);
         notifier.notifyObservers(new User.UserBuilder().setUserName("Michael Owens").build(),RECEIVE, null);

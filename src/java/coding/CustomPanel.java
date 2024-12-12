@@ -120,6 +120,9 @@ public class CustomPanel<T> extends JPanel {
         return button;
     }
 
+    public T getUser() {
+        return user;
+    }
 
     public static void main(String[] args) {
         // Create a sample User object
