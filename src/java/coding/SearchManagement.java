@@ -48,19 +48,27 @@ public class SearchManagement extends JFrame {
     private ArrayList<Object> getSearchResults(){
         ArrayList<Object> searchResults = new ArrayList<>();
         for(int i=0;i<Database.getUsers().size();i++){
-            if(Database.getUsers().get(i).getUserName().contains(searchedString)&&!Database.getUsers().get(i).getUserId().equals(user.getUserId())){
+            if(Database.getUsers().get(i).getUserName().toLowerCase().contains(searchedString.toLowerCase())&&!Database.getUsers().get(i).getUserId().equals(user.getUserId())){
                 searchResults.add(Database.getUsers().get(i));
             }
         }
 
         // Search for groups
-        for (Map.Entry<String, Group> entry : Group_Manager.getAllgroups().entrySet()) {
-            System.out.println("Group in manager: " + entry.getKey() + " - " + entry.getValue().getName());
-            Group group = entry.getValue();
+        for (String key : Group_Manager.getAllgroups().keySet()) {
+            System.out.println("Group in manager: " + Group_Manager.getAllgroups().get(key).getName());
+            Group group = Group_Manager.getAllgroups().get(key);
             if (group.getName().toLowerCase().contains(searchedString.toLowerCase())) {
                 searchResults.add(group); // Add group to search results
             }
         }
+//        for (Map.Entry<String, Group> entry : Group_Manager.getAllgroups().entrySet()) {
+//            System.out.println("Group in manager: " + entry.getKey() + " - " + entry.getValue().getName());
+//            Group group = entry.getValue();
+//            if (group.getName().toLowerCase().contains(searchedString.toLowerCase())) {
+//                searchResults.add(group); // Add group to search results
+//            }
+//        }
+        System.out.println(searchResults.size());
         return searchResults;
     }
 
@@ -123,16 +131,34 @@ public class SearchManagement extends JFrame {
 
         // Add Friend Button
         addFriendButton.addActionListener(e -> {
-            boolean flag = false; // indicating they are not your friend
+            boolean isFriend = false; // indicating they are not your friend
+            boolean isBlocked = false; // user not blocked
+
+            // Check if the user is already a friend
             for (int i = 0; i < user.getManager().getFriends().size(); i++) {
                 if (user.getManager().getFriends().get(i).getUserId().equals(searchedUser.getUserId())) {
                     JOptionPane.showMessageDialog(null, "This is already your friend");
-                    flag = true; // they are friends
+                    isFriend = true; // they are friends
+                    break; // Exit loop since the user is already a friend.....
                 }
             }
-            if (!flag) {
+
+            // Check if the user is blocked
+            if (!isFriend) { // checking blocked list if not a friend
+                for (int i = 0; i < user.getManager().getBlocked().size(); i++) {
+                    if (user.getManager().getBlocked().get(i).getUserId().equals(searchedUser.getUserId())) {
+                        JOptionPane.showMessageDialog(null, "This user is blocked. Please unblock them to add as a friend.");
+                        isBlocked = true; // user is blocked
+                        break; // Exit loop since we found the blocked user
+                    }
+                }
+            }
+
+            // Add the user if they are neither a friend nor blocked
+            if (!isFriend && !isBlocked) {
                 user.getManager().getFriends().add(searchedUser);
                 user.getFriendHandler().addFriend(user.getUserId(), searchedUser.getUserId());
+                JOptionPane.showMessageDialog(null, "User added successfully");
             }
         });
 
@@ -159,12 +185,23 @@ public class SearchManagement extends JFrame {
     private JPanel createGroupPanel(Group searchedGroup) {
         JPanel groupPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 
+        ImageIcon groupIcon = new ImageIcon(new ImageIcon(searchedGroup.getProfilepath()).getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH));
+        JLabel groupImage = new JLabel(groupIcon);
+        groupPanel.add(groupImage);
+
         JLabel groupName = new JLabel(searchedGroup.getName());
         groupPanel.add(groupName);
 
+
         JButton joinGroupButton = new JButton("Join Group");
+        joinGroupButton.setBackground(Color.BLACK);
+        joinGroupButton.setForeground(Color.WHITE);
         JButton leaveGroupButton = new JButton("Leave Group");
+        leaveGroupButton.setBackground(Color.BLACK);
+        leaveGroupButton.setForeground(Color.WHITE);
         JButton viewGroupButton = new JButton("View Group");
+        viewGroupButton.setBackground(Color.BLACK);
+        viewGroupButton.setForeground(Color.WHITE);
 
         joinGroupButton.addActionListener(e -> joinGroup(searchedGroup));
         leaveGroupButton.addActionListener(e -> leaveGroup(searchedGroup));
