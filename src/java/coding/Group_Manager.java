@@ -42,12 +42,17 @@ public class Group_Manager implements Requester {
     }
 
     public void deletegroup(Group group, User primaryadmin) {
-        if (group.getPrimaryAdmin().equals(primaryadmin)) {
+        if (group.getPrimaryAdmin().getUserId().equals(primaryadmin.getUserId())) {
+            System.out.println("Deleting group: " + group.getName());
             groups.remove(group.getName(), group);
             allgroups.remove(group.getName(), group);
-            this.suggestions.remove(group);
+            this.suggestions.removeIf(g -> g.getName().equals(group.getName()));
+            System.out.println("Groups left after deletion: " + groups.keySet());
+            System.out.println("All groups left after deletion: " + allgroups.keySet());
+            System.out.println("Suggestions left after deletion: " + suggestions);
             saveSuggestionGroups();
             saveGroups();
+            JOptionPane.showMessageDialog(null, "Group deleted successfully!");
         } else
             JOptionPane.showMessageDialog(null, "user not an admin !");
     }
@@ -75,15 +80,17 @@ public class Group_Manager implements Requester {
     }
 
     public void viewSuggestions(User user) {
-        //loadGroups();
-        //loadSuggestionGroups();
+//        loadGroups();
+//        loadSuggestionGroups();
 
         for (String key : allgroups.keySet()) {
-            if (!isMember(user, allgroups.get(key)) && !suggestions.contains(allgroups.get(key)) && !user.getManager().getBlocked().contains(allgroups.get(key).getPrimaryAdmin())){
-                suggestions.add(allgroups.get(key));
-                saveSuggestionGroups();
+            Group group = allgroups.get(key);
+            if (!isMember(user, group)
+                    && suggestions.stream().noneMatch(g -> g.getName().equals(group.getName()))
+                    && !user.getManager().getBlocked().contains(group.getPrimaryAdmin())){                suggestions.add(group);
+
             }
-            allgroups.get(key).getName();
+
         }
     }
 
@@ -99,20 +106,34 @@ public class Group_Manager implements Requester {
         this.post = post;
     }
 
-
-    public void addGroup(Group group) {
-        if (this.suggestions == null) {
-            System.out.println("Suggestions list is null. Initializing...");
-            this.suggestions = new ArrayList<>();
+    public synchronized void addGroup(Group group) {
+        if (allgroups.containsKey(group.getName())) {
+            System.out.println("Group already exists!");
+            return;
         }
-        if (group != null) {
-            groups.put(group.getName(), group);
-            allgroups.put(group.getName(), group);
-            this.suggestions.add(group);
-            saveGroups();
-            saveSuggestionGroups();
-        }
+        allgroups.put(group.getName(), group);
+        this.suggestions.add(group);
+        saveGroups();
+        saveSuggestionGroups();
     }
+//    public void addGroup(Group group) {
+//        loadGroups();
+//        if (allgroups.containsKey(group.getName())) {
+//            System.out.println("Group already exists!");
+//            return;
+//        }
+//        if (this.suggestions == null) {
+//            System.out.println("Suggestions list is null. Initializing...");
+//            this.suggestions = new ArrayList<>();
+//        }
+//        if (group != null) {
+//            groups.put(group.getName(), group);
+//            allgroups.put(group.getName(), group);
+//            this.suggestions.add(group);
+//            saveGroups();
+//            saveSuggestionGroups();
+//        }
+//    }
 
     public void removeMember(Group group, User member, User primaryAdmin, User otherAdmin) {
         if (group.getPrimaryAdmin().equals(primaryAdmin))
@@ -137,6 +158,7 @@ public class Group_Manager implements Requester {
 
             castedUser.setGroup_status(GROUP_STATUS.NORMAL);
             group.addMember(castedUser);
+            saveGroups();
             //group.getMembers().add(castedUser);
         }
     }
@@ -166,7 +188,8 @@ public class Group_Manager implements Requester {
         Group_Manager.allgroups = allgroups;
     }
 
-    public void saveGroups() {
+    public synchronized void saveGroups() {
+
         try {
             objectMapper.writeValue(new File("Groups.json"), allgroups);
             System.out.println("Groups saved successfully");
@@ -175,22 +198,34 @@ public class Group_Manager implements Requester {
         }
     }
 
-    public void loadGroups() {
+    public synchronized void loadGroups() {
         File file = new File("Groups.json");
         if (!file.exists()) {
             System.out.println("Groups file not found. Initializing an empty group list.");
-            this.groups = new HashMap<>();
+            allgroups = new HashMap<>();
+            groups = new HashMap<>();
             return;
         }
         try {
-            this.groups = objectMapper.readValue(file, objectMapper.getTypeFactory().constructMapType(Map.class, String.class, Group.class));
+            allgroups = objectMapper.readValue(file,
+                    objectMapper.getTypeFactory().constructMapType(Map.class, String.class, Group.class));
+            System.out.println("Groups loaded successfully.");
+            groups = new HashMap<>(allgroups);
         } catch (IOException e) {
             e.printStackTrace();
+            allgroups = new HashMap<>();
+            groups = new HashMap<>();
         }
     }
 
     public void saveSuggestionGroups() {
         try {
+            ArrayList<Group> uniqueSuggestions = new ArrayList<>();
+            for (Group group : suggestions) {
+                if (uniqueSuggestions.stream().noneMatch(g -> g.getName().equals(group.getName()))) {
+                    uniqueSuggestions.add(group);
+                }
+            }
             objectMapper.writeValue(new File("SuggestionGroups.json"), suggestions);
             System.out.println("Groups saved successfully");
         } catch (IOException e) {
@@ -207,9 +242,17 @@ public class Group_Manager implements Requester {
         }
 
         try {
-            this.suggestions = objectMapper.readValue(file, objectMapper.getTypeFactory().constructCollectionType(ArrayList.class, Group.class));
+            ArrayList<Group> loadedSuggestions = objectMapper.readValue(file, objectMapper.getTypeFactory().constructCollectionType(ArrayList.class, Group.class));
+            // Remove duplicates while loading
+            this.suggestions = new ArrayList<>();
+            for (Group group : loadedSuggestions) {
+                if (this.suggestions.stream().noneMatch(g -> g.getName().equals(group.getName()))) {
+                    this.suggestions.add(group);
+                }
+            }
         } catch (IOException e) {
             e.printStackTrace();
+            this.suggestions = new ArrayList<>();
         }
     }
 

@@ -6,12 +6,18 @@
   <component name="ChangeListManager">
     <list default="true" id="b070c600-f384-439e-b49a-9b65b4c8f3b6" name="Changes" comment="Merge branch 'main' of https://github.com/shamsquraytum/Lab9Connect&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FriendRequests.json" beforeDir="false" afterPath="$PROJECT_DIR$/FriendRequests.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FriendRequests.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Friends.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Groups.json" beforeDir="false" afterPath="$PROJECT_DIR$/Groups.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SuggestionGroups.json" beforeDir="false" afterPath="$PROJECT_DIR$/SuggestionGroups.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Users.json" beforeDir="false" afterPath="$PROJECT_DIR$/Users.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/coding/Group_Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Group_Manager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/Observer/Group_Observer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Observer/Group_Observer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/Observer/Request_Observer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Observer/Request_Observer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/SearchManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/SearchManagement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/coding/ViewPost2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/ViewPost2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/View_Groups_List.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/View_Groups_List.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,13 +46,13 @@
     &quot;assignee&quot;: &quot;menna812&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/alyadel-moh/Lab9Connect.git",
-    "accountId": "1db9ec48-67ea-454a-949e-00fecef44143"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/alyadel-moh/Lab9Connect.git&quot;,
+    &quot;accountId&quot;: &quot;872e7326-fc10-4149-b651-a91a59b95075&quot;
   },
-  "editorReviewEnabled": false
-}]]></component>
+  &quot;editorReviewEnabled&quot;: false
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>

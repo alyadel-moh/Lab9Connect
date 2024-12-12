@@ -9,9 +9,14 @@ public class View_Groups_List extends JFrame {
     private Group group;
     private User primaryadmin;
     Map<String,Group> groups;
+    private Group_Manager groupManager;
     View_Groups_List(User primaryadmin,Map<String,Group> groups)
     {
-        this.groups = groups;
+        this.groupManager = primaryadmin.getGroupManager();
+        if (this.groupManager == null) {
+            throw new IllegalStateException("Group Manager is not initialized.");
+        }
+        this.groups = groupManager.getGroups();
         this.primaryadmin = primaryadmin;
         setTitle("view Created Groups");
 
@@ -57,7 +62,6 @@ public class View_Groups_List extends JFrame {
                 primaryadmin.getGroupManager().saveGroups();
                 primaryadmin.getGroupManager().saveSuggestionGroups();
                 panel1.remove(customPanel);
-                JOptionPane.showMessageDialog(null,"Group deleted successfully!");
                 refreshUI();
             });
         }
