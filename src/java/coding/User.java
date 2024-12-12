@@ -42,9 +42,9 @@ public class User {
     @JsonIgnore private final Notifier notifier;
     @JsonIgnore private Group_Manager groupManager;
 
-//    @JsonIgnore private Content_Observer content_observer;
-//    @JsonIgnore private Request_Observer request_observer;
-//    @JsonIgnore private Group_Observer  group_observer;
+    @JsonIgnore private Content_Observer content_observer;
+    @JsonIgnore private Request_Observer request_observer;
+    @JsonIgnore private Group_Observer  group_observer;
 
 
     @JsonIgnore private Notifications notificationsWindow;
@@ -78,9 +78,9 @@ public class User {
 //        this.coverPath = "images/account.png";
 //        this.bio = "";
 //
-//        this.content_observer = new Content_Observer();
-//        this.group_observer = new Group_Observer();
-//        this.request_observer = new Request_Observer();
+        this.content_observer = new Content_Observer(this);
+        this.group_observer = new Group_Observer(this);
+        this.request_observer = new Request_Observer(this);
     }
 
     public String getUserId() {
@@ -95,7 +95,7 @@ public class User {
     }
 
 
-    public NotificationObserver getObserver() {
+    public Notifications getObserver() {
         createObserver();
         return notificationsWindow;
     }
@@ -106,29 +106,29 @@ public class User {
         }
     }
 
-//    public Content_Observer getContent_observer() {
-//        return content_observer;
-//    }
-//
-//    public void setContent_observer(Content_Observer content_observer) {
-//        this.content_observer = content_observer;
-//    }
+    public Content_Observer getContent_observer() {
+        return content_observer;
+    }
 
-//    public Request_Observer getRequest_observer() {
-//        return request_observer;
-//    }
-//
-//    public void setRequest_observer(Request_Observer request_observer) {
-//        this.request_observer = request_observer;
-//    }
-//
-//    public Group_Observer getGroup_observer() {
-//        return group_observer;
-//    }
-//
-//    public void setGroup_observer(Group_Observer group_observer) {
-//        this.group_observer = group_observer;
-//    }
+    public void setContent_observer(Content_Observer content_observer) {
+        this.content_observer = content_observer;
+    }
+
+    public Request_Observer getRequest_observer() {
+        return request_observer;
+    }
+
+    public void setRequest_observer(Request_Observer request_observer) {
+        this.request_observer = request_observer;
+    }
+
+    public Group_Observer getGroup_observer() {
+        return group_observer;
+    }
+
+    public void setGroup_observer(Group_Observer group_observer) {
+        this.group_observer = group_observer;
+    }
 
     ////////////////////////////////////////////////////////////
 
