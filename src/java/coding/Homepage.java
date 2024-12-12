@@ -69,12 +69,12 @@ public class Homepage extends JFrame {
 
         mainPanel.add(centerPanel, BorderLayout.CENTER);
 
+        user.getHandler().deleteExpiredStories();
+        user.getHandler().saveStories();
+        user.populateObservers();
 
         add(mainPanel);
         setVisible(true);
-        user.getHandler().deleteExpiredStories();
-        user.getHandler().saveStories();
-
     }
 
 
@@ -225,6 +225,8 @@ public class Homepage extends JFrame {
             return;
         }
 
+        user.getSuggestions().removeIf(suggested -> user.getManager().getFriends().contains(suggested));
+
         for (User suggested : user.getSuggestions()) {
             if (user.getManager().getFriends().contains(suggested)){
                 //user.getSuggestions().remove(suggested);
@@ -288,7 +290,14 @@ public class Homepage extends JFrame {
 
         // Ignore Action
         customPanel.button2.addActionListener(e -> {
-            user.getSuggestions().remove(suggested);
+            if (suggested instanceof User) {
+                user.getSuggestions().remove(suggested);
+                System.out.println("User removed");
+            } else if (suggested instanceof Group) {
+                user.getGroupManager().getSuggestions().remove(suggested);
+                System.out.println("Group removed");
+            }
+
             panel.remove(customPanel);
             refreshUI();
         });
@@ -498,11 +507,17 @@ public class Homepage extends JFrame {
             setVisible(false);
 
             for (Window window : Window.getWindows()){
-                window.dispose();
+                    window.dispose();
             }
 
             new Homepage(userService, user);
-            user.populateObservers();
+
+
+            if (user.getNotifier().getObservers().isEmpty()){
+                System.out.println("No Observers yet");
+            }else {
+                System.out.println(user.getUserName() + " Observers: " + user.getNotifier().getObservers().size());
+            }
 
             JOptionPane.showMessageDialog(this, "Page Refreshed");
         } catch (Exception e) {
