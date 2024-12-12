@@ -98,12 +98,14 @@ public class ContentHandler {
     public void addPost(Posts post, User user){
         posts.add(post);
         allPosts.add(post);
+        savePosts();
         user.getNotifier().notifyObservers(user, POST, null);
     }
 
     public void addStory(Stories story, User user){
         stories.add(story);
         allStories.add(story);
+        saveStories();
         user.getNotifier().notifyObservers(user, STORY, null);
     }
 

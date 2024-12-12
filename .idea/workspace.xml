@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b070c600-f384-439e-b49a-9b65b4c8f3b6" name="Changes" comment="Merge branch 'main' of https://github.com/shamsquraytum/Lab9Connect&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
-      <change afterPath="$PROJECT_DIR$/src/java/coding/Groupprofile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/PrimaryAdminManagment.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/PrimaryAdminManagment.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/PrimaryAdminManagment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/PrimaryAdminManagment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Stories.json" beforeDir="false" afterPath="$PROJECT_DIR$/Stories.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Users.json" beforeDir="false" afterPath="$PROJECT_DIR$/Users.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/ContentHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/ContentHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,13 +37,13 @@
     &quot;assignee&quot;: &quot;menna812&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/alyadel-moh/Lab9Connect.git&quot;,
-    &quot;accountId&quot;: &quot;e35f06c6-e9a0-4448-ab4e-04f8144e06af&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/alyadel-moh/Lab9Connect.git",
+    "accountId": "a08f9644-c506-4c0f-a150-b383c2aac0f9"
   },
-  &quot;editorReviewEnabled&quot;: false
-}</component>
+  "editorReviewEnabled": false
+}]]></component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -84,7 +85,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW": "true",
-    "git-widget-placeholder": "mazen-w-aly",
+    "git-widget-placeholder": "#30 on mazen-w-aly",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Hassan Mikky/IdeaProjects/Lab9Connect",
     "node.js.detected.package.eslint": "true",
