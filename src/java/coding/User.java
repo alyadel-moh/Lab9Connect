@@ -137,8 +137,8 @@ public class User {
         private String email;
         private LocalDate dateOfBirth;
         private String status;
-        private String profilepath;
-        private String  coverpath;
+        private String profilePath;
+        private String  coverPath;
         private String bio;
         private boolean receivedRequest;
         private String observer;
@@ -176,15 +176,17 @@ public class User {
             this.status = status;
             return this;
         }
-    public UserBuilder setProfilepath(String profilepath) {
-        this.profilepath = profilepath;
-        return this;
-    }
 
-    public UserBuilder setCoverpath(String coverpath) {
-        this.coverpath = coverpath;
-        return this;
-    }
+        @JsonProperty("profilePath")
+        public UserBuilder setProfilePath(String profilePath) {
+            this.profilePath = profilePath;
+            return this;
+        }
+        @JsonProperty("coverPath")
+        public UserBuilder setCoverPath(String coverPath) {
+            this.coverPath = coverPath;
+            return this;
+        }
     public UserBuilder setBio(String bio){
             this.bio = bio;
             return this;
@@ -200,8 +202,8 @@ public class User {
 
         public User build() {
              User user = new User(userId, password, userName, email, dateOfBirth, status);
-            user.profilePath = this.profilepath;
-            user.coverPath = this.coverpath;
+            user.profilePath = this.profilePath;
+            user.coverPath = this.coverPath;
             user.bio = this.bio;
             user.receivedRequest = this.receivedRequest;
             user.observer = this.observer;

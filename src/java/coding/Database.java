@@ -79,7 +79,6 @@ public class Database {
                 System.out.println(e);
             }
 
-
             for (User user : users) {
                 user.getHandler().loadHisOwnPosts(user.getUserId());
                 user.getHandler().loadHisOwnStories(user.getUserId());
