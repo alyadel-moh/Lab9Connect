@@ -197,7 +197,7 @@ public class Homepage extends JFrame {
                     user.getGroupManager().cancelRequest(suggested);
                     GroupSuggestionPanel.remove(pendingPanel);
 
-                    CustomPanel sendRequestPanel = createSendRequestPanel(suggested, GroupSuggestionPanel);
+                    CustomPanel sendRequestPanel = createSendRequestPanel(suggested, GroupSuggestionPanel, "Join Group");
                     GroupSuggestionPanel.add(sendRequestPanel);
                     refreshUI();
                 });
@@ -205,7 +205,7 @@ public class Homepage extends JFrame {
                 GroupSuggestionPanel.add(pendingPanel);
             } else {
                 // Create a panel for the "Send Request" and "Ignore" actions
-                CustomPanel sendRequestPanel = createSendRequestPanel(suggested, GroupSuggestionPanel);
+                CustomPanel sendRequestPanel = createSendRequestPanel(suggested, GroupSuggestionPanel, "Join Group");
                 GroupSuggestionPanel.add(sendRequestPanel);
             }
         }
@@ -244,7 +244,7 @@ public class Homepage extends JFrame {
                     user.getManager().cancelRequest(suggested);
                     friendSuggestionsPanel.remove(pendingPanel);
 
-                    CustomPanel sendRequestPanel = createSendRequestPanel(suggested, friendSuggestionsPanel);
+                    CustomPanel sendRequestPanel = createSendRequestPanel(suggested, friendSuggestionsPanel, "Send Request");
                     friendSuggestionsPanel.add(sendRequestPanel);
                     refreshUI();
                 });
@@ -252,7 +252,7 @@ public class Homepage extends JFrame {
                 friendSuggestionsPanel.add(pendingPanel);
             } else {
                 // Create a panel for the "Send Request" and "Ignore" actions
-                CustomPanel sendRequestPanel = createSendRequestPanel(suggested, friendSuggestionsPanel);
+                CustomPanel sendRequestPanel = createSendRequestPanel(suggested, friendSuggestionsPanel, "Send Request");
                 friendSuggestionsPanel.add(sendRequestPanel);
             }
         }
@@ -262,8 +262,8 @@ public class Homepage extends JFrame {
         refreshUI();
     }
 
-    private CustomPanel createSendRequestPanel(Object suggested, JPanel panel) {
-        CustomPanel customPanel = new CustomPanel(suggested, "Send Request", "Ignore");
+    private CustomPanel createSendRequestPanel(Object suggested, JPanel panel, String text) {
+        CustomPanel customPanel = new CustomPanel(suggested, text, "Ignore");
 
         // Send Request Action
         customPanel.button1.addActionListener(e -> {
@@ -299,6 +299,12 @@ public class Homepage extends JFrame {
     private void refreshUI() {
         SocialArea.revalidate(); // Recalculate layout
         SocialArea.repaint();   // Redraw components
+
+        centralPanel.revalidate();
+        centralPanel.repaint();
+
+        centerPanel.revalidate();
+        centerPanel.repaint();
     }
 
 
@@ -471,11 +477,13 @@ public class Homepage extends JFrame {
             friendSuggestionsPanel.removeAll();
             GroupSuggestionPanel.removeAll();
 
+            refreshUI();
             viewPosts();
             viewStory();
             displayStatus();
             displayFriendSuggestions();
             displayGroupSuggestion();
+
             System.out.println(user.getHandler().getStories().size());
             System.out.println(user.getHandler().getStoriesByUserId(user.getUserId()).size());
             System.out.println(user.getHandler().getStories().size());
@@ -488,6 +496,10 @@ public class Homepage extends JFrame {
             mainPanel.repaint();
 
             setVisible(false);
+
+            for (Window window : Window.getWindows()){
+                window.dispose();
+            }
 
             new Homepage(userService, user);
             user.populateObservers();
