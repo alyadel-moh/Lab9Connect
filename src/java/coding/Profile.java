@@ -68,6 +68,28 @@ public class Profile extends JFrame {
         coverPic.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Add padding
         panel.add(coverPic);
 
+        JButton viewPosts = new JButton("View post");
+        viewPosts.setPreferredSize(new Dimension(200, 30));
+        viewPosts.setMaximumSize(new Dimension(200, 30));
+        viewPosts.setBackground(Color.BLACK);
+        viewPosts.setForeground(Color.WHITE);
+        panel.add(viewPosts);
+
+        JButton viewStories = new JButton("View stories");
+        viewStories.setPreferredSize(new Dimension(200, 30));
+        viewStories.setMaximumSize(new Dimension(200, 30));
+        viewStories.setBackground(Color.BLACK);
+        viewStories.setForeground(Color.WHITE);
+        panel.add(viewStories);
+
+        // View Post Button
+        viewPosts.addActionListener(e -> {
+            new ViewPost(user);
+                });
+        //View Stories button
+        viewStories.addActionListener(e -> {
+            new ViewStories(user);
+        });
 
 
         // Add the panel to the frame
