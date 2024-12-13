@@ -1,0 +1,36 @@
+{
+  "1st group" : {
+    "profilePath" : "C:\\Users\\Hassan Mikky\\Desktop\\Some pictures for testing\\3.jpg",
+    "primaryAdmin" : {
+      "coverPath" : null,
+      "bio" : null,
+      "password" : "f6e0a1e2ac41945a9aa7ff8a8aaa0cebc12a3bcc981a929ad5cf810a090e11ae",
+      "email" : "menna@gmail",
+      "status" : "online",
+      "receivedRequest" : false,
+      "userId" : "c5f0572b",
+      "userName" : "menna",
+      "dateOfBirth" : "2024-12-13",
+      "profilePath" : "images/account.png"
+    },
+    "description" : "group",
+    "name" : "1st group",
+    "members" : [ {
+      "coverPath" : null,
+      "bio" : null,
+      "password" : "f6e0a1e2ac41945a9aa7ff8a8aaa0cebc12a3bcc981a929ad5cf810a090e11ae",
+      "email" : "ali@gmail",
+      "status" : "offline",
+      "receivedRequest" : false,
+      "userId" : "0a2014e8",
+      "userName" : "ali",
+      "dateOfBirth" : "2024-12-13",
+      "profilePath" : "images/account.png"
+    } ],
+    "otheradmins" : [ ],
+    "posts" : [ ],
+    "requests" : [ ],
+    "profilepath" : "C:\\Users\\Hassan Mikky\\Desktop\\Some pictures for testing\\3.jpg",
+    "otherAdmins" : [ ]
+  }
+}

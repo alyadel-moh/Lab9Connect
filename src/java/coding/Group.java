@@ -23,6 +23,7 @@ public class Group  {
 
     @JsonIgnore private Notifier notifier;
 
+    Group(){}
     Group(User primary)
     {
         this.members = new ArrayList<>();
@@ -30,7 +31,7 @@ public class Group  {
         this.requests = new ArrayList<>();
         this.otheradmins = new ArrayList<>();
         this.notifier = new Notifier();
-
+        this.primaryAdmin=primary;
     }
 
     public void populateObservers(){
@@ -108,6 +109,22 @@ public class Group  {
 
     public void setProfilepath(){this.profilePath = "images/account.png";}
 
+
+    public String getProfilePath() {
+        return profilePath;
+    }
+
+    public void setProfilePath(String profilePath) {
+        this.profilePath = profilePath;
+    }
+
+    public ArrayList<User> getOtheradmins() {
+        return otheradmins;
+    }
+
+    public void setOtheradmins(ArrayList<User> otheradmins) {
+        this.otheradmins = otheradmins;
+    }
 
     @Override
     public String toString() {
