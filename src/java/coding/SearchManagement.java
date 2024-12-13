@@ -211,9 +211,18 @@ public class SearchManagement extends JFrame {
         viewGroupButton.setBackground(Color.BLACK);
         viewGroupButton.setForeground(Color.WHITE);
 
-        joinGroupButton.addActionListener(e -> joinGroup(searchedGroup));
-        leaveGroupButton.addActionListener(e -> leaveGroup(searchedGroup));
-        viewGroupButton.addActionListener(e -> viewGroup(searchedGroup));
+       joinGroupButton.addActionListener(e -> {
+            searchedGroup.getMembers().add(user);
+            user.getGroupManager().getGroups().put(searchedGroup.getName(),searchedGroup);
+            JOptionPane.showMessageDialog(null,"member added");
+        });
+        leaveGroupButton.addActionListener(e -> {
+            user.getGroupManager().leavegroup(searchedGroup);
+            JOptionPane.showMessageDialog(null,"member removed");
+        });
+        viewGroupButton.addActionListener(e -> {
+            new Groupprofile(searchedGroup);
+        });
 
         groupPanel.add(joinGroupButton);
         groupPanel.add(leaveGroupButton);
