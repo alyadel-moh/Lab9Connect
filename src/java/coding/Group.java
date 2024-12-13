@@ -18,7 +18,7 @@ public class Group  {
     private String name;
 
     private ArrayList<User> members;
-    private ArrayList<User> otheradmins;
+    private ArrayList<User> otherAdmins;
     private ArrayList<Posts> posts;
     @JsonManagedReference
     private ArrayList<Group_Request> requests;
@@ -31,15 +31,25 @@ public class Group  {
         this.members = new ArrayList<>();
         this.posts = new ArrayList<>();
         this.requests = new ArrayList<>();
-        this.otheradmins = new ArrayList<>();
+        this.otherAdmins = new ArrayList<>();
         this.notifier = new Notifier();
         this.primaryAdmin=primary;
     }
 
     public void populateObservers(){
+        if (members.isEmpty() && otherAdmins.isEmpty() && primaryAdmin == null){
+            System.out.println("No members to populate");
+            return;
+        }
         for (User member : members){
             notifier.addGroupObserver(member.getGroup_observer());
         }
+
+        for (User admin : otherAdmins){
+            notifier.addGroupObserver(admin.getGroup_observer());
+        }
+
+        notifier.addGroupObserver(primaryAdmin.getGroup_observer());
     }
 
     public ArrayList<User> getMembers() {
@@ -72,9 +82,6 @@ public class Group  {
         notifier.notifyGroupObservers(this, GROUP.POST, null);
     }
 
-    public ArrayList<User> getOtherAdmins() {
-      return otheradmins;
-    }
 
 
     public String getName() {
@@ -110,7 +117,9 @@ public class Group  {
     }
 
     public void setProfilepath(){this.profilePath = "images/account.png";}
-
+    public ArrayList<User> getOtherAdmins() {
+        return otherAdmins;
+    }
 
     public String getProfilePath() {
         return profilePath;
@@ -120,12 +129,8 @@ public class Group  {
         this.profilePath = profilePath;
     }
 
-    public ArrayList<User> getOtheradmins() {
-        return otheradmins;
-    }
-
-    public void setOtheradmins(ArrayList<User> otheradmins) {
-        this.otheradmins = otheradmins;
+    public void setOtherAdmins(ArrayList<User> otherAdmins) {
+        this.otherAdmins = otherAdmins;
     }
 
     @Override
@@ -152,16 +157,16 @@ public class Group  {
 
     public void promote(Group group,User member){
             members.remove(member);
-            otheradmins.add(member);
+            otherAdmins.add(member);
             populateObservers();
-            notifier.notifyGroupObservers(group, GROUP.CHANGE_STATUS, null);
+            notifier.notifyGroupObservers(group, GROUP.CHANGE_STATUS, member.getGroup_observer());
     }
 
     public void demote(Group group,User member) {
-        otheradmins.remove(member);
+        otherAdmins.remove(member);
         members.add(member);
         populateObservers();
-        notifier.notifyGroupObservers(group, GROUP.CHANGE_STATUS, null);
+        notifier.notifyGroupObservers(group, GROUP.CHANGE_STATUS, member.getGroup_observer());
     }
 
 

@@ -108,6 +108,12 @@ public class SearchManagement extends JFrame {
         JLabel userName = new JLabel(searchedUser.getUserName());
         userPanel.add(userName);
 
+
+        JLabel type = new JLabel("<<User>>");
+        userPanel.add(type);
+        type.setForeground(Color.BLUE);
+        type.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 70));
+
         JButton addFriendButton = new JButton("Add Friend");
         addFriendButton.setBackground(Color.BLACK);
         addFriendButton.setForeground(Color.WHITE);
@@ -191,7 +197,10 @@ public class SearchManagement extends JFrame {
         JLabel groupName = new JLabel(searchedGroup.getName());
         groupPanel.add(groupName);
 
-
+        JLabel type = new JLabel("<<Group>>");
+        groupPanel.add(type);
+        type.setForeground(Color.BLUE);
+        type.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 70));
         JButton joinGroupButton = new JButton("Join Group");
         joinGroupButton.setBackground(Color.BLACK);
         joinGroupButton.setForeground(Color.WHITE);
@@ -202,9 +211,18 @@ public class SearchManagement extends JFrame {
         viewGroupButton.setBackground(Color.BLACK);
         viewGroupButton.setForeground(Color.WHITE);
 
-        joinGroupButton.addActionListener(e -> joinGroup(searchedGroup));
-        leaveGroupButton.addActionListener(e -> leaveGroup(searchedGroup));
-        viewGroupButton.addActionListener(e -> viewGroup(searchedGroup));
+       joinGroupButton.addActionListener(e -> {
+            searchedGroup.getMembers().add(user);
+            user.getGroupManager().getGroups().put(searchedGroup.getName(),searchedGroup);
+            JOptionPane.showMessageDialog(null,"member added");
+        });
+        leaveGroupButton.addActionListener(e -> {
+            user.getGroupManager().leavegroup(searchedGroup);
+            JOptionPane.showMessageDialog(null,"member removed");
+        });
+        viewGroupButton.addActionListener(e -> {
+            new Groupprofile(searchedGroup);
+        });
 
         groupPanel.add(joinGroupButton);
         groupPanel.add(leaveGroupButton);

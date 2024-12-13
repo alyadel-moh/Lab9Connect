@@ -64,7 +64,7 @@ public class CreateGroupGui extends JFrame {
         });
 
        addFriendsButton.addActionListener(e -> {
-           new View_Friends_List2(primaryAdmin,group);
+           new View_Friends_List2(primaryAdmin,group,setGroupNameTextField.getText());
        });
 
        createGroupButton.addActionListener(e -> {

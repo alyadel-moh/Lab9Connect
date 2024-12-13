@@ -14,7 +14,7 @@ public class Mapper {
         mapper.put(CONTENT.POST, " added a new post!");
         mapper.put(CONTENT.STORY, " posted a new story!");
 
-        mapper.put(GROUP.ADDED, "added to group!");
+        mapper.put(GROUP.ADDED, " added you to group!");
         mapper.put(GROUP.POST, " new post in group");
         mapper.put(GROUP.CHANGE_STATUS, " status change in group");
 

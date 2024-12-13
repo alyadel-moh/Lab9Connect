@@ -13,9 +13,13 @@ public class View_Friends_List2 extends  JFrame {
     private User primaryadmin;
     private JButton saveButton;
 
-    View_Friends_List2(User primaryadmin, Group group) {
+    View_Friends_List2(User primaryadmin, Group sentGroup, String text) {
         this.primaryadmin = primaryadmin;
-        this.group = group;
+        this.group = sentGroup;
+
+        if (text != null)
+            this.group.setName(text);
+
         setTitle("add members");
 
         this.panel1 = new JPanel();
@@ -78,7 +82,7 @@ public class View_Friends_List2 extends  JFrame {
                 // Add the member to the group
                 group.getMembers().add(friend);
                 group.populateObservers();
-                group.getNotifier().notifyGroupObservers(friend, GROUP.ADDED, null);
+                group.getNotifier().notifyGroupObservers(primaryadmin, GROUP.ADDED, friend.getGroup_observer());
 
                 // Update the member's group
                 friend.getGroupManager().getGroups().put(group.getName(), group);

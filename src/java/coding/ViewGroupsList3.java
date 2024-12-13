@@ -54,6 +54,7 @@ public class ViewGroupsList3 extends JFrame{
             });
             customPanel.button2.addActionListener(_ -> {
                 normaluser.getGroupManager().leavegroup(groups.get(key));
+                normaluser.getGroupManager().getSuggestions().remove(groups.get(key));
                 panel1.remove(customPanel);
                 System.out.println("After removal: " + groups);
                 System.out.println("After removal: " + normaluser.getGroupManager().getGroups());
