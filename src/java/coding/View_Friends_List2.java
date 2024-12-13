@@ -1,5 +1,7 @@
 package coding;
 
+import coding.ENUMS.NOTIFICATIONS.GROUP;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -75,6 +77,8 @@ public class View_Friends_List2 extends  JFrame {
 
                 // Add the member to the group
                 group.getMembers().add(friend);
+                group.populateObservers();
+                group.getNotifier().notifyGroupObservers(friend, GROUP.ADDED, null);
 
                 // Update the member's group
                 friend.getGroupManager().getGroups().put(group.getName(), group);

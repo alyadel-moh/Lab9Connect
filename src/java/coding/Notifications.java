@@ -214,7 +214,7 @@ public class Notifications extends JFrame implements NotificationObserver {
         notifier.notifyObservers(new User.UserBuilder().setUserName("Michael Owens").build(),RECEIVE, null);
         notifier.notifyObservers(new User.UserBuilder().setUserName("Wagdyy Owens").build(),CHANGE_STATUS, null);
         notifier.notifyObservers(new User.UserBuilder().setUserName("Wael Fathy").build(),ADDED, null);
-        notifier.notifyObservers(group, CHANGE_STATUS, null);
+        notifier.notifyGroupObservers(group, CHANGE_STATUS, null);
 
     }
 }

@@ -2,6 +2,7 @@ package coding;
 
 import coding.ENUMS.GROUP_STATUS;
 import coding.ENUMS.NOTIFICATIONS.GROUP;
+
 import coding.Observer.Notifier;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -34,7 +35,7 @@ public class Group  {
 
     public void populateObservers(){
         for (User member : members){
-            notifier.addObserver(member.getGroup_observer());
+            notifier.addGroupObserver(member.getGroup_observer());
         }
     }
 
@@ -64,6 +65,8 @@ public class Group  {
         System.out.println("Post added: " + post);
         System.out.println("Total posts: " + posts.size());
         System.out.println(posts.getFirst());
+        populateObservers();
+        notifier.notifyGroupObservers(this, GROUP.POST, null);
     }
 
     public ArrayList<User> getOtherAdmins() {
@@ -130,13 +133,15 @@ public class Group  {
     public void promote(Group group,User member){
             members.remove(member);
             otheradmins.add(member);
-            notifier.notifyObservers(group, GROUP.CHANGE_STATUS, null);
+            populateObservers();
+            notifier.notifyGroupObservers(group, GROUP.CHANGE_STATUS, null);
     }
 
-    public void demote(Group group,User member){
-                otheradmins.remove(member);
-                     members.add(member);
-                     notifier.notifyObservers(group, GROUP.CHANGE_STATUS, null);
+    public void demote(Group group,User member) {
+        otheradmins.remove(member);
+        members.add(member);
+        populateObservers();
+        notifier.notifyGroupObservers(group, GROUP.CHANGE_STATUS, null);
     }
 
 
