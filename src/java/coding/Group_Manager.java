@@ -96,7 +96,7 @@ public class Group_Manager implements Requester {
 
         for (String key : allgroups.keySet()) {
             Group group = allgroups.get(key);
-            if (!isMember(user, group)
+            if (!isMember(user, group)   &&   !user.getGroupManager().getPrimary().containsKey(group.getName()) && !user.getGroupManager().getOther().containsKey(group.getName())
                     && suggestions.stream().noneMatch(g -> g.getName().equals(group.getName()))
                     && !user.getManager().getBlocked().contains(group.getPrimaryAdmin())) {
                 suggestions.add(group);
