@@ -212,7 +212,7 @@ public class Group_Manager implements Requester {
         }
     }
 
-    public synchronized void loadGroups() {
+   public synchronized void loadGroups() {
         File file = new File("Groups.json");
         if (!file.exists()) {
             System.out.println("Groups file not found. Initializing an empty group list.");
@@ -239,8 +239,13 @@ public class Group_Manager implements Requester {
                 // Check and categorize based on user role in the group
                 if (group.getPrimaryAdmin().getUserId().equals(user.getUserId())) {
                     primary.put(group.getName(), group);
-                } else if (group.getOtherAdmins().contains(user)) {
-                    other.put(group.getName(), group);
+                } else {
+                    for (User admin : group.getOtherAdmins()) {
+                        if (admin.getUserId().equals(user.getUserId())) {
+                            other.put(group.getName(), group);
+                            break;
+                        }
+                    }
                 }
 
                 // Update members' group managers
