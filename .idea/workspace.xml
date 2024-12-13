@@ -14,6 +14,13 @@
       <change beforePath="$PROJECT_DIR$/src/java/coding/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Database.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/coding/Friend_Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Friend_Manager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/coding/Homepage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Homepage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Friends.json" beforeDir="false" afterPath="$PROJECT_DIR$/Friends.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Posts.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SuggestionGroups.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Users.json" beforeDir="false" afterPath="$PROJECT_DIR$/Users.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Group.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/Homepage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Homepage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,13 +49,17 @@
     &quot;assignee&quot;: &quot;menna812&quot;
   }
 }</component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/alyadel-moh/Lab9Connect.git",
+    "accountId": "a08f9644-c506-4c0f-a150-b383c2aac0f9"
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/alyadel-moh/Lab9Connect.git&quot;,
     &quot;accountId&quot;: &quot;e35f06c6-e9a0-4448-ab4e-04f8144e06af&quot;
   },
-  &quot;editorReviewEnabled&quot;: false
-}</component>
+  "editorReviewEnabled": false
+}]]></component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>

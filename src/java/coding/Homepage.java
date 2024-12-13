@@ -501,6 +501,8 @@ public class Homepage extends JFrame {
             System.out.println(user.getHandler().getStoriesByUserId(user.getUserId()).size());
             user.getHandler().saveStories();
 
+            user.getGroupManager().saveGroups();
+
             // Revalidate and repaint
             mainPanel.invalidate();
             mainPanel.revalidate();
