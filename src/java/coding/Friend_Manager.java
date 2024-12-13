@@ -187,7 +187,9 @@ public class Friend_Manager implements Requester{
         // Create and send new request
         FriendRequest newRequest = (FriendRequest) RequestFactory.createRequest(REQUEST.FRIENDREQUEST, this.user, receiver.getUserId());
         receiver.getManager().updateReceiverRequests(newRequest);
-        user.getNotifier().notifyObservers(user, RECEIVE, receiver.getRequest_observer());
+
+        //Database.getGeneralNotifier().notifyObservers(user, RECEIVE, receiver.getRequest_observer());
+        //Database.getGeneralNotifier().notifyObservers(user, RECEIVE, null);
     }
 
     public FriendRequest getRequestbySender(User sender,User receiver){
@@ -206,7 +208,8 @@ public class Friend_Manager implements Requester{
             throw new IllegalArgumentException("Invalid FriendRequest");
         }
 
-        ((User)request.getReceiver()).setRequestState(true);
+        User receiver = ((User)request.getReceiver());
+        receiver.setRequestState(true);
 
         // Prevent duplicates
         if (!requests.contains(request)) {
@@ -214,6 +217,8 @@ public class Friend_Manager implements Requester{
             allRequests.add(request);
             saveRequests();
             System.out.println("Request Sent");
+
+            Database.getGeneralNotifier().notifyGeneralObservers(request.getSender(), RECEIVE,receiver.getRequest_observer());
         }
     }
 

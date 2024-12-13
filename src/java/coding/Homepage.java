@@ -72,6 +72,7 @@ public class Homepage extends JFrame {
         user.getHandler().deleteExpiredStories();
         user.getHandler().saveStories();
         user.populateObservers();
+        Database.getInstance().populateObservers();
         checkObservers();
 
         add(mainPanel);
@@ -514,8 +515,6 @@ public class Homepage extends JFrame {
             }
 
 
-
-
             JOptionPane.showMessageDialog(this, "Page Refreshed");
         } catch (Exception e) {
             e.printStackTrace();
@@ -527,7 +526,13 @@ public class Homepage extends JFrame {
         if (user.getNotifier().getFriendObservers().isEmpty()){
             System.out.println("No Observers yet");
         }else {
-            System.out.println(user.getUserName() + " Observers: " + user.getNotifier().getFriendObservers().size());
+            System.out.println(user.getUserName() + "Friend Observers: " + user.getNotifier().getFriendObservers().size());
+        }
+
+        if (Database.getGeneralNotifier().getGeneralObserver().isEmpty()){
+            System.out.println("No General Observers yet");
+        }else {
+            System.out.println( "General Observers: " + Database.getGeneralNotifier().getGeneralObserver().size());
         }
     }
 

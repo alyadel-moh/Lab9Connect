@@ -1,5 +1,6 @@
 package coding;
 
+import coding.Observer.Notifier;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -17,12 +18,19 @@ public class Database {
     // User data
     private static ArrayList<User> users;
 
+    // general notifier
+    private static Notifier generalNotifier;
+
     // Private constructor to prevent instantiation
     private Database() {
         users = new ArrayList<>();
+        generalNotifier = new Notifier();
         loadUsers();
     }
 
+    public static Notifier getGeneralNotifier() {
+        return generalNotifier;
+    }
 
     // Public static method to provide global access to the instance
     public static Database getInstance() {
@@ -38,7 +46,14 @@ public class Database {
 
     public void addUser(User user) {
         users.add(user);
+        populateObservers();
         saveUsers();
+    }
+
+    public void populateObservers() {
+        for (User user : users){
+            generalNotifier.addGeneralObserver(user.getRequest_observer());
+        }
     }
 
     public static User findUserById(String userId) {
@@ -80,6 +95,8 @@ public class Database {
             }
 
             for (User user : users) {
+                generalNotifier.addGeneralObserver(user.getRequest_observer());
+
                 user.getHandler().loadHisOwnPosts(user.getUserId());
                 user.getHandler().loadHisOwnStories(user.getUserId());
                 user.getManager().setSuggestions(users);
