@@ -272,19 +272,37 @@ public class Homepage extends JFrame {
         // Send Request Action
         customPanel.button1.addActionListener(e -> {
             try {
-                user.getManager().sendRequest(suggested);
-                panel.remove(customPanel);
+                if (suggested instanceof User) {
+                    user.getManager().sendRequest(suggested);
+                    panel.remove(customPanel);
 
-                CustomPanel pendingPanel = new CustomPanel(suggested, "Pending");
-                pendingPanel.button1.addActionListener(_ -> {
-                    user.getManager().cancelRequest(suggested);
-                    panel.remove(pendingPanel);
-                    panel.add(customPanel);
+                    CustomPanel pendingPanel = new CustomPanel(suggested, "Pending");
+                    pendingPanel.button1.addActionListener(_ -> {
+                        user.getManager().cancelRequest(suggested);
+                        panel.remove(pendingPanel);
+                        panel.add(customPanel);
+                        refreshUI();
+                    });
+
+                    panel.add(pendingPanel);
                     refreshUI();
-                });
 
-                panel.add(pendingPanel);
-                refreshUI();
+                } else if (suggested instanceof Group) {
+                    user.getGroupManager().sendRequest(suggested);
+                    panel.remove(customPanel);
+
+                    CustomPanel pendingPanel = new CustomPanel(suggested, "Pending");
+                    pendingPanel.button1.addActionListener(_ -> {
+                        user.getGroupManager().cancelRequest(suggested);
+                        panel.remove(pendingPanel);
+                        panel.add(customPanel);
+                        refreshUI();
+                    });
+
+                    panel.add(pendingPanel);
+                    refreshUI();
+                }
+
             }catch (IllegalArgumentException ex) {
                 throw new RuntimeException(ex);
             }

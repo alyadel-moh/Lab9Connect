@@ -6,20 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b070c600-f384-439e-b49a-9b65b4c8f3b6" name="Changes" comment="Merge branch 'main' of https://github.com/shamsquraytum/Lab9Connect&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FriendRequests.json" beforeDir="false" afterPath="$PROJECT_DIR$/FriendRequests.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Friends.json" beforeDir="false" afterPath="$PROJECT_DIR$/Friends.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Posts.json" beforeDir="false" afterPath="$PROJECT_DIR$/Posts.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Stories.json" beforeDir="false" afterPath="$PROJECT_DIR$/Stories.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Users.json" beforeDir="false" afterPath="$PROJECT_DIR$/Users.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Friend_Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Friend_Manager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Homepage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Homepage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Friends.json" beforeDir="false" afterPath="$PROJECT_DIR$/Friends.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Posts.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SuggestionGroups.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Users.json" beforeDir="false" afterPath="$PROJECT_DIR$/Users.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Group.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/coding/Homepage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Homepage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -49,17 +35,17 @@
     &quot;assignee&quot;: &quot;menna812&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/alyadel-moh/Lab9Connect.git",
-    "accountId": "a08f9644-c506-4c0f-a150-b383c2aac0f9"
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/alyadel-moh/Lab9Connect.git&quot;,
-    &quot;accountId&quot;: &quot;e35f06c6-e9a0-4448-ab4e-04f8144e06af&quot;
+    &quot;accountId&quot;: &quot;a08f9644-c506-4c0f-a150-b383c2aac0f9&quot;
+  &lt;component name=&quot;GithubPullRequestsUISettings&quot;&gt;{
+  &amp;quot;selectedUrlAndAccountId&amp;quot;: {
+    &amp;quot;url&amp;quot;: &amp;quot;https://github.com/alyadel-moh/Lab9Connect.git&amp;quot;,
+    &amp;quot;accountId&amp;quot;: &amp;quot;e35f06c6-e9a0-4448-ab4e-04f8144e06af&amp;quot;
   },
-  "editorReviewEnabled": false
-}]]></component>
+  &quot;editorReviewEnabled&quot;: false
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
