@@ -17,7 +17,7 @@ public class Group  {
     private String name;
 
     private ArrayList<User> members;
-    private ArrayList<User> otheradmins;
+    private ArrayList<User> otherAdmins;
     private ArrayList<Posts> posts;
     private ArrayList<Group_Request> requests;
 
@@ -29,7 +29,7 @@ public class Group  {
         this.members = new ArrayList<>();
         this.posts = new ArrayList<>();
         this.requests = new ArrayList<>();
-        this.otheradmins = new ArrayList<>();
+        this.otherAdmins = new ArrayList<>();
         this.notifier = new Notifier();
         this.primaryAdmin=primary;
     }
@@ -106,7 +106,7 @@ public class Group  {
 
     public void setProfilepath(){this.profilePath = "images/account.png";}
     public ArrayList<User> getOtherAdmins() {
-        return otheradmins;
+        return otherAdmins;
     }
 
     public String getProfilePath() {
@@ -117,8 +117,8 @@ public class Group  {
         this.profilePath = profilePath;
     }
 
-    public void setOtheradmins(ArrayList<User> otheradmins) {
-        this.otheradmins = otheradmins;
+    public void setOtherAdmins(ArrayList<User> otherAdmins) {
+        this.otherAdmins = otherAdmins;
     }
 
     @Override
@@ -144,13 +144,13 @@ public class Group  {
 
     public void promote(Group group,User member){
             members.remove(member);
-            otheradmins.add(member);
+            otherAdmins.add(member);
             populateObservers();
             notifier.notifyGroupObservers(group, GROUP.CHANGE_STATUS, null);
     }
 
     public void demote(Group group,User member) {
-        otheradmins.remove(member);
+        otherAdmins.remove(member);
         members.add(member);
         populateObservers();
         notifier.notifyGroupObservers(group, GROUP.CHANGE_STATUS, null);
