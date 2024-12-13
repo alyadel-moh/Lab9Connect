@@ -9,11 +9,13 @@
       <change beforePath="$PROJECT_DIR$/FriendRequests.json" beforeDir="false" afterPath="$PROJECT_DIR$/FriendRequests.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Friends.json" beforeDir="false" afterPath="$PROJECT_DIR$/Friends.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Groups.json" beforeDir="false" afterPath="$PROJECT_DIR$/Groups.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Stories.json" beforeDir="false" afterPath="$PROJECT_DIR$/Stories.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Users.json" beforeDir="false" afterPath="$PROJECT_DIR$/Users.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Group.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Group_Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Group_Manager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Homepage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Homepage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Notifications.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Notifications.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/CreateGroupGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/CreateGroupGui.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/ENUMS/Mapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/ENUMS/Mapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/PrimaryAdminManagment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/PrimaryAdminManagment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/View_Friends_List2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/View_Friends_List2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/View_Friends_List3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/View_Friends_List3.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

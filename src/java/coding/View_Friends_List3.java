@@ -1,5 +1,7 @@
 package coding;
 
+import coding.ENUMS.NOTIFICATIONS.GROUP;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
@@ -50,8 +52,12 @@ public class View_Friends_List3 extends JFrame {
             customPanel.button1.addActionListener(_ -> {
                 group.getOtherAdmins().add(friend);
                 friend.getGroupManager().getOther().put(group.getName(),group);
+                group.getNotifier().notifyGroupObservers(primaryadmin, GROUP.ADDED, friend.getGroup_observer());
+
+
                 if(group.getMembers().contains(friend))
-                group.getMembers().remove(friend);
+                    group.getMembers().remove(friend);
+
                 panel1.remove(customPanel);
                 refreshUI();
             });

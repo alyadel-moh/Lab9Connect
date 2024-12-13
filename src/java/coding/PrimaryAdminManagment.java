@@ -30,7 +30,7 @@ public class PrimaryAdminManagment extends JFrame {
         setVisible(true);
         addMemberButton.addActionListener(e -> {
             setVisible(false);
-            new View_Friends_List2(group.getPrimaryAdmin(),group);
+            new View_Friends_List2(group.getPrimaryAdmin(),group,null);
         });
         promoteButton.addActionListener(e -> {
             setVisible(false);
