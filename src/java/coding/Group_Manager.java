@@ -50,6 +50,7 @@ public class Group_Manager implements Requester {
         this.primary = new HashMap<>();
         this.other = new HashMap<>();
     }
+
     public void deletegroup(Group group, User primaryadmin) {
         if (group.getPrimaryAdmin().getUserId().equals(primaryadmin.getUserId())) {
             System.out.println("Deleting group: " + group.getName());
@@ -65,8 +66,9 @@ public class Group_Manager implements Requester {
         } else
             JOptionPane.showMessageDialog(null, "user not an admin !");
     }
+
     public void leavegroup(Group group) {
-            groups.remove(group.getName(), group);
+        groups.remove(group.getName(), group);
     }
 
     public void deletepost(Group group, User primaryAdmin, User otherAdmin, Posts post) {
@@ -78,11 +80,11 @@ public class Group_Manager implements Requester {
     }
 
     public boolean isMember(User user, Group group) {
-            if (group.getMembers().contains(user))
-                return true;
-            else
-                System.out.println("user not a member !");
-            return false;
+        if (group.getMembers().contains(user))
+            return true;
+        else
+            System.out.println("user not a member !");
+        return false;
 
     }
 
@@ -94,7 +96,8 @@ public class Group_Manager implements Requester {
             Group group = allgroups.get(key);
             if (!isMember(user, group)
                     && suggestions.stream().noneMatch(g -> g.getName().equals(group.getName()))
-                    && !user.getManager().getBlocked().contains(group.getPrimaryAdmin())){                suggestions.add(group);
+                    && !user.getManager().getBlocked().contains(group.getPrimaryAdmin())) {
+                suggestions.add(group);
 
             }
 
@@ -286,7 +289,7 @@ public class Group_Manager implements Requester {
         }
 
         if (isMember(this.user, receiver)) {
-            JOptionPane.showMessageDialog(null,"Already a member of the group!");
+            JOptionPane.showMessageDialog(null, "Already a member of the group!");
             throw new IllegalArgumentException("Already a member of the group!");
         }
 
@@ -294,7 +297,7 @@ public class Group_Manager implements Requester {
         for (Group_Request req : receiver.getRequests()) {
             if (req.getSender().equals(this.user) && req.getReceiver().equals(receiver)) {
                 if (req.getState() == STATE.PENDING) {
-                    JOptionPane.showMessageDialog(null,"Request already pending!");
+                    JOptionPane.showMessageDialog(null, "Request already pending!");
                     throw new IllegalArgumentException("Request already pending.");
                 }
             }
@@ -310,10 +313,10 @@ public class Group_Manager implements Requester {
 
     @Override
     ////// Get request to receiver by this user
-    public Group_Request getRequest(Object generic_receiver){
+    public Group_Request getRequest(Object generic_receiver) {
         Group receiver = (Group) generic_receiver;
 
-        if (receiver != null && !groups.containsKey(receiver.getName())){
+        if (receiver != null && !groups.containsKey(receiver.getName())) {
             for (Group_Request request : receiver.getRequests()) {
                 if (user.equals(request.getSender()))
                     return request;
@@ -342,7 +345,11 @@ public class Group_Manager implements Requester {
     }
 
     @Override
-    public void cancelRequest(Object generic_receiver){
+    public void cancelRequest(Object generic_receiver) {
+        if (!(generic_receiver instanceof Group)) {
+            throw new IllegalArgumentException("Invalid receiver type. Expected a Group.");
+        }
+
         Group receiver = (Group) generic_receiver;
 
         if (receiver == null) {
@@ -350,29 +357,35 @@ public class Group_Manager implements Requester {
         }
 
         if (isMember(this.user, receiver)) {
-            JOptionPane.showMessageDialog(null,"Already a member of the group!");
-            throw new IllegalArgumentException("Already a member of the group!");
+            JOptionPane.showMessageDialog(null, "Already a member of the group!");
+            throw new IllegalArgumentException("Cannot cancel request. User is already a member of the group.");
         }
 
         Group_Request request = getRequest(receiver);
 
-        if (request == null){
-            throw new IllegalArgumentException("Request Doesn't exist anymore!");
+        if (request == null) {
+            throw new IllegalArgumentException("Request does not exist anymore!");
         }
 
-        if (request.getState() == STATE.PENDING){
-            for (Group_Request group_request : receiver.getRequests()){
-                if (group_request.equals(request)){
-                    group_request.setState(STATE.CANCELLED);
-                    receiver.getRequests().remove(group_request);
-                    System.out.println("Friend Request Cancelled");
+        if (request.getState() == STATE.PENDING) {
+            boolean isCancelled = receiver.getRequests().removeIf(groupRequest -> {
+                if (groupRequest.equals(request)) {
+                    groupRequest.setState(STATE.CANCELLED);
+                    System.out.println("Group Request Cancelled");
+                    return true; // Mark for removal
                 }
+                return false; // Keep in the list
+            });
+
+            if (!isCancelled) {
+                throw new IllegalStateException("Failed to cancel the request. Request was not found in pending state.");
             }
+        } else {
+            throw new IllegalArgumentException("Cannot cancel a request that is not pending.");
         }
     }
+}
 
-
-        }
 
 
 

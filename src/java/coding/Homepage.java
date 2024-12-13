@@ -178,6 +178,7 @@ public class Homepage extends JFrame {
         GroupSuggestionPanel.removeAll();
 
         user.getGroupManager().viewSuggestions(user);
+        user.getGroupManager().getSuggestions().removeIf(suggested -> user.getGroupManager().isMember(user, suggested));
 
         if(user.getGroupManager().getSuggestions() == null || user.getGroupManager().getSuggestions().isEmpty()){
             GroupSuggestionPanel.add(new JLabel("No Suggestions to View!"));
@@ -274,44 +275,59 @@ public class Homepage extends JFrame {
 
         // Send Request Action
         customPanel.button1.addActionListener(e -> {
-            try {
-                if (suggested instanceof User) {
-                    user.getManager().sendRequest(suggested);
-                    panel.remove(customPanel);
+                    //try {
+            if (suggested instanceof User) {
+                user.getManager().sendRequest(suggested);
+                panel.remove(customPanel);
 
-                    CustomPanel pendingPanel = new CustomPanel(suggested, "Pending");
-                    pendingPanel.button1.addActionListener(_ -> {
-                        user.getManager().cancelRequest(suggested);
-                        panel.remove(pendingPanel);
-                        panel.add(customPanel);
-                        refreshUI();
-                    });
-
-                    panel.add(pendingPanel);
+                CustomPanel pendingPanel = new CustomPanel(suggested, "Pending");
+                pendingPanel.button1.addActionListener(_ -> {
+                    user.getManager().cancelRequest(suggested);
+                    panel.remove(pendingPanel);
+                    panel.add(customPanel);
                     refreshUI();
+                });
 
-                } else if (suggested instanceof Group) {
-                    user.getGroupManager().sendRequest(suggested);
-                    panel.remove(customPanel);
+                panel.add(pendingPanel);
+                refreshUI();
 
-                    CustomPanel pendingPanel = new CustomPanel(suggested, "Pending");
-                    pendingPanel.button1.addActionListener(_ -> {
+            } else if (suggested instanceof Group) {
+                user.getGroupManager().sendRequest(suggested);
+                panel.remove(customPanel);
+
+                // Create a new panel indicating the request is pending
+                CustomPanel pendingPanel = new CustomPanel(suggested, "Pending");
+                pendingPanel.button1.addActionListener(_ -> {
+                    try {
+                        // Attempt to cancel the group request
                         user.getGroupManager().cancelRequest(suggested);
+
+                        // If successful, update the UI to show the original panel
                         panel.remove(pendingPanel);
                         panel.add(customPanel);
+
+                    } catch (IllegalArgumentException ex) {
+                        // Log or display error to the user without crashing the app
+
+                        ((Group) suggested).getRequests().removeIf(groupRequest -> suggested.equals(groupRequest.getReceiver()));
+                        panel.remove(pendingPanel);
+                        panel.add(customPanel);
+                        System.out.println("Error canceling request: " + ex.getMessage());
+                    } finally {
+                        // Ensure the UI is refreshed regardless of the outcome
                         refreshUI();
-                    });
+                    }
+                });
 
-                    panel.add(pendingPanel);
-                    refreshUI();
-                }
-
-            }catch (IllegalArgumentException ex) {
-                throw new RuntimeException(ex);
+                // Add the pending panel to the UI and refresh
+                panel.add(pendingPanel);
+                refreshUI();
             }
         });
 
-        // Ignore Action
+
+
+                // Ignore Action
         customPanel.button2.addActionListener(e -> {
             if (suggested instanceof User) {
                 user.getSuggestions().remove(suggested);
