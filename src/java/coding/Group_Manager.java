@@ -225,24 +225,40 @@ public class Group_Manager implements Requester {
                     objectMapper.getTypeFactory().constructMapType(Map.class, String.class, Group.class));
             System.out.println("Groups loaded successfully.");
             System.out.println(allgroups);
-            groups = new HashMap<>(allgroups);
+            groups = new HashMap<>();
+            primary = new HashMap<>();
+            other = new HashMap<>();
+
+            // Distribute groups to appropriate maps
+            for (String key : allgroups.keySet()) {
+                Group group = allgroups.get(key);
+
+                // Add to the current user's group map
+                groups.put(group.getName(), group);
+
+                // Check and categorize based on user role in the group
+                if (group.getPrimaryAdmin().getUserId().equals(user.getUserId())) {
+                    primary.put(group.getName(), group);
+                } else if (group.getOtherAdmins().contains(user)) {
+                    other.put(group.getName(), group);
+                }
+
+                // Update members' group managers
+                for (User member : group.getMembers()) {
+                    member.getGroupManager().getGroups().put(group.getName(), group);
+                }
+
+                // Update other admins' group managers
+                for (User otherAdmin : group.getOtherAdmins()) {
+                    otherAdmin.getGroupManager().getOther().put(group.getName(), group);
+                }
+            }
         } catch (IOException e) {
             e.printStackTrace();
             allgroups = new HashMap<>();
             groups = new HashMap<>();
         }
-        for(String key : allgroups.keySet())
-        {
-            Group group = allgroups.get(key);
-            System.out.println(group);
-            group.getPrimaryAdmin().getGroupManager().getPrimary().put(group.getName(),group);
-            ArrayList<User> members = group.getMembers();
-            ArrayList<User> otheradmins = group.getOtherAdmins();
-            for(User member : members)
-                member.getGroupManager().getGroups().put(group.getName(),group);
-            for(User otheradmin : otheradmins)
-                otheradmin.getGroupManager().getOther().put(group.getName(),group);
-        }
+
     }
 
     public void saveSuggestionGroups() {
