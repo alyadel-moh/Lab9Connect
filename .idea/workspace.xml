@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b070c600-f384-439e-b49a-9b65b4c8f3b6" name="Changes" comment="Merge branch 'main' of https://github.com/shamsquraytum/Lab9Connect&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
+    <list default="true" id="b070c600-f384-439e-b49a-9b65b4c8f3b6" name="Changes" comment="Merge branch 'main' of https://github.com/shamsquraytum/Lab9Connect&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
+      <change beforePath="$PROJECT_DIR$/src/java/coding/PrimaryAdminManagment.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/PrimaryAdminManagment.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/PrimaryAdminManagment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/PrimaryAdminManagment.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

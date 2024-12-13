@@ -10,12 +10,13 @@ public class PrimaryAdminManagment extends JFrame {
     private JButton groupProfileButton;
     private JButton promoteButton;
     private JButton demoteButton;
+    private JButton addMemberButton;
 
     PrimaryAdminManagment(User primaryadmin,Group group)
     {
         setTitle("Primary Admin Role");
         setContentPane(panel);
-        setBounds(100,100,400,600);
+        setBounds(100,100,400,750);
         setResizable(false);
         setLocationRelativeTo(null);
         addPostButton.setFocusable(false);
@@ -24,8 +25,13 @@ public class PrimaryAdminManagment extends JFrame {
         groupProfileButton.setFocusable(false);
         promoteButton.setFocusable(false);
         demoteButton.setFocusable(false);
+        addMemberButton.setFocusable(false);
         setLocationRelativeTo(null);
         setVisible(true);
+        addMemberButton.addActionListener(e -> {
+            setVisible(false);
+            new View_Friends_List2(group.getPrimaryAdmin(),group);
+        });
         promoteButton.addActionListener(e -> {
             setVisible(false);
             new PromoteUi(group);
