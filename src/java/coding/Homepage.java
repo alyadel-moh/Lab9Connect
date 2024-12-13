@@ -178,7 +178,11 @@ public class Homepage extends JFrame {
         GroupSuggestionPanel.removeAll();
 
         user.getGroupManager().viewSuggestions(user);
-        user.getGroupManager().getSuggestions().removeIf(suggested -> user.getGroupManager().isMember(user, suggested));
+        user.getGroupManager().getSuggestions().removeIf(suggested ->
+                user.getGroupManager().isMember(user, suggested) ||
+                        user.equals(suggested.getPrimaryAdmin()) ||
+                        suggested.getOtherAdmins().contains(user)
+                    );
 
         if(user.getGroupManager().getSuggestions() == null || user.getGroupManager().getSuggestions().isEmpty()){
             GroupSuggestionPanel.add(new JLabel("No Suggestions to View!"));
