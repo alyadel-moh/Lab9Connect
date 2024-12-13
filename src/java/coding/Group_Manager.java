@@ -55,6 +55,8 @@ public class Group_Manager implements Requester {
         if (group.getPrimaryAdmin().getUserId().equals(primaryadmin.getUserId())) {
             System.out.println("Deleting group: " + group.getName());
             groups.remove(group.getName(), group);
+            primary.remove(group.getName(),group);
+            other.remove(group.getName(),group);
             allgroups.remove(group.getName(), group);
             this.suggestions.removeIf(g -> g.getName().equals(group.getName()));
             System.out.println("Groups left after deletion: " + groups.keySet());
@@ -94,7 +96,7 @@ public class Group_Manager implements Requester {
 
         for (String key : allgroups.keySet()) {
             Group group = allgroups.get(key);
-            if (!isMember(user, group)
+            if (!isMember(user, group)   &&   !user.getGroupManager().getPrimary().containsKey(group.getName()) && !user.getGroupManager().getOther().containsKey(group.getName())
                     && suggestions.stream().noneMatch(g -> g.getName().equals(group.getName()))
                     && !user.getManager().getBlocked().contains(group.getPrimaryAdmin())) {
                 suggestions.add(group);
@@ -222,6 +224,7 @@ public class Group_Manager implements Requester {
             allgroups = objectMapper.readValue(file,
                     objectMapper.getTypeFactory().constructMapType(Map.class, String.class, Group.class));
             System.out.println("Groups loaded successfully.");
+            System.out.println(allgroups);
             groups = new HashMap<>(allgroups);
         } catch (IOException e) {
             e.printStackTrace();
