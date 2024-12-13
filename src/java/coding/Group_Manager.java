@@ -78,14 +78,12 @@ public class Group_Manager implements Requester {
     }
 
     public boolean isMember(User user, Group group) {
-        if (user instanceof Member) {
-            if (group.getMembers().contains((Member) user) && !(((Member) user).getGroup_status() == GROUP_STATUS.NOTMEMBER))
+            if (group.getMembers().contains(user))
                 return true;
             else
                 System.out.println("user not a member !");
             return false;
-        }
-        return false;
+
     }
 
     public void viewSuggestions(User user) {
