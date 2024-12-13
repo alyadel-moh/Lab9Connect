@@ -35,9 +35,19 @@ public class Group  {
     }
 
     public void populateObservers(){
+        if (members.isEmpty()){
+            System.out.println("No members to populate");
+            return;
+        }
         for (User member : members){
             notifier.addGroupObserver(member.getGroup_observer());
         }
+
+        for (User admin : otherAdmins){
+            notifier.addGroupObserver(admin.getGroup_observer());
+        }
+
+        notifier.addGroupObserver(primaryAdmin.getGroup_observer());
     }
 
     public ArrayList<User> getMembers() {
@@ -146,14 +156,14 @@ public class Group  {
             members.remove(member);
             otherAdmins.add(member);
             populateObservers();
-            notifier.notifyGroupObservers(group, GROUP.CHANGE_STATUS, null);
+            notifier.notifyGroupObservers(group, GROUP.CHANGE_STATUS, member.getGroup_observer());
     }
 
     public void demote(Group group,User member) {
         otherAdmins.remove(member);
         members.add(member);
         populateObservers();
-        notifier.notifyGroupObservers(group, GROUP.CHANGE_STATUS, null);
+        notifier.notifyGroupObservers(group, GROUP.CHANGE_STATUS, member.getGroup_observer());
     }
 
 

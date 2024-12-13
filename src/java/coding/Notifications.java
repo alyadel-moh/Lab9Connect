@@ -1,6 +1,7 @@
 package coding;
 
 import coding.ENUMS.Mapper;
+import coding.ENUMS.NOTIFICATIONS.GROUP;
 import coding.Observer.*;
 
 import javax.swing.*;
@@ -11,12 +12,11 @@ import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.function.Supplier;
 
-import static coding.ENUMS.NOTIFICATIONS.REQUEST.RECEIVE;
-import static coding.ENUMS.NOTIFICATIONS.REQUEST.SEND;
 import static coding.ENUMS.NOTIFICATIONS.CONTENT.POST;
 import static coding.ENUMS.NOTIFICATIONS.CONTENT.STORY;
 import static coding.ENUMS.NOTIFICATIONS.GROUP.CHANGE_STATUS;
 import static coding.ENUMS.NOTIFICATIONS.GROUP.ADDED;
+import static coding.ENUMS.NOTIFICATIONS.REQUEST.*;
 
 public class Notifications extends JFrame implements NotificationObserver {
     private final User user;
@@ -91,10 +91,26 @@ public class Notifications extends JFrame implements NotificationObserver {
                 customPanel.button2.addActionListener(e -> removeNotification(customPanel)); // Decline
             }
 
+            case SENDGROUP ->{
+                customPanel.button1.addActionListener(e -> {
+                    openOrFocusWindow(customPanel, () -> new View_Friends_List4((Group) customPanel.getUser())); // Opens Requests_Management and tracks the window
+                    removeNotification(customPanel);
+                }); // Accept
+                customPanel.button2.addActionListener(e -> removeNotification(customPanel)); // Decline
+            }
+
             ////////////////// GROUP //////////////////////////////
             ///// Added to group or change status: no specific action
             case ADDED, CHANGE_STATUS -> {
                 customPanel.button1.addActionListener(e -> removeNotification(customPanel)); // Accept
+                customPanel.button2.addActionListener(e -> removeNotification(customPanel)); // Decline
+            }
+
+            case GROUP.POST -> {
+                customPanel.button1.addActionListener(e -> {
+                    openOrFocusWindow(customPanel, () -> new ViewPost2((Group) customPanel.getUser())); // Opens Requests_Management and tracks the window
+                    removeNotification(customPanel);
+                }); // Accept
                 customPanel.button2.addActionListener(e -> removeNotification(customPanel)); // Decline
             }
 

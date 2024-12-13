@@ -177,7 +177,10 @@ public class Homepage extends JFrame {
         // Clear the panel
         GroupSuggestionPanel.removeAll();
 
+        //// load group suggestions for user
         user.getGroupManager().viewSuggestions(user);
+
+        //// remove group from suggestions if primary,admin or normal
         user.getGroupManager().getSuggestions().removeIf(suggested ->
                 user.getGroupManager().isMember(user, suggested) ||
                         user.equals(suggested.getPrimaryAdmin()) ||
