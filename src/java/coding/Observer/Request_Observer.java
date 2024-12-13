@@ -13,9 +13,12 @@ public class Request_Observer implements NotificationObserver {
     }
 
     @Override
-    public void update(User user, Enum CODE) {
-        Notifications_Panel customPanel =  new Notifications_Panel(user, CODE ,"Accept" ,"Request");
-        System.out.println(this.user.getUserName() + " :" +user.getUserName() + Mapper.getMessage(CODE));
-        this.user.getObserver().update(user, CODE);
+    public void update(Object user, Enum CODE) {
+        Notifications_Panel customPanel = new Notifications_Panel(user, CODE, "Accept", "Request");
+
+        if (user instanceof User) {
+            System.out.println(this.user.getUserName() + " :" + ((User) user).getUserName() + Mapper.getMessage(CODE));
+            this.user.getObserver().update(user, CODE);
+        }
     }
 }

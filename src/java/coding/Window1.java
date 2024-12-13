@@ -4,10 +4,6 @@ import coding.Observer.NotificationObserver;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class Window1 extends JFrame  {
     private JButton signInButton;
@@ -44,9 +40,9 @@ public class Window1 extends JFrame  {
         ////////////////////////////////////////////
         System.out.println("Users: ");
         for (User user : database.getUsers()) {
-            System.out.println(user.getUserName() + " Observers: " + user.getNotifier().getObservers().size());
+            System.out.println(user.getUserName() + " Observers: " + user.getNotifier().getFriendObservers().size());
 
-            for (NotificationObserver observer : user.getNotifier().getObservers()) {
+            for (NotificationObserver observer : user.getNotifier().getFriendObservers()) {
                 System.out.print(count++);
                 System.out.println(observer);
             }

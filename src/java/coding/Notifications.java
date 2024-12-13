@@ -80,6 +80,8 @@ public class Notifications extends JFrame implements NotificationObserver {
      */
     private void setupCustomPanelActions(Notifications_Panel customPanel) {
         switch (customPanel.getCode()) {
+
+            /////////////// REQUEST //////////////////////////////////
             ///// Receive friend request
             case RECEIVE -> {
                 customPanel.button1.addActionListener(e -> {
@@ -89,12 +91,14 @@ public class Notifications extends JFrame implements NotificationObserver {
                 customPanel.button2.addActionListener(e -> removeNotification(customPanel)); // Decline
             }
 
+            ////////////////// GROUP //////////////////////////////
             ///// Added to group or change status: no specific action
             case ADDED, CHANGE_STATUS -> {
                 customPanel.button1.addActionListener(e -> removeNotification(customPanel)); // Accept
                 customPanel.button2.addActionListener(e -> removeNotification(customPanel)); // Decline
             }
 
+            ///////////////// CONTENT /////////////////////////////////////
             //////// Post created by friend
             case POST -> {
                 customPanel.button1.addActionListener(e -> {
@@ -103,7 +107,6 @@ public class Notifications extends JFrame implements NotificationObserver {
                 }); // Accept
                 customPanel.button2.addActionListener(e -> removeNotification(customPanel)); // Decline
             }
-
 
             /////// Story posted by friend
             case STORY -> {
@@ -167,7 +170,7 @@ public class Notifications extends JFrame implements NotificationObserver {
      * Observer method to handle new notifications dynamically.
      */
     @Override
-    public void update(User sender, Enum message) {
+    public void update(Object sender, Enum message) {
         SwingUtilities.invokeLater(() -> {
             Notifications_Panel newNotification = new Notifications_Panel(sender, message, "View", "Ignore");
             newNotification.add(Mapper.getMessage(message));
@@ -185,24 +188,33 @@ public class Notifications extends JFrame implements NotificationObserver {
         Group group = new Group(user3);
         group.setName("3ala Allah");
 
-        Notifier notifier = user.getNotifier();
+       // Notifier notifier = user.getNotifier();
+        Notifier notifier = group.getNotifier();
+
 
         NotificationObserver observer1 = new Content_Observer(user);
         NotificationObserver observer2 = new Request_Observer(user2);
         NotificationObserver observer3 = new Group_Observer(user3);
+        NotificationObserver observer4 = new Notifications(user2);
 
         notifier.addObserver(observer1);
         notifier.addObserver(observer2);
         notifier.addObserver(observer3);
+        notifier.addObserver(observer4);
 
         System.out.println(user2.getContent_observer());
 
 
         user.getObserver().setVisible(true);
+        user2.getObserver().setVisible(true);
+        user3.getObserver().setVisible(true);
+
         // Simulating new notifications
         notifier.notifyObservers(new User.UserBuilder().setUserName("Jane Smith").build(),STORY, null);
         notifier.notifyObservers(new User.UserBuilder().setUserName("Michael Owens").build(),RECEIVE, null);
         notifier.notifyObservers(new User.UserBuilder().setUserName("Wagdyy Owens").build(),CHANGE_STATUS, null);
         notifier.notifyObservers(new User.UserBuilder().setUserName("Wael Fathy").build(),ADDED, null);
+        notifier.notifyObservers(group, CHANGE_STATUS, null);
+
     }
 }

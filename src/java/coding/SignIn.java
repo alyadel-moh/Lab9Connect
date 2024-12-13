@@ -69,10 +69,10 @@ public class SignIn extends JFrame{
                    }
                }
 
-               if (user.getNotifier().getObservers().isEmpty()){
+               if (user.getNotifier().getFriendObservers().isEmpty()){
                    System.out.println("No Observers yet");
                }else {
-                   System.out.println(user.getUserName() + " Observers: " + user.getNotifier().getObservers().size());
+                   System.out.println(user.getUserName() + " Observers: " + user.getNotifier().getFriendObservers().size());
                }
 
                /////////////////////////////////////////////////////

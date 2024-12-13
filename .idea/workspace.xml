@@ -9,10 +9,13 @@
       <change beforePath="$PROJECT_DIR$/FriendRequests.json" beforeDir="false" afterPath="$PROJECT_DIR$/FriendRequests.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Posts.json" beforeDir="false" afterPath="$PROJECT_DIR$/Posts.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Stories.json" beforeDir="false" afterPath="$PROJECT_DIR$/Stories.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Users.json" beforeDir="false" afterPath="$PROJECT_DIR$/Users.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Homepage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Homepage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Group.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/coding/Notifications.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Notifications.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/ViewPost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/ViewPost.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/Observer/Content_Observer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Observer/Content_Observer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/Observer/Group_Observer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Observer/Group_Observer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/Observer/NotificationObserver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Observer/NotificationObserver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/Observer/Notifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Observer/Notifier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/Observer/Request_Observer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Observer/Request_Observer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
