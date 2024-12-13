@@ -26,7 +26,7 @@ public class GroupGui extends JFrame{
         otherAdminButton.setFont(new Font("Arial", Font.BOLD,15));
         primaryAdminButton.setFont(new Font("Arial", Font.BOLD,15));
         primaryAdminButton.addActionListener(e -> {
-             new Primaryadmin(user);
+             new View_Groups_List(user,user.getGroupManager().getPrimary());
             setVisible(false);
         });
       otherAdminButton.addActionListener(e -> {
