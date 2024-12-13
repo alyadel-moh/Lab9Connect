@@ -52,6 +52,8 @@ public class View_Friends_List3 extends JFrame {
             customPanel.button1.addActionListener(_ -> {
                 group.getOtherAdmins().add(friend);
                 friend.getGroupManager().getOther().put(group.getName(),group);
+
+                group.populateObservers();
                 group.getNotifier().notifyGroupObservers(primaryadmin, GROUP.ADDED, friend.getGroup_observer());
 
 

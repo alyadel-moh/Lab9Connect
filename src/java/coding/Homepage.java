@@ -182,7 +182,7 @@ public class Homepage extends JFrame {
 
         //// remove group from suggestions if primary,admin or normal
         user.getGroupManager().getSuggestions().removeIf(suggested ->
-                user.getGroupManager().isMember(user, suggested) ||
+                suggested.getMembers().contains(user) ||
                         user.equals(suggested.getPrimaryAdmin()) ||
                         suggested.getOtherAdmins().contains(user)
                     );

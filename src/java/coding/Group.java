@@ -35,7 +35,7 @@ public class Group  {
     }
 
     public void populateObservers(){
-        if (members.isEmpty()){
+        if (members.isEmpty() && otherAdmins.isEmpty() && primaryAdmin == null){
             System.out.println("No members to populate");
             return;
         }
