@@ -52,6 +52,7 @@ public class View_Friends_List3 extends JFrame {
                 friend.getGroupManager().getOther().put(group.getName(),group);
                 if(group.getMembers().contains(friend))
                 group.getMembers().remove(friend);
+                friend.getGroupManager().saveGroups();
                 panel1.remove(customPanel);
                 refreshUI();
             });

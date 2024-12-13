@@ -30,7 +30,6 @@ public class CustomPanel<T> extends JPanel {
 
         setupLayout();
     }
-
     protected void setupLayout() {
         setLayout(new GridLayout(1,2));
         JPanel profilePanel = new JPanel(new GridLayout(1,3));

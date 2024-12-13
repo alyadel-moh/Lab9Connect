@@ -45,8 +45,7 @@ public class User {
     @JsonIgnore private Content_Observer content_observer;
     @JsonIgnore private Request_Observer request_observer;
     @JsonIgnore private Group_Observer  group_observer;
-
-
+    @JsonIgnore private Notifications notifications;
     @JsonIgnore private Notifications notificationsWindow;
     @JsonIgnore @JsonProperty
     private String observer;
@@ -81,6 +80,7 @@ public class User {
         this.content_observer = new Content_Observer(this);
         this.group_observer = new Group_Observer(this);
         this.request_observer = new Request_Observer(this);
+        this.notifications = new Notifications(this);
 
        // this.notificationsWindow = new Notifications(this);
     }
@@ -346,6 +346,8 @@ public class User {
     public void setGroupmanager(Group_Manager groupManager) {
         this.groupManager = groupManager;
     }
+    public Notifications getNotifications(){return notifications; }
+    public void setNotifications(Notifications notifications){this.notifications = notifications; }
 
     @JsonIgnore
     public ArrayList<User> getSuggestions(){

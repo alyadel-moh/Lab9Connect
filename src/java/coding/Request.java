@@ -1,10 +1,12 @@
 package coding;
 
 import coding.ENUMS.STATE;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 public class Request<T> {
     private STATE state;
     private User sender;
+    @JsonBackReference
     protected T receiver;
 
     // Default constructor
@@ -52,4 +54,5 @@ public class Request<T> {
     public void accept() {
         this.state = STATE.ACCEPTED;
     }
+    
 }

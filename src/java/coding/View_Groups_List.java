@@ -12,6 +12,7 @@ public class View_Groups_List extends JFrame {
     private Group_Manager groupManager;
     View_Groups_List(User primaryadmin,Map<String,Group> groups)
     {
+
         this.groupManager = primaryadmin.getGroupManager();
         if (this.groupManager == null) {
             throw new IllegalStateException("Group Manager is not initialized.");

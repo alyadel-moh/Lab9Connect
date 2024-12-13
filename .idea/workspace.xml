@@ -5,8 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b070c600-f384-439e-b49a-9b65b4c8f3b6" name="Changes" comment="Merge branch 'main' of https://github.com/shamsquraytum/Lab9Connect&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
+      <change afterPath="$PROJECT_DIR$/src/java/coding/Notification.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/java/coding/NotificationDatabase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/java/coding/NotificationDatabase2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/java/coding/NotificationForRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/coding/Homepage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Homepage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FriendRequests.json" beforeDir="false" afterPath="$PROJECT_DIR$/FriendRequests.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Friends.json" beforeDir="false" afterPath="$PROJECT_DIR$/Friends.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Groups.json" beforeDir="false" afterPath="$PROJECT_DIR$/Groups.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Stories.json" beforeDir="false" afterPath="$PROJECT_DIR$/Stories.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Users.json" beforeDir="false" afterPath="$PROJECT_DIR$/Users.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/CreateGroupGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/CreateGroupGui.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/CustomPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/CustomPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Group.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/Group_Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Group_Manager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/Notifications.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Notifications.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/Notifications_Panel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Notifications_Panel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/Primaryadmin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Primaryadmin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/Request.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/View_Friends_List3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/View_Friends_List3.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/View_Groups_List.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/View_Groups_List.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/coding/View_Posts_List.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/coding/View_Posts_List.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +111,7 @@
     &quot;UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;#30 on mazen-w-aly&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Hassan Mikky/IdeaProjects/Lab9Connect&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Administrator/Downloads/Lab9Connect-a5e5ea83ee361ecd3cd77ac6144fdef240ec1de8&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,

@@ -1,10 +1,13 @@
 package coding;
 
+import coding.ENUMS.CONTENT_TYPE;
 import coding.ENUMS.Mapper;
+import coding.ENUMS.NOTIFICATIONS.REQUEST;
 import coding.Observer.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +26,8 @@ public class Notifications extends JFrame implements NotificationObserver {
     private final JPanel notificationPanel;
     private final List<Notifications_Panel> notifications;
     private final Map<Notifications_Panel, Window> openWindows = new HashMap<>();
+    private List<Notification> notificationsToFile;
+    private List<NotificationForRequest> notificationsForRequests;
 
 
     public List<Notifications_Panel> getNotifications() {
@@ -38,6 +43,7 @@ public class Notifications extends JFrame implements NotificationObserver {
         this.user = user;
         this.notifications = new CopyOnWriteArrayList<>(); // Thread-safe notifications list
         this.notificationPanel = new JPanel();
+        this.notificationsToFile = new ArrayList<>();
         notificationPanel.setLayout(new BoxLayout(notificationPanel, BoxLayout.Y_AXIS));
 
         // Set up the JScrollPane and add to JFrame
@@ -54,6 +60,10 @@ public class Notifications extends JFrame implements NotificationObserver {
 
         // Populate with initial notifications
         populateNotifications(notifications);
+        List<Notification> loadedNotifications = NotificationDatabase.loadNotificationsFromFile();
+        this.notificationsToFile = new ArrayList<>(loadedNotifications);
+//        List<NotificationForRequest> loadedNotificationsRequests = NotificationDatabase2.loadNotificationsFromFile();
+//        this.notificationsForRequests = new ArrayList<>(loadedNotificationsRequests);
     }
 
     /**
@@ -176,6 +186,16 @@ public class Notifications extends JFrame implements NotificationObserver {
             newNotification.add(Mapper.getMessage(message));
             setupCustomPanelActions(newNotification);
             notifications.add(newNotification);
+//            if(message instanceof CONTENT_TYPE) {
+                Notification notification = new Notification(sender, message);
+                notificationsToFile.add(notification);
+                NotificationDatabase.saveNotificationsToFile(notificationsToFile);
+//            }
+//            if(message instanceof REQUEST) {
+//                NotificationForRequest notificationRequest = new NotificationForRequest(sender, message);
+//                notificationsForRequests.add(notificationRequest);
+//                NotificationDatabase2.saveNotificationsToFile(notificationsForRequests);
+//            }
             populateNotifications(notifications);
             System.out.println(user.getUserName() + ", " + notifications.size() + " notifications!");
         });

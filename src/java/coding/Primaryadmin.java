@@ -22,6 +22,7 @@ public class Primaryadmin extends JFrame{
             promoteOrDemoteOtherButton.addActionListener(e -> {
             });
           viewCreatedGroupsButton.addActionListener(e -> {
+              primaryadmin.getGroupManager().loadGroups();
               new View_Groups_List(primaryadmin,primaryadmin.getGroupManager().getPrimary());
               setVisible(false);
             });

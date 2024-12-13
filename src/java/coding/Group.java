@@ -5,6 +5,7 @@ import coding.ENUMS.NOTIFICATIONS.GROUP;
 
 import coding.Observer.Notifier;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.swing.*;
 import java.io.File;
@@ -19,6 +20,7 @@ public class Group  {
     private ArrayList<User> members;
     private ArrayList<User> otheradmins;
     private ArrayList<Posts> posts;
+    @JsonManagedReference
     private ArrayList<Group_Request> requests;
 
     @JsonIgnore private Notifier notifier;
@@ -139,6 +141,7 @@ public class Group  {
                 '}';
     }
 
+    @JsonManagedReference
     public ArrayList<Group_Request> getRequests() {
         return requests;
     }

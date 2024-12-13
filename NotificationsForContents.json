@@ -1,0 +1,9 @@
+[ {
+  "sender" : "shams",
+  "message" : " added a new post!",
+  "type" : "POST"
+}, {
+  "sender" : "shams",
+  "message" : " posted a new story!",
+  "type" : "STORY"
+} ]

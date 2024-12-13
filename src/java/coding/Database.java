@@ -105,7 +105,10 @@ public class Database {
                 user.getFriendHandler().loadHisOwnFriendSuggestions(user.getUserId());
                 user.getManager().loadHisOwnRequests(user.getUserId());
                 user.getGroupManager().loadGroups();
-//                user.getGroupManager().loadSuggestionGroups();
+                user.getGroupManager().loadSuggestionGroups();
+                user.getGroupManager().loadGroupRequests();
+                NotificationDatabase.loadNotificationsFromFile();
+               // NotificationDatabase2.loadNotificationsFromFile();
 
 
                 if(user.getProfilePath() == null){

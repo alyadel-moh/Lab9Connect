@@ -1,6 +1,7 @@
 package coding;
 
 import coding.ENUMS.Mapper;
+import com.fasterxml.jackson.annotation.JsonCreator;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,6 +18,7 @@ public class Notifications_Panel extends CustomPanel{
         super(user, text, text2);
         this.code = code;
     }
+
 
     @Override
     public void setupLayout(){

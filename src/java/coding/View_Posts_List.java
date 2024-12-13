@@ -13,7 +13,6 @@ View_Posts_List(Group group)
 {
     this.group = group;
     setTitle("view Posts");
-
     this.panel1 = new JPanel();
     panel1.setLayout(new GridLayout(0,1));
 

@@ -76,6 +76,7 @@ public class CreateGroupGui extends JFrame {
 
             primaryAdmin.getGroupManager().getPrimary().put(group.getName(),group);
            primaryAdmin.getGroupManager().getAllgroups().put(group.getName(),group);
+           primaryAdmin.getGroupManager().addGroup(group);
             System.out.println(Group_Manager.getAllgroups());
             System.out.println(primaryAdmin.getGroupManager().getPrimary());
           setVisible(false);
