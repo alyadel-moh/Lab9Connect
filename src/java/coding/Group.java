@@ -70,9 +70,6 @@ public class Group  {
         notifier.notifyGroupObservers(this, GROUP.POST, null);
     }
 
-    public ArrayList<User> getOtherAdmins() {
-      return otheradmins;
-    }
 
 
     public String getName() {
@@ -108,7 +105,9 @@ public class Group  {
     }
 
     public void setProfilepath(){this.profilePath = "images/account.png";}
-
+    public ArrayList<User> getOtherAdmins() {
+        return otheradmins;
+    }
 
     public String getProfilePath() {
         return profilePath;
@@ -116,10 +115,6 @@ public class Group  {
 
     public void setProfilePath(String profilePath) {
         this.profilePath = profilePath;
-    }
-
-    public ArrayList<User> getOtheradmins() {
-        return otheradmins;
     }
 
     public void setOtheradmins(ArrayList<User> otheradmins) {

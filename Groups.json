@@ -1,6 +1,6 @@
 {
-  "eeeee" : {
-    "profilePath" : "C:\\Users\\alyad\\Pictures\\refactored.drawio (1).png",
+  "aaaaa" : {
+    "profilePath" : null,
     "primaryAdmin" : {
       "coverPath" : null,
       "bio" : null,
@@ -13,8 +13,8 @@
       "dateOfBirth" : "2024-12-05",
       "profilePath" : "images/account.png"
     },
-    "description" : "iiiiiiiiiii",
-    "name" : "eeeee",
+    "description" : "",
+    "name" : "aaaaa",
     "members" : [ {
       "coverPath" : null,
       "bio" : null,
@@ -27,98 +27,9 @@
       "dateOfBirth" : "2024-12-09",
       "profilePath" : "images/account.png"
     } ],
-    "otheradmins" : [ {
-      "coverPath" : null,
-      "bio" : null,
-      "password" : "f4a4ce5fa6340a35aa5db0b4b6d31a6fbaa6052356460dbb0537657d803f5be2",
-      "email" : "mo@gmail.com",
-      "status" : "offline",
-      "receivedRequest" : false,
-      "userId" : "be4d84ca",
-      "userName" : "mo",
-      "dateOfBirth" : "2024-12-08",
-      "profilePath" : "images/account.png"
-    }, {
-      "coverPath" : null,
-      "bio" : null,
-      "password" : "f4a4ce5fa6340a35aa5db0b4b6d31a6fbaa6052356460dbb0537657d803f5be2",
-      "email" : "mo@gmail.com",
-      "status" : "offline",
-      "receivedRequest" : false,
-      "userId" : "be4d84ca",
-      "userName" : "mo",
-      "dateOfBirth" : "2024-12-08",
-      "profilePath" : "images/account.png"
-    }, {
-      "coverPath" : null,
-      "bio" : null,
-      "password" : "f4a4ce5fa6340a35aa5db0b4b6d31a6fbaa6052356460dbb0537657d803f5be2",
-      "email" : "mo@gmail.com",
-      "status" : "offline",
-      "receivedRequest" : false,
-      "userId" : "be4d84ca",
-      "userName" : "mo",
-      "dateOfBirth" : "2024-12-08",
-      "profilePath" : "images/account.png"
-    }, {
-      "coverPath" : null,
-      "bio" : null,
-      "password" : "f4a4ce5fa6340a35aa5db0b4b6d31a6fbaa6052356460dbb0537657d803f5be2",
-      "email" : "mo@gmail.com",
-      "status" : "offline",
-      "receivedRequest" : false,
-      "userId" : "be4d84ca",
-      "userName" : "mo",
-      "dateOfBirth" : "2024-12-08",
-      "profilePath" : "images/account.png"
-    }, {
-      "coverPath" : null,
-      "bio" : null,
-      "password" : "f4a4ce5fa6340a35aa5db0b4b6d31a6fbaa6052356460dbb0537657d803f5be2",
-      "email" : "mo@gmail.com",
-      "status" : "offline",
-      "receivedRequest" : false,
-      "userId" : "be4d84ca",
-      "userName" : "mo",
-      "dateOfBirth" : "2024-12-08",
-      "profilePath" : "images/account.png"
-    }, {
-      "coverPath" : null,
-      "bio" : null,
-      "password" : "f4a4ce5fa6340a35aa5db0b4b6d31a6fbaa6052356460dbb0537657d803f5be2",
-      "email" : "mo@gmail.com",
-      "status" : "offline",
-      "receivedRequest" : false,
-      "userId" : "be4d84ca",
-      "userName" : "mo",
-      "dateOfBirth" : "2024-12-08",
-      "profilePath" : "images/account.png"
-    }, {
-      "coverPath" : null,
-      "bio" : null,
-      "password" : "f4a4ce5fa6340a35aa5db0b4b6d31a6fbaa6052356460dbb0537657d803f5be2",
-      "email" : "mo@gmail.com",
-      "status" : "offline",
-      "receivedRequest" : false,
-      "userId" : "be4d84ca",
-      "userName" : "mo",
-      "dateOfBirth" : "2024-12-08",
-      "profilePath" : "images/account.png"
-    }, {
-      "coverPath" : null,
-      "bio" : null,
-      "password" : "f4a4ce5fa6340a35aa5db0b4b6d31a6fbaa6052356460dbb0537657d803f5be2",
-      "email" : "mo@gmail.com",
-      "status" : "offline",
-      "receivedRequest" : false,
-      "userId" : "be4d84ca",
-      "userName" : "mo",
-      "dateOfBirth" : "2024-12-08",
-      "profilePath" : "images/account.png"
-    } ],
     "posts" : [ ],
     "requests" : [ ],
-    "profilepath" : "C:\\Users\\alyad\\Pictures\\refactored.drawio (1).png",
+    "profilepath" : null,
     "otherAdmins" : [ {
       "coverPath" : null,
       "bio" : null,
@@ -130,129 +41,6 @@
       "userName" : "mo",
       "dateOfBirth" : "2024-12-08",
       "profilePath" : "images/account.png"
-    }, {
-      "coverPath" : null,
-      "bio" : null,
-      "password" : "f4a4ce5fa6340a35aa5db0b4b6d31a6fbaa6052356460dbb0537657d803f5be2",
-      "email" : "mo@gmail.com",
-      "status" : "offline",
-      "receivedRequest" : false,
-      "userId" : "be4d84ca",
-      "userName" : "mo",
-      "dateOfBirth" : "2024-12-08",
-      "profilePath" : "images/account.png"
-    }, {
-      "coverPath" : null,
-      "bio" : null,
-      "password" : "f4a4ce5fa6340a35aa5db0b4b6d31a6fbaa6052356460dbb0537657d803f5be2",
-      "email" : "mo@gmail.com",
-      "status" : "offline",
-      "receivedRequest" : false,
-      "userId" : "be4d84ca",
-      "userName" : "mo",
-      "dateOfBirth" : "2024-12-08",
-      "profilePath" : "images/account.png"
-    }, {
-      "coverPath" : null,
-      "bio" : null,
-      "password" : "f4a4ce5fa6340a35aa5db0b4b6d31a6fbaa6052356460dbb0537657d803f5be2",
-      "email" : "mo@gmail.com",
-      "status" : "offline",
-      "receivedRequest" : false,
-      "userId" : "be4d84ca",
-      "userName" : "mo",
-      "dateOfBirth" : "2024-12-08",
-      "profilePath" : "images/account.png"
-    }, {
-      "coverPath" : null,
-      "bio" : null,
-      "password" : "f4a4ce5fa6340a35aa5db0b4b6d31a6fbaa6052356460dbb0537657d803f5be2",
-      "email" : "mo@gmail.com",
-      "status" : "offline",
-      "receivedRequest" : false,
-      "userId" : "be4d84ca",
-      "userName" : "mo",
-      "dateOfBirth" : "2024-12-08",
-      "profilePath" : "images/account.png"
-    }, {
-      "coverPath" : null,
-      "bio" : null,
-      "password" : "f4a4ce5fa6340a35aa5db0b4b6d31a6fbaa6052356460dbb0537657d803f5be2",
-      "email" : "mo@gmail.com",
-      "status" : "offline",
-      "receivedRequest" : false,
-      "userId" : "be4d84ca",
-      "userName" : "mo",
-      "dateOfBirth" : "2024-12-08",
-      "profilePath" : "images/account.png"
-    }, {
-      "coverPath" : null,
-      "bio" : null,
-      "password" : "f4a4ce5fa6340a35aa5db0b4b6d31a6fbaa6052356460dbb0537657d803f5be2",
-      "email" : "mo@gmail.com",
-      "status" : "offline",
-      "receivedRequest" : false,
-      "userId" : "be4d84ca",
-      "userName" : "mo",
-      "dateOfBirth" : "2024-12-08",
-      "profilePath" : "images/account.png"
-    }, {
-      "coverPath" : null,
-      "bio" : null,
-      "password" : "f4a4ce5fa6340a35aa5db0b4b6d31a6fbaa6052356460dbb0537657d803f5be2",
-      "email" : "mo@gmail.com",
-      "status" : "offline",
-      "receivedRequest" : false,
-      "userId" : "be4d84ca",
-      "userName" : "mo",
-      "dateOfBirth" : "2024-12-08",
-      "profilePath" : "images/account.png"
     } ]
-  },
-  "aaaaaaaa" : {
-    "profilePath" : null,
-    "primaryAdmin" : {
-      "coverPath" : null,
-      "bio" : null,
-      "password" : "f789c4d98a4ee924f6611a858aed07c30b6c903ad874dd6a1961b42e8c9792b5",
-      "email" : "alyy@gmail.com",
-      "status" : "online",
-      "receivedRequest" : false,
-      "userId" : "0f2dd7ac",
-      "userName" : "alyy",
-      "dateOfBirth" : "2024-12-05",
-      "profilePath" : "images/account.png"
-    },
-    "description" : "",
-    "name" : "aaaaaaaa",
-    "members" : [ ],
-    "otheradmins" : [ ],
-    "posts" : [ ],
-    "requests" : [ ],
-    "profilepath" : null,
-    "otherAdmins" : [ ]
-  },
-  "eeeeeeee" : {
-    "profilePath" : null,
-    "primaryAdmin" : {
-      "coverPath" : null,
-      "bio" : null,
-      "password" : "f789c4d98a4ee924f6611a858aed07c30b6c903ad874dd6a1961b42e8c9792b5",
-      "email" : "alyy@gmail.com",
-      "status" : "online",
-      "receivedRequest" : false,
-      "userId" : "0f2dd7ac",
-      "userName" : "alyy",
-      "dateOfBirth" : "2024-12-05",
-      "profilePath" : "images/account.png"
-    },
-    "description" : "",
-    "name" : "eeeeeeee",
-    "members" : [ ],
-    "otheradmins" : [ ],
-    "posts" : [ ],
-    "requests" : [ ],
-    "profilepath" : null,
-    "otherAdmins" : [ ]
   }
 }

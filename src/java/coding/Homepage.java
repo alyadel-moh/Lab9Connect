@@ -220,7 +220,6 @@ public class Homepage extends JFrame {
     private void displayFriendSuggestions() {
         // Clear the panel
         friendSuggestionsPanel.removeAll();
-
         if(user.getSuggestions().isEmpty()){
             friendSuggestionsPanel.add(new JLabel("No Suggestions to View!"));
             refreshUI();
@@ -230,6 +229,8 @@ public class Homepage extends JFrame {
         user.getSuggestions().removeIf(suggested -> user.getManager().getFriends().contains(suggested));
 
         for (User suggested : user.getSuggestions()) {
+            if(suggested instanceof User)
+            {
             if (user.getManager().getFriends().contains(suggested)){
                 //user.getSuggestions().remove(suggested);
                 continue;
@@ -261,6 +262,8 @@ public class Homepage extends JFrame {
             }
         }
 
+
+}
 
         // Refresh the UI after adding all panels
         refreshUI();

@@ -225,6 +225,18 @@ public class Group_Manager implements Requester {
             allgroups = new HashMap<>();
             groups = new HashMap<>();
         }
+        for(String key : allgroups.keySet())
+        {
+            Group group = allgroups.get(key);
+            System.out.println(group);
+            group.getPrimaryAdmin().getGroupManager().getPrimary().put(group.getName(),group);
+            ArrayList<User> members = group.getMembers();
+            ArrayList<User> otheradmins = group.getOtherAdmins();
+            for(User member : members)
+                member.getGroupManager().getGroups().put(group.getName(),group);
+            for(User otheradmin : otheradmins)
+                otheradmin.getGroupManager().getOther().put(group.getName(),group);
+        }
     }
 
     public void saveSuggestionGroups() {
