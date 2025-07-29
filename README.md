@@ -1,6 +1,6 @@
-# Lab9Connect
+# Connect HUB
 
-**Lab9Connect** is a Java-based social networking simulation that imitates core features of popular platforms like Facebook or Instagram. It provides users with a way to sign up, connect with friends, share content (posts/stories), join groups, receive notifications, and manage relationships—all built using Java Swing for GUI and JSON for persistent data storage. The project applies multiple software engineering design patterns to ensure clean, maintainable, and extensible code.
+**CONNECT HUB** is a Java-based social networking simulation that imitates core features of popular platforms like Facebook or Instagram. It provides users with a way to sign up, connect with friends, share content (posts/stories), join groups, receive notifications, and manage relationships—all built using Java Swing for GUI and JSON for persistent data storage. The project applies multiple software engineering design patterns to ensure clean, maintainable, and extensible code.
 
 ---
 
