@@ -71,6 +71,13 @@ No SQL database is used. Instead, all persistent data is handled through local `
 
 This simulates a lightweight backend while keeping the project focused on object-oriented design.
 
+---
 
+## 🔧 Troubleshooting
 
+If you encounter any issues with GitHub Actions, billing, or running the project, please refer to our [Troubleshooting Guide](TROUBLESHOOTING.md) for detailed solutions.
 
+Common issues covered:
+- GitHub Actions billing and quota errors
+- Build failures
+- Running the project locally
