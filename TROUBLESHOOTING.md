@@ -79,4 +79,3 @@ To run this project locally:
 2. Open the project in your IDE (IntelliJ IDEA, Eclipse, etc.)
 3. Build and run the main class
 4. JSON files for data storage should be in the project root
-

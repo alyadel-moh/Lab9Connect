@@ -81,5 +81,3 @@ Common issues covered:
 - GitHub Actions billing and quota errors
 - Build failures
 - Running the project locally
-
----
